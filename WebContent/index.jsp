@@ -1,10 +1,11 @@
-
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-  <head>
-    <title>$Title$</title>
-  </head>
+<%@ include file="partials/head.jsp"%>
+<%@ include file="partials/header.jsp"%>
+
   <body>
   $END$
   </body>
-</html>
+
+
+<%@include file="partials/footer.jsp"%>
+
