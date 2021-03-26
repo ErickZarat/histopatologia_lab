@@ -10,15 +10,10 @@
 
     <packaging>war</packaging>
     <dependencies>
-<!--        <dependency>-->
-<!--            <groupId>com.googlecode.json-simple</groupId>-->
-<!--            <artifactId>json-simple</artifactId>-->
-<!--            <version>1.1</version>-->
-<!--        </dependency>-->
         <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
-            <version>9.3-1101-jdbc41</version>
+            <version>42.2.19</version>
         </dependency>
         <dependency>
             <groupId>junit</groupId>
@@ -37,6 +32,21 @@
             <artifactId>commons-lang3</artifactId>
             <version>3.3.2</version>
         </dependency>
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+            <version>4.3.4</version>
+        </dependency>
+        <dependency>
+            <groupId>jstl</groupId>
+            <artifactId>jstl</artifactId>
+            <version>1.2</version>
+        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>com.googlecode.json-simple</groupId>-->
+<!--            <artifactId>json-simple</artifactId>-->
+<!--            <version>1.1</version>-->
+<!--        </dependency>-->
 <!--        <dependency>-->
 <!--            <groupId>commons-fileupload</groupId>-->
 <!--            <artifactId>commons-fileupload</artifactId>-->
@@ -52,11 +62,6 @@
 <!--            <artifactId>itextpdf</artifactId>-->
 <!--            <version>5.0.6</version>-->
 <!--        </dependency>-->
-        <dependency>
-            <groupId>org.apache.httpcomponents</groupId>
-            <artifactId>httpclient</artifactId>
-            <version>4.3.4</version>
-        </dependency>
 <!--        <dependency>-->
 <!--            <groupId>org.jdom</groupId>-->
 <!--            <artifactId>jdom</artifactId>-->
@@ -67,11 +72,6 @@
 <!--            <artifactId>jasperreports</artifactId>-->
 <!--            <version>5.0.1</version>-->
 <!--        </dependency>-->
-        <dependency>
-            <groupId>jstl</groupId>
-            <artifactId>jstl</artifactId>
-            <version>1.2</version>
-        </dependency>
 <!--        <dependency>-->
 <!--            <groupId>javax.mail</groupId>-->
 <!--            <artifactId>mail</artifactId>-->
@@ -94,6 +94,54 @@
                 <version>3.8.1</version>
                 <configuration>
                     <release>13</release>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.jooq</groupId>
+                <artifactId>jooq-codegen-maven</artifactId>
+                <version>3.14.8</version>
+
+                <executions>
+                    <execution>
+                        <id>jooq-codegen</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                    </execution>
+                </executions>
+
+                <dependencies>
+                    <dependency>
+                        <groupId>org.postgresql</groupId>
+                        <artifactId>postgresql</artifactId>
+                        <version>42.2.19</version>
+                    </dependency>
+                </dependencies>
+
+                <configuration>
+                    <jdbc>
+                        <driver>org.postgresql.Driver</driver>
+                        <url>jdbc:postgresql://localhost:5432/postgres</url>
+                        <user>postgres</user>
+                        <password>docker</password>
+                    </jdbc>
+
+                    <generator>
+                        <name>org.jooq.codegen.JavaGenerator</name>
+                        <database>
+                            <name>org.jooq.meta.postgres.PostgresDatabase</name>
+                            <inputSchema>public</inputSchema>
+                            <includes>.*</includes>
+                            <excludes></excludes>
+                        </database>
+
+                        <target>
+                            <packageName>me.astridcortez.hispatologialab</packageName>
+                            <directory>/Users/erickzarat/code/me/astrid/histopatologia_lab/src/generated/java</directory>
+                        </target>
+                    </generator>
                 </configuration>
             </plugin>
         </plugins>
