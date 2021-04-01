@@ -38,6 +38,7 @@ public class MedicamentosDaoImpl implements IMedicamentosDao {
         return results.stream().map(this::parseItem).collect(Collectors.toList());
     }
 
+    @Override
     public List<Medicamento> getMedicamentos(int limit) {
         List<Record> results = query
                 .select(tabla.asterisk())
@@ -48,6 +49,7 @@ public class MedicamentosDaoImpl implements IMedicamentosDao {
         return results.stream().map(this::parseItem).collect(Collectors.toList());
     }
 
+    @Override
     public List<Medicamento> getMedicamentos(int lastId, int limit) {
         List<Record> results = query
                 .select(tabla.asterisk())
@@ -85,24 +87,30 @@ public class MedicamentosDaoImpl implements IMedicamentosDao {
         record.setFechaCreacion(LocalDate.now());
         record.setCreadoPor("");
         record.setEstadoMedicamento("");
-        int id = record.store();
-        return getMedicamento(id);
+        record.store();
+        return getMedicamento(record.getCodMedicamento());
     }
 
     @Override
     public Medicamento modificarMedicamento(Medicamento medicamento) {
-        int id = query.update(tabla)
+        query.update(tabla)
                 .set(tabla.NOMBRE_MEDICAMENTO, medicamento.getNombreMedicamento())
                 .set(tabla.FECHA_MODIFICACION, LocalDate.now())
-                .set(tabla.MODIFICADO_POR, "")
-                .set(tabla.ESTADO_MEDICAMENTO, "")
+                .set(tabla.MODIFICADO_POR, medicamento.getModificadoPor())
+                .set(tabla.ESTADO_MEDICAMENTO, medicamento.getEstado())
                 .where(tabla.COD_MEDICAMENTO.eq(medicamento.getCodigoMedicamento()))
                 .execute();
-        return getMedicamento(id);
+        return getMedicamento(medicamento.getCodigoMedicamento());
     }
 
     @Override
-    public Boolean darDeBaja(int codMedicamento) {
-        return null;
+    public Boolean darDeBaja(int codMedicamento, String usuario) {
+        Medicamento medicamento = getMedicamento(codMedicamento);
+        medicamento.setModificadoPor(usuario);
+        medicamento.setFechaModificacion(LocalDate.now());
+        medicamento.setEstado("DESHABILITADO");
+
+        Medicamento medicamentoModificado = modificarMedicamento(medicamento);
+        return medicamentoModificado != null;
     }
 }

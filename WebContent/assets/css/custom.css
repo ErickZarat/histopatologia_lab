@@ -1,0 +1,22 @@
+
+.custom-navbar {
+    background-color: #676698;
+}
+
+.custom-navbar-index a {
+    color: white;
+    width: 100%;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.8em;
+    margin: 1%;
+}
+
+.login-container {
+    width: 40%;
+    margin-top: 8%;
+}
+
+body {
+    background-color: #d9d9d9;
+}

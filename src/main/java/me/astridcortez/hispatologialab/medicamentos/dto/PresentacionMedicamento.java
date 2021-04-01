@@ -1,17 +1,17 @@
 package me.astridcortez.hispatologialab.medicamentos.dto;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public class PresentacionMedicamento {
     private int codMedicamento;
-    private String tipoPresentacion;
+    private int tipoPresentacion;
     private String creadoPor;
-    private Date fechaCreacion;
+    private LocalDate fechaCreacion;
     private String modificatoPor;
 
     public PresentacionMedicamento() { }
 
-    public PresentacionMedicamento(int codMedicamento, String tipoPresentacion, String creadoPor, Date fechaCreacion, String modificatoPor) {
+    public PresentacionMedicamento(int codMedicamento, int tipoPresentacion, String creadoPor, LocalDate fechaCreacion, String modificatoPor) {
         this.codMedicamento = codMedicamento;
         this.tipoPresentacion = tipoPresentacion;
         this.creadoPor = creadoPor;
@@ -27,11 +27,11 @@ public class PresentacionMedicamento {
         this.codMedicamento = codMedicamento;
     }
 
-    public String getTipoPresentacion() {
+    public int getTipoPresentacion() {
         return tipoPresentacion;
     }
 
-    public void setTipoPresentacion(String tipoPresentacion) {
+    public void setTipoPresentacion(int tipoPresentacion) {
         this.tipoPresentacion = tipoPresentacion;
     }
 
@@ -43,11 +43,11 @@ public class PresentacionMedicamento {
         this.creadoPor = creadoPor;
     }
 
-    public Date getFechaCreacion() {
+    public LocalDate getFechaCreacion() {
         return fechaCreacion;
     }
 
-    public void setFechaCreacion(Date fechaCreacion) {
+    public void setFechaCreacion(LocalDate fechaCreacion) {
         this.fechaCreacion = fechaCreacion;
     }
 
