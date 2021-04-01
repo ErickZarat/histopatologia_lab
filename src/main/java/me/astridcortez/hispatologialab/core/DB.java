@@ -32,6 +32,7 @@ public class DB {
         hikariConfig.setMinimumIdle(minimumIdle);
         hikariConfig.setMaximumPoolSize(maximumPoolSize);
         hikariConfig.setLeakDetectionThreshold(leakDetectionThreshold);
+        hikariConfig.setDriverClassName("org.postgresql.Driver");
 
         dataSource = new HikariDataSource(hikariConfig);
     }
