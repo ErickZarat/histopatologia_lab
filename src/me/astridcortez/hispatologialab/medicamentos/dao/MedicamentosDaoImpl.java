@@ -2,8 +2,8 @@ package me.astridcortez.hispatologialab.medicamentos.dao;
 
 import me.astridcortez.hispatologialab.core.DB;
 import me.astridcortez.hispatologialab.medicamentos.dto.Medicamento;
-import me.astridcortez.hispatologialab.tables.LabMedicamento;
-import me.astridcortez.hispatologialab.tables.records.LabMedicamentoRecord;
+import me.astridcortez.hispatologialab.core.db.tables.LabMedicamento;
+import me.astridcortez.hispatologialab.core.db.tables.records.LabMedicamentoRecord;
 import org.jooq.DSLContext;
 import org.jooq.Record;
 

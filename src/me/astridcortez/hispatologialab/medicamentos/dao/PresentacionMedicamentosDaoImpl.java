@@ -1,16 +1,12 @@
 package me.astridcortez.hispatologialab.medicamentos.dao;
 
 import me.astridcortez.hispatologialab.core.DB;
-import me.astridcortez.hispatologialab.medicamentos.dto.Medicamento;
 import me.astridcortez.hispatologialab.medicamentos.dto.PresentacionMedicamento;
-import me.astridcortez.hispatologialab.tables.LabMedicamento;
-import me.astridcortez.hispatologialab.tables.LabPresentacionMedicamento;
-import me.astridcortez.hispatologialab.tables.records.LabMedicamentoRecord;
-import me.astridcortez.hispatologialab.tables.records.LabPresentacionMedicamentoRecord;
+import me.astridcortez.hispatologialab.core.db.tables.LabPresentacionMedicamento;
+import me.astridcortez.hispatologialab.core.db.tables.records.LabPresentacionMedicamentoRecord;
 import org.jooq.DSLContext;
 import org.jooq.Record;
 
-import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
