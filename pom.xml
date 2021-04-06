@@ -168,8 +168,8 @@
                         </database>
 
                         <target>
-                            <packageName>me.astridcortez.hispatologialab</packageName>
-                            <directory>/Users/erickzarat/code/me/astrid/histopatologia_lab/src/generated/java</directory>
+                            <packageName>me.astridcortez.hispatologialab.core.db</packageName>
+                            <directory>/Users/erickzarat/code/me/astrid/histopatologia_lab/src</directory>
                         </target>
                     </generator>
                 </configuration>
