@@ -1,7 +1,5 @@
 package me.astridcortez.hispatologialab.login;
 
-import com.sun.media.jfxmedia.logging.Logger;
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,6 +7,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import org.tinylog.Logger;
+
 import java.io.IOException;
 
 @WebServlet(name = "LoginServlet")
@@ -35,7 +36,7 @@ public class LoginServlet extends HttpServlet {
     }
 
     private void crearSesion(HttpServletRequest request, String usuario) {
-        Logger.logMsg(Logger.INFO, "se creo la sesion para el usuario " + usuario);
+        Logger.info("se creo la sesion para el usuario: " + usuario);
         HttpSession session = request.getSession(true);
         session.setAttribute("usuario", usuario);
         session.setAttribute("sesionIniciada", true);
