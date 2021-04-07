@@ -169,7 +169,7 @@
 
                         <target>
                             <packageName>me.astridcortez.hispatologialab.core.db</packageName>
-                            <directory>/Users/erickzarat/code/me/astrid/histopatologia_lab/src</directory>
+                            <directory>./src</directory>
                         </target>
                     </generator>
                 </configuration>
