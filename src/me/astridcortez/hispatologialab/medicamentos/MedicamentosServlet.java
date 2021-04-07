@@ -96,7 +96,7 @@ public class MedicamentosServlet extends HttpServlet {
 //        int codigoMedicamento, String nombreMedicamento, String estado, String creadoPor, LocalDate fechaCreacion, String modificadoPor, LocalDate fechaModificacion
 
         //System.out.println(request.getParameter("accion"));
-        RequestAction action = RequestAction.OBTENER_PRESENTACIONES;//RequestAction.valueOf(request.getParameter("accion"));
+        RequestAction action = RequestAction.DEFAULT;//RequestAction.valueOf(request.getParameter("accion"));
 
         if (action == RequestAction.CREAR) {
 
