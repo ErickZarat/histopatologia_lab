@@ -26,13 +26,16 @@ public class LoginServlet extends HttpServlet {
         boolean seInicioSesion = loginController.iniciarSession(usuario, password);
         if (seInicioSesion) {
             crearSesion(request, usuario);
+            despachador = request.getRequestDispatcher("principal.jsp");
+        } else {
+            despachador = request.getRequestDispatcher("index.jsp");
         }
-        despachador = request.getRequestDispatcher("index.jsp");
         despachador.forward(request, response);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        RequestDispatcher despachador = request.getRequestDispatcher("index.jsp");
+        despachador.forward(request, response);
     }
 
     private void crearSesion(HttpServletRequest request, String usuario) {
