@@ -43,6 +43,11 @@ public class MedicamentosControllerImpl implements IMedicamentosController {
     }
 
     @Override
+    public Boolean darBajaMedicamento(int codigo, String usuario) {
+        return medicamentosDao.darDeBaja(codigo, usuario);
+    }
+
+    @Override
     public List<PresentacionMedicamento> obtenerPresentaciones(int codigo) {
         try {
             return presentacionDao.getPresentaciones(codigo);
