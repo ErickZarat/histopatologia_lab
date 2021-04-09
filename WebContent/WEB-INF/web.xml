@@ -17,7 +17,7 @@
 
     <servlet>
         <servlet-name>LoginServlet</servlet-name>
-        <servlet-class>me.astridcortez.hispatologialab.login.LoginServlet</servlet-class>
+        <servlet-class>histopatologialab.login.LoginServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
@@ -26,7 +26,7 @@
 
     <servlet>
         <servlet-name>MedicamentosServlet</servlet-name>
-        <servlet-class>me.astridcortez.hispatologialab.medicamentos.MedicamentosServlet</servlet-class>
+        <servlet-class>histopatologialab.medicamentos.MedicamentosServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>MedicamentosServlet</servlet-name>
@@ -35,7 +35,7 @@
 
     <servlet>
         <servlet-name>PresentacionMedicamentosServlet</servlet-name>
-        <servlet-class>me.astridcortez.hispatologialab.medicamentos.PresentacionMedicamentosServlet</servlet-class>
+        <servlet-class>histopatologialab.medicamentos.PresentacionMedicamentosServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>PresentacionMedicamentosServlet</servlet-name>
