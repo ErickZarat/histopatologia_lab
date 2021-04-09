@@ -12,7 +12,6 @@ import me.astridcortez.hispatologialab.medicamentos.dao.IPresentacionMedicamento
 import me.astridcortez.hispatologialab.medicamentos.dao.MedicamentosDaoImpl;
 import me.astridcortez.hispatologialab.medicamentos.dao.PresentacionMedicamentosDaoImpl;
 import me.astridcortez.hispatologialab.medicamentos.dto.Medicamento;
-import me.astridcortez.hispatologialab.medicamentos.dto.PresentacionMedicamento;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -22,7 +21,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.time.LocalDate;
 
 @WebServlet(name = "MedicamentosServlet")
 public class MedicamentosServlet extends HttpServlet {
@@ -45,9 +43,7 @@ public class MedicamentosServlet extends HttpServlet {
         } else if (action == RequestAction.MODIFICAR) {
             modificarMedicamento(request, response);
         } else if (action == RequestAction.DAR_BAJA) {
-
-        } else {
-
+            darBajaMedicamento(request, response);
         }
     }
 
@@ -67,51 +63,61 @@ public class MedicamentosServlet extends HttpServlet {
     private void crearMedicamento(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String nombre = request.getParameter("nombre");
         String tipoMedicamento = request.getParameter("tipoMedicamento");
+        String usuario = getUsuario(request);
+
+        Medicamento medicamento = controller.crearMedicamento(nombre, tipoMedicamento, usuario);
+        toJsonResponse(response, new JsonResponse<Medicamento>(medicamento != null, medicamento));
+    }
+
+    private String getUsuario(HttpServletRequest request) {
         Object usuario = request
                 .getSession(true)
                 .getAttribute("usuario");
 
         if (usuario == null) {
-            usuario = "un usuario";
+            usuario = "DEFAULT";
         }
-        Medicamento medicamento = controller.crearMedicamento(nombre, tipoMedicamento, usuario.toString());
-        toJsonResponse(response, new JsonResponse<Medicamento>(medicamento != null, medicamento));
+        return usuario.toString();
     }
 
     private void modificarMedicamento(HttpServletRequest request, HttpServletResponse response) throws IOException {
         int codigo = Integer.parseInt(request.getParameter("codigoMedicamento"));
         String nombre = request.getParameter("nombre");
-        Object usuario = request
-                .getSession(true)
-                .getAttribute("usuario");
+        String usuario = getUsuario(request);
 
-        if (usuario == null) {
-            usuario = "un usuario";
-        }
-        Medicamento medicamento = controller.modificarMedicamento(codigo, nombre, usuario.toString());
-        toJsonResponse(response, new JsonResponse<Medicamento>(medicamento != null, medicamento));
+        Medicamento medicamento = controller.modificarMedicamento(codigo, nombre, usuario);
+        toJsonResponse(response, new JsonResponse<>(medicamento != null, medicamento));
+    }
+
+    private void darBajaMedicamento(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        int codigo = Integer.parseInt(request.getParameter("codigoMedicamento"));
+        String usuario = getUsuario(request);
+
+    }
+
+    private RequestAction getRequestAction(HttpServletRequest request) {
+        String action = request.getParameter("accion");
+        RequestAction requestAction = RequestAction.DEFAULT;
+        if (action != null) requestAction =  RequestAction.valueOf(action);
+        return requestAction;
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 //        int codigoMedicamento, String nombreMedicamento, String estado, String creadoPor, LocalDate fechaCreacion, String modificadoPor, LocalDate fechaModificacion
 
-        //System.out.println(request.getParameter("accion"));
-        RequestAction action = RequestAction.DEFAULT;//RequestAction.valueOf(request.getParameter("accion"));
+        RequestAction action = getRequestAction(request);
 
         if (action == RequestAction.CREAR) {
 
 
         } else if (action == RequestAction.MODIFICAR) {
 
-        } else if (action == RequestAction.DAR_BAJA) {
-
-        } else if (action == RequestAction.OBTENER_PRESENTACIONES) {
+        } else if (action == RequestAction.LISTAR_JSON) {
             int codigo = Integer.parseInt(request.getParameter("codigo"));
             toJsonResponse(response, controller.obtenerPresentaciones(codigo));
         } else {
-            RequestDispatcher despachador = null;
             request.setAttribute("medicamentos", medicamentosDao.getMedicamentos(5));
-            despachador = request.getRequestDispatcher("mantenimientos/medicamentos.jsp");
+            RequestDispatcher despachador = getDefultDispatcher(request);
             despachador.forward(request, response);
         }
     }

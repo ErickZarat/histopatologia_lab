@@ -43,6 +43,7 @@ public class MedicamentosDaoImpl implements IMedicamentosDao {
         List<Record> results = query
                 .select(tabla.asterisk())
                 .from(tabla)
+                .where(tabla.ESTADO_MEDICAMENTO.notEqualIgnoreCase("D"))
                 .orderBy(tabla.COD_MEDICAMENTO)
                 .limit(limit)
                 .fetch();
@@ -54,6 +55,7 @@ public class MedicamentosDaoImpl implements IMedicamentosDao {
         List<Record> results = query
                 .select(tabla.asterisk())
                 .from(tabla)
+                .where(tabla.ESTADO_MEDICAMENTO.notEqualIgnoreCase("D"))
                 .orderBy(tabla.COD_MEDICAMENTO)
                 .seek(lastId)
                 .limit(limit)
@@ -66,6 +68,7 @@ public class MedicamentosDaoImpl implements IMedicamentosDao {
         List<Record> results = query
                 .select(tabla.asterisk())
                 .from(tabla)
+                .where(tabla.ESTADO_MEDICAMENTO.notEqualIgnoreCase("D"))
                 .fetch();
         return results.stream().map(this::parseItem).collect(Collectors.toList());
     }
@@ -108,7 +111,7 @@ public class MedicamentosDaoImpl implements IMedicamentosDao {
         Medicamento medicamento = getMedicamento(codMedicamento);
         medicamento.setModificadoPor(usuario);
         medicamento.setFechaModificacion(LocalDate.now());
-        medicamento.setEstado("DESHABILITADO");
+        medicamento.setEstado("D");
 
         Medicamento medicamentoModificado = modificarMedicamento(medicamento);
         return medicamentoModificado != null;

@@ -33,4 +33,13 @@
         <url-pattern>/MedicamentosServlet.do</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>PresentacionMedicamentosServlet</servlet-name>
+        <servlet-class>me.astridcortez.hispatologialab.medicamentos.PresentacionMedicamentosServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>PresentacionMedicamentosServlet</servlet-name>
+        <url-pattern>/PresentacionMedicamentosServlet.do</url-pattern>
+    </servlet-mapping>
+
 </web-app>
