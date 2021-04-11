@@ -47,7 +47,7 @@ public class MedicamentosServlet extends HttpServlet {
             toJsonResponse(response, controller.obtenerPresentaciones(codigo));
         } else {
             Logger.info("obteniendo paginas de medicamentos");
-            request.setAttribute("medicamentos", medicamentosDao.getMedicamentos(5));
+            request.setAttribute("medicamentos", medicamentosDao.getMedicamentos(10));
             RequestDispatcher despachador = request.getRequestDispatcher("mantenimientos/medicamentos.jsp");
             Logger.info("retornando despachador");
             despachador.forward(request, response);

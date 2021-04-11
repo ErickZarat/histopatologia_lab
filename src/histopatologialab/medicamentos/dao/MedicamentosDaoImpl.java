@@ -44,7 +44,7 @@ public class MedicamentosDaoImpl implements IMedicamentosDao {
                 .select(tabla.asterisk())
                 .from(tabla)
                 .where(tabla.ESTADO_MEDICAMENTO.notEqualIgnoreCase("D"))
-                .orderBy(tabla.COD_MEDICAMENTO)
+                .orderBy(tabla.COD_MEDICAMENTO.desc())
                 .limit(limit)
                 .fetch();
         return results.stream().map(this::parseItem).collect(Collectors.toList());
@@ -56,19 +56,9 @@ public class MedicamentosDaoImpl implements IMedicamentosDao {
                 .select(tabla.asterisk())
                 .from(tabla)
                 .where(tabla.ESTADO_MEDICAMENTO.notEqualIgnoreCase("D"))
-                .orderBy(tabla.COD_MEDICAMENTO)
+                .orderBy(tabla.COD_MEDICAMENTO.desc())
                 .seek(lastId)
                 .limit(limit)
-                .fetch();
-        return results.stream().map(this::parseItem).collect(Collectors.toList());
-    }
-
-
-    public List<Medicamento> getMedicamentosPaginated() {
-        List<Record> results = query
-                .select(tabla.asterisk())
-                .from(tabla)
-                .where(tabla.ESTADO_MEDICAMENTO.notEqualIgnoreCase("D"))
                 .fetch();
         return results.stream().map(this::parseItem).collect(Collectors.toList());
     }

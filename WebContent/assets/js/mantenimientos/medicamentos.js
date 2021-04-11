@@ -43,3 +43,7 @@ $('input[type=radio][name=medicamento]').change(function() {
     })
 
 });
+
+$(document).ready(function() {
+    $('#medicamentosTable').paging( { limit: 5 } );
+});

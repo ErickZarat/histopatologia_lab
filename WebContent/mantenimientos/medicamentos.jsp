@@ -44,7 +44,7 @@
         </div>
 
 
-        <table class="table table-striped w-50 left-margin-align">
+        <table class="table table-striped w-50 left-margin-align" id="medicamentosTable">
             <thead class="table thead-light">
             <tr style="font-weight: bold;">
                 <td></td>
@@ -66,14 +66,13 @@
 
 
 
-
     <div>
 
         <h6 class="sub-tittle left-padding-align">Presentaciones</h6>
 
         <div class="action-container left-padding-align">
             <!-- Button trigger modal -->
-            <button type="button" class="btn btn-light" data-toggle="modal" data-target="#agregarMedicamento">Agregar</button>
+            <button type="button" class="btn btn-light" data-toggle="modal" data-target="#agregarMedicamento">Agregar <i class="fas fa-plus"></i></button>
             <button type="button" class="btn btn-light" data-toggle="modal" data-target="#agregarMedicamento">Modificar</button>
         </div>
 
