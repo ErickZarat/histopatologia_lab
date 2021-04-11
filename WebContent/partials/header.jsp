@@ -10,7 +10,7 @@
                 Mantenimientos
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdownMantenimientos">
-                <a class="dropdown-item" href="#">Medicamentos</a>
+                <a class="dropdown-item" href="MedicamentosServlet.do">Medicamentos</a>
                 <a class="dropdown-item" href="#">Mantenimiento 2</a>
                 <a class="dropdown-item" href="#">Mantenimiento 3</a>
             </div>
