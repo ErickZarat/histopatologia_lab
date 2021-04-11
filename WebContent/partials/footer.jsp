@@ -8,7 +8,7 @@
     <script src="assets/js/jquery-ui.min.js"></script>
     <script src="assets/js/bootstrap/bootstrap.min.js"></script>
     <script src="assets/js/bootstrap/bootstrap.bundle.min.js"></script>
-    <script src="assets/js/paging.js"></script>
+    <script src="assets/js/jquery.dataTables.min.js"></script>
     <script src="assets/js/core.js"></script>
 </footer>
 

@@ -92,21 +92,21 @@ form label {
     margin-left: 3%;
 }
 
-.paging-nav a:link, .paging-nav a:visited, .paging-nav a:hover, .paging-nav a:active {
+.dataTables_paginate a:link, .paging-nav a:visited, .paging-nav a:hover, .paging-nav a:active {
     text-decoration: none;
 }
 
-.paging-nav a.selected-page {
+.dataTables_paginate a.current {
     background-color: #3b63bf;
     border: 1px solid #3b63bf;
     color: #f8f9fa;
 }
-.paging-nav a:hover {
+.dataTables_paginate a:hover {
     color: #212529;
     background-color: #e2e6ea;
     border-color: #dae0e5;
 }
-.paging-nav a {
+.dataTables_paginate a {
     cursor: pointer;
     background-color: #f8f9fa;
     border: 1px solid #f8f9fa;
@@ -120,7 +120,7 @@ form label {
     transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
     user-select: none;
 }
-.paging-nav {
+.dataTables_paginate {
     width: 50%;
     padding-left: 3%;
     text-align: right;

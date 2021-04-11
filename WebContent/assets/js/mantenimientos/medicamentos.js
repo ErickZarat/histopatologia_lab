@@ -45,5 +45,39 @@ $('input[type=radio][name=medicamento]').change(function() {
 });
 
 $(document).ready(function() {
-    $('#medicamentosTable').paging( { limit: 5 } );
+    var table = $('#medicamentosTable').DataTable({
+        searching: false,
+        paging: true,
+        pagingType: 'simple',
+        info: false,
+        bFilter: false,
+        bLengthChange: false,
+        iDisplayLength: 5,
+        oLanguage: {
+            oPaginate: {
+                sPrevious: "Anterior", // This is the link to the previous page
+                sNext: "Siguiente", // This is the link to the next page
+            }
+        }
+    });
+
+    // var data = [
+    //     ['<input type="radio" name="medicamento" id="medicamento-24" value="24">', '<label for="medicamento-24">24</label>', '<label for="medicamento-24" class="text-capitalize">Medicamento X</label>'],
+    //     ['<input type="radio" name="medicamento" id="medicamento-24" value="24">', '<label for="medicamento-24">24</label>', '<label for="medicamento-24" class="text-capitalize">Medicamento X</label>'],
+    //     ['<input type="radio" name="medicamento" id="medicamento-24" value="24">', '<label for="medicamento-24">24</label>', '<label for="medicamento-24" class="text-capitalize">Medicamento X</label>'],
+    //     ['<input type="radio" name="medicamento" id="medicamento-24" value="24">', '<label for="medicamento-24">24</label>', '<label for="medicamento-24" class="text-capitalize">Medicamento X</label>'],
+    //     ['<input type="radio" name="medicamento" id="medicamento-24" value="24">', '<label for="medicamento-24">24</label>', '<label for="medicamento-24" class="text-capitalize">Medicamento X</label>'],
+    //     ['<input type="radio" name="medicamento" id="medicamento-24" value="24">', '<label for="medicamento-24">24</label>', '<label for="medicamento-24" class="text-capitalize">Medicamento X</label>'],
+    //     ['<input type="radio" name="medicamento" id="medicamento-24" value="24">', '<label for="medicamento-24">24</label>', '<label for="medicamento-24" class="text-capitalize">Medicamento X</label>'],
+    //     ['<input type="radio" name="medicamento" id="medicamento-24" value="24">', '<label for="medicamento-24">24</label>', '<label for="medicamento-24" class="text-capitalize">Medicamento X</label>'],
+    //     ['<input type="radio" name="medicamento" id="medicamento-24" value="24">', '<label for="medicamento-24">24</label>', '<label for="medicamento-24" class="text-capitalize">Medicamento X</label>'],
+    //     ['<input type="radio" name="medicamento" id="medicamento-24" value="24">', '<label for="medicamento-24">24</label>', '<label for="medicamento-24" class="text-capitalize">Medicamento X</label>'],
+    //     ['<input type="radio" name="medicamento" id="medicamento-24" value="24">', '<label for="medicamento-24">24</label>', '<label for="medicamento-24" class="text-capitalize">Medicamento X</label>'],
+    //     ['<input type="radio" name="medicamento" id="medicamento-24" value="24">', '<label for="medicamento-24">24</label>', '<label for="medicamento-24" class="text-capitalize">Medicamento X</label>'],
+    //     ['<input type="radio" name="medicamento" id="medicamento-24" value="24">', '<label for="medicamento-24">24</label>', '<label for="medicamento-24" class="text-capitalize">Medicamento X</label>'],
+    // ];
+    //
+    // data.forEach(function (element) {
+    //     table.row.add(element).draw(false);
+    // })
 });
