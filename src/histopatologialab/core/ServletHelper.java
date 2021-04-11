@@ -3,9 +3,11 @@ package histopatologialab.core;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JSR310Module;
+import org.tinylog.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 
@@ -14,10 +16,11 @@ public class ServletHelper {
     public static ServletHelper helper;
     public static ObjectMapper jackson;
 
-    public static String getUsuario(HttpServletRequest request) {
-        Object usuario = request
-                .getSession(true)
-                .getAttribute("usuario");
+    public static String getUsuarioFromSession(HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        if (session == null) return null;
+
+        Object usuario = session.getAttribute("usuario");
 
         if (usuario == null) {
             usuario = "DEFAULT";
@@ -29,6 +32,7 @@ public class ServletHelper {
         String action = request.getParameter("accion");
         RequestAction requestAction = RequestAction.DEFAULT;
         if (action != null) requestAction =  RequestAction.valueOf(action);
+        Logger.info("action action:" + requestAction + " requestAction:" + requestAction + "requestAction name:" + requestAction.name());
         return requestAction;
     }
 
@@ -39,13 +43,6 @@ public class ServletHelper {
         String respuesta = getJackson().writeValueAsString(object);
         printout.print(respuesta);
         printout.flush();
-    }
-
-    public static ServletHelper getHelper(){
-        if (helper == null) {
-            helper = new ServletHelper();
-        }
-        return helper;
     }
 
     public static ObjectMapper getJackson(){

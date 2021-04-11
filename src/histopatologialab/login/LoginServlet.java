@@ -12,6 +12,8 @@ import org.tinylog.Logger;
 
 import java.io.IOException;
 
+import static histopatologialab.core.ServletHelper.getUsuarioFromSession;
+
 @WebServlet(name = "LoginServlet")
 public class LoginServlet extends HttpServlet {
 
@@ -34,7 +36,12 @@ public class LoginServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        RequestDispatcher despachador = request.getRequestDispatcher("index.jsp");
+        RequestDispatcher despachador;
+        if (getUsuarioFromSession(request) != null) {
+            despachador = request.getRequestDispatcher("principal.jsp");
+        } else {
+            despachador = request.getRequestDispatcher("index.jsp");
+        }
         despachador.forward(request, response);
     }
 
@@ -46,7 +53,8 @@ public class LoginServlet extends HttpServlet {
     }
 
     private void cerrarSesion(HttpServletRequest request) {
-        HttpSession session = request.getSession(true);
+        HttpSession session = request.getSession();
+        if (session == null) return;
         session.removeAttribute("usuario");
         session.removeAttribute("sesionIniciada");
     }
