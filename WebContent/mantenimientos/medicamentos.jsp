@@ -6,11 +6,44 @@
 
 <div class="container-fluid">
 
-    <div>Medicamentos
+    <div>
+        <h1 class="main-tittle">Medicamentos</h1>
+
+
+        <div class="search-container">
+            <form class="align-middle" action="MedicamentosServlet.do" method="post">
+
+                <table>
+                    <tr>
+                        <td><label for="codigoTipoMedicamentoSearch" class="col-sm-4 col-form-label">Codigo tipo medicamento:</label></td>
+                        <td>
+                            <input type="text" class="form-control" id="codigoTipoMedicamentoSearch" name="codigoTipoMedicamentoSearch" disabled>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label for="tipoMedicamentoSearch" class="col-sm-4 col-form-label">Tipo medicamento:</label></td>
+                        <td>
+                            <select  class="form-control" name="tipoMedicamentoSelect" id="tipoMedicamentoSearch">
+                                <option value="0">Selecciona una opcion</option>
+                                <option value="1">Antibioticos</option>
+                            </select>
+                        </td>
+                        <td><input type="submit" value="Confirmar" class="btn btn-light"></td>
+                        <td><input type="reset" value="Cancelar" class="btn btn-light"></td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+
+
+
         <!-- Button trigger modal -->
         <button type="button" class="btn btn-light" data-toggle="modal" data-target="#agregarMedicamentoModal">
             Agregar
         </button>
+
+
+
 
         <table class="table table-striped w-50">
             <thead class="table thead-light">
@@ -67,9 +100,9 @@
             </tbody>
         </table>
     </div>
-
-
 </div>
+
+
 <!-- Modal -->
 <div class="modal fade" id="agregarPresentacion" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">

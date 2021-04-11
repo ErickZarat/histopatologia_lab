@@ -20,3 +20,30 @@
 body {
     background-color: #d9d9d9;
 }
+
+.main-tittle {
+    width: fit-content;
+    padding: 1%;
+    padding-right: 15%;
+    font-size: 1.2em;
+    background: rgb(103,102,152);
+    background: linear-gradient(180deg, rgba(103,102,152,1) 4%, rgba(103,102,152,1) 5%, rgba(29,146,154,0) 100%);
+}
+
+.table td, .table th {
+    padding: .45rem;
+    vertical-align: middle;
+    border-top: none;
+}
+
+.search-container {
+    background-color: #DEDFE0;
+    padding: 2%;
+}
+.search-container label{
+    font-weight: bold;
+}
+
+form label {
+    white-space: nowrap;
+}
