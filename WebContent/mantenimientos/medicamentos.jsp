@@ -28,6 +28,7 @@
                                 <option value="1">Antibioticos</option>
                             </select>
                         </td>
+                        <td class="empty-cell"></td>
                         <td><input type="submit" value="Confirmar" class="btn btn-light"></td>
                         <td><input type="reset" value="Cancelar" class="btn btn-light"></td>
                     </tr>
@@ -35,22 +36,20 @@
             </form>
         </div>
 
+        <h6 class="sub-tittle left-padding-align">Medicamentos</h6>
+
+        <div class="action-container left-padding-align">
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-light" data-toggle="modal" data-target="#agregarMedicamentoModal">Agregar <i class="fas fa-plus"></i></button>
+        </div>
 
 
-        <!-- Button trigger modal -->
-        <button type="button" class="btn btn-light" data-toggle="modal" data-target="#agregarMedicamentoModal">
-            Agregar
-        </button>
-
-
-
-
-        <table class="table table-striped w-50">
+        <table class="table table-striped w-50 left-margin-align">
             <thead class="table thead-light">
             <tr style="font-weight: bold;">
                 <td></td>
-                <td>Codigo</td>
-                <td>Nombre</td>
+                <td>Codigo Medicamento</td>
+                <td>Nombre Medicamento</td>
             </tr>
             </thead>
             <tbody>
@@ -58,7 +57,7 @@
                 <tr>
                     <td><input type="radio" name="medicamento" id="medicamento-${medicamento.codigoMedicamento}" value="${medicamento.codigoMedicamento}"/></td>
                     <td><label for="medicamento-${medicamento.codigoMedicamento}">${medicamento.codigoMedicamento}</label></td>
-                    <td><label for="medicamento-${medicamento.codigoMedicamento}">${medicamento.nombreMedicamento}</label></td>
+                    <td><label for="medicamento-${medicamento.codigoMedicamento}" class="text-capitalize">${medicamento.nombreMedicamento}</label></td>
                 </tr>
             </c:forEach>
             </tbody>
@@ -68,18 +67,19 @@
 
 
 
-    <div>Presentaciones
-        <!-- Button trigger modal -->
-        <button type="button" class="btn btn-light" data-toggle="modal" data-target="#agregarMedicamento">
-            Agregar
-        </button>
-        <!-- Button trigger modal -->
-        <button type="button" class="btn btn-light" data-toggle="modal" data-target="#agregarMedicamento">
-            Modificar
-        </button>
+    <div>
+
+        <h6 class="sub-tittle left-padding-align">Presentaciones</h6>
+
+        <div class="action-container left-padding-align">
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-light" data-toggle="modal" data-target="#agregarMedicamento">Agregar</button>
+            <button type="button" class="btn btn-light" data-toggle="modal" data-target="#agregarMedicamento">Modificar</button>
+        </div>
 
 
-        <table class="table table-striped w-50">
+
+        <table class="table table-striped w-50 left-margin-align">
             <thead class="table thead-light">
             <tr style="font-weight: bold;">
                 <td></td>

@@ -30,10 +30,40 @@ body {
     background: linear-gradient(180deg, rgba(103,102,152,1) 4%, rgba(103,102,152,1) 5%, rgba(29,146,154,0) 100%);
 }
 
+.sub-tittle {
+    margin-bottom: 0 !important;
+    padding: 1.5%;
+    font-weight: bold;
+}
+
 .table td, .table th {
     padding: .45rem;
     vertical-align: middle;
     border-top: none;
+}
+
+thead.thead-light {
+    background: white;
+    color: #3b63bf;
+}
+
+table.table-striped tbody tr td:nth-child(2) {
+    color: #3b63bf;
+}
+
+.btn-light {
+    /*color: #0b47ce;*/
+    color: #3b63bf;
+    /*color: #5470b1;*/
+    font-weight: bold;
+}
+
+.empty-cell {
+    padding-left: 10% !important;
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: #EEEFF0;
 }
 
 .search-container {
@@ -46,4 +76,18 @@ body {
 
 form label {
     white-space: nowrap;
+}
+
+.action-container {
+    background-color: #CBCBD0;
+    border-top: 3px solid gray;
+    padding: 0.5%;
+}
+
+.left-padding-align {
+    padding-left: 3%;
+}
+
+.left-margin-align {
+    margin-left: 3%;
 }
