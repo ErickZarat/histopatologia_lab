@@ -3,13 +3,33 @@
     background-color: #676698;
 }
 
-.custom-navbar-index a {
+.custom-navbar .dropdown > a.nav-link, .custom-navbar .dropdown > a.nav-link:hover {
+    color: white;
+}
+
+.custom-navbar a.navbar-brand, .custom-navbar a.navbar-brand:hover {
     color: white;
     width: 100%;
     text-align: center;
     font-weight: bold;
     font-size: 1.8em;
     margin: 1%;
+}
+
+.user-nav {
+    display: inline-block;
+    vertical-align: middle;
+    list-style: none;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.user-nav li:nth-child(2) {
+    font-size: 0.8em;
+}
+
+.user-nav li:first-child {
+    font-weight: bold;
 }
 
 .login-container {

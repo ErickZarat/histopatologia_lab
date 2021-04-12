@@ -2,7 +2,7 @@
 
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-light custom-navbar">
+<nav class="navbar navbar-expand-lg navbar-dark custom-navbar">
 
     <ul class="navbar-nav">
         <li class="nav-item dropdown">
@@ -27,7 +27,25 @@
             </div>
         </li>
 
-
     </ul>
     <a class="navbar-brand" href="#">Sistema Laboratorio Histopatología</a>
+
+    <ul class="navbar-nav">
+
+        <li class="nav-item dropdown">
+
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <ul class="user-nav">
+                    <li>${username}</li>
+                    <li id="currentDate"></li>
+                </ul>
+                <img src="assets/img/user.png" width="40" height="40" class="rounded-circle">
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <a class="dropdown-item" href="#">Dashboard</a>
+                <a class="dropdown-item" href="#">Edit Profile</a>
+                <a class="dropdown-item" href="#">Log Out</a>
+            </div>
+        </li>
+    </ul>
 </nav>

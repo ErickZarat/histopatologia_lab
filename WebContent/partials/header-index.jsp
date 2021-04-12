@@ -2,6 +2,6 @@
 
 <body>
 
-<nav class="navbar navbar-expand-lg custom-navbar-index custom-navbar">
+<nav class="navbar navbar-expand-lg custom-navbar">
     <a class="navbar-brand" href="#">Sistema Laboratorio Histopatología</a>
 </nav>

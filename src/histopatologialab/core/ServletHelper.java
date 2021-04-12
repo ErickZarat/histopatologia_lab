@@ -3,8 +3,11 @@ package histopatologialab.core;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JSR310Module;
+import org.apache.http.HttpRequest;
 import org.tinylog.Logger;
 
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -23,9 +26,22 @@ public class ServletHelper {
         Object usuario = session.getAttribute("usuario");
 
         if (usuario == null) {
-            usuario = "DEFAULT";
+            return null;
         }
+        request.setAttribute("username", usuario.toString());
         return usuario.toString();
+    }
+
+    public static boolean isValidSession(HttpServletRequest request) {
+        return getUsuarioFromSession(request) != null;
+    }
+
+    public static void checkSession(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        if (!isValidSession(request)) {
+            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+            RequestDispatcher despachador = request.getRequestDispatcher("index.jsp");
+            despachador.forward(request, response);
+        }
     }
 
     public static RequestAction getRequestAction(HttpServletRequest request) {
