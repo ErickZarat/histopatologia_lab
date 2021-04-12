@@ -163,7 +163,7 @@
                         <database>
                             <name>org.jooq.meta.postgres.PostgresDatabase</name>
                             <inputSchema>public</inputSchema>
-                            <includes>.*</includes>
+                            <includes>lab_.*</includes>
                             <excludes></excludes>
                         </database>
 
