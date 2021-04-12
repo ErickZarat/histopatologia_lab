@@ -3,11 +3,6 @@ package histopatologialab.medicamentos;
 import histopatologialab.core.JsonResponse;
 import histopatologialab.core.RequestAction;
 import histopatologialab.medicamentos.controller.IMedicamentosController;
-import histopatologialab.medicamentos.controller.MedicamentosControllerImpl;
-import histopatologialab.medicamentos.dao.IMedicamentosDao;
-import histopatologialab.medicamentos.dao.IPresentacionMedicamentosDao;
-import histopatologialab.medicamentos.dao.MedicamentosDaoImpl;
-import histopatologialab.medicamentos.dao.PresentacionMedicamentosDaoImpl;
 import histopatologialab.medicamentos.dto.Medicamento;
 import org.tinylog.Logger;
 
@@ -21,12 +16,11 @@ import java.io.IOException;
 import java.util.List;
 
 import static histopatologialab.core.ServletHelper.*;
+import static histopatologialab.core.Controllers.medicamentosController;
 
 @WebServlet(name = "MedicamentosServlet")
 public class MedicamentosServlet extends HttpServlet {
-    private final IMedicamentosDao medicamentosDao = new MedicamentosDaoImpl();
-    private final IPresentacionMedicamentosDao presentacionDao = new PresentacionMedicamentosDaoImpl();
-    private final IMedicamentosController controller = new MedicamentosControllerImpl(medicamentosDao, presentacionDao);
+    IMedicamentosController controller = medicamentosController;
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         RequestAction action = getRequestAction(request);
@@ -44,21 +38,29 @@ public class MedicamentosServlet extends HttpServlet {
         RequestAction action = getRequestAction(request);
 
         if (action == RequestAction.LISTAR_JSON) {
-            int lastMedicamentoItem = Integer.parseInt(request.getParameter("lastMedicamento"));
-            List<Medicamento> medicamentoList = medicamentosDao.getMedicamentos(lastMedicamentoItem, 10);
-            toJsonResponse(response, new JsonResponse<List<Medicamento>>(medicamentoList != null, medicamentoList));
+            getJsonMedicamentos(request, response);
         } else {
-            List<Medicamento> medicamentoList =  medicamentosDao.getMedicamentos(10);
-            request.setAttribute("medicamentos",medicamentoList);
-            request.setAttribute("lastMedicamentoItem", medicamentoList.get(medicamentoList.size() - 1).getCodigoMedicamento());
-            Logger.info("medicamentos " + medicamentoList.size() + " " + medicamentoList);
-            Logger.info("set medicamento to session" + medicamentoList.get(medicamentoList.size() - 1).getCodigoMedicamento());
-            RequestDispatcher despachador = request.getRequestDispatcher("mantenimientos/medicamentos.jsp");
-            despachador.forward(request, response);
+            getDefaultPage(request, response);
         }
     }
 
-    private void crearMedicamento(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    private void getJsonMedicamentos(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int lastMedicamentoItem = Integer.parseInt(request.getParameter("lastMedicamento"));
+        List<Medicamento> medicamentoList = controller.getMedicamentos(lastMedicamentoItem);
+        toJsonResponse(response, new JsonResponse<List<Medicamento>>(medicamentoList != null, medicamentoList));
+    }
+
+    private void getDefaultPage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        List<Medicamento> medicamentoList = controller.getMedicamentos(null);
+        request.setAttribute("medicamentos",medicamentoList);
+        request.setAttribute("lastMedicamentoItem", medicamentoList.get(medicamentoList.size() - 1).getCodigoMedicamento());
+        Logger.info("medicamentos " + medicamentoList.size() + " " + medicamentoList);
+        Logger.info("set medicamento to session" + medicamentoList.get(medicamentoList.size() - 1).getCodigoMedicamento());
+        RequestDispatcher despachador = request.getRequestDispatcher("mantenimientos/medicamentos.jsp");
+        despachador.forward(request, response);
+    }
+
+    private void crearMedicamento(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String nombre = request.getParameter("nombre");
         String tipoMedicamento = request.getParameter("tipoMedicamento");
         String usuario = getUsuarioFromSession(request);
@@ -79,6 +81,7 @@ public class MedicamentosServlet extends HttpServlet {
     private void darBajaMedicamento(HttpServletRequest request, HttpServletResponse response) throws IOException {
         int codigo = Integer.parseInt(request.getParameter("codigoMedicamento"));
         String usuario = getUsuarioFromSession(request);
-        controller.darBajaMedicamento(codigo, usuario);
+        boolean success = controller.darBajaMedicamento(codigo, usuario);
+        toJsonResponse(response, new JsonResponse<Boolean>(success, success));
     }
 }

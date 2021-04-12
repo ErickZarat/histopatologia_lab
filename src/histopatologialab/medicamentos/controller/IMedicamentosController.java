@@ -9,6 +9,9 @@ public interface IMedicamentosController {
     Medicamento crearMedicamento(String nombre, String tipo, String usuario);
     Medicamento modificarMedicamento(int codigo, String nombre, String usuario);
     Boolean darBajaMedicamento(int codigo, String usuario);
+    List<Medicamento> getMedicamentos(Integer lastItem);
+
     List<PresentacionMedicamento> obtenerPresentaciones(int codigo);
+
 
 }

@@ -12,6 +12,7 @@ public class MedicamentosControllerImpl implements IMedicamentosController {
 
     private final IMedicamentosDao medicamentosDao;
     private final IPresentacionMedicamentosDao presentacionDao;
+    private final int paginationSize = 10;
 
     public MedicamentosControllerImpl(IMedicamentosDao medicamentosDao, IPresentacionMedicamentosDao presentacionDao) {
         this.medicamentosDao = medicamentosDao;
@@ -45,6 +46,15 @@ public class MedicamentosControllerImpl implements IMedicamentosController {
     @Override
     public Boolean darBajaMedicamento(int codigo, String usuario) {
         return medicamentosDao.darDeBaja(codigo, usuario);
+    }
+
+    @Override
+    public List<Medicamento> getMedicamentos(Integer lastCodigo) {
+        if (lastCodigo == null) {
+            return medicamentosDao.getMedicamentos(paginationSize);
+        } else {
+            return medicamentosDao.getMedicamentos(lastCodigo, paginationSize);
+        }
     }
 
     @Override
