@@ -22,7 +22,9 @@ import static histopatologialab.core.Controllers.medicamentosController;
 public class MedicamentosServlet extends HttpServlet {
     IMedicamentosController controller = medicamentosController;
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        checkSession(request, response);
+
         RequestAction action = getRequestAction(request);
 
         if (action == RequestAction.CREAR) {
@@ -35,6 +37,8 @@ public class MedicamentosServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        checkSession(request, response);
+
         RequestAction action = getRequestAction(request);
 
         if (action == RequestAction.LISTAR_JSON) {

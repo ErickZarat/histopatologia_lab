@@ -8,11 +8,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.tinylog.Logger;
-
 import java.io.IOException;
 
-import static histopatologialab.core.ServletHelper.getUsuarioFromSession;
+import static histopatologialab.core.ServletHelper.*;
 
 @WebServlet(name = "LoginServlet")
 public class LoginServlet extends HttpServlet {
@@ -36,8 +34,9 @@ public class LoginServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        checkSession(request, response);
         RequestDispatcher despachador;
-        if (getUsuarioFromSession(request) != null) {
+        if (isValidSession(request)) {
             despachador = request.getRequestDispatcher("principal.jsp");
         } else {
             despachador = request.getRequestDispatcher("index.jsp");
@@ -46,8 +45,8 @@ public class LoginServlet extends HttpServlet {
     }
 
     private void crearSesion(HttpServletRequest request, String usuario) {
-        Logger.info("se creo la sesion para el usuario: " + usuario);
         HttpSession session = request.getSession(true);
+        request.setAttribute("username", usuario);
         session.setAttribute("usuario", usuario);
         session.setAttribute("sesionIniciada", true);
     }
