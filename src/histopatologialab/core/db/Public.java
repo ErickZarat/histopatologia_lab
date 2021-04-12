@@ -4,11 +4,11 @@
 package histopatologialab.core.db;
 
 
-import java.util.Arrays;
-import java.util.List;
-
 import histopatologialab.core.db.tables.LabMedicamento;
 import histopatologialab.core.db.tables.LabPresentacionMedicamento;
+
+import java.util.Arrays;
+import java.util.List;
 
 import org.jooq.Catalog;
 import org.jooq.Sequence;

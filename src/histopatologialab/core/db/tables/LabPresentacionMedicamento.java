@@ -4,13 +4,13 @@
 package histopatologialab.core.db.tables;
 
 
-import java.time.LocalDate;
-import java.util.Arrays;
-import java.util.List;
-
 import histopatologialab.core.db.Keys;
 import histopatologialab.core.db.Public;
 import histopatologialab.core.db.tables.records.LabPresentacionMedicamentoRecord;
+
+import java.time.LocalDate;
+import java.util.Arrays;
+import java.util.List;
 
 import org.jooq.Field;
 import org.jooq.ForeignKey;
@@ -21,6 +21,7 @@ import org.jooq.Schema;
 import org.jooq.Table;
 import org.jooq.TableField;
 import org.jooq.TableOptions;
+import org.jooq.UniqueKey;
 import org.jooq.impl.DSL;
 import org.jooq.impl.SQLDataType;
 import org.jooq.impl.TableImpl;
@@ -55,7 +56,7 @@ public class LabPresentacionMedicamento extends TableImpl<LabPresentacionMedicam
     /**
      * The column <code>public.lab_presentacion_medicamento.tipo_presentacion</code>.
      */
-    public final TableField<LabPresentacionMedicamentoRecord, Integer> TIPO_PRESENTACION = createField(DSL.name("tipo_presentacion"), SQLDataType.INTEGER.nullable(false), this, "");
+    public final TableField<LabPresentacionMedicamentoRecord, String> TIPO_PRESENTACION = createField(DSL.name("tipo_presentacion"), SQLDataType.VARCHAR(30).nullable(false), this, "");
 
     /**
      * The column <code>public.lab_presentacion_medicamento.estado_medicamento</code>.
@@ -121,6 +122,16 @@ public class LabPresentacionMedicamento extends TableImpl<LabPresentacionMedicam
     }
 
     @Override
+    public UniqueKey<LabPresentacionMedicamentoRecord> getPrimaryKey() {
+        return Keys.LAB_PRESENTACION_MEDICAMENTO_PK;
+    }
+
+    @Override
+    public List<UniqueKey<LabPresentacionMedicamentoRecord>> getKeys() {
+        return Arrays.<UniqueKey<LabPresentacionMedicamentoRecord>>asList(Keys.LAB_PRESENTACION_MEDICAMENTO_PK);
+    }
+
+    @Override
     public List<ForeignKey<LabPresentacionMedicamentoRecord, ?>> getReferences() {
         return Arrays.<ForeignKey<LabPresentacionMedicamentoRecord, ?>>asList(Keys.LAB_PRESENTACION_MEDICAMENTO__LAB_MEDICAMENTO_FK_COD_MEDICAMENTO);
     }
@@ -165,7 +176,7 @@ public class LabPresentacionMedicamento extends TableImpl<LabPresentacionMedicam
     // -------------------------------------------------------------------------
 
     @Override
-    public Row7<Integer, Integer, String, LocalDate, String, LocalDate, String> fieldsRow() {
+    public Row7<Integer, String, String, LocalDate, String, LocalDate, String> fieldsRow() {
         return (Row7) super.fieldsRow();
     }
 }

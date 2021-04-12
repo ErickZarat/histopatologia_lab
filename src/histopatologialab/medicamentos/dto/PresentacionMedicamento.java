@@ -4,14 +4,14 @@ import java.time.LocalDate;
 
 public class PresentacionMedicamento {
     private int codMedicamento;
-    private int tipoPresentacion;
+    private String tipoPresentacion;
     private String creadoPor;
     private LocalDate fechaCreacion;
     private String modificatoPor;
 
     public PresentacionMedicamento() { }
 
-    public PresentacionMedicamento(int codMedicamento, int tipoPresentacion, String creadoPor, LocalDate fechaCreacion, String modificatoPor) {
+    public PresentacionMedicamento(int codMedicamento, String tipoPresentacion, String creadoPor, LocalDate fechaCreacion, String modificatoPor) {
         this.codMedicamento = codMedicamento;
         this.tipoPresentacion = tipoPresentacion;
         this.creadoPor = creadoPor;
@@ -27,11 +27,11 @@ public class PresentacionMedicamento {
         this.codMedicamento = codMedicamento;
     }
 
-    public int getTipoPresentacion() {
+    public String getTipoPresentacion() {
         return tipoPresentacion;
     }
 
-    public void setTipoPresentacion(int tipoPresentacion) {
+    public void setTipoPresentacion(String tipoPresentacion) {
         this.tipoPresentacion = tipoPresentacion;
     }
 

@@ -4,13 +4,13 @@
 package histopatologialab.core.db.tables;
 
 
-import java.time.LocalDate;
-import java.util.Arrays;
-import java.util.List;
-
 import histopatologialab.core.db.Keys;
 import histopatologialab.core.db.Public;
 import histopatologialab.core.db.tables.records.LabMedicamentoRecord;
+
+import java.time.LocalDate;
+import java.util.Arrays;
+import java.util.List;
 
 import org.jooq.Field;
 import org.jooq.ForeignKey;

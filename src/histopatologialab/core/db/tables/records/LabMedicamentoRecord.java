@@ -4,9 +4,9 @@
 package histopatologialab.core.db.tables.records;
 
 
-import java.time.LocalDate;
-
 import histopatologialab.core.db.tables.LabMedicamento;
+
+import java.time.LocalDate;
 
 import org.jooq.Field;
 import org.jooq.Record1;
