@@ -22,7 +22,7 @@ import static histopatologialab.core.Controllers.medicamentosController;
 public class MedicamentosServlet extends HttpServlet {
     IMedicamentosController controller = medicamentosController;
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         RequestAction action = getRequestAction(request);
 
         if (action == RequestAction.CREAR) {
@@ -44,10 +44,10 @@ public class MedicamentosServlet extends HttpServlet {
         }
     }
 
-    private void getJsonMedicamentos(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    private void getJsonMedicamentos(HttpServletRequest request, HttpServletResponse response) throws IOException {
         int lastMedicamentoItem = Integer.parseInt(request.getParameter("lastMedicamento"));
         List<Medicamento> medicamentoList = controller.getMedicamentos(lastMedicamentoItem);
-        toJsonResponse(response, new JsonResponse<List<Medicamento>>(medicamentoList != null, medicamentoList));
+        toJsonResponse(response, new JsonResponse<>(medicamentoList != null, medicamentoList));
     }
 
     private void getDefaultPage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -66,7 +66,7 @@ public class MedicamentosServlet extends HttpServlet {
         String usuario = getUsuarioFromSession(request);
 
         Medicamento medicamento = controller.crearMedicamento(nombre, tipoMedicamento, usuario);
-        toJsonResponse(response, new JsonResponse<Medicamento>(medicamento != null, medicamento));
+        toJsonResponse(response, new JsonResponse<>(medicamento != null, medicamento));
     }
 
     private void modificarMedicamento(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -82,6 +82,6 @@ public class MedicamentosServlet extends HttpServlet {
         int codigo = Integer.parseInt(request.getParameter("codigoMedicamento"));
         String usuario = getUsuarioFromSession(request);
         boolean success = controller.darBajaMedicamento(codigo, usuario);
-        toJsonResponse(response, new JsonResponse<Boolean>(success, success));
+        toJsonResponse(response, new JsonResponse<>(success, success));
     }
 }
