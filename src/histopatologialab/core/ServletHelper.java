@@ -36,7 +36,7 @@ public class ServletHelper {
         return requestAction;
     }
 
-    public static <T> void toJsonResponse(HttpServletResponse response, T object) throws IOException {
+    public static void toJsonResponse(HttpServletResponse response, JsonResponse object) throws IOException {
         response.setContentType("application/json; charset=UTF-8");
         PrintWriter printout = response.getWriter();
 

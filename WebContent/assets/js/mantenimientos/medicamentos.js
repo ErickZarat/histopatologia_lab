@@ -45,39 +45,40 @@ $('input[type=radio][name=medicamento]').change(function() {
 });
 
 $(document).ready(function() {
-    var table = $('#medicamentosTable').DataTable({
-        searching: false,
-        paging: true,
-        pagingType: 'simple',
-        info: false,
-        bFilter: false,
-        bLengthChange: false,
-        iDisplayLength: 5,
-        oLanguage: {
-            oPaginate: {
-                sPrevious: "Anterior", // This is the link to the previous page
-                sNext: "Siguiente", // This is the link to the next page
-            }
-        }
-    });
+    var medicamentosTable = $('#medicamentosTable').DataTable(window.coreTableConfig);
 
-    // var data = [
-    //     ['<input type="radio" name="medicamento" id="medicamento-24" value="24">', '<label for="medicamento-24">24</label>', '<label for="medicamento-24" class="text-capitalize">Medicamento X</label>'],
-    //     ['<input type="radio" name="medicamento" id="medicamento-24" value="24">', '<label for="medicamento-24">24</label>', '<label for="medicamento-24" class="text-capitalize">Medicamento X</label>'],
-    //     ['<input type="radio" name="medicamento" id="medicamento-24" value="24">', '<label for="medicamento-24">24</label>', '<label for="medicamento-24" class="text-capitalize">Medicamento X</label>'],
-    //     ['<input type="radio" name="medicamento" id="medicamento-24" value="24">', '<label for="medicamento-24">24</label>', '<label for="medicamento-24" class="text-capitalize">Medicamento X</label>'],
-    //     ['<input type="radio" name="medicamento" id="medicamento-24" value="24">', '<label for="medicamento-24">24</label>', '<label for="medicamento-24" class="text-capitalize">Medicamento X</label>'],
-    //     ['<input type="radio" name="medicamento" id="medicamento-24" value="24">', '<label for="medicamento-24">24</label>', '<label for="medicamento-24" class="text-capitalize">Medicamento X</label>'],
-    //     ['<input type="radio" name="medicamento" id="medicamento-24" value="24">', '<label for="medicamento-24">24</label>', '<label for="medicamento-24" class="text-capitalize">Medicamento X</label>'],
-    //     ['<input type="radio" name="medicamento" id="medicamento-24" value="24">', '<label for="medicamento-24">24</label>', '<label for="medicamento-24" class="text-capitalize">Medicamento X</label>'],
-    //     ['<input type="radio" name="medicamento" id="medicamento-24" value="24">', '<label for="medicamento-24">24</label>', '<label for="medicamento-24" class="text-capitalize">Medicamento X</label>'],
-    //     ['<input type="radio" name="medicamento" id="medicamento-24" value="24">', '<label for="medicamento-24">24</label>', '<label for="medicamento-24" class="text-capitalize">Medicamento X</label>'],
-    //     ['<input type="radio" name="medicamento" id="medicamento-24" value="24">', '<label for="medicamento-24">24</label>', '<label for="medicamento-24" class="text-capitalize">Medicamento X</label>'],
-    //     ['<input type="radio" name="medicamento" id="medicamento-24" value="24">', '<label for="medicamento-24">24</label>', '<label for="medicamento-24" class="text-capitalize">Medicamento X</label>'],
-    //     ['<input type="radio" name="medicamento" id="medicamento-24" value="24">', '<label for="medicamento-24">24</label>', '<label for="medicamento-24" class="text-capitalize">Medicamento X</label>'],
-    // ];
-    //
-    // data.forEach(function (element) {
-    //     table.row.add(element).draw(false);
-    // })
+    function handleNextButtonPagination(){
+        var lastItem = $('#lastMedicamento').val()
+        if (lastItem === '0') {
+            return;
+        }
+        $.ajax({
+            url: 'MedicamentosServlet.do',
+            method: 'get',
+            data: {
+                accion: 'LISTAR_JSON',
+                lastMedicamento: lastItem
+            },
+            success: function(response) {
+                if (response.data.length === 0) {
+                    lastItem = 0;
+                } else {
+                    lastItem = response.data[response.data.length - 1].codigoMedicamento;
+                }
+
+                $('#lastMedicamento').val(lastItem)
+                response.data.forEach(function(element){
+                    var row = [
+                        '<input type="radio" name="medicamento" id="medicamento-'+element.codigoMedicamento+'" value="'+element.codigoMedicamento+'"/>',
+                        '<label for="medicamento-'+element.codigoMedicamento+'">'+element.codigoMedicamento+'</label>',
+                        '<label for="medicamento-'+element.codigoMedicamento+'" class="text-capitalize">'+element.nombreMedicamento+'</label>'
+                    ]
+                    medicamentosTable.row.add(row).draw(false);
+                });
+                $('#medicamentosTable_next').click(handleNextButtonPagination);
+            }
+        })
+    }
+
+    $('#medicamentosTable_next').click(handleNextButtonPagination);
 });

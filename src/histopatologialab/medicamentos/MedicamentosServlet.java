@@ -18,6 +18,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
 
 import static histopatologialab.core.ServletHelper.*;
 
@@ -43,13 +44,16 @@ public class MedicamentosServlet extends HttpServlet {
         RequestAction action = getRequestAction(request);
 
         if (action == RequestAction.LISTAR_JSON) {
-            int codigo = Integer.parseInt(request.getParameter("codigo"));
-            toJsonResponse(response, controller.obtenerPresentaciones(codigo));
+            int lastMedicamentoItem = Integer.parseInt(request.getParameter("lastMedicamento"));
+            List<Medicamento> medicamentoList = medicamentosDao.getMedicamentos(lastMedicamentoItem, 10);
+            toJsonResponse(response, new JsonResponse<List<Medicamento>>(medicamentoList != null, medicamentoList));
         } else {
-            Logger.info("obteniendo paginas de medicamentos");
-            request.setAttribute("medicamentos", medicamentosDao.getMedicamentos(10));
+            List<Medicamento> medicamentoList =  medicamentosDao.getMedicamentos(10);
+            request.setAttribute("medicamentos",medicamentoList);
+            request.setAttribute("lastMedicamentoItem", medicamentoList.get(medicamentoList.size() - 1).getCodigoMedicamento());
+            Logger.info("medicamentos " + medicamentoList.size() + " " + medicamentoList);
+            Logger.info("set medicamento to session" + medicamentoList.get(medicamentoList.size() - 1).getCodigoMedicamento());
             RequestDispatcher despachador = request.getRequestDispatcher("mantenimientos/medicamentos.jsp");
-            Logger.info("retornando despachador");
             despachador.forward(request, response);
         }
     }

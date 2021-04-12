@@ -43,7 +43,7 @@
             <button type="button" class="btn btn-light" data-toggle="modal" data-target="#agregarMedicamentoModal">Agregar <i class="fas fa-plus"></i></button>
         </div>
 
-
+        <input type="hidden" id="lastMedicamento" value="${lastMedicamentoItem}">
         <table class="table table-striped w-50 left-margin-align" id="medicamentosTable">
             <thead class="table thead-light">
             <tr style="font-weight: bold;">
