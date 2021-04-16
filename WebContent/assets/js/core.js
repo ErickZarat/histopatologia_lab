@@ -9,13 +9,13 @@ $(document).ready(function(){
 });
 
 window.coreTableConfig = {
-    searching: false,
+    // searching: false,
     paging: true,
-    pagingType: 'simple',
+    // pagingType: 'simple',
     info: false,
-    bFilter: false,
+    // bFilter: false,
     bLengthChange: false,
-    iDisplayLength: 5,
+    iDisplayLength: 10,
     oLanguage: {
         oPaginate: {
             sPrevious: "Anterior", // This is the link to the previous page
