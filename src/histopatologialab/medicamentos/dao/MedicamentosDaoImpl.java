@@ -1,6 +1,8 @@
 package histopatologialab.medicamentos.dao;
 
 import histopatologialab.core.DB;
+import histopatologialab.core.Estado;
+import histopatologialab.core.db.tables.LabPresentacionMedicamento;
 import histopatologialab.medicamentos.dto.Medicamento;
 import histopatologialab.core.db.tables.LabMedicamento;
 import histopatologialab.core.db.tables.records.LabMedicamentoRecord;
@@ -25,7 +27,8 @@ public class MedicamentosDaoImpl implements IMedicamentosDao {
                 record.getValue(tabla.CREADO_POR),
                 record.getValue(tabla.FECHA_CREACION),
                 record.getValue(tabla.MODIFICADO_POR),
-                record.getValue(tabla.FECHA_MODIFICACION)
+                record.getValue(tabla.FECHA_MODIFICACION),
+                record.getValue(tabla.TIPO_MEDICAMENTO)
         );
     }
 
@@ -37,28 +40,14 @@ public class MedicamentosDaoImpl implements IMedicamentosDao {
                 .fetch();
         return results.stream().map(this::parseItem).collect(Collectors.toList());
     }
-
     @Override
-    public List<Medicamento> getMedicamentos(int limit) {
+    public List<Medicamento> getMedicamentosByTipo(int tipoMedicamento) {
         List<Record> results = query
                 .select(tabla.asterisk())
                 .from(tabla)
-                .where(tabla.ESTADO_MEDICAMENTO.notEqualIgnoreCase("D"))
+                .where(tabla.ESTADO_MEDICAMENTO.notEqualIgnoreCase(Estado.DESHABILITADO.getSlug())
+                        .and(tabla.TIPO_MEDICAMENTO.eq(tipoMedicamento)))
                 .orderBy(tabla.COD_MEDICAMENTO.desc())
-                .limit(limit)
-                .fetch();
-        return results.stream().map(this::parseItem).collect(Collectors.toList());
-    }
-
-    @Override
-    public List<Medicamento> getMedicamentos(int lastId, int limit) {
-        List<Record> results = query
-                .select(tabla.asterisk())
-                .from(tabla)
-                .where(tabla.ESTADO_MEDICAMENTO.notEqualIgnoreCase("D"))
-                .orderBy(tabla.COD_MEDICAMENTO.desc())
-                .seek(lastId)
-                .limit(limit)
                 .fetch();
         return results.stream().map(this::parseItem).collect(Collectors.toList());
     }
@@ -78,8 +67,9 @@ public class MedicamentosDaoImpl implements IMedicamentosDao {
         LabMedicamentoRecord record =  query.newRecord(tabla);
         record.setNombreMedicamento(medicamento.getNombreMedicamento());
         record.setFechaCreacion(LocalDate.now());
-        record.setCreadoPor("");
-        record.setEstadoMedicamento("");
+        record.setCreadoPor(medicamento.getCreadoPor());
+        record.setEstadoMedicamento(medicamento.getEstado());
+        record.setTipoMedicamento(medicamento.getTipoMedicamento());
         record.store();
         return getMedicamento(record.getCodMedicamento());
     }

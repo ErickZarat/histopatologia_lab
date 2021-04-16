@@ -4,6 +4,7 @@ import histopatologialab.core.JsonResponse;
 import histopatologialab.core.RequestAction;
 import histopatologialab.medicamentos.controller.IMedicamentosController;
 import histopatologialab.medicamentos.dto.Medicamento;
+import histopatologialab.medicamentos.dto.TipoMedicamento;
 import org.tinylog.Logger;
 
 import javax.servlet.RequestDispatcher;
@@ -49,24 +50,20 @@ public class MedicamentosServlet extends HttpServlet {
     }
 
     private void getJsonMedicamentos(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        int lastMedicamentoItem = Integer.parseInt(request.getParameter("lastMedicamento"));
-        List<Medicamento> medicamentoList = controller.getMedicamentos(lastMedicamentoItem);
+        int tipoMedicamento = Integer.parseInt(request.getParameter("tipoMedicamento"));
+        List<Medicamento> medicamentoList = controller.getMedicamentos(tipoMedicamento);
         toJsonResponse(response, new JsonResponse<>(medicamentoList != null, medicamentoList));
     }
 
     private void getDefaultPage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        List<Medicamento> medicamentoList = controller.getMedicamentos(null);
-        request.setAttribute("medicamentos",medicamentoList);
-        request.setAttribute("lastMedicamentoItem", medicamentoList.get(medicamentoList.size() - 1).getCodigoMedicamento());
-        Logger.info("medicamentos " + medicamentoList.size() + " " + medicamentoList);
-        Logger.info("set medicamento to session" + medicamentoList.get(medicamentoList.size() - 1).getCodigoMedicamento());
+        request.setAttribute("tiposMedicamento", TipoMedicamento.values());
         RequestDispatcher despachador = request.getRequestDispatcher("mantenimientos/medicamentos.jsp");
         despachador.forward(request, response);
     }
 
     private void crearMedicamento(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String nombre = request.getParameter("nombre");
-        String tipoMedicamento = request.getParameter("tipoMedicamento");
+        int tipoMedicamento = Integer.parseInt(request.getParameter("tipoMedicamento"));
         String usuario = getUsuarioFromSession(request);
 
         Medicamento medicamento = controller.crearMedicamento(nombre, tipoMedicamento, usuario);
@@ -75,7 +72,7 @@ public class MedicamentosServlet extends HttpServlet {
 
     private void modificarMedicamento(HttpServletRequest request, HttpServletResponse response) throws IOException {
         int codigo = Integer.parseInt(request.getParameter("codigoMedicamento"));
-        String nombre = request.getParameter("nombre");
+        String nombre = request.getParameter("nombreMedicamento");
         String usuario = getUsuarioFromSession(request);
 
         Medicamento medicamento = controller.modificarMedicamento(codigo, nombre, usuario);

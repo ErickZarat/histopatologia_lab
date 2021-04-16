@@ -6,10 +6,7 @@ import java.util.List;
 
 public interface IMedicamentosDao {
     List<Medicamento> getMedicamentos();
-
-    List<Medicamento> getMedicamentos(int limit);
-
-    List<Medicamento> getMedicamentos(int lastId, int limit);
+    List<Medicamento> getMedicamentosByTipo(int tipoMedicamento);
 
     Medicamento getMedicamento(int codMedicamento);
     Medicamento guardarMedicamento(Medicamento medicamento);

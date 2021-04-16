@@ -28,7 +28,7 @@ public class Keys {
     // -------------------------------------------------------------------------
 
     public static final UniqueKey<LabMedicamentoRecord> LAB_MEDICAMENTO_PK = Internal.createUniqueKey(LabMedicamento.LAB_MEDICAMENTO, DSL.name("lab_medicamento_pk"), new TableField[] { LabMedicamento.LAB_MEDICAMENTO.COD_MEDICAMENTO }, true);
-    public static final UniqueKey<LabPresentacionMedicamentoRecord> LAB_PRESENTACION_MEDICAMENTO_PK = Internal.createUniqueKey(LabPresentacionMedicamento.LAB_PRESENTACION_MEDICAMENTO, DSL.name("lab_presentacion_medicamento_pk"), new TableField[] { LabPresentacionMedicamento.LAB_PRESENTACION_MEDICAMENTO.TIPO_PRESENTACION }, true);
+    public static final UniqueKey<LabPresentacionMedicamentoRecord> LAB_PRESENTACION_MEDICAMENTO_PK = Internal.createUniqueKey(LabPresentacionMedicamento.LAB_PRESENTACION_MEDICAMENTO, DSL.name("lab_presentacion_medicamento_pk"), new TableField[] { LabPresentacionMedicamento.LAB_PRESENTACION_MEDICAMENTO.COD_MEDICAMENTO, LabPresentacionMedicamento.LAB_PRESENTACION_MEDICAMENTO.TIPO_PRESENTACION }, true);
 
     // -------------------------------------------------------------------------
     // FOREIGN KEY definitions

@@ -8,15 +8,19 @@ public class PresentacionMedicamento {
     private String creadoPor;
     private LocalDate fechaCreacion;
     private String modificatoPor;
+    private LocalDate fechaModificacion;
+    private String estadoMedicamento;
 
     public PresentacionMedicamento() { }
 
-    public PresentacionMedicamento(int codMedicamento, String tipoPresentacion, String creadoPor, LocalDate fechaCreacion, String modificatoPor) {
+    public PresentacionMedicamento(int codMedicamento, String tipoPresentacion, String creadoPor, LocalDate fechaCreacion, String modificatoPor, LocalDate fechaModificacion, String estadoMedicamento) {
         this.codMedicamento = codMedicamento;
         this.tipoPresentacion = tipoPresentacion;
         this.creadoPor = creadoPor;
         this.fechaCreacion = fechaCreacion;
         this.modificatoPor = modificatoPor;
+        this.fechaModificacion = fechaModificacion;
+        this.estadoMedicamento = estadoMedicamento;
     }
 
     public int getCodMedicamento() {
@@ -57,5 +61,21 @@ public class PresentacionMedicamento {
 
     public void setModificatoPor(String modificatoPor) {
         this.modificatoPor = modificatoPor;
+    }
+
+    public LocalDate getFechaModificacion() {
+        return fechaModificacion;
+    }
+
+    public void setFechaModificacion(LocalDate fechaModificacion) {
+        this.fechaModificacion = fechaModificacion;
+    }
+
+    public String getEstadoMedicamento() {
+        return estadoMedicamento;
+    }
+
+    public void setEstadoMedicamento(String estadoMedicamento) {
+        this.estadoMedicamento = estadoMedicamento;
     }
 }

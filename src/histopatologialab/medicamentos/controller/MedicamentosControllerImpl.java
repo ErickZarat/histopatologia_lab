@@ -12,7 +12,6 @@ public class MedicamentosControllerImpl implements IMedicamentosController {
 
     private final IMedicamentosDao medicamentosDao;
     private final IPresentacionMedicamentosDao presentacionDao;
-    private final int paginationSize = 10;
 
     public MedicamentosControllerImpl(IMedicamentosDao medicamentosDao, IPresentacionMedicamentosDao presentacionDao) {
         this.medicamentosDao = medicamentosDao;
@@ -20,9 +19,9 @@ public class MedicamentosControllerImpl implements IMedicamentosController {
     }
 
     @Override
-    public Medicamento crearMedicamento(String nombre, String tipo, String usuario) {
+    public Medicamento crearMedicamento(String nombre, int tipo, String usuario) {
         try {
-            Medicamento medicamento = new Medicamento(0, nombre, "habilitado", usuario, LocalDate.now(), null, null);
+            Medicamento medicamento = new Medicamento(0, nombre, "H", usuario, LocalDate.now(), null, null, tipo);
             return medicamentosDao.guardarMedicamento(medicamento);
         } catch (Exception e) {
             return null;
@@ -49,18 +48,50 @@ public class MedicamentosControllerImpl implements IMedicamentosController {
     }
 
     @Override
-    public List<Medicamento> getMedicamentos(Integer lastCodigo) {
-        if (lastCodigo == null) {
-            return medicamentosDao.getMedicamentos(paginationSize);
-        } else {
-            return medicamentosDao.getMedicamentos(lastCodigo, paginationSize);
+    public List<Medicamento> getMedicamentos(Integer tipoMedicamento) {
+        return medicamentosDao.getMedicamentosByTipo(tipoMedicamento);
+    }
+
+    @Override
+    public List<PresentacionMedicamento> getPresentaciones(int codigo) {
+        try {
+            return presentacionDao.getPresentaciones(codigo);
+        } catch (Exception e) {
+            return null;
         }
     }
 
     @Override
-    public List<PresentacionMedicamento> obtenerPresentaciones(int codigo) {
+    public PresentacionMedicamento getPresentacion(int codigo, String tipoMedicamento) {
         try {
-            return presentacionDao.getPresentaciones(codigo);
+            return presentacionDao.getPresentacion(codigo, tipoMedicamento);
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    @Override
+    public PresentacionMedicamento crearPresentacionMedicamento(PresentacionMedicamento presentacionMedicamento) {
+        try {
+            return presentacionDao.guardarPresentacion(presentacionMedicamento);
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    @Override
+    public PresentacionMedicamento modificarPresentacionMedicamento(String tipoPresentacion, PresentacionMedicamento presentacionMedicamento) {
+        try {
+            return presentacionDao.modificarPresentacion(presentacionMedicamento.getCodMedicamento(), tipoPresentacion, presentacionMedicamento);
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    @Override
+    public Boolean darBajaPresentacion(int codigo, String tipoMedicamento, String usuario) {
+        try {
+            return presentacionDao.darBajaPresentacion(codigo, tipoMedicamento, usuario);
         } catch (Exception e) {
             return null;
         }
