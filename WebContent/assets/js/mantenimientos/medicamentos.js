@@ -21,7 +21,7 @@ $(document).ready(function() {
                 if (data.success){
                     getListadoMedicamentos()
                 } else {
-                    alert("Error al agregar Medicamento")
+                    toastr.error("Error al agregar Medicamento")
                 }
             }
         })
@@ -64,6 +64,8 @@ $(document).ready(function() {
                     $('[data-modificar-medicamento]').click(setMedicamentoDataModificar);
                     $('[data-baja-medicamento]').unbind('click');
                     $('[data-baja-medicamento]').click(setMedicamentoDataDarBaja);
+                } else {
+                    toastr.error("No se pudo obtener el listado de medicamentos");
                 }
             }
         });
@@ -102,6 +104,9 @@ $(document).ready(function() {
                     $('[data-baja-presentacion="true"]').unbind('click')
                     $('[data-baja-presentacion="true"]').click(setPresentacionDataBaja)
                 }
+                else {
+                    toastr.error("No se pudo obtener el listado de presentaciones");
+                }
             }
         });
     }
@@ -129,7 +134,7 @@ $(document).ready(function() {
                     $('agregarMedicamentoModal').modal('hide');
                     getListadoPresentaciones(codigoMedicamento)
                 } else {
-                    alert("Error al agregar la presentacion");
+                    toastr.error("Error al agregar la presentacion");
                 }
 
             }
@@ -155,7 +160,7 @@ $(document).ready(function() {
                 if (response.success){
                     getListadoPresentaciones(codigoMedicamento);
                 } else {
-                    alert("Error al modificar la presentacion");
+                    toastr.error("Error al modificar la presentacion");
                 }
             }
         });
@@ -178,7 +183,7 @@ $(document).ready(function() {
                 if (response.success){
                     getListadoPresentaciones(codigoMedicamento);
                 } else {
-                    alert("Error al dar de baja la presentacion");
+                    toastr.error("Error al dar de baja la presentacion");
                 }
             }
         });
@@ -221,7 +226,7 @@ $(document).ready(function() {
                 if (response.success){
                     getListadoMedicamentos();
                 } else {
-                    alert("Error al modificar medicamento");
+                    toastr.error("Error al modificar medicamento");
                 }
             }
         });
@@ -242,7 +247,7 @@ $(document).ready(function() {
                 if (response.success){
                     getListadoMedicamentos();
                 } else {
-                    alert("Error al dar baja medicamento");
+                    toastr.error("Error al dar baja medicamento");
                 }
             }
         });

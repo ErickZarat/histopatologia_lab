@@ -11,6 +11,7 @@
 
     <link rel="stylesheet" href="assets/css/bootstrap/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/font-awesome/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/toastr.min.css">
     <link rel="stylesheet" href="assets/css/custom.css">
 
     <title>${titulo}</title>
