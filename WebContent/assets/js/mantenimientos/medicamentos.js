@@ -18,6 +18,7 @@ $(document).ready(function() {
             },
             success: function(data) {
                 $('#agregarMedicamentoModal').modal('hide');
+                $('#nombreMedicamento').val("");
                 if (data.success){
                     getListadoMedicamentos()
                 } else {
@@ -130,6 +131,7 @@ $(document).ready(function() {
             },
             success: function(response) {
                 $('#agregarPresentacionModal').modal('hide');
+                $('#tipoPresentacion').val("")
                 if (response.success){
                     $('agregarMedicamentoModal').modal('hide');
                     getListadoPresentaciones(codigoMedicamento)
@@ -157,6 +159,7 @@ $(document).ready(function() {
             },
             success: function(response) {
                 $('#modificarPresentacionModal').modal('hide');
+                $('#tipoPresentacionMod').val("")
                 if (response.success){
                     getListadoPresentaciones(codigoMedicamento);
                 } else {
@@ -180,6 +183,8 @@ $(document).ready(function() {
             },
             success: function(response) {
                 $('#darBajaPresentacionModal').modal('hide');
+                $('#codigoMedicamentoPresentacionBaja').text("")
+                $('#tipoPresentacionBaja').text("")
                 if (response.success){
                     getListadoPresentaciones(codigoMedicamento);
                 } else {
@@ -223,6 +228,8 @@ $(document).ready(function() {
             },
             success: function(response) {
                 $('#modificarMedicamentoModal').modal('hide');
+                $('#codigoMedicamentoMod').val("")
+                $('#nombreMedicamentoMod').val("")
                 if (response.success){
                     getListadoMedicamentos();
                 } else {
@@ -244,6 +251,7 @@ $(document).ready(function() {
             },
             success: function(response) {
                 $('#darBajaMedicamentoModal').modal('hide');
+                $('#codigoMedicamentoBaja').text("")
                 if (response.success){
                     getListadoMedicamentos();
                 } else {
