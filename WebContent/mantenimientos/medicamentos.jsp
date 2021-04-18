@@ -95,11 +95,12 @@
                 </button>
             </div>
             <div class="modal-body">
+                <input type="hidden" class="form-control" id="codigoMedicamentoPresentacion"  name="codigoMedicamentoPresentacion">
                 <table>
                     <tr>
-                        <td><label for="codigoMedicamentoPresentacion" class="col-sm-4 col-form-label">Codigo tipo medicamento:</label></td>
+                        <td><label for="nombreMedicamentoPresentacion" class="col-sm-4 col-form-label">Nombre medicamento:</label></td>
                         <td>
-                            <input type="text" class="form-control" id="codigoMedicamentoPresentacion"  name="codigoMedicamentoPresentacion" disabled>
+                            <input type="text" class="form-control text-capitalize" id="nombreMedicamentoPresentacion"  name="nombreMedicamentoPresentacion" disabled>
                         </td>
                     </tr>
                     <tr>
@@ -133,7 +134,7 @@
             <div class="modal-body">
                 <table>
                     <tr>
-                        <td><label for="codigoMedicamentoPresentacion" class="col-sm-4 col-form-label">Codigo tipo medicamento:</label></td>
+                        <td><label for="codigoMedicamentoPresentacion" class="col-sm-4 col-form-label">Codigo medicamento:</label></td>
                         <td>
                             <input type="text" class="form-control" id="codigoMedicamentoPresentacionMod"  name="codigoMedicamentoPresentacion" disabled>
                         </td>

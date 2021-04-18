@@ -49,7 +49,7 @@ $(document).ready(function() {
                     response.data.forEach(function (element) {
                         var data = ' data-codigo-medicamento="' + element.codigoMedicamento + '" data-nombre-medicamento="' + element.nombreMedicamento + '" ';
                         var row = [
-                            '<input type="radio" name="medicamento" id="medicamento-' + element.codigoMedicamento + '" value="' + element.codigoMedicamento + '"/>',
+                            '<input type="radio" name="medicamento" data-nombre-medicamento="'+element.nombreMedicamento+'" id="medicamento-' + element.codigoMedicamento + '" value="' + element.codigoMedicamento + '"/>',
                             '<label for="medicamento-' + element.codigoMedicamento + '">' + element.codigoMedicamento + '</label>',
                             '<label for="medicamento-' + element.codigoMedicamento + '" class="text-capitalize">' + element.nombreMedicamento + '</label>',
                             '<div class="btn-group" >'
@@ -72,8 +72,9 @@ $(document).ready(function() {
         });
     }
 
-    function getListadoPresentaciones(codigoMedicamento) {
+    function getListadoPresentaciones(codigoMedicamento, nombre=undefined) {
         $('#codigoMedicamentoPresentacion').val(codigoMedicamento)
+        if(nombre != undefined) { $('#nombreMedicamentoPresentacion').val(nombre) }
         $('#agregarPresentacionModalBtn').prop('disabled', false);
         presentacionMedicamentosTable.rows().remove().draw();
 
@@ -113,7 +114,7 @@ $(document).ready(function() {
     }
 
     function onMedicamentoItemChange(){
-        getListadoPresentaciones(this.value)
+        getListadoPresentaciones(this.value, $(this).data('nombre-medicamento'));
     }
 
     $('input[type=radio][name=medicamento]').change(onMedicamentoItemChange);
