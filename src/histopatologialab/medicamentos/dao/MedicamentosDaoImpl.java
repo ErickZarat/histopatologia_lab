@@ -91,7 +91,7 @@ public class MedicamentosDaoImpl implements IMedicamentosDao {
         Medicamento medicamento = getMedicamento(codMedicamento);
         medicamento.setModificadoPor(usuario);
         medicamento.setFechaModificacion(LocalDate.now());
-        medicamento.setEstado("D");
+        medicamento.setEstado(Estado.DESHABILITADO.getSlug());
 
         Medicamento medicamentoModificado = modificarMedicamento(medicamento);
         return medicamentoModificado != null;

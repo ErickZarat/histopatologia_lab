@@ -1,5 +1,6 @@
 package histopatologialab.medicamentos.controller;
 
+import histopatologialab.core.Estado;
 import histopatologialab.medicamentos.dao.IMedicamentosDao;
 import histopatologialab.medicamentos.dao.IPresentacionMedicamentosDao;
 import histopatologialab.medicamentos.dto.Medicamento;
@@ -21,7 +22,7 @@ public class MedicamentosControllerImpl implements IMedicamentosController {
     @Override
     public Medicamento crearMedicamento(String nombre, int tipo, String usuario) {
         try {
-            Medicamento medicamento = new Medicamento(0, nombre, "H", usuario, LocalDate.now(), null, null, tipo);
+            Medicamento medicamento = new Medicamento(0, nombre, Estado.HABILITADO.getSlug(), usuario, LocalDate.now(), null, null, tipo);
             return medicamentosDao.guardarMedicamento(medicamento);
         } catch (Exception e) {
             return null;

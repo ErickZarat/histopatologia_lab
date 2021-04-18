@@ -1,5 +1,6 @@
 package histopatologialab.medicamentos;
 
+import histopatologialab.core.Estado;
 import histopatologialab.core.JsonResponse;
 import histopatologialab.core.RequestAction;
 import histopatologialab.medicamentos.controller.IMedicamentosController;
@@ -55,7 +56,7 @@ public class PresentacionMedicamentosServlet extends HttpServlet {
                 LocalDate.now(),
                 null,
                 null,
-                "H"
+                Estado.HABILITADO.getSlug()
         );
 
         PresentacionMedicamento presentacion = controller.crearPresentacionMedicamento(presentacionMedicamento);
@@ -71,7 +72,7 @@ public class PresentacionMedicamentosServlet extends HttpServlet {
                 LocalDate.now(),
                 getUsuarioFromSession(request),
                 LocalDate.now(),
-                "H"
+                Estado.HABILITADO.getSlug()
         );
 
         PresentacionMedicamento presentacion = controller.modificarPresentacionMedicamento(tipoPresentacion, presentacionMedicamento);

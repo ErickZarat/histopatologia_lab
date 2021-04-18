@@ -1,6 +1,7 @@
 package histopatologialab.medicamentos.dao;
 
 import histopatologialab.core.DB;
+import histopatologialab.core.Estado;
 import histopatologialab.medicamentos.dto.PresentacionMedicamento;
 import histopatologialab.core.db.tables.LabPresentacionMedicamento;
 import histopatologialab.core.db.tables.records.LabPresentacionMedicamentoRecord;
@@ -34,7 +35,7 @@ public class PresentacionMedicamentosDaoImpl implements IPresentacionMedicamento
         List<Record> results = query
                 .select(tabla.asterisk())
                 .from(tabla)
-                .where(tabla.COD_MEDICAMENTO.eq(codMedicamento).and(tabla.ESTADO_MEDICAMENTO.notEqual("D")))
+                .where(tabla.COD_MEDICAMENTO.eq(codMedicamento).and(tabla.ESTADO_MEDICAMENTO.notEqual(Estado.DESHABILITADO.getSlug())))
                 .fetch();
         return results.stream().map(this::parseItem).collect(Collectors.toList());
     }
@@ -65,7 +66,7 @@ public class PresentacionMedicamentosDaoImpl implements IPresentacionMedicamento
     @Override
     public Boolean darBajaPresentacion(int codMedicamento, String tipoPresentacion, String usuario) {
         PresentacionMedicamento presentacionMedicamento = getPresentacion(codMedicamento, tipoPresentacion);
-        presentacionMedicamento.setEstadoMedicamento("D");
+        presentacionMedicamento.setEstadoMedicamento(Estado.DESHABILITADO.getSlug());
         presentacionMedicamento.setModificatoPor(usuario);
         presentacionMedicamento.setFechaModificacion(LocalDate.now());
         return modificarPresentacion(codMedicamento, tipoPresentacion, presentacionMedicamento) != null;
