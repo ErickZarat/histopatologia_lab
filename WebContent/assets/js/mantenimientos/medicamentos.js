@@ -20,6 +20,7 @@ $(document).ready(function() {
                 $('#agregarMedicamentoModal').modal('hide');
                 $('#nombreMedicamento').val("");
                 if (data.success){
+                    toastr.success("Se agrego el medicamento");
                     getListadoMedicamentos()
                 } else {
                     toastr.error("Error al agregar Medicamento")
@@ -134,7 +135,7 @@ $(document).ready(function() {
                 $('#agregarPresentacionModal').modal('hide');
                 $('#tipoPresentacion').val("")
                 if (response.success){
-                    $('agregarMedicamentoModal').modal('hide');
+                    toastr.success("Se agrego la presentacion");
                     getListadoPresentaciones(codigoMedicamento)
                 } else {
                     toastr.error("Error al agregar la presentacion");
@@ -162,6 +163,7 @@ $(document).ready(function() {
                 $('#modificarPresentacionModal').modal('hide');
                 $('#tipoPresentacionMod').val("")
                 if (response.success){
+                    toastr.success("Se modifico la presentacion");
                     getListadoPresentaciones(codigoMedicamento);
                 } else {
                     toastr.error("Error al modificar la presentacion");
@@ -187,6 +189,7 @@ $(document).ready(function() {
                 $('#codigoMedicamentoPresentacionBaja').text("")
                 $('#tipoPresentacionBaja').text("")
                 if (response.success){
+                    toastr.success("Se dio de baja la presentacion");
                     getListadoPresentaciones(codigoMedicamento);
                 } else {
                     toastr.error("Error al dar de baja la presentacion");
@@ -232,6 +235,7 @@ $(document).ready(function() {
                 $('#codigoMedicamentoMod').val("")
                 $('#nombreMedicamentoMod').val("")
                 if (response.success){
+                    toastr.success("Se modifico el medicamento");
                     getListadoMedicamentos();
                 } else {
                     toastr.error("Error al modificar medicamento");
@@ -254,6 +258,7 @@ $(document).ready(function() {
                 $('#darBajaMedicamentoModal').modal('hide');
                 $('#codigoMedicamentoBaja').text("")
                 if (response.success){
+                    toastr.success("Se dio de baja el medicamento");
                     getListadoMedicamentos();
                 } else {
                     toastr.error("Error al dar baja medicamento");
