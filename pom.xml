@@ -163,7 +163,8 @@
                         <database>
                             <name>org.jooq.meta.postgres.PostgresDatabase</name>
                             <inputSchema>public</inputSchema>
-                            <includes>lab_.*</includes>
+                            <includes>lab_.*|crm_per.*</includes>
+                           <!-- <includes>crm_persona</includes> !-->
                             <excludes></excludes>
                         </database>
 

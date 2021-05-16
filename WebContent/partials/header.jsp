@@ -11,8 +11,10 @@
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdownMantenimientos">
                 <a class="dropdown-item" href="MedicamentosServlet.do">Medicamentos</a>
-                <a class="dropdown-item" href="#">Mantenimiento 2</a>
-                <a class="dropdown-item" href="#">Mantenimiento 3</a>
+                <a class="dropdown-item" href="EnfSistemicaServlet.do">Enfermedades Sistemicas</a>
+                <a class="dropdown-item" href="OpcionLesionServlet.do">Tipos de Opcion Lesion</a>
+                <a class="dropdown-item" href="UsuarioServlet.do">Usuarios</a>
+                <a class="dropdown-item" href="PacienteServlet.do">Pacientes</a>
             </div>
         </li>
 

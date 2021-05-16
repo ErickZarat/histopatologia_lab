@@ -1,0 +1,125 @@
+package histopatologialab.pacientes.dao;
+
+import java.time.LocalDate;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import histopatologialab.core.DB;
+import histopatologialab.core.Estado;
+import histopatologialab.core.db.tables.LabPaciente;
+import histopatologialab.core.db.tables.records.LabPacienteRecord;
+
+import histopatologialab.pacientes.dto.Paciente;
+import org.jooq.DSLContext;
+import org.jooq.Record;
+
+public class PacienteDaoImpl implements IPacienteDao {
+	
+	 private final DSLContext query = DB.getConexion();
+	 private final LabPaciente tablapaciente = LabPaciente.LAB_PACIENTE;
+			 
+	 
+	 public Paciente parseItem(Record record) {
+	        return new Paciente (
+	        		record.getValue(tablapaciente.COD_PACIENTE), 
+	        		record.getValue(tablapaciente.IDENTIFICACION), 
+	        		record.getValue(tablapaciente.NOMBRE), 
+	        		record.getValue(tablapaciente.APELLIDOS), 
+	        		record.getValue(tablapaciente.DIRECCION), 
+	        		record.getValue(tablapaciente.TELEFONO), 
+	        		record.getValue(tablapaciente.FECHANACIMIENTO), 
+	        		record.getValue(tablapaciente.GENERO), 
+	        		record.getValue(tablapaciente.OCUPACION), 
+	        		record.getValue(tablapaciente.TIPO_IDENTIFICACION), 
+	        		record.getValue(tablapaciente.EMAIL),
+	        		record.getValue(tablapaciente.CREADOPOR),
+	        		record.getValue(tablapaciente.FECHACREACION),
+	        		record.getValue(tablapaciente.MODIFICADOPOR), 
+	        		record.getValue(tablapaciente.FECHAMODIFICACION)
+	        );
+	    }
+	 
+	 @Override
+	    public List<Paciente> getPacientes() {
+		 List<Record> results = query
+				 			.select(tablapaciente.asterisk())
+				 	.from (tablapaciente)
+         			.fetch();
+	        return results.stream().map(this::parseItem).collect(Collectors.toList());
+	 }
+	    
+	 
+	 public List<Paciente> getPacientesByNombre(String Nombre){
+		 List<Record> results = query
+		 			.select(tablapaciente.asterisk())
+		 	.from (tablapaciente)
+            .where (tablapaciente.NOMBRE.like("%" + Nombre +"%", '!'))
+            .orderBy(tablapaciente.NOMBRE.asc())
+            .fetch();
+		 	return results.stream().map(this::parseItem).collect(Collectors.toList());
+		 
+	 }
+	 
+	 @Override
+	  public List<Paciente> getPacientesByidentificacion( String tipo, String numident) {
+	  		List<Record> results = query
+			.select(tablapaciente.asterisk())
+			.from (tablapaciente)
+			.where (tablapaciente.IDENTIFICACION.like("%" + numident +"%", '!'))
+			.orderBy(tablapaciente.NOMBRE.asc())
+			.fetch();
+	 		return results.stream().map(this::parseItem).collect(Collectors.toList());
+}
+
+		
+	  @Override
+	  public Paciente getPaciente(long codPaciente) {
+	        Record result = query
+	    			.select(tablapaciente.asterisk())
+	    			.from (tablapaciente)
+	    			.where(tablapaciente.COD_PACIENTE.equal(codPaciente))
+	                .fetchOne();
+	        return result != null ? parseItem(result): null;
+	 }
+
+	 
+	 @Override
+	  public Paciente guardarPaciente(Paciente paciente) {
+		 
+	        LabPacienteRecord registro2 = query.newRecord(tablapaciente);
+	          	registro2.setIdentificacion(paciente.getIdentificacionPaciente());
+	          	registro2.setNombre(paciente.getNombrePaciente());
+	          	registro2.setApellidos(paciente.getApellidosPaciente());
+	        	registro2.setEmail(paciente.getEmailPaciente());
+	        	registro2.setDireccion(paciente.getDireccionPaciente());
+	        	registro2.setTelefono(paciente.getTelefonoPaciente());
+	        	registro2.setFechanacimiento(paciente.getFecNacimientoPaciente());
+	        	registro2.setGenero(paciente.getGeneroPaciente());
+	        	registro2.setOcupacion(paciente.getOcupacionPaciente());
+	        	registro2.setTipoIdentificacion(paciente.getTipoidPaciente());
+	        	registro2.setFechacreacion(LocalDate.now());      	
+	        	registro2.setCreadopor(paciente.getCreadoPor());
+	        	registro2.store();
+	        
+	        return getPaciente(registro2.getCodPaciente());	 
+	 }
+	
+	 @Override
+	  public Paciente modificarPaciente(Paciente paciente) {
+	        query.update(tablapaciente)
+            .set(tablapaciente.IDENTIFICACION,paciente.getIdentificacionPaciente())
+            .set(tablapaciente.NOMBRE, paciente.getNombrePaciente())
+            .set(tablapaciente.APELLIDOS, paciente.getApellidosPaciente())
+            .set(tablapaciente.DIRECCION,paciente.getDireccionPaciente())
+            .set(tablapaciente.EMAIL,paciente.getEmailPaciente()) 
+            .set(tablapaciente.FECHAMODIFICACION, LocalDate.now())
+            .set(tablapaciente.MODIFICADOPOR, paciente.getModificadoPor())
+            .where(tablapaciente.COD_PACIENTE.eq(paciente.getCodigoPaciente()))
+            .execute();
+	        return getPaciente(paciente.getCodigoPaciente());
+	 }
+	 
+	 
+
+
+}

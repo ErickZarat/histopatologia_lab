@@ -20,7 +20,7 @@ $(document).ready(function() {
                 $('#agregarMedicamentoModal').modal('hide');
                 $('#nombreMedicamento').val("");
                 if (data.success){
-                    toastr.success("Se agrego el medicamento");
+                    toastr.success("Se agrego el medicamento.");
                     getListadoMedicamentos()
                 } else {
                     toastr.error("Error al agregar Medicamento")

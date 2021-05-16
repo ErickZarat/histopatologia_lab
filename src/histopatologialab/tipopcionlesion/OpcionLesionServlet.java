@@ -1,0 +1,117 @@
+package histopatologialab.tipopcionlesion;
+
+
+import histopatologialab.tipopcionlesion.controller.IOpcionLesionController;
+import histopatologialab.tipopcionlesion.dto.OpcionLesion;
+import histopatologialab.tipopcionlesion.dto.TipOpcion;
+import histopatologialab.core.JsonResponse;
+import histopatologialab.core.RequestAction;
+import org.tinylog.Logger;
+
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.util.List;
+
+import static histopatologialab.core.ServletHelper.*;
+import static histopatologialab.core.Controllers.opcionlesionController;
+
+
+@WebServlet(name ="OpcionLesionServlet")
+
+public class OpcionLesionServlet extends HttpServlet {
+	IOpcionLesionController controller = opcionlesionController;
+	
+	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public OpcionLesionServlet() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+		// TODO Auto-generated method stub
+        checkSession(request, response);
+
+        RequestAction action = getRequestAction(request);
+		System.out.println(action);
+		
+        if (action == RequestAction.CREAR) {
+        	crearOpcionLesion(request, response);
+        } else if (action == RequestAction.MODIFICAR) {
+        	modificarOpcionLesion(request, response);
+        } else if (action == RequestAction.DAR_BAJA) {
+        	darBajaOpcionLesion(request, response);
+        }
+		
+		//response.getWriter().append("Served at: ").append(request.getContextPath());
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        checkSession(request, response);
+
+        RequestAction action = getRequestAction(request);
+        if (action == RequestAction.LISTAR_JSON) {
+        	getJsonOpcionLesion(request, response);
+        } else {
+            getDefaultPage(request, response);
+        }
+	}
+	
+	
+    private void getJsonOpcionLesion(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        String tipoOpcion = request.getParameter("tipoOpcion");
+
+        List<OpcionLesion> opcionlesionList = controller.getOpciones(tipoOpcion);
+        toJsonResponse(response, new JsonResponse<>(opcionlesionList != null, opcionlesionList));
+    }
+
+    private void getDefaultPage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setAttribute("tipOpcion", TipOpcion.values());
+        RequestDispatcher despachador = request.getRequestDispatcher("mantenimientos/tipopcionlesion.jsp");
+        despachador.forward(request, response);
+    }
+
+    private void crearOpcionLesion(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        String nombre = request.getParameter("tipoOpcion");
+        String valor = request.getParameter("valoropcion");
+        String usuario = getUsuarioFromSession(request);
+        
+        OpcionLesion opcionlesion = controller.crearOpcionLesion(nombre, valor, usuario) ;
+        toJsonResponse(response, new JsonResponse<>(opcionlesion != null, opcionlesion));
+    }
+
+    private void modificarOpcionLesion(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        int codigo = Integer.parseInt(request.getParameter("codigoOpcion"));
+        String nombre = request.getParameter("nombreOpcion");
+        String valor = request.getParameter("valorOpcion"); 
+        
+        String usuario = getUsuarioFromSession(request);
+    
+
+        OpcionLesion opcionlesion = controller.modificarOpcionLesion(codigo, nombre, valor, usuario); 
+        toJsonResponse(response, new JsonResponse<>(opcionlesion != null, opcionlesion));
+    }
+
+    private void darBajaOpcionLesion(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        int codigo = Integer.parseInt(request.getParameter("codigoOpcion"));
+        String usuario = getUsuarioFromSession(request);
+        boolean success = controller.darBajaOpcionLesion(codigo, usuario);
+        toJsonResponse(response, new JsonResponse<>(success, success));
+    }
+
+}

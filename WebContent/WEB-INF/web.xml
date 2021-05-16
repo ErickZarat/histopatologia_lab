@@ -42,4 +42,40 @@
         <url-pattern>/PresentacionMedicamentosServlet.do</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>EnfSistemicaServlet</servlet-name>
+        <servlet-class>histopatologialab.enfsistemica.EnfSistemicaServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>EnfSistemicaServlet</servlet-name>
+        <url-pattern>/EnfSistemicaServlet.do</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>OpcionLesionServlet</servlet-name>
+        <servlet-class>histopatologialab.tipopcionlesion.OpcionLesionServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>OpcionLesionServlet</servlet-name>
+        <url-pattern>/OpcionLesionServlet.do</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>UsuarioServlet</servlet-name>
+        <servlet-class>histopatologialab.usuario.UsuarioServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UsuarioServlet</servlet-name>
+        <url-pattern>/UsuarioServlet.do</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>PacienteServlet</servlet-name>
+        <servlet-class>histopatologialab.pacientes.PacienteServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>PacienteServlet</servlet-name>
+        <url-pattern>/PacienteServlet.do</url-pattern>
+    </servlet-mapping>
+
 </web-app>
