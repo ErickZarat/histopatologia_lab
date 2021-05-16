@@ -60,18 +60,16 @@ $(document).ready(function() {
                         ]
                         medicamentosTable.row.add(row).draw(false);
                     });
-                    $('input[type=radio][name=medicamento]').unbind('change');
-                    $('input[type=radio][name=medicamento]').change(onMedicamentoItemChange);
-                    $('[data-modificar-medicamento]').unbind('click');
-                    $('[data-modificar-medicamento]').click(setMedicamentoDataModificar);
-                    $('[data-baja-medicamento]').unbind('click');
-                    $('[data-baja-medicamento]').click(setMedicamentoDataDarBaja);
                 } else {
                     toastr.error("No se pudo obtener el listado de medicamentos");
                 }
             }
         });
     }
+
+    $(document).on('change', 'input[type=radio][name=medicamento]', onMedicamentoItemChange);
+    $(document).on('click', '[data-modificar-medicamento]', setMedicamentoDataModificar);
+    $(document).on('click', '[data-baja-medicamento]', setMedicamentoDataDarBaja);
 
     function getListadoPresentaciones(codigoMedicamento, nombre=undefined) {
         $('#codigoMedicamentoPresentacion').val(codigoMedicamento)
@@ -102,10 +100,6 @@ $(document).ready(function() {
                         ];
                         presentacionMedicamentosTable.row.add(row).draw(false);
                     });
-                    $('[data-modificar-presentacion="true"]').unbind('click')
-                    $('[data-modificar-presentacion="true"]').click(setPresentacionDataModificar)
-                    $('[data-baja-presentacion="true"]').unbind('click')
-                    $('[data-baja-presentacion="true"]').click(setPresentacionDataBaja)
                 }
                 else {
                     toastr.error("No se pudo obtener el listado de presentaciones");
@@ -113,6 +107,9 @@ $(document).ready(function() {
             }
         });
     }
+
+    $(document).on('click', '[data-modificar-presentacion="true"]', setPresentacionDataModificar)
+    $(document).on('click', '[data-baja-presentacion="true"]', setPresentacionDataBaja)
 
     function onMedicamentoItemChange(){
         getListadoPresentaciones(this.value, $(this).data('nombre-medicamento'));
