@@ -65,9 +65,9 @@ public class LabTipoOpcionLesion extends TableImpl<LabTipoOpcionLesionRecord> {
     public final TableField<LabTipoOpcionLesionRecord, String> VALOR_TIPO_OPCION = createField(DSL.name("valor_tipo_opcion"), SQLDataType.VARCHAR(20), this, "");
 
     /**
-     * The column <code>public.lab_tipo_opcion_lesion.estado_opcion_lesion</code>.
+     * The column <code>public.lab_tipo_opcion_lesion.estado_tipo_opcion</code>.
      */
-    public final TableField<LabTipoOpcionLesionRecord, String> ESTADO_OPCION_LESION = createField(DSL.name("estado_opcion_lesion"), SQLDataType.VARCHAR(20), this, "");
+    public final TableField<LabTipoOpcionLesionRecord, String> ESTADO_TIPO_OPCION = createField(DSL.name("estado_tipo_opcion"), SQLDataType.VARCHAR(20), this, "");
 
     /**
      * The column <code>public.lab_tipo_opcion_lesion.fecha_creacion</code>.

@@ -66,16 +66,16 @@ public class LabTipoOpcionLesionRecord extends UpdatableRecordImpl<LabTipoOpcion
     }
 
     /**
-     * Setter for <code>public.lab_tipo_opcion_lesion.estado_opcion_lesion</code>.
+     * Setter for <code>public.lab_tipo_opcion_lesion.estado_tipo_opcion</code>.
      */
-    public void setEstadoOpcionLesion(String value) {
+    public void setEstadoTipoOpcion(String value) {
         set(3, value);
     }
 
     /**
-     * Getter for <code>public.lab_tipo_opcion_lesion.estado_opcion_lesion</code>.
+     * Getter for <code>public.lab_tipo_opcion_lesion.estado_tipo_opcion</code>.
      */
-    public String getEstadoOpcionLesion() {
+    public String getEstadoTipoOpcion() {
         return (String) get(3);
     }
 
@@ -175,7 +175,7 @@ public class LabTipoOpcionLesionRecord extends UpdatableRecordImpl<LabTipoOpcion
 
     @Override
     public Field<String> field4() {
-        return LabTipoOpcionLesion.LAB_TIPO_OPCION_LESION.ESTADO_OPCION_LESION;
+        return LabTipoOpcionLesion.LAB_TIPO_OPCION_LESION.ESTADO_TIPO_OPCION;
     }
 
     @Override
@@ -215,7 +215,7 @@ public class LabTipoOpcionLesionRecord extends UpdatableRecordImpl<LabTipoOpcion
 
     @Override
     public String component4() {
-        return getEstadoOpcionLesion();
+        return getEstadoTipoOpcion();
     }
 
     @Override
@@ -255,7 +255,7 @@ public class LabTipoOpcionLesionRecord extends UpdatableRecordImpl<LabTipoOpcion
 
     @Override
     public String value4() {
-        return getEstadoOpcionLesion();
+        return getEstadoTipoOpcion();
     }
 
     @Override
@@ -298,7 +298,7 @@ public class LabTipoOpcionLesionRecord extends UpdatableRecordImpl<LabTipoOpcion
 
     @Override
     public LabTipoOpcionLesionRecord value4(String value) {
-        setEstadoOpcionLesion(value);
+        setEstadoTipoOpcion(value);
         return this;
     }
 
@@ -353,13 +353,13 @@ public class LabTipoOpcionLesionRecord extends UpdatableRecordImpl<LabTipoOpcion
     /**
      * Create a detached, initialised LabTipoOpcionLesionRecord
      */
-    public LabTipoOpcionLesionRecord(Integer codTipoOpcionLesion, String nombreTipoOpcion, String valorTipoOpcion, String estadoOpcionLesion, LocalDate fechaCreacion, String creadoPor, LocalDate fechaModificacion, String modificadoPor) {
+    public LabTipoOpcionLesionRecord(Integer codTipoOpcionLesion, String nombreTipoOpcion, String valorTipoOpcion, String estadoTipoOpcion, LocalDate fechaCreacion, String creadoPor, LocalDate fechaModificacion, String modificadoPor) {
         super(LabTipoOpcionLesion.LAB_TIPO_OPCION_LESION);
 
         setCodTipoOpcionLesion(codTipoOpcionLesion);
         setNombreTipoOpcion(nombreTipoOpcion);
         setValorTipoOpcion(valorTipoOpcion);
-        setEstadoOpcionLesion(estadoOpcionLesion);
+        setEstadoTipoOpcion(estadoTipoOpcion);
         setFechaCreacion(fechaCreacion);
         setCreadoPor(creadoPor);
         setFechaModificacion(fechaModificacion);

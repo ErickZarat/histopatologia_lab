@@ -31,6 +31,16 @@ public class OpcionLesionDaoImpl implements IOpcionLesionDao{
     }
 
     @Override
+    public List<OpcionLesion> getOpciones(){
+        List<Record> results = query
+                .select(tabla.asterisk())
+                .from(tabla)
+                .fetch();
+
+        return results.stream().map(this::parseItem).collect(Collectors.toList());
+    }
+
+    @Override
     public List<OpcionLesion> getOpcionesByTipo(String tipOpcion){
     	 List<Record> results = query
                  .select(tabla.asterisk())

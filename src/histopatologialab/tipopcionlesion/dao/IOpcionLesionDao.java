@@ -7,7 +7,7 @@ public interface IOpcionLesionDao {
 	
 	
     List<OpcionLesion> getOpcionesByTipo(String tipOpcion);
-
+    List<OpcionLesion> getOpciones();
     OpcionLesion getOpcion(int codigoOpcion);
     OpcionLesion guardarOpcionLesion(OpcionLesion tipopcionlesion);
     OpcionLesion modificarOpcionLesion(OpcionLesion tipopcionlesion);
