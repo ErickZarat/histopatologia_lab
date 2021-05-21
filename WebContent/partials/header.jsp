@@ -23,9 +23,10 @@
                 Consultas
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdownConsultas">
-                <a class="dropdown-item" href="#">Consulta 1</a>
-                <a class="dropdown-item" href="#">Consulta 2</a>
-                <a class="dropdown-item" href="#">Consulta 3</a>
+                <a class="dropdown-item" href="ConsultaServlet.do?accion=CREAR">Ingreso de Consulta</a>
+                <a class="dropdown-item" href="ConsultaServlet.do">Busqueda de Consultas</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#">Reportes</a>
             </div>
         </li>
 
@@ -46,6 +47,7 @@
             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                 <a class="dropdown-item" href="#">Dashboard</a>
                 <a class="dropdown-item" href="#">Edit Profile</a>
+                <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="#">Log Out</a>
             </div>
         </li>
