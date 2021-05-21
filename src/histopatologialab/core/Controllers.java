@@ -1,5 +1,6 @@
 package histopatologialab.core;
 
+import histopatologialab.consultas.controller.ConsultaController;
 import histopatologialab.medicamentos.controller.IMedicamentosController;
 import histopatologialab.medicamentos.controller.MedicamentosControllerImpl;
 import histopatologialab.enfsistemica.controller.IEnfSistemicaController;
@@ -11,12 +12,7 @@ import histopatologialab.pacientes.controller.IPacienteController;
 import histopatologialab.usuario.controller.IUsuarioController;
 import histopatologialab.usuario.controller.UsuarioControllerImpl;
 
-import static histopatologialab.core.Daos.medicamentosDao;
-import static histopatologialab.core.Daos.presentacionDao;
-import static histopatologialab.core.Daos.enfsistemicaDao; 
-import static histopatologialab.core.Daos.opcionlesionDao;
-import static histopatologialab.core.Daos.pacienteDao;
-import static histopatologialab.core.Daos.usuarioDao;
+import static histopatologialab.core.Daos.*;
 
 public class Controllers {
 
@@ -25,4 +21,6 @@ public class Controllers {
     public static IOpcionLesionController opcionlesionController = new OpcionLesionControllerImpl(opcionlesionDao);
     public static IPacienteController pacienteController = new PacienteControllerImpl(pacienteDao);
     public static IUsuarioController usuarioController =  new UsuarioControllerImpl(usuarioDao);
+    public static ConsultaController consultaController = new ConsultaController(opcionlesionDao);
+
 }

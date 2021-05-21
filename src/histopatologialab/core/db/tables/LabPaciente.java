@@ -14,7 +14,6 @@ import java.util.List;
 
 import org.jooq.Field;
 import org.jooq.ForeignKey;
-import org.jooq.Identity;
 import org.jooq.Name;
 import org.jooq.Record;
 import org.jooq.Row16;
@@ -52,7 +51,12 @@ public class LabPaciente extends TableImpl<LabPacienteRecord> {
     /**
      * The column <code>public.lab_paciente.cod_paciente</code>.
      */
-    public final TableField<LabPacienteRecord, Long> COD_PACIENTE = createField(DSL.name("cod_paciente"), SQLDataType.BIGINT.nullable(false).identity(true), this, "");
+    public final TableField<LabPacienteRecord, Long> COD_PACIENTE = createField(DSL.name("cod_paciente"), SQLDataType.BIGINT.nullable(false), this, "");
+
+    /**
+     * The column <code>public.lab_paciente.email</code>.
+     */
+    public final TableField<LabPacienteRecord, String> EMAIL = createField(DSL.name("email"), SQLDataType.VARCHAR, this, "");
 
     /**
      * The column <code>public.lab_paciente.nombre</code>.
@@ -63,11 +67,6 @@ public class LabPaciente extends TableImpl<LabPacienteRecord> {
      * The column <code>public.lab_paciente.apellidos</code>.
      */
     public final TableField<LabPacienteRecord, String> APELLIDOS = createField(DSL.name("apellidos"), SQLDataType.VARCHAR(60).nullable(false), this, "");
-
-    /**
-     * The column <code>public.lab_paciente.email</code>.
-     */
-    public final TableField<LabPacienteRecord, String> EMAIL = createField(DSL.name("email"), SQLDataType.VARCHAR(50), this, "");
 
     /**
      * The column <code>public.lab_paciente.identificacion</code>.
@@ -168,18 +167,13 @@ public class LabPaciente extends TableImpl<LabPacienteRecord> {
     }
 
     @Override
-    public Identity<LabPacienteRecord, Long> getIdentity() {
-        return (Identity<LabPacienteRecord, Long>) super.getIdentity();
-    }
-
-    @Override
     public UniqueKey<LabPacienteRecord> getPrimaryKey() {
         return Keys.LAB_PACIENTE_PK;
     }
 
     @Override
     public List<UniqueKey<LabPacienteRecord>> getKeys() {
-        return Arrays.<UniqueKey<LabPacienteRecord>>asList(Keys.LAB_PACIENTE_PK);
+        return Arrays.<UniqueKey<LabPacienteRecord>>asList(Keys.LAB_PACIENTE_PK, Keys.COD_PACIENTE_UQ);
     }
 
     @Override

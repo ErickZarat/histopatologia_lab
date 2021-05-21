@@ -17,7 +17,7 @@ import org.jooq.ForeignKey;
 import org.jooq.Identity;
 import org.jooq.Name;
 import org.jooq.Record;
-import org.jooq.Row15;
+import org.jooq.Row13;
 import org.jooq.Schema;
 import org.jooq.Table;
 import org.jooq.TableField;
@@ -57,52 +57,42 @@ public class LabUsuario extends TableImpl<LabUsuarioRecord> {
     /**
      * The column <code>public.lab_usuario.login_usuario</code>.
      */
-    public final TableField<LabUsuarioRecord, String> LOGIN_USUARIO = createField(DSL.name("login_usuario"), SQLDataType.VARCHAR(20).nullable(false), this, "");
+    public final TableField<LabUsuarioRecord, String> LOGIN_USUARIO = createField(DSL.name("login_usuario"), SQLDataType.VARCHAR, this, "");
 
     /**
      * The column <code>public.lab_usuario.nombres_doctor</code>.
      */
-    public final TableField<LabUsuarioRecord, String> NOMBRES_DOCTOR = createField(DSL.name("nombres_doctor"), SQLDataType.VARCHAR(50).nullable(false), this, "");
+    public final TableField<LabUsuarioRecord, String> NOMBRES_DOCTOR = createField(DSL.name("nombres_doctor"), SQLDataType.VARCHAR(50), this, "");
 
     /**
      * The column <code>public.lab_usuario.apellidos_doctor</code>.
      */
-    public final TableField<LabUsuarioRecord, String> APELLIDOS_DOCTOR = createField(DSL.name("apellidos_doctor"), SQLDataType.VARCHAR(50).nullable(false), this, "");
+    public final TableField<LabUsuarioRecord, String> APELLIDOS_DOCTOR = createField(DSL.name("apellidos_doctor"), SQLDataType.VARCHAR(50), this, "");
 
     /**
      * The column <code>public.lab_usuario.num_colegiado</code>.
      */
-    public final TableField<LabUsuarioRecord, String> NUM_COLEGIADO = createField(DSL.name("num_colegiado"), SQLDataType.VARCHAR(15), this, "");
+    public final TableField<LabUsuarioRecord, String> NUM_COLEGIADO = createField(DSL.name("num_colegiado"), SQLDataType.VARCHAR, this, "");
 
     /**
      * The column <code>public.lab_usuario.password</code>.
      */
-    public final TableField<LabUsuarioRecord, String> PASSWORD = createField(DSL.name("password"), SQLDataType.VARCHAR(60).nullable(false), this, "");
+    public final TableField<LabUsuarioRecord, String> PASSWORD = createField(DSL.name("password"), SQLDataType.VARCHAR, this, "");
 
     /**
      * The column <code>public.lab_usuario.estado</code>.
      */
-    public final TableField<LabUsuarioRecord, String> ESTADO = createField(DSL.name("estado"), SQLDataType.VARCHAR(20).nullable(false), this, "");
+    public final TableField<LabUsuarioRecord, String> ESTADO = createField(DSL.name("estado"), SQLDataType.VARCHAR, this, "");
 
     /**
      * The column <code>public.lab_usuario.emailusuario</code>.
      */
-    public final TableField<LabUsuarioRecord, String> EMAILUSUARIO = createField(DSL.name("emailusuario"), SQLDataType.VARCHAR(50), this, "");
-
-    /**
-     * The column <code>public.lab_usuario.tipo_usuario</code>.
-     */
-    public final TableField<LabUsuarioRecord, String> TIPO_USUARIO = createField(DSL.name("tipo_usuario"), SQLDataType.VARCHAR(3).nullable(false), this, "");
-
-    /**
-     * The column <code>public.lab_usuario.rol_usuario</code>.
-     */
-    public final TableField<LabUsuarioRecord, String> ROL_USUARIO = createField(DSL.name("rol_usuario"), SQLDataType.VARCHAR(2), this, "");
+    public final TableField<LabUsuarioRecord, String> EMAILUSUARIO = createField(DSL.name("emailusuario"), SQLDataType.VARCHAR, this, "");
 
     /**
      * The column <code>public.lab_usuario.creadopor</code>.
      */
-    public final TableField<LabUsuarioRecord, String> CREADOPOR = createField(DSL.name("creadopor"), SQLDataType.VARCHAR(20), this, "");
+    public final TableField<LabUsuarioRecord, String> CREADOPOR = createField(DSL.name("creadopor"), SQLDataType.VARCHAR(30), this, "");
 
     /**
      * The column <code>public.lab_usuario.fechacreacion</code>.
@@ -110,19 +100,19 @@ public class LabUsuario extends TableImpl<LabUsuarioRecord> {
     public final TableField<LabUsuarioRecord, LocalDate> FECHACREACION = createField(DSL.name("fechacreacion"), SQLDataType.LOCALDATE, this, "");
 
     /**
-     * The column <code>public.lab_usuario.modificadopor</code>.
-     */
-    public final TableField<LabUsuarioRecord, String> MODIFICADOPOR = createField(DSL.name("modificadopor"), SQLDataType.VARCHAR(20), this, "");
-
-    /**
      * The column <code>public.lab_usuario.fechamodificacion</code>.
      */
     public final TableField<LabUsuarioRecord, LocalDate> FECHAMODIFICACION = createField(DSL.name("fechamodificacion"), SQLDataType.LOCALDATE, this, "");
 
     /**
-     * The column <code>public.lab_usuario.llave</code>.
+     * The column <code>public.lab_usuario.modificadopor</code>.
      */
-    public final TableField<LabUsuarioRecord, String> LLAVE = createField(DSL.name("llave"), SQLDataType.VARCHAR(50), this, "");
+    public final TableField<LabUsuarioRecord, String> MODIFICADOPOR = createField(DSL.name("modificadopor"), SQLDataType.VARCHAR(30), this, "");
+
+    /**
+     * The column <code>public.lab_usuario.tipo_usuario</code>.
+     */
+    public final TableField<LabUsuarioRecord, String> TIPO_USUARIO = createField(DSL.name("tipo_usuario"), SQLDataType.VARCHAR, this, "");
 
     private LabUsuario(Name alias, Table<LabUsuarioRecord> aliased) {
         this(alias, aliased, null);
@@ -169,12 +159,12 @@ public class LabUsuario extends TableImpl<LabUsuarioRecord> {
 
     @Override
     public UniqueKey<LabUsuarioRecord> getPrimaryKey() {
-        return Keys.LAB_USUARIO_PK;
+        return Keys.LAB_USUARIO_PKEY;
     }
 
     @Override
     public List<UniqueKey<LabUsuarioRecord>> getKeys() {
-        return Arrays.<UniqueKey<LabUsuarioRecord>>asList(Keys.LAB_USUARIO_PK);
+        return Arrays.<UniqueKey<LabUsuarioRecord>>asList(Keys.LAB_USUARIO_PKEY, Keys.LAB_USUARIO_LOGIN_USUARIO_KEY);
     }
 
     @Override
@@ -204,11 +194,11 @@ public class LabUsuario extends TableImpl<LabUsuarioRecord> {
     }
 
     // -------------------------------------------------------------------------
-    // Row15 type methods
+    // Row13 type methods
     // -------------------------------------------------------------------------
 
     @Override
-    public Row15<Long, String, String, String, String, String, String, String, String, String, String, LocalDate, String, LocalDate, String> fieldsRow() {
-        return (Row15) super.fieldsRow();
+    public Row13<Long, String, String, String, String, String, String, String, String, LocalDate, LocalDate, String, String> fieldsRow() {
+        return (Row13) super.fieldsRow();
     }
 }

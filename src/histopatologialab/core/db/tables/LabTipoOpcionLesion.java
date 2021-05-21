@@ -57,17 +57,17 @@ public class LabTipoOpcionLesion extends TableImpl<LabTipoOpcionLesionRecord> {
     /**
      * The column <code>public.lab_tipo_opcion_lesion.nombre_tipo_opcion</code>.
      */
-    public final TableField<LabTipoOpcionLesionRecord, String> NOMBRE_TIPO_OPCION = createField(DSL.name("nombre_tipo_opcion"), SQLDataType.VARCHAR(35).nullable(false), this, "");
+    public final TableField<LabTipoOpcionLesionRecord, String> NOMBRE_TIPO_OPCION = createField(DSL.name("nombre_tipo_opcion"), SQLDataType.VARCHAR(50), this, "");
 
     /**
      * The column <code>public.lab_tipo_opcion_lesion.valor_tipo_opcion</code>.
      */
-    public final TableField<LabTipoOpcionLesionRecord, String> VALOR_TIPO_OPCION = createField(DSL.name("valor_tipo_opcion"), SQLDataType.VARCHAR(20).nullable(false), this, "");
+    public final TableField<LabTipoOpcionLesionRecord, String> VALOR_TIPO_OPCION = createField(DSL.name("valor_tipo_opcion"), SQLDataType.VARCHAR(20), this, "");
 
     /**
-     * The column <code>public.lab_tipo_opcion_lesion.estado_tipo_opcion</code>.
+     * The column <code>public.lab_tipo_opcion_lesion.estado_opcion_lesion</code>.
      */
-    public final TableField<LabTipoOpcionLesionRecord, String> ESTADO_TIPO_OPCION = createField(DSL.name("estado_tipo_opcion"), SQLDataType.VARCHAR(10).nullable(false), this, "");
+    public final TableField<LabTipoOpcionLesionRecord, String> ESTADO_OPCION_LESION = createField(DSL.name("estado_opcion_lesion"), SQLDataType.VARCHAR(20), this, "");
 
     /**
      * The column <code>public.lab_tipo_opcion_lesion.fecha_creacion</code>.
@@ -77,17 +77,17 @@ public class LabTipoOpcionLesion extends TableImpl<LabTipoOpcionLesionRecord> {
     /**
      * The column <code>public.lab_tipo_opcion_lesion.creado_por</code>.
      */
-    public final TableField<LabTipoOpcionLesionRecord, String> CREADO_POR = createField(DSL.name("creado_por"), SQLDataType.VARCHAR(35), this, "");
-
-    /**
-     * The column <code>public.lab_tipo_opcion_lesion.modificado_por</code>.
-     */
-    public final TableField<LabTipoOpcionLesionRecord, String> MODIFICADO_POR = createField(DSL.name("modificado_por"), SQLDataType.VARCHAR(35), this, "");
+    public final TableField<LabTipoOpcionLesionRecord, String> CREADO_POR = createField(DSL.name("creado_por"), SQLDataType.VARCHAR(20), this, "");
 
     /**
      * The column <code>public.lab_tipo_opcion_lesion.fecha_modificacion</code>.
      */
     public final TableField<LabTipoOpcionLesionRecord, LocalDate> FECHA_MODIFICACION = createField(DSL.name("fecha_modificacion"), SQLDataType.LOCALDATE, this, "");
+
+    /**
+     * The column <code>public.lab_tipo_opcion_lesion.modificado_por</code>.
+     */
+    public final TableField<LabTipoOpcionLesionRecord, String> MODIFICADO_POR = createField(DSL.name("modificado_por"), SQLDataType.VARCHAR(20), this, "");
 
     private LabTipoOpcionLesion(Name alias, Table<LabTipoOpcionLesionRecord> aliased) {
         this(alias, aliased, null);
@@ -134,12 +134,12 @@ public class LabTipoOpcionLesion extends TableImpl<LabTipoOpcionLesionRecord> {
 
     @Override
     public UniqueKey<LabTipoOpcionLesionRecord> getPrimaryKey() {
-        return Keys.LAB_TIP_OPCION_LESION_PK;
+        return Keys.LAB_TIPO_OPCION_LESION_PKEY;
     }
 
     @Override
     public List<UniqueKey<LabTipoOpcionLesionRecord>> getKeys() {
-        return Arrays.<UniqueKey<LabTipoOpcionLesionRecord>>asList(Keys.LAB_TIP_OPCION_LESION_PK);
+        return Arrays.<UniqueKey<LabTipoOpcionLesionRecord>>asList(Keys.LAB_TIPO_OPCION_LESION_PKEY);
     }
 
     @Override
@@ -173,7 +173,7 @@ public class LabTipoOpcionLesion extends TableImpl<LabTipoOpcionLesionRecord> {
     // -------------------------------------------------------------------------
 
     @Override
-    public Row8<Integer, String, String, String, LocalDate, String, String, LocalDate> fieldsRow() {
+    public Row8<Integer, String, String, String, LocalDate, String, LocalDate, String> fieldsRow() {
         return (Row8) super.fieldsRow();
     }
 }

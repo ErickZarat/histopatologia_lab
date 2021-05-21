@@ -38,44 +38,44 @@ public class LabPacienteRecord extends UpdatableRecordImpl<LabPacienteRecord> im
     }
 
     /**
-     * Setter for <code>public.lab_paciente.nombre</code>.
-     */
-    public void setNombre(String value) {
-        set(1, value);
-    }
-
-    /**
-     * Getter for <code>public.lab_paciente.nombre</code>.
-     */
-    public String getNombre() {
-        return (String) get(1);
-    }
-
-    /**
-     * Setter for <code>public.lab_paciente.apellidos</code>.
-     */
-    public void setApellidos(String value) {
-        set(2, value);
-    }
-
-    /**
-     * Getter for <code>public.lab_paciente.apellidos</code>.
-     */
-    public String getApellidos() {
-        return (String) get(2);
-    }
-
-    /**
      * Setter for <code>public.lab_paciente.email</code>.
      */
     public void setEmail(String value) {
-        set(3, value);
+        set(1, value);
     }
 
     /**
      * Getter for <code>public.lab_paciente.email</code>.
      */
     public String getEmail() {
+        return (String) get(1);
+    }
+
+    /**
+     * Setter for <code>public.lab_paciente.nombre</code>.
+     */
+    public void setNombre(String value) {
+        set(2, value);
+    }
+
+    /**
+     * Getter for <code>public.lab_paciente.nombre</code>.
+     */
+    public String getNombre() {
+        return (String) get(2);
+    }
+
+    /**
+     * Setter for <code>public.lab_paciente.apellidos</code>.
+     */
+    public void setApellidos(String value) {
+        set(3, value);
+    }
+
+    /**
+     * Getter for <code>public.lab_paciente.apellidos</code>.
+     */
+    public String getApellidos() {
         return (String) get(3);
     }
 
@@ -277,17 +277,17 @@ public class LabPacienteRecord extends UpdatableRecordImpl<LabPacienteRecord> im
 
     @Override
     public Field<String> field2() {
-        return LabPaciente.LAB_PACIENTE.NOMBRE;
+        return LabPaciente.LAB_PACIENTE.EMAIL;
     }
 
     @Override
     public Field<String> field3() {
-        return LabPaciente.LAB_PACIENTE.APELLIDOS;
+        return LabPaciente.LAB_PACIENTE.NOMBRE;
     }
 
     @Override
     public Field<String> field4() {
-        return LabPaciente.LAB_PACIENTE.EMAIL;
+        return LabPaciente.LAB_PACIENTE.APELLIDOS;
     }
 
     @Override
@@ -357,17 +357,17 @@ public class LabPacienteRecord extends UpdatableRecordImpl<LabPacienteRecord> im
 
     @Override
     public String component2() {
-        return getNombre();
+        return getEmail();
     }
 
     @Override
     public String component3() {
-        return getApellidos();
+        return getNombre();
     }
 
     @Override
     public String component4() {
-        return getEmail();
+        return getApellidos();
     }
 
     @Override
@@ -437,17 +437,17 @@ public class LabPacienteRecord extends UpdatableRecordImpl<LabPacienteRecord> im
 
     @Override
     public String value2() {
-        return getNombre();
+        return getEmail();
     }
 
     @Override
     public String value3() {
-        return getApellidos();
+        return getNombre();
     }
 
     @Override
     public String value4() {
-        return getEmail();
+        return getApellidos();
     }
 
     @Override
@@ -518,19 +518,19 @@ public class LabPacienteRecord extends UpdatableRecordImpl<LabPacienteRecord> im
 
     @Override
     public LabPacienteRecord value2(String value) {
-        setNombre(value);
+        setEmail(value);
         return this;
     }
 
     @Override
     public LabPacienteRecord value3(String value) {
-        setApellidos(value);
+        setNombre(value);
         return this;
     }
 
     @Override
     public LabPacienteRecord value4(String value) {
-        setEmail(value);
+        setApellidos(value);
         return this;
     }
 
@@ -641,13 +641,13 @@ public class LabPacienteRecord extends UpdatableRecordImpl<LabPacienteRecord> im
     /**
      * Create a detached, initialised LabPacienteRecord
      */
-    public LabPacienteRecord(Long codPaciente, String nombre, String apellidos, String email, String identificacion, String direccion, String telefono, String estadocivil, LocalDate fechanacimiento, String genero, String ocupacion, String tipoIdentificacion, String creadopor, LocalDate fechacreacion, String modificadopor, LocalDate fechamodificacion) {
+    public LabPacienteRecord(Long codPaciente, String email, String nombre, String apellidos, String identificacion, String direccion, String telefono, String estadocivil, LocalDate fechanacimiento, String genero, String ocupacion, String tipoIdentificacion, String creadopor, LocalDate fechacreacion, String modificadopor, LocalDate fechamodificacion) {
         super(LabPaciente.LAB_PACIENTE);
 
         setCodPaciente(codPaciente);
+        setEmail(email);
         setNombre(nombre);
         setApellidos(apellidos);
-        setEmail(email);
         setIdentificacion(identificacion);
         setDireccion(direccion);
         setTelefono(telefono);

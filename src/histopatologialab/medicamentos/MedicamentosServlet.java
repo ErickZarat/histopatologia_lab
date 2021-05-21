@@ -5,7 +5,6 @@ import histopatologialab.core.RequestAction;
 import histopatologialab.medicamentos.controller.IMedicamentosController;
 import histopatologialab.medicamentos.dto.Medicamento;
 import histopatologialab.medicamentos.dto.TipoMedicamento;
-import org.tinylog.Logger;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;

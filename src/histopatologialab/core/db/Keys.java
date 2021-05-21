@@ -4,28 +4,30 @@
 package histopatologialab.core.db;
 
 
-import histopatologialab.core.db.tables.LabDiagnostico;
 import histopatologialab.core.db.tables.LabEnfermedadSistemica;
 import histopatologialab.core.db.tables.LabExamen;
 import histopatologialab.core.db.tables.LabExamenBiopsia;
 import histopatologialab.core.db.tables.LabExamenCaracteristica;
-import histopatologialab.core.db.tables.LabExamenEnfermedadSistemica;
+import histopatologialab.core.db.tables.LabExamenEnfermedadSistematica;
+import histopatologialab.core.db.tables.LabFuncion;
 import histopatologialab.core.db.tables.LabMedicamento;
 import histopatologialab.core.db.tables.LabPaciente;
 import histopatologialab.core.db.tables.LabPresentacionMedicamento;
-import histopatologialab.core.db.tables.LabTincion;
+import histopatologialab.core.db.tables.LabRol;
+import histopatologialab.core.db.tables.LabRolFuncion;
 import histopatologialab.core.db.tables.LabTipoOpcionLesion;
 import histopatologialab.core.db.tables.LabUsuario;
-import histopatologialab.core.db.tables.records.LabDiagnosticoRecord;
 import histopatologialab.core.db.tables.records.LabEnfermedadSistemicaRecord;
 import histopatologialab.core.db.tables.records.LabExamenBiopsiaRecord;
 import histopatologialab.core.db.tables.records.LabExamenCaracteristicaRecord;
-import histopatologialab.core.db.tables.records.LabExamenEnfermedadSistemicaRecord;
+import histopatologialab.core.db.tables.records.LabExamenEnfermedadSistematicaRecord;
 import histopatologialab.core.db.tables.records.LabExamenRecord;
+import histopatologialab.core.db.tables.records.LabFuncionRecord;
 import histopatologialab.core.db.tables.records.LabMedicamentoRecord;
 import histopatologialab.core.db.tables.records.LabPacienteRecord;
 import histopatologialab.core.db.tables.records.LabPresentacionMedicamentoRecord;
-import histopatologialab.core.db.tables.records.LabTincionRecord;
+import histopatologialab.core.db.tables.records.LabRolFuncionRecord;
+import histopatologialab.core.db.tables.records.LabRolRecord;
 import histopatologialab.core.db.tables.records.LabTipoOpcionLesionRecord;
 import histopatologialab.core.db.tables.records.LabUsuarioRecord;
 
@@ -47,29 +49,34 @@ public class Keys {
     // UNIQUE and PRIMARY KEY definitions
     // -------------------------------------------------------------------------
 
-    public static final UniqueKey<LabDiagnosticoRecord> LAB_DIAGNOSTICO_PK = Internal.createUniqueKey(LabDiagnostico.LAB_DIAGNOSTICO, DSL.name("lab_diagnostico_pk"), new TableField[] { LabDiagnostico.LAB_DIAGNOSTICO.COD_DIAGNOSTICO }, true);
-    public static final UniqueKey<LabEnfermedadSistemicaRecord> LAB_ENF_SISTEMICA_PK = Internal.createUniqueKey(LabEnfermedadSistemica.LAB_ENFERMEDAD_SISTEMICA, DSL.name("lab_enf_sistemica_pk"), new TableField[] { LabEnfermedadSistemica.LAB_ENFERMEDAD_SISTEMICA.COD_ENFERMEDAD_SISTEMICA }, true);
+    public static final UniqueKey<LabEnfermedadSistemicaRecord> LAB_ENFERMEDAD_SISTEMATICA_PKEY = Internal.createUniqueKey(LabEnfermedadSistemica.LAB_ENFERMEDAD_SISTEMICA, DSL.name("lab_enfermedad_sistematica_pkey"), new TableField[] { LabEnfermedadSistemica.LAB_ENFERMEDAD_SISTEMICA.COD_ENFERMEDAD_SISTEMICA }, true);
     public static final UniqueKey<LabExamenRecord> LAB_EXAMEN_PKEY = Internal.createUniqueKey(LabExamen.LAB_EXAMEN, DSL.name("lab_examen_pkey"), new TableField[] { LabExamen.LAB_EXAMEN.COD_EXAMEN }, true);
     public static final UniqueKey<LabExamenBiopsiaRecord> LAB_EXAMEN_BIOPSIA_PKEY = Internal.createUniqueKey(LabExamenBiopsia.LAB_EXAMEN_BIOPSIA, DSL.name("lab_examen_biopsia_pkey"), new TableField[] { LabExamenBiopsia.LAB_EXAMEN_BIOPSIA.COD_BIOPSIA }, true);
     public static final UniqueKey<LabExamenCaracteristicaRecord> LAB_EXAMEN_CARACTERISTICA_PKEY = Internal.createUniqueKey(LabExamenCaracteristica.LAB_EXAMEN_CARACTERISTICA, DSL.name("lab_examen_caracteristica_pkey"), new TableField[] { LabExamenCaracteristica.LAB_EXAMEN_CARACTERISTICA.COD_EXAMEN }, true);
-    public static final UniqueKey<LabExamenEnfermedadSistemicaRecord> LAB_EXAMEN_ENFERMEDAD_SISTEMICA_PK = Internal.createUniqueKey(LabExamenEnfermedadSistemica.LAB_EXAMEN_ENFERMEDAD_SISTEMICA, DSL.name("lab_examen_enfermedad_sistemica_pk"), new TableField[] { LabExamenEnfermedadSistemica.LAB_EXAMEN_ENFERMEDAD_SISTEMICA.COD_EXAMEN, LabExamenEnfermedadSistemica.LAB_EXAMEN_ENFERMEDAD_SISTEMICA.COD_ENFERMEDAD_SISTEMICA }, true);
+    public static final UniqueKey<LabExamenEnfermedadSistematicaRecord> LAB_EXAMEN_ENFERMEDAD_SISTEMATICA_PK = Internal.createUniqueKey(LabExamenEnfermedadSistematica.LAB_EXAMEN_ENFERMEDAD_SISTEMATICA, DSL.name("lab_examen_enfermedad_sistematica_pk"), new TableField[] { LabExamenEnfermedadSistematica.LAB_EXAMEN_ENFERMEDAD_SISTEMATICA.COD_EXAMEN, LabExamenEnfermedadSistematica.LAB_EXAMEN_ENFERMEDAD_SISTEMATICA.COD_ENFERMEDAD_SISTEMATICA }, true);
+    public static final UniqueKey<LabFuncionRecord> LAB_FUNCION_PKEY = Internal.createUniqueKey(LabFuncion.LAB_FUNCION, DSL.name("lab_funcion_pkey"), new TableField[] { LabFuncion.LAB_FUNCION.CODIGO_FUNCION }, true);
     public static final UniqueKey<LabMedicamentoRecord> LAB_MEDICAMENTO_PK = Internal.createUniqueKey(LabMedicamento.LAB_MEDICAMENTO, DSL.name("lab_medicamento_pk"), new TableField[] { LabMedicamento.LAB_MEDICAMENTO.COD_MEDICAMENTO }, true);
+    public static final UniqueKey<LabPacienteRecord> COD_PACIENTE_UQ = Internal.createUniqueKey(LabPaciente.LAB_PACIENTE, DSL.name("cod_paciente_uq"), new TableField[] { LabPaciente.LAB_PACIENTE.COD_PACIENTE }, true);
     public static final UniqueKey<LabPacienteRecord> LAB_PACIENTE_PK = Internal.createUniqueKey(LabPaciente.LAB_PACIENTE, DSL.name("lab_paciente_pk"), new TableField[] { LabPaciente.LAB_PACIENTE.COD_PACIENTE }, true);
     public static final UniqueKey<LabPresentacionMedicamentoRecord> LAB_PRESENTACION_MEDICAMENTO_PK = Internal.createUniqueKey(LabPresentacionMedicamento.LAB_PRESENTACION_MEDICAMENTO, DSL.name("lab_presentacion_medicamento_pk"), new TableField[] { LabPresentacionMedicamento.LAB_PRESENTACION_MEDICAMENTO.COD_MEDICAMENTO, LabPresentacionMedicamento.LAB_PRESENTACION_MEDICAMENTO.TIPO_PRESENTACION }, true);
-    public static final UniqueKey<LabTincionRecord> LAB_TINCION_PK = Internal.createUniqueKey(LabTincion.LAB_TINCION, DSL.name("lab_tincion_pk"), new TableField[] { LabTincion.LAB_TINCION.COD_TINCION }, true);
-    public static final UniqueKey<LabTipoOpcionLesionRecord> LAB_TIP_OPCION_LESION_PK = Internal.createUniqueKey(LabTipoOpcionLesion.LAB_TIPO_OPCION_LESION, DSL.name("lab_tip_opcion_lesion_pk"), new TableField[] { LabTipoOpcionLesion.LAB_TIPO_OPCION_LESION.COD_TIPO_OPCION_LESION }, true);
-    public static final UniqueKey<LabUsuarioRecord> LAB_USUARIO_PK = Internal.createUniqueKey(LabUsuario.LAB_USUARIO, DSL.name("lab_usuario_pk"), new TableField[] { LabUsuario.LAB_USUARIO.COD_USUARIO }, true);
+    public static final UniqueKey<LabRolRecord> LAB_ROL_PKEY = Internal.createUniqueKey(LabRol.LAB_ROL, DSL.name("lab_rol_pkey"), new TableField[] { LabRol.LAB_ROL.CODIGO_ROL }, true);
+    public static final UniqueKey<LabRolFuncionRecord> LAB_ROL_FUNCION_PK = Internal.createUniqueKey(LabRolFuncion.LAB_ROL_FUNCION, DSL.name("lab_rol_funcion_pk"), new TableField[] { LabRolFuncion.LAB_ROL_FUNCION.CODIGO_ROL, LabRolFuncion.LAB_ROL_FUNCION.CODIGO_FUNCION }, true);
+    public static final UniqueKey<LabTipoOpcionLesionRecord> LAB_TIPO_OPCION_LESION_PKEY = Internal.createUniqueKey(LabTipoOpcionLesion.LAB_TIPO_OPCION_LESION, DSL.name("lab_tipo_opcion_lesion_pkey"), new TableField[] { LabTipoOpcionLesion.LAB_TIPO_OPCION_LESION.COD_TIPO_OPCION_LESION }, true);
+    public static final UniqueKey<LabUsuarioRecord> LAB_USUARIO_LOGIN_USUARIO_KEY = Internal.createUniqueKey(LabUsuario.LAB_USUARIO, DSL.name("lab_usuario_login_usuario_key"), new TableField[] { LabUsuario.LAB_USUARIO.LOGIN_USUARIO }, true);
+    public static final UniqueKey<LabUsuarioRecord> LAB_USUARIO_PKEY = Internal.createUniqueKey(LabUsuario.LAB_USUARIO, DSL.name("lab_usuario_pkey"), new TableField[] { LabUsuario.LAB_USUARIO.COD_USUARIO }, true);
 
     // -------------------------------------------------------------------------
     // FOREIGN KEY definitions
     // -------------------------------------------------------------------------
 
-    public static final ForeignKey<LabExamenRecord, LabPacienteRecord> LAB_EXAMEN__COD_PACIENTE_FK = Internal.createForeignKey(LabExamen.LAB_EXAMEN, DSL.name("cod_paciente_fk"), new TableField[] { LabExamen.LAB_EXAMEN.COD_PACIENTE }, Keys.LAB_PACIENTE_PK, new TableField[] { LabPaciente.LAB_PACIENTE.COD_PACIENTE }, true);
-    public static final ForeignKey<LabExamenRecord, LabUsuarioRecord> LAB_EXAMEN__DOCTOR_EXAMEN_FK = Internal.createForeignKey(LabExamen.LAB_EXAMEN, DSL.name("doctor_examen_fk"), new TableField[] { LabExamen.LAB_EXAMEN.DOCTOR_EXAMEN }, Keys.LAB_USUARIO_PK, new TableField[] { LabUsuario.LAB_USUARIO.COD_USUARIO }, true);
+    public static final ForeignKey<LabExamenRecord, LabPacienteRecord> LAB_EXAMEN__COD_PACIENTE_FK = Internal.createForeignKey(LabExamen.LAB_EXAMEN, DSL.name("cod_paciente_fk"), new TableField[] { LabExamen.LAB_EXAMEN.COD_PACIENTE }, Keys.COD_PACIENTE_UQ, new TableField[] { LabPaciente.LAB_PACIENTE.COD_PACIENTE }, true);
+    public static final ForeignKey<LabExamenRecord, LabUsuarioRecord> LAB_EXAMEN__DOCTOR_EXAMEN_FK = Internal.createForeignKey(LabExamen.LAB_EXAMEN, DSL.name("doctor_examen_fk"), new TableField[] { LabExamen.LAB_EXAMEN.DOCTOR_EXAMEN }, Keys.LAB_USUARIO_PKEY, new TableField[] { LabUsuario.LAB_USUARIO.COD_USUARIO }, true);
     public static final ForeignKey<LabExamenBiopsiaRecord, LabExamenRecord> LAB_EXAMEN_BIOPSIA__COD_EXAMEN_FK = Internal.createForeignKey(LabExamenBiopsia.LAB_EXAMEN_BIOPSIA, DSL.name("cod_examen_fk"), new TableField[] { LabExamenBiopsia.LAB_EXAMEN_BIOPSIA.COD_EXAMEN }, Keys.LAB_EXAMEN_PKEY, new TableField[] { LabExamen.LAB_EXAMEN.COD_EXAMEN }, true);
-    public static final ForeignKey<LabExamenBiopsiaRecord, LabUsuarioRecord> LAB_EXAMEN_BIOPSIA__USUARIO_BIOPSIA_FK = Internal.createForeignKey(LabExamenBiopsia.LAB_EXAMEN_BIOPSIA, DSL.name("usuario_biopsia_fk"), new TableField[] { LabExamenBiopsia.LAB_EXAMEN_BIOPSIA.USUARIO_BIOPSIA }, Keys.LAB_USUARIO_PK, new TableField[] { LabUsuario.LAB_USUARIO.COD_USUARIO }, true);
-    public static final ForeignKey<LabExamenCaracteristicaRecord, LabTipoOpcionLesionRecord> LAB_EXAMEN_CARACTERISTICA__FK_LAB_TIPO_OPCION_LESION = Internal.createForeignKey(LabExamenCaracteristica.LAB_EXAMEN_CARACTERISTICA, DSL.name("fk_lab_tipo_opcion_lesion"), new TableField[] { LabExamenCaracteristica.LAB_EXAMEN_CARACTERISTICA.CODIGO_TIPO_OPCION_LESION }, Keys.LAB_TIP_OPCION_LESION_PK, new TableField[] { LabTipoOpcionLesion.LAB_TIPO_OPCION_LESION.COD_TIPO_OPCION_LESION }, true);
-    public static final ForeignKey<LabExamenEnfermedadSistemicaRecord, LabEnfermedadSistemicaRecord> LAB_EXAMEN_ENFERMEDAD_SISTEMICA__COD_ENFERMEDAD_SISTEMICA_FK = Internal.createForeignKey(LabExamenEnfermedadSistemica.LAB_EXAMEN_ENFERMEDAD_SISTEMICA, DSL.name("cod_enfermedad_sistemica_fk"), new TableField[] { LabExamenEnfermedadSistemica.LAB_EXAMEN_ENFERMEDAD_SISTEMICA.COD_ENFERMEDAD_SISTEMICA }, Keys.LAB_ENF_SISTEMICA_PK, new TableField[] { LabEnfermedadSistemica.LAB_ENFERMEDAD_SISTEMICA.COD_ENFERMEDAD_SISTEMICA }, true);
-    public static final ForeignKey<LabExamenEnfermedadSistemicaRecord, LabExamenRecord> LAB_EXAMEN_ENFERMEDAD_SISTEMICA__COD_EXAMEN_FK = Internal.createForeignKey(LabExamenEnfermedadSistemica.LAB_EXAMEN_ENFERMEDAD_SISTEMICA, DSL.name("cod_examen_fk"), new TableField[] { LabExamenEnfermedadSistemica.LAB_EXAMEN_ENFERMEDAD_SISTEMICA.COD_EXAMEN }, Keys.LAB_EXAMEN_PKEY, new TableField[] { LabExamen.LAB_EXAMEN.COD_EXAMEN }, true);
+    public static final ForeignKey<LabExamenBiopsiaRecord, LabUsuarioRecord> LAB_EXAMEN_BIOPSIA__USUARIO_BIOPSIA_FK = Internal.createForeignKey(LabExamenBiopsia.LAB_EXAMEN_BIOPSIA, DSL.name("usuario_biopsia_fk"), new TableField[] { LabExamenBiopsia.LAB_EXAMEN_BIOPSIA.USUARIO_BIOPSIA }, Keys.LAB_USUARIO_PKEY, new TableField[] { LabUsuario.LAB_USUARIO.COD_USUARIO }, true);
+    public static final ForeignKey<LabExamenCaracteristicaRecord, LabTipoOpcionLesionRecord> LAB_EXAMEN_CARACTERISTICA__FK_LAB_TIPO_OPCION_LESION = Internal.createForeignKey(LabExamenCaracteristica.LAB_EXAMEN_CARACTERISTICA, DSL.name("fk_lab_tipo_opcion_lesion"), new TableField[] { LabExamenCaracteristica.LAB_EXAMEN_CARACTERISTICA.CODIGO_TIPO_OPCION_LESION }, Keys.LAB_TIPO_OPCION_LESION_PKEY, new TableField[] { LabTipoOpcionLesion.LAB_TIPO_OPCION_LESION.COD_TIPO_OPCION_LESION }, true);
+    public static final ForeignKey<LabExamenEnfermedadSistematicaRecord, LabEnfermedadSistemicaRecord> LAB_EXAMEN_ENFERMEDAD_SISTEMATICA__COD_ENFERMEDAD_SISTEMATICA_FK = Internal.createForeignKey(LabExamenEnfermedadSistematica.LAB_EXAMEN_ENFERMEDAD_SISTEMATICA, DSL.name("cod_enfermedad_sistematica_fk"), new TableField[] { LabExamenEnfermedadSistematica.LAB_EXAMEN_ENFERMEDAD_SISTEMATICA.COD_ENFERMEDAD_SISTEMATICA }, Keys.LAB_ENFERMEDAD_SISTEMATICA_PKEY, new TableField[] { LabEnfermedadSistemica.LAB_ENFERMEDAD_SISTEMICA.COD_ENFERMEDAD_SISTEMICA }, true);
+    public static final ForeignKey<LabExamenEnfermedadSistematicaRecord, LabExamenRecord> LAB_EXAMEN_ENFERMEDAD_SISTEMATICA__COD_EXAMEN_FK = Internal.createForeignKey(LabExamenEnfermedadSistematica.LAB_EXAMEN_ENFERMEDAD_SISTEMATICA, DSL.name("cod_examen_fk"), new TableField[] { LabExamenEnfermedadSistematica.LAB_EXAMEN_ENFERMEDAD_SISTEMATICA.COD_EXAMEN }, Keys.LAB_EXAMEN_PKEY, new TableField[] { LabExamen.LAB_EXAMEN.COD_EXAMEN }, true);
     public static final ForeignKey<LabPresentacionMedicamentoRecord, LabMedicamentoRecord> LAB_PRESENTACION_MEDICAMENTO__LAB_MEDICAMENTO_FK_COD_MEDICAMENTO = Internal.createForeignKey(LabPresentacionMedicamento.LAB_PRESENTACION_MEDICAMENTO, DSL.name("lab_medicamento_fk_cod_medicamento"), new TableField[] { LabPresentacionMedicamento.LAB_PRESENTACION_MEDICAMENTO.COD_MEDICAMENTO }, Keys.LAB_MEDICAMENTO_PK, new TableField[] { LabMedicamento.LAB_MEDICAMENTO.COD_MEDICAMENTO }, true);
+    public static final ForeignKey<LabRolFuncionRecord, LabFuncionRecord> LAB_ROL_FUNCION__LAB_ROL_FUNCIONFK_COD_FUNCION = Internal.createForeignKey(LabRolFuncion.LAB_ROL_FUNCION, DSL.name("lab_rol_funcionfk_cod_funcion"), new TableField[] { LabRolFuncion.LAB_ROL_FUNCION.CODIGO_FUNCION }, Keys.LAB_FUNCION_PKEY, new TableField[] { LabFuncion.LAB_FUNCION.CODIGO_FUNCION }, true);
+    public static final ForeignKey<LabRolFuncionRecord, LabRolRecord> LAB_ROL_FUNCION__LAB_ROL_FUNCIONFK_COD_ROL = Internal.createForeignKey(LabRolFuncion.LAB_ROL_FUNCION, DSL.name("lab_rol_funcionfk_cod_rol"), new TableField[] { LabRolFuncion.LAB_ROL_FUNCION.CODIGO_ROL }, Keys.LAB_ROL_PKEY, new TableField[] { LabRol.LAB_ROL.CODIGO_ROL }, true);
 }
