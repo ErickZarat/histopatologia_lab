@@ -6,8 +6,6 @@ import histopatologialab.medicamentos.dao.IMedicamentosDao;
 import histopatologialab.medicamentos.dao.IPresentacionMedicamentosDao;
 import histopatologialab.medicamentos.dao.MedicamentosDaoImpl;
 import histopatologialab.medicamentos.dao.PresentacionMedicamentosDaoImpl;
-import histopatologialab.opciones.dao.ITipoOpcionLesionDao;
-import histopatologialab.opciones.dao.TipoOpcionLesionDaoImpl;
 
 import histopatologialab.enfsistemica.dao.IEnfSistemicaDao;
 import histopatologialab.enfsistemica.dao.EnfSistemicaDaoImpl;

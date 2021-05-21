@@ -104,7 +104,7 @@ public class PacienteServlet extends HttpServlet {
         
         
         //LocalDate fecnacimiento = LocalDate.parse(fecNacimientoPaciente);
-        LocalDateTime fecnacimiento =  LocalDateTime.parse(fecNacimientoPaciente) ; 
+        LocalDate fecnacimiento =  LocalDateTime.parse(fecNacimientoPaciente).toLocalDate();
 
         Paciente paciente = controller.crearPaciente(identificacionPaciente, nombrePaciente, apellidosPaciente, direccionPaciente, telefonoPaciente, fecnacimiento, generoPaciente, ocupacionPaciente, tipoidPaciente, emailPaciente, usuario);
         toJsonResponse(response, new JsonResponse<>(paciente != null, paciente));

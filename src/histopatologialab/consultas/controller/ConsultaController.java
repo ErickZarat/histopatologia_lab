@@ -1,7 +1,7 @@
 package histopatologialab.consultas.controller;
 
-import histopatologialab.opciones.dao.ITipoOpcionLesionDao;
-import histopatologialab.opciones.dto.TipoOpcionLesion;
+import histopatologialab.tipopcionlesion.dao.IOpcionLesionDao;
+import histopatologialab.tipopcionlesion.dto.OpcionLesion;
 
 import java.util.List;
 import java.util.Map;
@@ -9,14 +9,15 @@ import java.util.Map;
 import static java.util.stream.Collectors.groupingBy;
 
 public class ConsultaController {
-    private final ITipoOpcionLesionDao tipoOpcionLesionDao;
+    private final IOpcionLesionDao tipoOpcionLesionDao;
 
-    public ConsultaController(ITipoOpcionLesionDao tipoOpcionLesionDao) {
+    public ConsultaController(IOpcionLesionDao tipoOpcionLesionDao) {
         this.tipoOpcionLesionDao = tipoOpcionLesionDao;
     }
 
-    public Map<String, List<TipoOpcionLesion>> getOpciones(){
-        return tipoOpcionLesionDao.getOpciones().stream()
-                .collect(groupingBy(TipoOpcionLesion::getNombre));
+    public Map<String, List<OpcionLesion>> getOpciones(){
+        return tipoOpcionLesionDao.getOpciones()
+                .stream()
+                .collect(groupingBy(OpcionLesion::getNombreOpcion));
     }
 }

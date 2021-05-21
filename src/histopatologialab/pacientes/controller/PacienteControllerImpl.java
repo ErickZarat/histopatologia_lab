@@ -18,7 +18,7 @@ public class PacienteControllerImpl implements IPacienteController{
 
     @Override
 	public Paciente crearPaciente( String identificacionPaciente, String nombrePaciente, String apellidosPaciente,
-			String direccionPaciente, String telefonoPaciente, LocalDateTime fecNacimientoPaciente,
+			String direccionPaciente, String telefonoPaciente, LocalDate fecNacimientoPaciente,
 			String generoPaciente, String ocupacionPaciente, String tipoidPaciente, String emailPaciente, String usuario) 
 	{
 		  try { Long id = null;

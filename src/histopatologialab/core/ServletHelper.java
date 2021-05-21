@@ -3,7 +3,6 @@ package histopatologialab.core;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JSR310Module;
-import org.apache.http.HttpRequest;
 import org.tinylog.Logger;
 
 import javax.servlet.RequestDispatcher;
