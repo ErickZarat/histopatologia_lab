@@ -13,6 +13,18 @@
     <link rel="stylesheet" href="assets/css/font-awesome/css/all.min.css">
     <link rel="stylesheet" href="assets/css/toastr.min.css">
     <link rel="stylesheet" href="assets/css/custom.css">
+    <link rel="stylesheet" href="assets/css/cdnjs/bootstrap-datepicker3.min.css">
+    <link rel="stylesheet" href="assets/css/messenger/messenger.css">
+	<link rel="stylesheet" href="assets/css/messenger/messenger-theme-future.css" >
+    
+    <style>
+    @media screen and (min-width: 676px) {
+        .modal-dialog {
+          max-width: 550px; /* New width for default modal */
+        }
+    }
+</style>
+    
 
     <title>${titulo}</title>
 </head>

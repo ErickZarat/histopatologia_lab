@@ -66,8 +66,10 @@ public class UsuarioServlet extends HttpServlet {
         } else if (action == RequestAction.DAR_BAJA) {
             darBajaUsuario(request, response);
         } else if (action == RequestAction.BUSCAR) { 
-            	buscarUsuario(request, response);
-        }
+            buscarUsuario(request, response);
+        } else if (action == RequestAction.REINICIO_PSW) { 
+        	ReinicioPswUsuario(request, response);
+        }    
     }
 
 	
@@ -101,15 +103,15 @@ public class UsuarioServlet extends HttpServlet {
 
     private void modificarUsuario(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String loginUsuario =request.getParameter("loginUser"); 
-        String passUser = request.getParameter("pswUser");
         String nombresDoctor = request.getParameter("nombresDoctor");
         String apellidosDoctor = request.getParameter("apellidosDoctor"); 
         String emailDoctor = request.getParameter("emailDoctor"); 
         String colegiadoDoctor = request.getParameter("colegiadoDoctor"); 
         String tipoUsuario = request.getParameter("tipoUsuario");
         String usuarioMod = getUsuarioFromSession(request);
-
-        Usuario usuario = controller.modificarUsuario(loginUsuario, passUser, nombresDoctor, apellidosDoctor, emailDoctor, colegiadoDoctor, tipoUsuario, usuarioMod);
+        System.out.println("antes de modificar controller");
+        Usuario usuario = controller.modificarUsuario(loginUsuario, nombresDoctor, apellidosDoctor, emailDoctor, colegiadoDoctor, tipoUsuario, usuarioMod);
+        System.out.println(usuario);
         toJsonResponse(response, new JsonResponse<>(usuario != null, usuario));
     }
 
@@ -123,10 +125,20 @@ public class UsuarioServlet extends HttpServlet {
    
     private void buscarUsuario(HttpServletRequest request, HttpServletResponse response) throws IOException {
     	String loginUser = request.getParameter("loginUser");
-        System.out.println("entra a la funcion buscar");
-        System.out.println(loginUser);
+        //System.out.println("entra a la funcion buscar");
+        //System.out.println(loginUser);
         Usuario usuario = controller.buscarUsuario(loginUser);
         toJsonResponse(response, new JsonResponse<>(usuario != null, usuario));
     } 
+    
+    private void ReinicioPswUsuario(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        String loginUsuario =request.getParameter("loginUser"); 
+        String usuarioMod = getUsuarioFromSession(request);
+        System.out.println("antes de modificar controller");
+        Usuario usuario = controller.reinicioPswUsuario(loginUsuario, usuarioMod);
+        System.out.println("DESPUES DE MODIFICAR EL PSW");
+        System.out.println(usuario);
+        toJsonResponse(response, new JsonResponse<>(usuario != null, usuario));
+    }
 
 }

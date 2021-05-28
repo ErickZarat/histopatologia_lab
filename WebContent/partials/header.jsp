@@ -15,6 +15,7 @@
                 <a class="dropdown-item" href="OpcionLesionServlet.do">Tipos de Opcion Lesion</a>
                 <a class="dropdown-item" href="UsuarioServlet.do">Usuarios</a>
                 <a class="dropdown-item" href="PacienteServlet.do">Pacientes</a>
+                <a class="dropdown-item" href="DiagnosticoServlet.do">Diagnósticos</a>
             </div>
         </li>
 

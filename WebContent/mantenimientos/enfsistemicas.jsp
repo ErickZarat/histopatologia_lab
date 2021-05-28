@@ -8,10 +8,6 @@
 
     <div>
         <h1 class="main-tittle">Enfermedades Sistemicas</h1>
-
-
-        <h6 class="sub-tittle left-padding-align">  </h6>
-
         <div class="action-container left-padding-align">
             <!-- Button trigger modal -->
             <button type="button" class="btn btn-light" data-toggle="modal" data-target="#agregarEnfermedadModal" id="agregarEnfermedadModalBtn" >Agregar <i class="fas fa-plus"></i></button>
@@ -21,8 +17,9 @@
             <thead class="table thead-light">
             <tr style="font-weight: bold;">
                 <td></td>
-                <td>Codigo Enfermedad</td>
-                <td>Nombre Enfermedad</td>
+                <td >Codigo Enfermedad</td>
+                <td >Nombre Enfermedad</td>
+                <td >Estado Enfermedad</td>
                 <td></td>
             </tr>
             </thead>
@@ -52,11 +49,11 @@
                 </button>
             </div>
             <div class="modal-body">
-                <table>
+                <table style="width: 716px; ">
                     <tr>
-                        <td><label for="nombreEnfermedad" class="col-sm-4 col-form-label">Nombre Enfermedad:</label></td>
-                        <td>
-                            <input type="text" class="form-control" id="nombreEnfermedad" style="width: 322px; ">
+                        <td style="width: 132px; "><label for="nombreEnfermedad" class="col-sm-4 col-form-label">Nombre Enfermedad:</label></td>
+                        <td style="width: 350px; ">
+                            <input type="text" class="form-control" id="nombreEnfermedad" style="width: 320px; ">
                         </td>
                     </tr>
                 </table>
@@ -83,12 +80,12 @@
                 <table>
                     <tr>
                         <td><label for="codigoEnfermedadMod" class="col-sm-4 col-form-label">Codigo:</label></td>
-                        <td>
+                        <td style="width: 487px; ">
                             <input type="text" class="form-control" id="codigoEnfermedadMod" disabled>
                         </td>
                     </tr>
                     <tr>
-                        <td><label for="nombreEnfermedadMod" class="col-sm-4 col-form-label">Nombre Enfermedad:</label></td>
+                        <td style="width: 161px; "><label for="nombreEnfermedadMod" class="col-sm-4 col-form-label">Nombre Enfermedad:</label></td>
                         <td>
                             <input type="text" class="form-control" id="nombreEnfermedadMod">
                         </td>
@@ -115,12 +112,13 @@
                 </button>
             </div>
             <div class="modal-body">
-                <p>Estas seguro en dar de baja la enfermedad: <span id="codigoEnfermedadBaja"></span> - <span id="nombreEnfermedadBaja"></span>?</p>
+                <p>Estas seguro en cambiar el estado de la enfermedad: <span id="codigoEnfermedadBaja" class = "text-dark"></span> - <span id="nombreEnfermedadBaja" class = "text-dark"></span>?</p>
+                <span id="estadoEnfermedadBaja" hidden=true></span>
 
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                <button type="button" class="btn btn-primary" id="btnDarBajaEnfermedad">Dar Baja</button>
+                <button type="button" class="btn btn-primary" id="btnDarBajaEnfermedad">Cambiar Estado</button>
             </div>
         </div>
     </div>

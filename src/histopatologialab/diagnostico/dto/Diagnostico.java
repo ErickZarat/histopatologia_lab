@@ -1,27 +1,24 @@
-package histopatologialab.diagnosticos.dto;
+package histopatologialab.diagnostico.dto;
 
 import java.time.LocalDate;
 
 
-public class Diagnosticos {
-	private int codigoDiagnostico;
+public class Diagnostico {
+	private Long codigoDiagnostico;
 	private String nombreDiagnostico; 
-	private int diagnosticoPadreid;	
-	private int tipoDiagnostico;
+//	private String Descripcion;
 	private String estado; 
 	private LocalDate fechaCreacion;
 	private String creadoPor;
 	private String modificadoPor;
 	private LocalDate fechaModificacion;
 	
-	public Diagnosticos() { }
+	public Diagnostico() { }
 	
 	
-	public Diagnosticos(int codigoDiagnostico, String nombreDiagnostico, int diagnosticoPadreid , int tipoDiagnostico, String estado, String creadoPor, LocalDate fechaCreacion, String modificadoPor, LocalDate fechaModificacion) 
+	public Diagnostico(Long codigoDiagnostico, String nombreDiagnostico,   String estado,  LocalDate fechaCreacion, String creadoPor, String modificadoPor, LocalDate fechaModificacion) 
 	{ this.codigoDiagnostico = codigoDiagnostico; 
 	  this.nombreDiagnostico = nombreDiagnostico; 
-	  this.diagnosticoPadreid = diagnosticoPadreid;
-	  this.tipoDiagnostico = tipoDiagnostico; 
       this.estado = estado;
       this.creadoPor = creadoPor;
       this.fechaCreacion = fechaCreacion;
@@ -30,12 +27,12 @@ public class Diagnosticos {
       }
 
 
-	public int getCodigoDiagnostico() {
+	public Long getCodigoDiagnostico() {
 		return codigoDiagnostico;
 	}
 
 
-	public void setCodigoDiagnostico(int codigoDiagnostico) {
+	public void setCodigoDiagnostico(Long codigoDiagnostico) {
 		this.codigoDiagnostico = codigoDiagnostico;
 	}
 
@@ -47,26 +44,6 @@ public class Diagnosticos {
 
 	public void setNombreDiagnostico(String nombreDiagnostico) {
 		this.nombreDiagnostico = nombreDiagnostico;
-	}
-
-
-	public int getDiagnosticoPadreid() {
-		return diagnosticoPadreid;
-	}
-
-
-	public void setDiagnosticoPadreid(int diagnosticoPadreid) {
-		this.diagnosticoPadreid = diagnosticoPadreid;
-	}
-
-
-	public int getTipoDiagnostico() {
-		return tipoDiagnostico;
-	}
-
-
-	public void setTipoDiagnostico(int tipoDiagnostico) {
-		this.tipoDiagnostico = tipoDiagnostico;
 	}
 
 

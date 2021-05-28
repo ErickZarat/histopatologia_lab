@@ -84,5 +84,23 @@ public class EnfSistemicaDaoImpl implements IEnfSistemicaDao{
         EnfSistemica enfermedadModificada = modificarEnfermedad(enfermedad);
         return enfermedadModificada != null;
     }
+    
+    @Override
+    public Boolean cambioEstadoEnfermedad(int codEnfermedad, String estado, String usuario) {
+        EnfSistemica enfermedad =   getEnfermedad(codEnfermedad);
+        enfermedad.setModificadoPor(usuario);
+        String valEstado = new String("Alta");
+          
+        if (estado.equals(valEstado)) {
+        	enfermedad.setEstado(Estado.DESHABILITADO.getSlug());
+        	} 
+        else {
+        	enfermedad.setEstado(Estado.HABILITADO.getSlug());
+        	}
+        enfermedad.setFechaModificacion(LocalDate.now());
+
+        EnfSistemica enfermedadModificada = modificarEnfermedad(enfermedad);
+        return enfermedadModificada != null;
+    }
 
 }

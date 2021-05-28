@@ -36,12 +36,15 @@ public class EnfSistemicaServlet extends HttpServlet {
             modificarEnfSistemica(request, response);
         } else if (action == RequestAction.DAR_BAJA) {
             darBajaEnfSistemica(request, response);
+        } else if (action == RequestAction.CAMBIO_ESTADO) {
+            cambioEstadoEnfSistemica(request, response);
         }
+          
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         checkSession(request, response);
-        System.out.println("Hola Servlet get..");
+        System.out.println("Hola Servlet get enfermedad..");
         RequestAction action = getRequestAction(request);
 
         if (action == RequestAction.LISTAR_JSON) {
@@ -85,6 +88,16 @@ public class EnfSistemicaServlet extends HttpServlet {
         int codigo = Integer.parseInt(request.getParameter("codigoEnfermedad"));
         String usuario = getUsuarioFromSession(request);
         boolean success = controller.darBajaEnfermedad(codigo, usuario);
+        toJsonResponse(response, new JsonResponse<>(success, success));
+    }
+    
+    private void cambioEstadoEnfSistemica(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        int codigo = Integer.parseInt(request.getParameter("codigoEnfermedad"));
+        String usuario = getUsuarioFromSession(request);
+        String estadoNuevo = (request.getParameter("estadoEnfermedadBaja"));
+        System.out.println(estadoNuevo);
+        //cambiaEstadoEnfermedad(int codigo, String estado, String usuario)
+        boolean success = controller.cambiaEstadoEnfermedad(codigo, estadoNuevo,usuario);
         toJsonResponse(response, new JsonResponse<>(success, success));
     }
 

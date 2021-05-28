@@ -33,6 +33,8 @@ public class LoginServlet extends HttpServlet {
         despachador.forward(request, response);
     }
 
+    
+    
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         checkSession(request, response);
         RequestDispatcher despachador;

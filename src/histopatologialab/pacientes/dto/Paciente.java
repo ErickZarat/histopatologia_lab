@@ -10,11 +10,12 @@ public class Paciente {
 	private String apellidosPaciente;
 	private String direccionPaciente;
 	private String telefonoPaciente ;
-	private LocalDateTime fecNacimientoPaciente;
+	private LocalDate fecNacimientoPaciente;
 	private String generoPaciente;
 	private String ocupacionPaciente; 
 	private String tipoidPaciente;
 	private String emailPaciente;
+	private String estCivilPaciente;
 	private LocalDate fechaCreacion;
 	private String creadoPor;
 	private String modificadoPor;
@@ -25,8 +26,8 @@ public class Paciente {
 	
    
 	public Paciente(Long codigoPaciente,  String identificacionPaciente, String nombrePaciente, String apellidosPaciente,
-			String direccionPaciente, String telefonoPaciente, LocalDateTime fecNacimientoPaciente,
-			String generoPaciente, String ocupacionPaciente, String tipoidPaciente, String emailPaciente,
+			String direccionPaciente, String telefonoPaciente, LocalDate fecNacimientoPaciente,
+			String generoPaciente, String ocupacionPaciente, String tipoidPaciente, String emailPaciente, String estCivilPaciente,
 			String creadoPor, LocalDate fechaCreacion, String modificadoPor, LocalDate fechaModificacion) {
 		super();
 		this.codigoPaciente = codigoPaciente;
@@ -40,14 +41,15 @@ public class Paciente {
 		this.ocupacionPaciente = ocupacionPaciente;
 		this.tipoidPaciente = tipoidPaciente;
 		this.emailPaciente = emailPaciente;
+		this.estCivilPaciente = estCivilPaciente;
         this.creadoPor = creadoPor;
         this.fechaCreacion = fechaCreacion;
         this.modificadoPor = modificadoPor;
         this.fechaModificacion = fechaModificacion;
+        
 	}
 
-
-
+	
 	public Long getCodigoPaciente() {
 		return codigoPaciente;
 	}
@@ -109,12 +111,12 @@ public class Paciente {
 	}
 
 
-	public LocalDateTime getFecNacimientoPaciente() {
+	public LocalDate getFecNacimientoPaciente() {
 		return fecNacimientoPaciente;
 	}
 
 
-	public void setFecNacimientoPaciente(LocalDateTime fecNacimientoPaciente) {
+	public void setFecNacimientoPaciente(LocalDate fecNacimientoPaciente) {
 		this.fecNacimientoPaciente = fecNacimientoPaciente;
 	}
 
@@ -156,6 +158,18 @@ public class Paciente {
 
 	public void setEmailPaciente(String emailPaciente) {
 		this.emailPaciente = emailPaciente;
+	}
+
+
+	
+	
+	public String getEstCivilPaciente() {
+		return estCivilPaciente;
+	}
+
+
+	public void setEstCivilPaciente(String estCivilPaciente) {
+		this.estCivilPaciente = estCivilPaciente;
 	}
 
 

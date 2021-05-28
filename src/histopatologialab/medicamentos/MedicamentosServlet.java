@@ -40,7 +40,6 @@ public class MedicamentosServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         checkSession(request, response);
 
-
         RequestAction action = getRequestAction(request);
         if (action == RequestAction.LISTAR_JSON) {
             getJsonMedicamentos(request, response);

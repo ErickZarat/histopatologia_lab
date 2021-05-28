@@ -32,6 +32,7 @@ public class PacienteDaoImpl implements IPacienteDao {
 	        		record.getValue(tablapaciente.OCUPACION), 
 	        		record.getValue(tablapaciente.TIPO_IDENTIFICACION), 
 	        		record.getValue(tablapaciente.EMAIL),
+	        		record.getValue(tablapaciente.ESTADOCIVIL),
 	        		record.getValue(tablapaciente.CREADOPOR),
 	        		record.getValue(tablapaciente.FECHACREACION),
 	        		record.getValue(tablapaciente.MODIFICADOPOR), 
@@ -73,7 +74,7 @@ public class PacienteDaoImpl implements IPacienteDao {
 
 		
 	  @Override
-	  public Paciente getPaciente(long codPaciente) {
+	  public Paciente getPaciente(Long codPaciente) {
 	        Record result = query
 	    			.select(tablapaciente.asterisk())
 	    			.from (tablapaciente)
@@ -97,6 +98,7 @@ public class PacienteDaoImpl implements IPacienteDao {
 	        	registro2.setGenero(paciente.getGeneroPaciente());
 	        	registro2.setOcupacion(paciente.getOcupacionPaciente());
 	        	registro2.setTipoIdentificacion(paciente.getTipoidPaciente());
+	        	registro2.setEstadocivil(paciente.getEstCivilPaciente());
 	        	registro2.setFechacreacion(LocalDate.now());      	
 	        	registro2.setCreadopor(paciente.getCreadoPor());
 	        	registro2.store();
@@ -112,6 +114,10 @@ public class PacienteDaoImpl implements IPacienteDao {
             .set(tablapaciente.APELLIDOS, paciente.getApellidosPaciente())
             .set(tablapaciente.DIRECCION,paciente.getDireccionPaciente())
             .set(tablapaciente.EMAIL,paciente.getEmailPaciente()) 
+            .set(tablapaciente.ESTADOCIVIL, paciente.getEstCivilPaciente())
+            .set(tablapaciente.OCUPACION,paciente.getOcupacionPaciente())
+            .set(tablapaciente.GENERO, paciente.getGeneroPaciente())
+            .set(tablapaciente.FECHANACIMIENTO, paciente.getFecNacimientoPaciente())
             .set(tablapaciente.FECHAMODIFICACION, LocalDate.now())
             .set(tablapaciente.MODIFICADOPOR, paciente.getModificadoPor())
             .where(tablapaciente.COD_PACIENTE.eq(paciente.getCodigoPaciente()))

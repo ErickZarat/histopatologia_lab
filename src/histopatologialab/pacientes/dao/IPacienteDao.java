@@ -9,7 +9,7 @@ public interface IPacienteDao {
 	List<Paciente> getPacientesByNombre(String Nombre);
 	List<Paciente> getPacientesByidentificacion( String tipo, String numident);
 	
-    Paciente getPaciente(long codPaciente); 
+    Paciente getPaciente(Long codPaciente); 
 	Paciente guardarPaciente(Paciente paciente); 
 	Paciente modificarPaciente(Paciente paciente); 
 

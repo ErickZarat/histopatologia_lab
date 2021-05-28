@@ -9,9 +9,6 @@
     <div>
         <h1 class="main-tittle">Usuarios</h1>
 
-
-        <h6 class="sub-tittle left-padding-align">  </h6>
-
         <div class="action-container left-padding-align">
             <!-- Button trigger modal -->
             <button type="button" class="btn btn-light" data-toggle="modal" data-target="#agregarUsuarioModal" id="agregarUsuarioModalBtn" >Agregar <i class="fas fa-plus"></i></button>
@@ -25,7 +22,8 @@
                 <td>Login Usuario</td>
                 <td>Nombres Usuario</td>
                 <td>Apellidos Usuario</td>
-                <td>Email Usuario</td>                                
+                <td>Email Usuario</td>     
+                <td>Estado Usuario</td>                                                
                 <td></td>
             </tr>
             </thead>
@@ -35,9 +33,9 @@
                     <td><input type="radio" name="usuario" id="usuario-${usuario.codUsuario}" value="${usuario.codUsuario}"/></td>
                     <td><label for="usuario-${usuario.codUsuario}">${usuario.codUsuario}</label></td>
                     <td><label for="usuario-${usuario.codUsuario}" class="text-capitalize">${usuario.loginUsuario}</label></td>
-                    <td><label for="usuario-${usuario.codUsuario}" class="text-capitalize">${usuario.nombresDoctor}</label></td>
+                    <td><label for="usuario-${usuario.codUsuario}" class="text">${usuario.nombresDoctor}</label></td>
                     <td><label for="usuario-${usuario.codUsuario}" class="text-capitalize">${usuario.apellidosDoctor}</label></td>
-                    <td><label for="usuario-${usuario.codUsuario}" class="text-capitalize">${usuario.emailUsuario}</label></td>                    
+                    <td><label for="usuario-${usuario.codUsuario}" class="text">${usuario.emailUsuario}</label></td>                    
                   <td> <button type="button" class="btn btn-secondary" id="btnCancelAgregarUsuario" data-dismiss="modal">Cancelar</button></td>
                 </tr>
             </c:forEach>
@@ -50,7 +48,7 @@
 
 <!-- Modal -->
 <div class="modal fade" id="agregarUsuarioModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog" style="width:2500px;">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="staticBackdropLabel">Agregar Usuarios</h5>
@@ -59,48 +57,48 @@
                 </button>
             </div>
             <div class="modal-body">
-            <form >
+ 			<form role="form" id="AgregarFormModal" autocomplete="off">
                 <table>
                     <tr>
                         <td><label for="loginUsuario" class="col-sm-4 col-form-label">Login:</label></td>
                         <td>
-                            <input type="text" class="form-control" id="loginUsuario" style="width: 322px; ">
+                            <input type="text" class="form-control" id="loginUsuario" style="width: 322px; "  placeholder="Login Usuario" >
                         </td>                        
                     </tr>
                     <tr>
                         <td><label for="nombreUsuario" class="col-sm-4 col-form-label">Nombres Usuario:</label></td>
                         <td>
-                            <input type="text" class="form-control" id="nombreUsuario" style="width: 322px; ">
+                            <input type="text" class="form-control" id="nombreUsuario"  placeholder="Nombres Doctor/Usuario"  style="width: 322px; ">
                         </td>                    
                     </tr>
                     <tr>
                         <td><label for="apellidosUsuario" class="col-sm-4 col-form-label">Apellidos Usuario:</label></td>
                         <td>
-                            <input type="text" class="form-control" id="apellidosUsuario" style="width: 322px; ">
+                            <input type="text" class="form-control" id="apellidosUsuario" placeholder="Apellidos Doctor/Usuario" style="width: 322px; ">
                         </td>
                     </tr>
                     <tr>
                         <td><label for="colegiadoDoctor" class="col-sm-4 col-form-label">Número Colegiado:</label></td>
                         <td>
-                            <input type="text" class="form-control" id="colegiadoDoctor" style="width: 322px; ">
+                            <input type="text" class="form-control" id="colegiadoDoctor" placeholder="Numero Colegiado" style="width: 322px; ">
                         </td>
                     </tr>
                     <tr>
                         <td><label for="emailDoctor" class="col-sm-4 col-form-label">Email:</label></td>
                         <td>
-                            <input type="text" class="form-control" id="emailDoctor" style="width: 322px; ">
+                            <input type="text" class="form-control" id="emailDoctor" placeholder="Email Doctor/Usuario" style="width: 322px; ">
                         </td>
                     </tr>
                     <tr>
                         <td><label for="pswUsuario" class="col-sm-4 col-form-label">Password:</label></td>
                         <td>
-                            <input type="password" class="form-control" id="pswUsuario" style="width: 322px; ">
+                            <input type="password" class="form-control validate" id="pswUsuario" autocomplete="off" style="width: 322px; ">
                         </td>
                     </tr>
                     <tr>
                         <td><label for="pswConfirm" class="col-sm-4 col-form-label">Confirmar Password:</label></td>
                         <td>
-                            <input type="password" class="form-control" id="pswConfirm" style="width: 322px; ">
+                            <input type="password" class="form-control" id="pswConfirm" autocomplete="off" style="width: 322px; ">
                         </td>
                     </tr>        
                     <tr>
@@ -110,10 +108,10 @@
                         </td>
                     </tr>                                                                                                                 
                 </table>
-                </form>
+			</form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" id="btnCancelAgregarUsuario" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-secondary" id="btnCancelAgregarUsuario" data-dismiss="modal" >Cancelar</button>
                 <button type="button" class="btn btn-primary" id="btnAgregarUsuario">Agregar</button>
             </div>
         </div>
@@ -131,6 +129,7 @@
                 </button>
             </div>
             <div class="modal-body">
+              <form role="form" id="ModificarFormModal">
                 <table>
                     <tr>
                         <td><label for="codigoUsuarioMod" class="col-sm-4 col-form-label">Codigo:</label></td>
@@ -163,34 +162,24 @@
                         </td>
                     </tr>
                     <tr>
-                        <td><label for="passwordUsuarioMod" class="col-sm-4 col-form-label">Password:</label></td>
-                        <td>
-                            <input type="text" class="form-control" id="passwordUsuarioMod" style="width: 322px; ">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><label for="confPswUsuarioMod" class="col-sm-4 col-form-label">Confirmar Password:</label></td>
-                        <td>
-                            <input type="text" class="form-control" id="confPswUsuarioMod" style="width: 322px; ">
-                        </td>
-                    </tr>
-                    <tr>
                         <td><label for="emailUsuarioMod" class="col-sm-4 col-form-label">email Usuario: </label></td>
                         <td>
                             <input type="text" class="form-control" id="emailUsuarioMod" style="width: 322px; ">
                         </td>
                     </tr>
                     <tr>
-                        <td><label for="tipUsuarioMod" class="col-sm-4 col-form-label">Tipo de Usuario:</label></td>
+                        <td><label for="tipUsuarioMod" class="col-sm-4 col-form-label">Tipo Usuario:</label></td>
                         <td>
                             <input type="text" class="form-control" id="tipUsuarioMod" style="width: 322px; ">
                         </td>
                     </tr>                                                                                                                                            
                 </table>
+             </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" id="btnCancelModifUsuario">Cancelar</button>
                 <button type="button" class="btn btn-primary" id="btnModificarUsuario">Modificar</button>
+                <button type="button" class="btn btn-info" id="btnReinicioPswUsuario">Reinicio Contraseña</button>
             </div>
         </div>
     </div>
@@ -218,6 +207,8 @@
         </div>
     </div>
 </div>
+
+
 
 
 <%@include file="../partials/footer.jsp"%>

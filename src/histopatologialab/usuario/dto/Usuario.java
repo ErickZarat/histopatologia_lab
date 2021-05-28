@@ -6,6 +6,7 @@ public class Usuario {
 	private Long codUsuario; 
 	private String loginUsuario;
 	private String passwordUsuario; 
+	private String llave; 
 	private String nombresDoctor;
 	private String apellidosDoctor; 
 	private String numColegiado;
@@ -20,11 +21,12 @@ public class Usuario {
 	
 	public Usuario() {}
 	
-	public Usuario(Long codUsuario, String loginUsuario, String passwordUsuario, String nombresDoctor, String apellidosDoctor,
+	public Usuario(Long codUsuario, String loginUsuario, String passwordUsuario, String llaveUsuario, String nombresDoctor, String apellidosDoctor,
 			String numColegiado, String emailUsuario, String tipoUsuario, String estado, LocalDate fechaCreacion, String creadoPor, String modificadoPor, LocalDate fechaModificacion) {
 		this.codUsuario = codUsuario; 
 		this.loginUsuario = loginUsuario;
 		this.passwordUsuario = passwordUsuario; 
+		this.llave = llaveUsuario;
 		this.nombresDoctor = nombresDoctor;
 		this.apellidosDoctor = apellidosDoctor; 
 		this.numColegiado =  numColegiado;
@@ -59,6 +61,15 @@ public class Usuario {
 
 	public void setPasswordUsuario(String passwordUsuario) {
 		this.passwordUsuario = passwordUsuario;
+	}
+	
+
+	public String getLlave() {
+		return llave;
+	}
+
+	public void setLlave(String llave) {
+		this.llave = llave;
 	}
 
 	public String getNombresDoctor() {

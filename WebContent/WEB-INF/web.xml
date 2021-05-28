@@ -78,4 +78,13 @@
         <url-pattern>/PacienteServlet.do</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>DiagnosticoServlet</servlet-name>
+        <servlet-class>histopatologialab.diagnostico.DiagnosticoServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DiagnosticoServlet</servlet-name>
+        <url-pattern>/DiagnosticoServlet.do</url-pattern>
+    </servlet-mapping>
+
 </web-app>

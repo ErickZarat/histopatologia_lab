@@ -17,6 +17,9 @@ import histopatologialab.pacientes.dao.PacienteDaoImpl;
 import histopatologialab.usuario.dao.IUsuarioDao;
 import histopatologialab.usuario.dao.UsuarioDaoImpl;
 
+import histopatologialab.diagnostico.dao.IDiagnosticoDao;
+import histopatologialab.diagnostico.dao.DiagnosticoDaoImpl;
+
 public class Daos {
 
     public static IMedicamentosDao medicamentosDao = new MedicamentosDaoImpl();
@@ -25,5 +28,6 @@ public class Daos {
     public static IOpcionLesionDao opcionlesionDao = new OpcionLesionDaoImpl();
     public static IPacienteDao pacienteDao = new PacienteDaoImpl();
     public static IUsuarioDao usuarioDao = new UsuarioDaoImpl();
+    public static IDiagnosticoDao diagnosticoDao = new DiagnosticoDaoImpl();
     
 }

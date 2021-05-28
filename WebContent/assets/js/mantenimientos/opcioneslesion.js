@@ -3,20 +3,20 @@ $(document).ready(function() {
 
     var opcionlesionTable = $('#opcionlesionTable').DataTable(window.coreTableConfig);
     
-    $('#btnAgregarOpcionLesion').click(function(){
+    $('#btnAgregarOpcionLesion').click(function(e){
         var valoropcion = $('#nombreOpcionLesion').val().toUpperCase();
         var tipoOpcion = $('#TipoOpcionSearch').val();
 
  		if ($('#nombreOpcionLesion').val().trim().length == 0) {
 			 toastr.error("Debe seleccionar un valor");
-			 //e.preventDefault();
+			 e.preventDefault();
 		}
 		else 
 		{ // alert (tipoOpcion);
 			if (tipoOpcion == 0) {
 				toastr.error("Debe seleccionar una Opcion");
 				$('#nombreOpcionLesion').val("");
-			 	//e.preventDefault();
+			 	e.preventDefault();
 			}
 			else 
 			{
@@ -43,6 +43,18 @@ $(document).ready(function() {
 	  }
     });
 
+	/*  muestra el valor del estado */
+		function devuelveEstado(valorestado)
+		{  valor = ""; 
+			if (valorestado == 'H') 
+		    { valor = 'Alta' ; 
+			} else {
+				valor = 'Baja';
+			}
+			return valor;
+		}
+
+
     $('#TipoOpcionSearch').change(getListadoOpcionLesion);
 
     function getListadoOpcionLesion() {
@@ -65,6 +77,7 @@ $(document).ready(function() {
                             '<input type="radio" name="opcion" data-nombre-opcion="'+element.valor+'" id="opcion-' + element.codigoOpcion + '" value="' + element.codigoOpcion + '"/>',
                             '<label for="opcion-' + element.codigoOpcion + '">' + element.codigoOpcion + '</label>',
                             '<label for="opcion-' + element.codigoOpcion + '" class="text-capitalize">' + element.valor + '</label>',
+                            '<label for="opcion-' + element.codigoOpcion + '" class="text-capitalize">' + devuelveEstado(element.estado) + '</label>',
                             '<div class="btn-group" >'
                             + '<button type="button" class="btn btn-light" data-modificar-opcion="true" ' + data + ' data-toggle="modal" data-target="#modificarOpcionModal"><i class="fas fa-edit"></i></button>'
                             + '<button type="button" class="btn btn-light" data-baja-opcion="true" ' + data + ' data-toggle="modal" data-target="#darBajaOpcionModal" id="darBajaPresentacionModalBtn"><i class="fas fa-times"></i></button>'
@@ -73,11 +86,7 @@ $(document).ready(function() {
                         opcionlesionTable.row.add(row).draw(false);
                     });
                     $('input[type=radio][name=opcion]').unbind('change');
-                    //$('input[type=radio][name=opcion]').change(onOpcionItemChange);
-                    $('[data-modificar-opcion]').unbind('click');
-                    $('[data-modificar-opcion]').click(setOpcionDataModificar);
-                    $('[data-baja-opcion]').unbind('click');
-                    $('[data-baja-opcion]').click(setOpcionDataDarBaja);
+
                 } else {
                     toastr.error("No se pudo obtener el listado de valores Opcion");
                 }
@@ -85,6 +94,8 @@ $(document).ready(function() {
         });
     }
 
+  	$(document).on('click', '[data-modificar-opcion]', setOpcionDataModificar);
+    $(document).on('click', '[data-baja-opcion]', setOpcionDataDarBaja);
 
     function onOpcionItemChange(){
       	toastr.error("No hay una funcion");
@@ -105,7 +116,7 @@ $(document).ready(function() {
         $('#valorOpcionLesionMod').val($(this).data('nombre-opcion'))
     }
 
-    $('#btnModificarOpcionLesion').click(function(){
+    $('#btnModificarOpcionLesion').click(function(e){
         var codigoOpcion = $('#codigoOpcionLesionMod').val();
         var valorOpcion = $('#valorOpcionLesionMod').val().toUpperCase();
 		var nombreOpcion = $('#TipoOpcionSearch').val();

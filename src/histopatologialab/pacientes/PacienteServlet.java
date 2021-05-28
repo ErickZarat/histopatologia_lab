@@ -13,13 +13,15 @@ import histopatologialab.core.RequestAction;
 
 import histopatologialab.pacientes.controller.IPacienteController;
 import histopatologialab.pacientes.dto.Paciente;
+
+
 import org.tinylog.Logger;
 
 import javax.servlet.RequestDispatcher;
 
 import java.util.List;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 import static histopatologialab.core.ServletHelper.*;
 
@@ -58,8 +60,10 @@ public class PacienteServlet extends HttpServlet {
             modificarPaciente(request, response);
         } else if (action == RequestAction.DAR_BAJA) {
             darBajaPaciente(request, response);
-        }
-	}
+        } else if (action == RequestAction.BUSCAR) { 
+        	buscarPaciente(request, response);
+    }
+}
 	
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -90,8 +94,9 @@ public class PacienteServlet extends HttpServlet {
 
     private void crearPaciente(HttpServletRequest request, HttpServletResponse response) throws IOException {
         //int tipoMedicamento = Integer.parseInt(request.getParameter("tipoMedicamento"));
+    	  System.out.println("entra al servlet");
         String usuario = getUsuarioFromSession(request);
-        String identificacionPaciente  = request.getParameter("identificacion");
+        String identificacionPaciente  = request.getParameter("identificacionPaciente");
         String nombrePaciente = request.getParameter("nomPaciente");
         String apellidosPaciente =  request.getParameter("apellidosPaciente");
         String direccionPaciente = request.getParameter("dirPaciente");
@@ -99,14 +104,23 @@ public class PacienteServlet extends HttpServlet {
         String fecNacimientoPaciente=  request.getParameter("fecNacimiento");  							
         String generoPaciente= request.getParameter("generoPaciente");
         String ocupacionPaciente= request.getParameter("ocupacionPaciente");
-        String tipoidPaciente= request.getParameter("tipoPaciente");
+        String tipoidPaciente= request.getParameter("tipoIdPaciente");
         String emailPaciente= request.getParameter("emailPaciente");
+        String estCivilPaciente = request.getParameter("estadoCivilPaciente");
         
+       // DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MMM/yyyy");
+        //LocalDate localDate = LocalDate.parse(fecNacimientoPaciente,formatter);
         
-        //LocalDate fecnacimiento = LocalDate.parse(fecNacimientoPaciente);
-        LocalDateTime fecnacimiento =  LocalDateTime.parse(fecNacimientoPaciente) ; 
+        System.out.println("genero");
+        System.out.println(generoPaciente);
+        System.out.println("estado civil");
+        System.out.println(estCivilPaciente);
+        
+      
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/MM/yyyy"); 
+        LocalDate fecnacimiento = LocalDate.parse(fecNacimientoPaciente, formatter);
 
-        Paciente paciente = controller.crearPaciente(identificacionPaciente, nombrePaciente, apellidosPaciente, direccionPaciente, telefonoPaciente, fecnacimiento, generoPaciente, ocupacionPaciente, tipoidPaciente, emailPaciente, usuario);
+        Paciente paciente = controller.crearPaciente(identificacionPaciente, nombrePaciente, apellidosPaciente, direccionPaciente, telefonoPaciente, fecnacimiento, generoPaciente, ocupacionPaciente, tipoidPaciente, emailPaciente, estCivilPaciente, usuario);
         toJsonResponse(response, new JsonResponse<>(paciente != null, paciente));
     }
 
@@ -114,18 +128,20 @@ public class PacienteServlet extends HttpServlet {
         String usuario = getUsuarioFromSession(request);
         
         Long codPaciente = Long.parseLong(request.getParameter("codPaciente"));  
-        String identificacionPaciente  = request.getParameter("identificacion");
+        String identificacionPaciente  = request.getParameter("numIdPaciente");
         String nombrePaciente = request.getParameter("nomPaciente");
         String apellidosPaciente = request.getParameter("apellidosPaciente");
         String direccionPaciente = request.getParameter("dirPaciente");
         String telefonoPaciente= request.getParameter("telPaciente");
         String ocupacionPaciente= request.getParameter("ocupacionPaciente");
-        String tipoidPaciente= request.getParameter("tiPaciente");
+        String tipoidPaciente= request.getParameter("tipIdPaciente");
         String emailPaciente= request.getParameter("emailPaciente");
+        String generoPaciente = request.getParameter("emailPaciente");
+        String estCivilPaciente = request.getParameter("emailPaciente");
 
         Paciente paciente = controller.modificarPaciente( codPaciente,  identificacionPaciente,  nombrePaciente, apellidosPaciente, 
         		 direccionPaciente, tipoidPaciente,  ocupacionPaciente,  emailPaciente,
-        		 telefonoPaciente, usuario);
+        		 telefonoPaciente, generoPaciente,estCivilPaciente, usuario);
         toJsonResponse(response, new JsonResponse<>(paciente != null, paciente));
     }
 
@@ -136,6 +152,12 @@ public class PacienteServlet extends HttpServlet {
         toJsonResponse(response, new JsonResponse<>(success, success)); */
     }	
 	
-	
+    private void buscarPaciente(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    	Long codigoPaciente = Long. parseLong(request.getParameter("codPaciente")) ;
+        System.out.println("entra a la funcion buscar");
+        System.out.println(codigoPaciente);
+        Paciente paciente = controller.buscarPaciente(codigoPaciente);
+        toJsonResponse(response, new JsonResponse<>(paciente != null, paciente));
+    } 
 	
 }

@@ -8,11 +8,8 @@
 
     <div>
         <h1 class="main-tittle">Tipo Opcion Lesion</h1>
-
-
         <div class="search-container">
             <form class="align-middle" action="OpcionLesionServlet.do" method="post">
-
                 <table>
                     <tr>
                         <td><label for="TipOpcionSearch" class="col-sm-4 col-form-label">Tipo Opcion:</label></td>
@@ -29,7 +26,7 @@
             </form>
         </div>
 
-        <h6 class="sub-tittle left-padding-align">Valores Opcion</h6>
+        <h7 class="sub-tittle left-padding-align">Detalle Valores Opcion</h7>
 
         <div class="action-container left-padding-align">
             <!-- Button trigger modal -->
@@ -40,8 +37,9 @@
             <thead class="table thead-light">
             <tr style="font-weight: bold;">
                 <td></td>
-                <td>Codigo Tipo</td>
+                <td>Codigo</td>
                 <td>Valor Tipo Opcion</td>
+                <td>Estado</td>                
                 <td></td>
             </tr>
             </thead>

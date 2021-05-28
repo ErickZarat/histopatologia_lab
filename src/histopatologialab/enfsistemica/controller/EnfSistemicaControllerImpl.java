@@ -47,6 +47,11 @@ public class EnfSistemicaControllerImpl implements IEnfSistemicaController{
     	return enfermedadesDao.darDeBaja(codigo, usuario);     	
     }
     
+    @Override  
+    public Boolean cambiaEstadoEnfermedad(int codigo, String estado, String usuario) {
+ 
+    	return enfermedadesDao.cambioEstadoEnfermedad(codigo, estado,usuario);     	
+    }
     
     @Override  
     public List<EnfSistemica> getEnfermedadesSistemicas() {

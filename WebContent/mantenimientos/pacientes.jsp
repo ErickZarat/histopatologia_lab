@@ -9,9 +9,6 @@
     <div>
         <h1 class="main-tittle">Pacientes</h1>
 
-
-        <h6 class="sub-tittle left-padding-align">  </h6>
-
         <div class="action-container left-padding-align">
             <!-- Button trigger modal -->
             <button type="button" class="btn btn-light" data-toggle="modal" data-target="#agregarPacienteModal" id="agregarPacienteModalBtn" >Agregar <i class="fas fa-plus"></i></button>
@@ -31,10 +28,10 @@
             <tbody>
             <c:forEach items="${pacientes}" var="paciente">
                 <tr>
-                    <td><input type="radio" name="paciente" id="usuario-${usuario.codigoPaciente}" value="${usuario.codUsuario}"/></td>
-                    <td><label for="paciente-${paciente.codigoPaciente}">${usuario.codigoPaciente}</label></td>
-                    <td><label for="paciente-${paciente.codigoPaciente}" class="text-capitalize">${usuario.nombrePaciente}</label></td>
-                    <td><label for="paciente-${paciente.codigoPaciente}" class="text-capitalize">${usuario.apellidosPaciente}</label></td>
+                    <td><input type="radio" name="paciente" id="paciente-${paciente.codigoPaciente}" value="${paciente.codigoPaciente}"/></td>
+                    <td><label for="paciente-${paciente.codigoPaciente}">${paciente.codigoPaciente}</label></td>
+                    <td><label for="paciente-${paciente.codigoPaciente}" class="text">${paciente.nombrePaciente}</label></td>
+                    <td><label for="paciente-${paciente.codigoPaciente}" class="text">${paciente.apellidosPaciente}</label></td>
                   <td> <button type="button" class="btn btn-secondary" id="btnCancelAgregarPaciente" data-dismiss="modal">Cancelar</button></td>
                 </tr>
             </c:forEach>
@@ -56,60 +53,96 @@
                 </button>
             </div>
             <div class="modal-body">
+              <form role="form" id="CreaPacienteFormModal">            
                 <table>
                     <tr>
                         <td><label for="nombresPaciente" class="col-sm-4 col-form-label">Nombres:</label></td>
                         <td>
-                            <input type="text" class="form-control" id="nombresPaciente" style="width: 322px; ">
+                            <input type="text" class="form-control" id="nombresPaciente" placeholder="Nombres Paciente" style="width: 322px;" required>
                         </td>                        
                     </tr>
                     <tr>
-                        <td><label for="apellidosPaciente" class="col-sm-4 col-form-label">Apellidos Paciente:</label></td>
+                        <td><label for="apellidosPaciente" class="col-sm-4 col-form-label">Apellidos:</label></td>
                         <td>
-                            <input type="text" class="form-control" id="apellidosPaciente" style="width: 322px; ">
+                            <input type="text" class="form-control" id="apellidosPaciente" placeholder="Apellidos Paciente" style="width: 322px; " required>
                         </td>                    
                     </tr>
                     <tr>
                         <td><label for="direccionPaciente" class="col-sm-4 col-form-label">Direccion:</label></td>
                         <td>
-                            <input type="text" class="form-control" id="direccionPaciente" style="width: 322px; ">
+                           <textarea class="form-control" id="direccionPaciente" placeholder="Direccion Paciente" maxlength="200" style="width: 322px; height: 90px"></textarea>
                         </td>
                     </tr>
                     <tr>
-                        <td><label for="colegiadoDoctor" class="col-sm-4 col-form-label">Número Colegiado:</label></td>
+                        <td><label for="tipoIdPaciente" class="col-sm-4 col-form-label">Tipo Identificación:</label></td>
                         <td>
-                            <input type="text" class="form-control" id="colegiadoDoctor" style="width: 322px; ">
+                             <select id="tipoIdPaciente" class="form-control" style="width: 322px; ">
+                              <option value="DPI">DPI</option>
+                              <option value="PASAPORTE">PASAPORTE</option>
+                              <option value="Otro">Otro</option>
+                            </select>
                         </td>
                     </tr>
                     <tr>
-                        <td><label for="emailDoctor" class="col-sm-4 col-form-label">Email:</label></td>
+                        <td><label for="numIdPaciente" class="col-sm-4 col-form-label">Numero Identificacion:</label></td>
                         <td>
-                            <input type="text" class="form-control" id="emailDoctor" style="width: 322px; ">
+                            <input type="text" class="form-control" id="numIdPaciente" placeholder="Identificacion Paciente" style="width: 322px; ">
                         </td>
                     </tr>
                     <tr>
-                        <td><label for="pswUsuario" class="col-sm-4 col-form-label">Password:</label></td>
+                        <td><label for="telPaciente" class="col-sm-4 col-form-label">Telefono:</label></td>
                         <td>
-                            <input type="password" class="form-control" id="pswUsuario" style="width: 322px; ">
+                            <input type="text" class="form-control" id="telPaciente" placeholder="Telefono" style="width: 322px; ">
                         </td>
                     </tr>
                     <tr>
-                        <td><label for="pswConfirm" class="col-sm-4 col-form-label">Confirmar Password:</label></td>
+                        <td><label for="emailPaciente" class="col-sm-4 col-form-label">Email:</label></td>
                         <td>
-                            <input type="password" class="form-control" id="pswConfirm" style="width: 322px; ">
+                            <input type="text" class="form-control" id="emailPaciente" placeholder="Email Paciente" style="width: 322px; ">
                         </td>
                     </tr>        
                     <tr>
-                        <td><label for="tipoUsuario" class="col-sm-4 col-form-label">Tipo Usuario:</label></td>
+                        <td><label for="estadoCivilPaciente" class="col-sm-4 col-form-label">Estado Civil:</label></td>
                         <td>
-                            <input type="text" class="form-control" id="tipoUsuario" style="width: 322px; ">
+                             <select id="estadoCivilPacienteSearch" class="form-control" style="width: 322px; ">
+                              <option value="SOLTERO">SOLTERO</option>
+                              <option value="CASADO">CASADO</option>
+                            </select>
                         </td>
-                    </tr>                                                                                                                 
+                    </tr>     
+                    <tr>
+                        <td><label for="fecNacimientoPaciente" class="col-sm-4 col-form-label">Fecha Nacimiento:</label></td>
+                        <td>
+							<div class="form-group">
+                            	<div class="input-group date" data-provide="fecha">
+                               		<input type="text" id="fecNacimientoPaciente" class="form-control fecha" autocomplete="off" placeholder="dd/mm/yyyy" required>
+    								<div><i class='fas fa-calendar-alt' style='font-size:24px'></i> </div>
+								</div>
+                            </div>
+                        </td>
+                    </tr>  
+                    <tr>
+                        <td><label for="generoPaciente" class="col-sm-4 col-form-label">Genero:</label></td>
+                        <td>
+                             <select id="generoPaciente" class="form-control" style="width: 322px; ">
+                              <option value="MASCULINO">MASCULINO</option>
+                              <option value="FEMENINO">FEMENINO</option>
+                            </select>
+                        </td>
+                    </tr>  
+                    <tr>
+                        <td><label for="ocupacionPaciente" class="col-sm-4 col-form-label">Ocupación:</label></td>
+                        <td>
+                            <input type="text" class="form-control" id="ocupacionPaciente" placeholder="Ocupación Paciente"  style="width: 322px; ">
+                        </td>
+                    </tr>                                                                                                                                                                         
                 </table>
+			</form>                
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" id="btnCancelAgregarPaciente" data-dismiss="modal">Cancelar</button>
                 <button type="button" class="btn btn-primary" id="btnAgregarPaciente">Agregar</button>
+                <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
             </div>
         </div>
     </div>
@@ -126,6 +159,7 @@
                 </button>
             </div>
             <div class="modal-body">
+              <form role="form" id="ModFormPacienteModal">            
                 <table>
                     <tr>
                         <td><label for="codigoPacienteMod" class="col-sm-4 col-form-label">Codigo Paciente:</label></td>
@@ -146,45 +180,80 @@
                         </td>
                     </tr>
                     <tr>
-                        <td><label for="apellidosUsuarioMod" class="col-sm-4 col-form-label">Apellidos Usuario:</label></td>
+                        <td><label for="direccionPacienteMod" class="col-sm-4 col-form-label">Dirección:</label></td>
                         <td>
-                            <input type="text" class="form-control" id="apellidosUsuarioMod" style="width: 322px; ">
+                            <textarea class="form-control" id="direccionPacienteMod" style="width: 322px; height: 90px"> </textarea> 
                         </td>
                     </tr>
                     <tr>
-                        <td><label for="colegiadoUsuarioMod" class="col-sm-4 col-form-label">Numero Colegiado:</label></td>
+                        <td><label for="tipoIdPacienteMod" class="col-sm-4 col-form-label">Tipo Identificación:</label></td>
                         <td>
-                            <input type="text" class="form-control" id="colegiadoUsuarioMod" style="width: 322px; ">
+                           <select id="tipoIdPacienteMod" class="form-control" style="width: 322px; ">
+                              <option value="DPI">DPI</option>
+                              <option value="PASAPORTE">PASAPORTE</option>
+                              <option value="Otro">Otro</option>
+                            </select>
                         </td>
                     </tr>
                     <tr>
-                        <td><label for="passwordUsuarioMod" class="col-sm-4 col-form-label">Password:</label></td>
+                        <td><label for="numIdPacienteMod" class="col-sm-4 col-form-label">Número Identificacion:</label></td>
                         <td>
-                            <input type="text" class="form-control" id="passwordUsuarioMod" style="width: 322px; ">
+                            <input type="text" class="form-control" id="numIdPacienteMod" style="width: 322px; ">
                         </td>
                     </tr>
                     <tr>
-                        <td><label for="confPswUsuarioMod" class="col-sm-4 col-form-label">Confirmar Password:</label></td>
+                        <td><label for="telefonoPacienteMod" class="col-sm-4 col-form-label">Teléfono:</label></td>
                         <td>
-                            <input type="text" class="form-control" id="confPswUsuarioMod" style="width: 322px; ">
+                            <input type="text" class="form-control" id="telefonoPacienteMod" style="width: 322px; ">
                         </td>
                     </tr>
                     <tr>
-                        <td><label for="emailUsuarioMod" class="col-sm-4 col-form-label">email Usuario: </label></td>
+                        <td><label for="emailPacienteMod" class="col-sm-4 col-form-label">Email: </label></td>
                         <td>
-                            <input type="text" class="form-control" id="emailUsuarioMod" style="width: 322px; ">
+                            <input type="text" class="form-control" id="emailPacienteMod" style="width: 322px; ">
                         </td>
                     </tr>
                     <tr>
-                        <td><label for="tipUsuarioMod" class="col-sm-4 col-form-label">Tipo de Usuario:</label></td>
+                        <td><label for="estCivilPacienteMod" class="col-sm-4 col-form-label">Estado Civil:</label></td>
                         <td>
-                            <input type="text" class="form-control" id="tipUsuarioMod" style="width: 322px; ">
+                            <select id="estCivilPacienteMod" class="form-control" style="width: 322px; ">
+                              <option value="CASADO">Casado</option>
+                              <option value="FEMENINO">Soltero</option>
+                            </select>
                         </td>
-                    </tr>                                                                                                                                            
+                    </tr>
+                    <tr>
+                        <td><label for="fecNacimientoPacienteMod" class="col-sm-4 col-form-label">Fecha Nacimiento:</label></td>
+                        <td>
+                           <div class="form-group">
+                            <div class="input-group date" data-provide="fecha">
+                               <input type="text" id="fecNacimientoPacienteMod" class="form-control fecha" autocomplete="off" placeholder="dd/mm/yyyy" required>
+                              <span class="input-group-addon"> <i class="far fa-calendar"></i>
+                              </span>
+                            </div>                        
+                        	</div> 
+                        </td>
+                    </tr>   
+                    <tr>
+                        <td><label for="generoPacienteMod" class="col-sm-4 col-form-label">Genero:</label></td>
+                        <td>
+                           <select id="generoPacienteMod" class="form-control" style="width: 322px; ">
+                              <option value="MASCULINO">Masculino</option>
+                              <option value="FEMENINO">Femenino</option>
+                            </select>
+                        </td>
+                    </tr>   
+                    <tr>
+                        <td><label for="ocupacionPacienteMod" class="col-sm-4 col-form-label">Ocupación:</label></td>
+                        <td>
+                            <input type="text" class="form-control" id="ocupacionPacienteMod" style="width: 322px; ">
+                        </td>
+                    </tr>                                                                                                                                                                                                 
                 </table>
+			</form>                
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" id="btnCancelModifPaciente" >Cancelar</button>
                 <button type="button" class="btn btn-primary" id="btnModificarPaciente">Modificar</button>
             </div>
         </div>
@@ -216,5 +285,5 @@
 
 
 <%@include file="../partials/footer.jsp"%>
-<script src="assets/js/mantenimientos/pacientes2.js"></script>
+<script src="assets/js/mantenimientos/pacientes.js"></script>
 

@@ -24,6 +24,7 @@ public class UsuarioDaoImpl implements IUsuarioDao{
     		record.getValue(tabla.COD_USUARIO),
     		record.getValue(tabla.LOGIN_USUARIO),
     		record.getValue(tabla.PASSWORD),
+    		record.getValue(tabla.LLAVE),
     		record.getValue(tabla.NOMBRES_DOCTOR), 
     		record.getValue(tabla.APELLIDOS_DOCTOR) ,
     		record.getValue(tabla.NUM_COLEGIADO),
@@ -46,7 +47,16 @@ public class UsuarioDaoImpl implements IUsuarioDao{
         return results.stream().map(this::parseItem).collect(Collectors.toList());
 		 
 	 }
-	 
+	
+    @Override
+    public List<Usuario> getUsuariosAlta(){
+    	List<Record> results = query
+                .select(tabla.asterisk())
+                .from(tabla)
+                .where(tabla.ESTADO.notEqualIgnoreCase(Estado.DESHABILITADO.getSlug()))
+                .fetch();
+        return results.stream().map(this::parseItem).collect(Collectors.toList()); 
+	 }
 	 
     @Override
      public Usuario getUsuario(String loginUsuario) {
@@ -55,8 +65,8 @@ public class UsuarioDaoImpl implements IUsuarioDao{
                 .from(tabla)
                 .where(tabla.LOGIN_USUARIO.equal(loginUsuario))
                 .fetchOne();
-		System.out.println(loginUsuario);
-		System.out.println(result);
+		//System.out.println(loginUsuario);
+		//System.out.println(result);
         return result != null ? parseItem(result): null;
 	 }
 	 
@@ -70,6 +80,7 @@ public class UsuarioDaoImpl implements IUsuarioDao{
 		record.setApellidosDoctor(usuario.getApellidosDoctor());
 		record.setNumColegiado(usuario.getNumColegiado());
 		record.setPassword(usuario.getPasswordUsuario());
+		record.setLlave(usuario.getLlave());
         record.setEstado(usuario.getEstado());
 		record.setEmailusuario(usuario.getEmailUsuario());
 		record.setTipoUsuario(usuario.getTipoUsuario());
@@ -81,12 +92,14 @@ public class UsuarioDaoImpl implements IUsuarioDao{
 	 }
 	 
     @Override
-	 public Usuario modificarUsuario(Usuario usuario) {
+	 public Usuario modificarUsuario(Usuario usuario) {    	
     	query.update(tabla)
         .set(tabla.NOMBRES_DOCTOR, usuario.getNombresDoctor())
         .set(tabla.APELLIDOS_DOCTOR, usuario.getApellidosDoctor())
         .set(tabla.EMAILUSUARIO, usuario.getEmailUsuario())
+        .set(tabla.PASSWORD, usuario.getPasswordUsuario())
         .set(tabla.TIPO_USUARIO, usuario.getTipoUsuario())
+        .set(tabla.NUM_COLEGIADO, usuario.getNumColegiado())
         .set(tabla.FECHAMODIFICACION, LocalDate.now())
         .set(tabla.MODIFICADOPOR, usuario.getModificadoPor())
         .set(tabla.ESTADO, usuario.getEstado())
