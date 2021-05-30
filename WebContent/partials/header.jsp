@@ -52,3 +52,5 @@
         </li>
     </ul>
 </nav>
+
+<img src="assets/img/logo.png" class="fondo-logo" >

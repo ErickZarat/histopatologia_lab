@@ -180,3 +180,14 @@ tbody .btn-group button {
     border: none;
 }
 
+.w-80{
+    width: 80%;
+}
+
+.fondo-logo{
+    position: fixed;
+    opacity: 0.4;
+    z-index: -10;
+    bottom: 0;
+    right: 0;
+}

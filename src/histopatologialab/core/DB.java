@@ -13,7 +13,7 @@ import javax.sql.DataSource;
 public class DB {
     private final String jdbcUrl = "jdbc:postgresql://localhost:5432/postgres";
     private final String username = "postgres";
-    private final String password = "postgreSQL";
+    private final String password = "docker";
     private final int minimumIdle = 1;
     private final int maximumPoolSize = 5;
     private final long leakDetectionThreshold = 60000;
