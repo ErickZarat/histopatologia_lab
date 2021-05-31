@@ -15,6 +15,12 @@
         <welcome-file>index.jsp</welcome-file>
     </welcome-file-list>
 
+    <context-param>
+        <description>Location to store uploaded file</description>
+        <param-name>file-upload</param-name>
+        <param-value>/Users/erickzarat/code/me/astrid/files/</param-value>
+    </context-param>
+
     <servlet>
         <servlet-name>LoginServlet</servlet-name>
         <servlet-class>histopatologialab.login.LoginServlet</servlet-class>
