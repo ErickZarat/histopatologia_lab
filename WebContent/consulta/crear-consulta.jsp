@@ -15,25 +15,26 @@
                 </tr>
                 <tr>
                     <td><label class="table-form-label" for="codigoUsuario">Codigo:</label></td>
-                    <td><input type="text" id="codigoUsuario" class="form-control"></td>
+                    <td><input type="text" id="codigoUsuario" class="form-control" disabled value="${paciente.codigoPaciente}"></td>
                     <td><label class="table-form-label" for="nombreUsuario">Nombre:</label></td>
-                    <td colspan="3"><input type="text" id="nombreUsuario" class="form-control"></td>
+                    <td colspan="3"><input type="text" id="nombreUsuario" class="form-control" value="${paciente.nombrePaciente} ${paciente.apellidosPaciente}"></td>
                 </tr>
                 <tr>
                     <td><label class="table-form-label" for="estadoCivilUsuario">Estado civil:</label></td>
-                    <td><input type="text" id="estadoCivilUsuario" class="form-control"></td>
-                    <td><label class="table-form-label" for="escolaridadUsuario">Escolaridad:</label></td>
-                    <td><input type="text" id="escolaridadUsuario" class="form-control"></td>
+                    <td><input type="text" id="estadoCivilUsuario" class="form-control" value="${paciente.estadoCivil}"></td>
+                    <td><label class="table-form-label" for="ocupacionUsuario">Ocupacion:</label></td>
+                    <td><input type="text" id="ocupacionUsuario" class="form-control" value="${paciente.ocupacionPaciente}"></td>
                     <td><label class="table-form-label" for="edadUsuario">Edad:</label></td>
-                    <td><input type="number" id="edadUsuario" class="form-control"></td>
+                    <td><input type="number" id="edadUsuario" class="form-control" value="${paciente.calculateAge()}"></td>
                 </tr>
                 <tr>
                     <td><label class="table-form-label" for="emailUsuario">Email:</label></td>
-                    <td><input type="email" id="emailUsuario" class="form-control"></td>
+                    <td><input type="email" id="emailUsuario" class="form-control" value="${paciente.emailPaciente}"></td>
                     <td><label class="table-form-label" for="telefonoUsuario">Telefono:</label></td>
-                    <td><input type="number" id="telefonoUsuario" class="form-control"></td>
+                    <td><input type="number" id="telefonoUsuario" class="form-control" value="${paciente.telefonoPaciente}"></td>
                 </tr>
             </table>
+            <button id="guardarPaciente">Guardar</button>
         </form>
     </div>
 
@@ -65,7 +66,7 @@
                     <td>
                         <select  class="form-control" name="colorLesionSelect" id="colorLesionSelect">
                             <c:forEach items="${tipoOpcion.COLOR}" var="tipo">
-                                <option value="${tipo.valor}">${tipo.valor}</option>
+                                <option value="${tipo.codigoOpcion}">${tipo.valor}</option>
                             </c:forEach>
                         </select>
                     </td>
@@ -73,7 +74,7 @@
                     <td>
                         <select  class="form-control" name="naturalezaLesionSelect" id="naturalezaLesionSelect">
                             <c:forEach items="${tipoOpcion.NATURALEZA}" var="tipo">
-                                <option value="${tipo.valor}">${tipo.valor}</option>
+                                <option value="${tipo.codigoOpcion}">${tipo.valor}</option>
                             </c:forEach>
                         </select>
                     </td>
@@ -81,7 +82,7 @@
                     <td>
                         <select  class="form-control" name="sintomaLesionSelect" id="sintomaLesionSelect">
                             <c:forEach items="${tipoOpcion.SINTOMA}" var="tipo">
-                                <option value="${tipo.valor}">${tipo.valor}</option>
+                                <option value="${tipo.codigoOpcion}">${tipo.valor}</option>
                             </c:forEach>
                         </select>
                     </td>
@@ -89,7 +90,7 @@
                     <td>
                         <select  class="form-control" name="formaLesionSelect" id="formaLesionSelect">
                             <c:forEach items="${tipoOpcion.FORMA}" var="tipo">
-                                <option value="${tipo.valor}">${tipo.valor}</option>
+                                <option value="${tipo.codigoOpcion}">${tipo.valor}</option>
                             </c:forEach>
                         </select>
                     </td>
@@ -99,7 +100,7 @@
                     <td>
                         <select  class="form-control" name="superficieLesionSelect" id="superficieLesionSelect">
                             <c:forEach items="${tipoOpcion.SUPERFICIE}" var="tipo">
-                                <option value="${tipo.valor}">${tipo.valor}</option>
+                                <option value="${tipo.codigoOpcion}">${tipo.valor}</option>
                             </c:forEach>
                         </select>
                     </td>
@@ -107,7 +108,7 @@
                     <td>
                         <select  class="form-control" name="consistenciaLesionSelect" id="consistenciaLesionSelect">
                             <c:forEach items="${tipoOpcion.CONSISTENCIA}" var="tipo">
-                                <option value="${tipo.valor}">${tipo.valor}</option>
+                                <option value="${tipo.codigoOpcion}">${tipo.valor}</option>
                             </c:forEach>
                         </select>
                     </td>
@@ -115,7 +116,7 @@
                     <td>
                         <select  class="form-control" name="esIntaoseoLesionSelect" id="esIntaoseoLesionSelect">
                             <c:forEach items="${tipoOpcion.INTRAOSEO}" var="tipo">
-                                <option value="${tipo.valor}">${tipo.valor}</option>
+                                <option value="${tipo.codigoOpcion}">${tipo.valor}</option>
                             </c:forEach>
                         </select>
                     </td>
@@ -125,7 +126,7 @@
                     <td>
                         <select  class="form-control" name="piezaLesionSelect" id="piezaLesionSelect">
                             <c:forEach items="${tipoOpcion.PIEZA}" var="tipo">
-                                <option value="${tipo.valor}">${tipo.valor}</option>
+                                <option value="${tipo.codigoOpcion}">${tipo.valor}</option>
                             </c:forEach>
                         </select>
                     </td>
@@ -142,6 +143,7 @@
                     </td>
                 </tr>
             </table>
+            <button id="guardarExamen">Guardar</button>
         </form>
     </div>
 

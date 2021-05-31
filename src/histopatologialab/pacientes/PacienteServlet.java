@@ -101,12 +101,13 @@ public class PacienteServlet extends HttpServlet {
         String ocupacionPaciente= request.getParameter("ocupacionPaciente");
         String tipoidPaciente= request.getParameter("tipoPaciente");
         String emailPaciente= request.getParameter("emailPaciente");
-        
+        String estadoCivilPaciente= request.getParameter("estadoCivilPaciente");
+
         
         //LocalDate fecnacimiento = LocalDate.parse(fecNacimientoPaciente);
         LocalDate fecnacimiento =  LocalDateTime.parse(fecNacimientoPaciente).toLocalDate();
 
-        Paciente paciente = controller.crearPaciente(identificacionPaciente, nombrePaciente, apellidosPaciente, direccionPaciente, telefonoPaciente, fecnacimiento, generoPaciente, ocupacionPaciente, tipoidPaciente, emailPaciente, usuario);
+        Paciente paciente = controller.crearPaciente(identificacionPaciente, nombrePaciente, apellidosPaciente, direccionPaciente, telefonoPaciente, fecnacimiento, generoPaciente, ocupacionPaciente, tipoidPaciente, emailPaciente, usuario, estadoCivilPaciente);
         toJsonResponse(response, new JsonResponse<>(paciente != null, paciente));
     }
 

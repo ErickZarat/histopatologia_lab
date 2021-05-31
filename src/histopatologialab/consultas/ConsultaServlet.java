@@ -1,8 +1,9 @@
 package histopatologialab.consultas;
 
-import histopatologialab.consultas.controller.ConsultaController;
+import histopatologialab.consultas.controller.IConsultaController;
+import histopatologialab.consultas.dto.Examen;
 import histopatologialab.core.RequestAction;
-import histopatologialab.medicamentos.dto.TipoMedicamento;
+import histopatologialab.pacientes.dto.Paciente;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -16,10 +17,11 @@ import static histopatologialab.core.ServletHelper.checkSession;
 import static histopatologialab.core.ServletHelper.getRequestAction;
 
 import static histopatologialab.core.Controllers.consultaController;
+import static histopatologialab.core.Controllers.pacienteController;
 
 @WebServlet(name = "ConsultaServlet")
 public class ConsultaServlet extends HttpServlet {
-    private final ConsultaController controller = consultaController;
+    private final IConsultaController controller = consultaController;
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         checkSession(request, response);
@@ -27,11 +29,9 @@ public class ConsultaServlet extends HttpServlet {
         RequestAction action = getRequestAction(request);
 
         if (action == RequestAction.CREAR) {
-
+            handlePostCreateExamen(request, response);
         } else if (action == RequestAction.MODIFICAR) {
-
-        } else if (action == RequestAction.DAR_BAJA) {
-
+            handlePostModificarExamen(request, response);
         }
     }
 
@@ -40,13 +40,53 @@ public class ConsultaServlet extends HttpServlet {
 
         RequestAction action = getRequestAction(request);
 
-        if (action == RequestAction.CREAR) {
-            getCreateConsultaPage(request, response);
-        } else if (action == RequestAction.LISTAR_JSON) {
-
+        if (action == RequestAction.CREAR || action == RequestAction.VER) {
+            handleGetCreatePaciente(request, response);
         } else {
             getDefaultPage(request, response);
         }
+    }
+
+    private void handlePostModificarExamen(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+    }
+
+    private void handlePostCreateExamen(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+
+    }
+
+    private void handleGetCreatePaciente(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String codPaciente = request.getParameter("cod_paciente");
+
+        Paciente paciente = null;
+
+        try {
+            paciente = pacienteController.getPacienteByCodigo(Long.parseLong(codPaciente));
+        } catch (Exception e) {
+
+        }
+
+        if (paciente == null) {
+            paciente = new Paciente();
+        }
+        request.setAttribute("paciente", paciente);
+
+        String codExamen = request.getParameter("cod_examen");
+
+        Examen examen = null;
+
+        try {
+            examen = consultaController.getExamen(Integer.parseInt(codExamen));
+        } catch (Exception e) {
+
+        }
+
+        if (examen == null) {
+            examen = new Examen();
+        }
+        request.setAttribute("examen", examen);
+
+
+        getCreateConsultaPage(request, response);
     }
 
     private void getCreateConsultaPage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

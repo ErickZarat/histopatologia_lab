@@ -35,7 +35,8 @@ public class PacienteDaoImpl implements IPacienteDao {
 	        		record.getValue(tablapaciente.CREADOPOR),
 	        		record.getValue(tablapaciente.FECHACREACION),
 	        		record.getValue(tablapaciente.MODIFICADOPOR), 
-	        		record.getValue(tablapaciente.FECHAMODIFICACION)
+	        		record.getValue(tablapaciente.FECHAMODIFICACION),
+					record.getValue(tablapaciente.ESTADOCIVIL)
 	        );
 	    }
 	 
@@ -99,6 +100,7 @@ public class PacienteDaoImpl implements IPacienteDao {
 	        	registro2.setTipoIdentificacion(paciente.getTipoidPaciente());
 	        	registro2.setFechacreacion(LocalDate.now());      	
 	        	registro2.setCreadopor(paciente.getCreadoPor());
+	        	registro2.setEstadocivil(paciente.getEstadoCivil());
 	        	registro2.store();
 	        
 	        return getPaciente(registro2.getCodPaciente());	 
@@ -114,6 +116,7 @@ public class PacienteDaoImpl implements IPacienteDao {
             .set(tablapaciente.EMAIL,paciente.getEmailPaciente()) 
             .set(tablapaciente.FECHAMODIFICACION, LocalDate.now())
             .set(tablapaciente.MODIFICADOPOR, paciente.getModificadoPor())
+			.set(tablapaciente.ESTADOCIVIL, paciente.getEstadoCivil())
             .where(tablapaciente.COD_PACIENTE.eq(paciente.getCodigoPaciente()))
             .execute();
 	        return getPaciente(paciente.getCodigoPaciente());

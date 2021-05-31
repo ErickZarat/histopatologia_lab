@@ -19,12 +19,12 @@ public class PacienteControllerImpl implements IPacienteController{
     @Override
 	public Paciente crearPaciente( String identificacionPaciente, String nombrePaciente, String apellidosPaciente,
 			String direccionPaciente, String telefonoPaciente, LocalDate fecNacimientoPaciente,
-			String generoPaciente, String ocupacionPaciente, String tipoidPaciente, String emailPaciente, String usuario) 
+			String generoPaciente, String ocupacionPaciente, String tipoidPaciente, String emailPaciente, String usuario, String estadoCivil)
 	{
 		  try { Long id = null;
 		        Paciente paciente = new Paciente(id, identificacionPaciente,  nombrePaciente, apellidosPaciente, 
 		    			 direccionPaciente,  telefonoPaciente,  fecNacimientoPaciente,
-		    			 generoPaciente,  ocupacionPaciente,  tipoidPaciente,  emailPaciente,usuario, LocalDate.now(), null, null);
+		    			 generoPaciente,  ocupacionPaciente,  tipoidPaciente,  emailPaciente,usuario, LocalDate.now(), null, null, estadoCivil);
 		        return pacientesDao.guardarPaciente(paciente);
 		    	} catch (Exception e) {
 		        	return null;
@@ -76,5 +76,10 @@ public class PacienteControllerImpl implements IPacienteController{
     	return pacientesDao.getPacientesByidentificacion(tipo, numident);
     	
     }
-	
+
+	@Override
+	public Paciente getPacienteByCodigo(long codPaciente) {
+		return pacientesDao.getPaciente(codPaciente);
+	}
+
 }

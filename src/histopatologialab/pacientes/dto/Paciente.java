@@ -1,6 +1,7 @@
 package histopatologialab.pacientes.dto;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.Period;
 
 public class Paciente {
 
@@ -19,6 +20,7 @@ public class Paciente {
 	private String creadoPor;
 	private String modificadoPor;
 	private LocalDate fechaModificacion;
+	private String estadoCivil;
 	
    public Paciente () {	   
    }
@@ -27,7 +29,7 @@ public class Paciente {
 	public Paciente(Long codigoPaciente,  String identificacionPaciente, String nombrePaciente, String apellidosPaciente,
 			String direccionPaciente, String telefonoPaciente, LocalDate fecNacimientoPaciente,
 			String generoPaciente, String ocupacionPaciente, String tipoidPaciente, String emailPaciente,
-			String creadoPor, LocalDate fechaCreacion, String modificadoPor, LocalDate fechaModificacion) {
+			String creadoPor, LocalDate fechaCreacion, String modificadoPor, LocalDate fechaModificacion, String estadoCivil) {
 		super();
 		this.codigoPaciente = codigoPaciente;
 		this.identificacionPaciente = identificacionPaciente;
@@ -44,6 +46,13 @@ public class Paciente {
         this.fechaCreacion = fechaCreacion;
         this.modificadoPor = modificadoPor;
         this.fechaModificacion = fechaModificacion;
+        this.estadoCivil = estadoCivil;
+	}
+
+	public int calculateAge(){
+   		if (this.fecNacimientoPaciente != null)
+			return Period.between(this.fecNacimientoPaciente, LocalDate.now()).getYears();
+   		return 0;
 	}
 
 
@@ -197,6 +206,12 @@ public class Paciente {
 	public void setFechaModificacion(LocalDate fechaModificacion) {
 		this.fechaModificacion = fechaModificacion;
 	}
-	
-	
+
+	public String getEstadoCivil() {
+		return estadoCivil;
+	}
+
+	public void setEstadoCivil(String estadoCivil) {
+		this.estadoCivil = estadoCivil;
+	}
 }
