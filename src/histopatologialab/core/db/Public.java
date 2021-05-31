@@ -6,6 +6,7 @@ package histopatologialab.core.db;
 
 import histopatologialab.core.db.tables.LabDiagnostico;
 import histopatologialab.core.db.tables.LabEnfermedadSistemica;
+import histopatologialab.core.db.tables.LabEnfsistemicaListar;
 import histopatologialab.core.db.tables.LabExamen;
 import histopatologialab.core.db.tables.LabExamenBiopsia;
 import histopatologialab.core.db.tables.LabExamenCaracteristica;
@@ -16,6 +17,7 @@ import histopatologialab.core.db.tables.LabPresentacionMedicamento;
 import histopatologialab.core.db.tables.LabTincion;
 import histopatologialab.core.db.tables.LabTipoOpcionLesion;
 import histopatologialab.core.db.tables.LabUsuario;
+import histopatologialab.core.db.tables.records.LabEnfsistemicaListarRecord;
 
 import java.util.Arrays;
 import java.util.List;
@@ -50,6 +52,29 @@ public class Public extends SchemaImpl {
      * The table <code>public.lab_enfermedad_sistemica</code>.
      */
     public final LabEnfermedadSistemica LAB_ENFERMEDAD_SISTEMICA = LabEnfermedadSistemica.LAB_ENFERMEDAD_SISTEMICA;
+
+    /**
+     * The table <code>public.lab_enfsistemica_listar</code>.
+     */
+    public final LabEnfsistemicaListar LAB_ENFSISTEMICA_LISTAR = LabEnfsistemicaListar.LAB_ENFSISTEMICA_LISTAR;
+
+    /**
+     * Call <code>public.lab_enfsistemica_listar</code>.
+     */
+    public static Result<LabEnfsistemicaListarRecord> LAB_ENFSISTEMICA_LISTAR(
+          Configuration configuration
+    ) {
+        return configuration.dsl().selectFrom(histopatologialab.core.db.tables.LabEnfsistemicaListar.LAB_ENFSISTEMICA_LISTAR.call(
+        )).fetch();
+    }
+
+    /**
+     * Get <code>public.lab_enfsistemica_listar</code> as a table.
+     */
+    public static LabEnfsistemicaListar LAB_ENFSISTEMICA_LISTAR() {
+        return histopatologialab.core.db.tables.LabEnfsistemicaListar.LAB_ENFSISTEMICA_LISTAR.call(
+        );
+    }
 
     /**
      * The table <code>public.lab_examen</code>.
@@ -120,11 +145,8 @@ public class Public extends SchemaImpl {
             Sequences.LAB_DIAGNOSTICO_SEQ,
             Sequences.LAB_ENFERMEDAD_SISTEMICA_SEQ,
             Sequences.LAB_EXAMEN_BIOPSIA_COD_BIOPSIA_SEQ,
-            Sequences.LAB_EXAMEN_BIOPSIA_COD_BIOPSIA_SEQ1,
             Sequences.LAB_EXAMEN_CARACTERISTICA_COD_EXAMEN_SEQ,
-            Sequences.LAB_EXAMEN_CARACTERISTICA_COD_EXAMEN_SEQ1,
             Sequences.LAB_EXAMEN_COD_EXAMEN_SEQ,
-            Sequences.LAB_EXAMEN_COD_EXAMEN_SEQ1,
             Sequences.LAB_MEDICAMENTO_SEQ,
             Sequences.LAB_PACIENTE_SEQ,
             Sequences.LAB_TINCION_SEQ,
@@ -137,6 +159,7 @@ public class Public extends SchemaImpl {
         return Arrays.<Table<?>>asList(
             LabDiagnostico.LAB_DIAGNOSTICO,
             LabEnfermedadSistemica.LAB_ENFERMEDAD_SISTEMICA,
+            LabEnfsistemicaListar.LAB_ENFSISTEMICA_LISTAR,
             LabExamen.LAB_EXAMEN,
             LabExamenBiopsia.LAB_EXAMEN_BIOPSIA,
             LabExamenCaracteristica.LAB_EXAMEN_CARACTERISTICA,
