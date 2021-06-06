@@ -108,16 +108,16 @@ public class LabExamenRecord extends UpdatableRecordImpl<LabExamenRecord> implem
     }
 
     /**
-     * Setter for <code>public.lab_examen.enfermedad_sistematica</code>.
+     * Setter for <code>public.lab_examen.enfermedad_sistemica</code>.
      */
-    public void setEnfermedadSistematica(Integer value) {
+    public void setEnfermedadSistemica(Integer value) {
         set(6, value);
     }
 
     /**
-     * Getter for <code>public.lab_examen.enfermedad_sistematica</code>.
+     * Getter for <code>public.lab_examen.enfermedad_sistemica</code>.
      */
-    public Integer getEnfermedadSistematica() {
+    public Integer getEnfermedadSistemica() {
         return (Integer) get(6);
     }
 
@@ -358,7 +358,7 @@ public class LabExamenRecord extends UpdatableRecordImpl<LabExamenRecord> implem
 
     @Override
     public Field<Integer> field7() {
-        return LabExamen.LAB_EXAMEN.ENFERMEDAD_SISTEMATICA;
+        return LabExamen.LAB_EXAMEN.ENFERMEDAD_SISTEMICA;
     }
 
     @Override
@@ -458,7 +458,7 @@ public class LabExamenRecord extends UpdatableRecordImpl<LabExamenRecord> implem
 
     @Override
     public Integer component7() {
-        return getEnfermedadSistematica();
+        return getEnfermedadSistemica();
     }
 
     @Override
@@ -558,7 +558,7 @@ public class LabExamenRecord extends UpdatableRecordImpl<LabExamenRecord> implem
 
     @Override
     public Integer value7() {
-        return getEnfermedadSistematica();
+        return getEnfermedadSistemica();
     }
 
     @Override
@@ -664,7 +664,7 @@ public class LabExamenRecord extends UpdatableRecordImpl<LabExamenRecord> implem
 
     @Override
     public LabExamenRecord value7(Integer value) {
-        setEnfermedadSistematica(value);
+        setEnfermedadSistemica(value);
         return this;
     }
 
@@ -785,7 +785,7 @@ public class LabExamenRecord extends UpdatableRecordImpl<LabExamenRecord> implem
     /**
      * Create a detached, initialised LabExamenRecord
      */
-    public LabExamenRecord(Integer codExamen, Integer codPaciente, String numExamen, LocalDate fechaExamen, String estadoExamen, String historiaExamenLesion, Integer enfermedadSistematica, String tamanoLesion, String dimensionalLesion, Integer duracionLesionDias, Integer duracionLesionMeses, Integer duracionLesionAnios, String datosImportantesLesion, Integer doctorExamen, String tipoRemision, String doctorRemision, String direccionDoctorRemision, String telefonoDoctorRemision, String emailDoctorRemision, String dependenciaDoctorRemision) {
+    public LabExamenRecord(Integer codExamen, Integer codPaciente, String numExamen, LocalDate fechaExamen, String estadoExamen, String historiaExamenLesion, Integer enfermedadSistemica, String tamanoLesion, String dimensionalLesion, Integer duracionLesionDias, Integer duracionLesionMeses, Integer duracionLesionAnios, String datosImportantesLesion, Integer doctorExamen, String tipoRemision, String doctorRemision, String direccionDoctorRemision, String telefonoDoctorRemision, String emailDoctorRemision, String dependenciaDoctorRemision) {
         super(LabExamen.LAB_EXAMEN);
 
         setCodExamen(codExamen);
@@ -794,7 +794,7 @@ public class LabExamenRecord extends UpdatableRecordImpl<LabExamenRecord> implem
         setFechaExamen(fechaExamen);
         setEstadoExamen(estadoExamen);
         setHistoriaExamenLesion(historiaExamenLesion);
-        setEnfermedadSistematica(enfermedadSistematica);
+        setEnfermedadSistemica(enfermedadSistemica);
         setTamanoLesion(tamanoLesion);
         setDimensionalLesion(dimensionalLesion);
         setDuracionLesionDias(duracionLesionDias);

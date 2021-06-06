@@ -4,17 +4,16 @@
 package histopatologialab.core.db;
 
 
+import histopatologialab.core.db.tables.LabDiagnostico;
 import histopatologialab.core.db.tables.LabEnfermedadSistemica;
 import histopatologialab.core.db.tables.LabExamen;
 import histopatologialab.core.db.tables.LabExamenBiopsia;
 import histopatologialab.core.db.tables.LabExamenCaracteristica;
-import histopatologialab.core.db.tables.LabExamenEnfermedadSistematica;
-import histopatologialab.core.db.tables.LabFuncion;
+import histopatologialab.core.db.tables.LabExamenEnfermedadSistemica;
 import histopatologialab.core.db.tables.LabMedicamento;
 import histopatologialab.core.db.tables.LabPaciente;
 import histopatologialab.core.db.tables.LabPresentacionMedicamento;
-import histopatologialab.core.db.tables.LabRol;
-import histopatologialab.core.db.tables.LabRolFuncion;
+import histopatologialab.core.db.tables.LabTincion;
 import histopatologialab.core.db.tables.LabTipoOpcionLesion;
 import histopatologialab.core.db.tables.LabUsuario;
 
@@ -41,6 +40,11 @@ public class Public extends SchemaImpl {
     public static final Public PUBLIC = new Public();
 
     /**
+     * The table <code>public.lab_diagnostico</code>.
+     */
+    public final LabDiagnostico LAB_DIAGNOSTICO = LabDiagnostico.LAB_DIAGNOSTICO;
+
+    /**
      * The table <code>public.lab_enfermedad_sistemica</code>.
      */
     public final LabEnfermedadSistemica LAB_ENFERMEDAD_SISTEMICA = LabEnfermedadSistemica.LAB_ENFERMEDAD_SISTEMICA;
@@ -61,14 +65,9 @@ public class Public extends SchemaImpl {
     public final LabExamenCaracteristica LAB_EXAMEN_CARACTERISTICA = LabExamenCaracteristica.LAB_EXAMEN_CARACTERISTICA;
 
     /**
-     * The table <code>public.lab_examen_enfermedad_sistematica</code>.
+     * The table <code>public.lab_examen_enfermedad_sistemica</code>.
      */
-    public final LabExamenEnfermedadSistematica LAB_EXAMEN_ENFERMEDAD_SISTEMATICA = LabExamenEnfermedadSistematica.LAB_EXAMEN_ENFERMEDAD_SISTEMATICA;
-
-    /**
-     * The table <code>public.lab_funcion</code>.
-     */
-    public final LabFuncion LAB_FUNCION = LabFuncion.LAB_FUNCION;
+    public final LabExamenEnfermedadSistemica LAB_EXAMEN_ENFERMEDAD_SISTEMICA = LabExamenEnfermedadSistemica.LAB_EXAMEN_ENFERMEDAD_SISTEMICA;
 
     /**
      * The table <code>public.lab_medicamento</code>.
@@ -86,14 +85,9 @@ public class Public extends SchemaImpl {
     public final LabPresentacionMedicamento LAB_PRESENTACION_MEDICAMENTO = LabPresentacionMedicamento.LAB_PRESENTACION_MEDICAMENTO;
 
     /**
-     * The table <code>public.lab_rol</code>.
+     * The table <code>public.lab_tincion</code>.
      */
-    public final LabRol LAB_ROL = LabRol.LAB_ROL;
-
-    /**
-     * The table <code>public.lab_rol_funcion</code>.
-     */
-    public final LabRolFuncion LAB_ROL_FUNCION = LabRolFuncion.LAB_ROL_FUNCION;
+    public final LabTincion LAB_TINCION = LabTincion.LAB_TINCION;
 
     /**
      * The table <code>public.lab_tipo_opcion_lesion</code>.
@@ -121,32 +115,34 @@ public class Public extends SchemaImpl {
     @Override
     public final List<Sequence<?>> getSequences() {
         return Arrays.<Sequence<?>>asList(
-            Sequences.LAB_ENFERMEDAD_SISTEMATICA_COD_ENFERMEDAD_SISTEMATICA_SEQ,
+            Sequences.LAB_DIAGNOSTICO_SEQ,
+            Sequences.LAB_ENFERMEDAD_SISTEMICA_SEQ,
             Sequences.LAB_EXAMEN_BIOPSIA_COD_BIOPSIA_SEQ,
+            Sequences.LAB_EXAMEN_BIOPSIA_COD_BIOPSIA_SEQ1,
             Sequences.LAB_EXAMEN_CARACTERISTICA_COD_EXAMEN_SEQ,
+            Sequences.LAB_EXAMEN_CARACTERISTICA_COD_EXAMEN_SEQ1,
             Sequences.LAB_EXAMEN_COD_EXAMEN_SEQ,
-            Sequences.LAB_FUNCION_CODIGO_FUNCION_SEQ,
+            Sequences.LAB_EXAMEN_COD_EXAMEN_SEQ1,
             Sequences.LAB_MEDICAMENTO_SEQ,
             Sequences.LAB_PACIENTE_SEQ,
-            Sequences.LAB_ROL_CODIGO_ROL_SEQ,
-            Sequences.LAB_TIPO_OPCION_LESION_COD_TIPO_OPCION_LESION_SEQ,
-            Sequences.LAB_USUARIO_CODIGO_USUARIO_SEQ);
+            Sequences.LAB_TINCION_SEQ,
+            Sequences.LAB_TIPO_OPCION_LESION_SEQ,
+            Sequences.LAB_USUARIO_SEQ);
     }
 
     @Override
     public final List<Table<?>> getTables() {
         return Arrays.<Table<?>>asList(
+            LabDiagnostico.LAB_DIAGNOSTICO,
             LabEnfermedadSistemica.LAB_ENFERMEDAD_SISTEMICA,
             LabExamen.LAB_EXAMEN,
             LabExamenBiopsia.LAB_EXAMEN_BIOPSIA,
             LabExamenCaracteristica.LAB_EXAMEN_CARACTERISTICA,
-            LabExamenEnfermedadSistematica.LAB_EXAMEN_ENFERMEDAD_SISTEMATICA,
-            LabFuncion.LAB_FUNCION,
+            LabExamenEnfermedadSistemica.LAB_EXAMEN_ENFERMEDAD_SISTEMICA,
             LabMedicamento.LAB_MEDICAMENTO,
             LabPaciente.LAB_PACIENTE,
             LabPresentacionMedicamento.LAB_PRESENTACION_MEDICAMENTO,
-            LabRol.LAB_ROL,
-            LabRolFuncion.LAB_ROL_FUNCION,
+            LabTincion.LAB_TINCION,
             LabTipoOpcionLesion.LAB_TIPO_OPCION_LESION,
             LabUsuario.LAB_USUARIO);
     }

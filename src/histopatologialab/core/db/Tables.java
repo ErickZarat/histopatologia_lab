@@ -4,17 +4,16 @@
 package histopatologialab.core.db;
 
 
+import histopatologialab.core.db.tables.LabDiagnostico;
 import histopatologialab.core.db.tables.LabEnfermedadSistemica;
 import histopatologialab.core.db.tables.LabExamen;
 import histopatologialab.core.db.tables.LabExamenBiopsia;
 import histopatologialab.core.db.tables.LabExamenCaracteristica;
-import histopatologialab.core.db.tables.LabExamenEnfermedadSistematica;
-import histopatologialab.core.db.tables.LabFuncion;
+import histopatologialab.core.db.tables.LabExamenEnfermedadSistemica;
 import histopatologialab.core.db.tables.LabMedicamento;
 import histopatologialab.core.db.tables.LabPaciente;
 import histopatologialab.core.db.tables.LabPresentacionMedicamento;
-import histopatologialab.core.db.tables.LabRol;
-import histopatologialab.core.db.tables.LabRolFuncion;
+import histopatologialab.core.db.tables.LabTincion;
 import histopatologialab.core.db.tables.LabTipoOpcionLesion;
 import histopatologialab.core.db.tables.LabUsuario;
 
@@ -24,6 +23,11 @@ import histopatologialab.core.db.tables.LabUsuario;
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Tables {
+
+    /**
+     * The table <code>public.lab_diagnostico</code>.
+     */
+    public static final LabDiagnostico LAB_DIAGNOSTICO = LabDiagnostico.LAB_DIAGNOSTICO;
 
     /**
      * The table <code>public.lab_enfermedad_sistemica</code>.
@@ -46,14 +50,9 @@ public class Tables {
     public static final LabExamenCaracteristica LAB_EXAMEN_CARACTERISTICA = LabExamenCaracteristica.LAB_EXAMEN_CARACTERISTICA;
 
     /**
-     * The table <code>public.lab_examen_enfermedad_sistematica</code>.
+     * The table <code>public.lab_examen_enfermedad_sistemica</code>.
      */
-    public static final LabExamenEnfermedadSistematica LAB_EXAMEN_ENFERMEDAD_SISTEMATICA = LabExamenEnfermedadSistematica.LAB_EXAMEN_ENFERMEDAD_SISTEMATICA;
-
-    /**
-     * The table <code>public.lab_funcion</code>.
-     */
-    public static final LabFuncion LAB_FUNCION = LabFuncion.LAB_FUNCION;
+    public static final LabExamenEnfermedadSistemica LAB_EXAMEN_ENFERMEDAD_SISTEMICA = LabExamenEnfermedadSistemica.LAB_EXAMEN_ENFERMEDAD_SISTEMICA;
 
     /**
      * The table <code>public.lab_medicamento</code>.
@@ -71,14 +70,9 @@ public class Tables {
     public static final LabPresentacionMedicamento LAB_PRESENTACION_MEDICAMENTO = LabPresentacionMedicamento.LAB_PRESENTACION_MEDICAMENTO;
 
     /**
-     * The table <code>public.lab_rol</code>.
+     * The table <code>public.lab_tincion</code>.
      */
-    public static final LabRol LAB_ROL = LabRol.LAB_ROL;
-
-    /**
-     * The table <code>public.lab_rol_funcion</code>.
-     */
-    public static final LabRolFuncion LAB_ROL_FUNCION = LabRolFuncion.LAB_ROL_FUNCION;
+    public static final LabTincion LAB_TINCION = LabTincion.LAB_TINCION;
 
     /**
      * The table <code>public.lab_tipo_opcion_lesion</code>.

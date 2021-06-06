@@ -57,7 +57,12 @@ public class LabEnfermedadSistemica extends TableImpl<LabEnfermedadSistemicaReco
     /**
      * The column <code>public.lab_enfermedad_sistemica.nombre_enfermedad</code>.
      */
-    public final TableField<LabEnfermedadSistemicaRecord, String> NOMBRE_ENFERMEDAD = createField(DSL.name("nombre_enfermedad"), SQLDataType.VARCHAR(50), this, "");
+    public final TableField<LabEnfermedadSistemicaRecord, String> NOMBRE_ENFERMEDAD = createField(DSL.name("nombre_enfermedad"), SQLDataType.VARCHAR(30).nullable(false), this, "");
+
+    /**
+     * The column <code>public.lab_enfermedad_sistemica.estado_enfermedad</code>.
+     */
+    public final TableField<LabEnfermedadSistemicaRecord, String> ESTADO_ENFERMEDAD = createField(DSL.name("estado_enfermedad"), SQLDataType.VARCHAR(10), this, "");
 
     /**
      * The column <code>public.lab_enfermedad_sistemica.fecha_creacion</code>.
@@ -67,22 +72,17 @@ public class LabEnfermedadSistemica extends TableImpl<LabEnfermedadSistemicaReco
     /**
      * The column <code>public.lab_enfermedad_sistemica.creado_por</code>.
      */
-    public final TableField<LabEnfermedadSistemicaRecord, String> CREADO_POR = createField(DSL.name("creado_por"), SQLDataType.VARCHAR(20), this, "");
+    public final TableField<LabEnfermedadSistemicaRecord, String> CREADO_POR = createField(DSL.name("creado_por"), SQLDataType.VARCHAR(30), this, "");
+
+    /**
+     * The column <code>public.lab_enfermedad_sistemica.modificado_por</code>.
+     */
+    public final TableField<LabEnfermedadSistemicaRecord, String> MODIFICADO_POR = createField(DSL.name("modificado_por"), SQLDataType.VARCHAR(30), this, "");
 
     /**
      * The column <code>public.lab_enfermedad_sistemica.fecha_modificacion</code>.
      */
     public final TableField<LabEnfermedadSistemicaRecord, LocalDate> FECHA_MODIFICACION = createField(DSL.name("fecha_modificacion"), SQLDataType.LOCALDATE, this, "");
-
-    /**
-     * The column <code>public.lab_enfermedad_sistemica.modificado_por</code>.
-     */
-    public final TableField<LabEnfermedadSistemicaRecord, String> MODIFICADO_POR = createField(DSL.name("modificado_por"), SQLDataType.VARCHAR(20), this, "");
-
-    /**
-     * The column <code>public.lab_enfermedad_sistemica.estado_enfermedad</code>.
-     */
-    public final TableField<LabEnfermedadSistemicaRecord, String> ESTADO_ENFERMEDAD = createField(DSL.name("estado_enfermedad"), SQLDataType.VARCHAR, this, "");
 
     private LabEnfermedadSistemica(Name alias, Table<LabEnfermedadSistemicaRecord> aliased) {
         this(alias, aliased, null);
@@ -129,12 +129,12 @@ public class LabEnfermedadSistemica extends TableImpl<LabEnfermedadSistemicaReco
 
     @Override
     public UniqueKey<LabEnfermedadSistemicaRecord> getPrimaryKey() {
-        return Keys.LAB_ENFERMEDAD_SISTEMATICA_PKEY;
+        return Keys.LAB_ENF_SISTEMICA_PK;
     }
 
     @Override
     public List<UniqueKey<LabEnfermedadSistemicaRecord>> getKeys() {
-        return Arrays.<UniqueKey<LabEnfermedadSistemicaRecord>>asList(Keys.LAB_ENFERMEDAD_SISTEMATICA_PKEY);
+        return Arrays.<UniqueKey<LabEnfermedadSistemicaRecord>>asList(Keys.LAB_ENF_SISTEMICA_PK);
     }
 
     @Override
@@ -168,7 +168,7 @@ public class LabEnfermedadSistemica extends TableImpl<LabEnfermedadSistemicaReco
     // -------------------------------------------------------------------------
 
     @Override
-    public Row7<Integer, String, LocalDate, String, LocalDate, String, String> fieldsRow() {
+    public Row7<Integer, String, String, LocalDate, String, String, LocalDate> fieldsRow() {
         return (Row7) super.fieldsRow();
     }
 }
