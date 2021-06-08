@@ -6,13 +6,16 @@
 
 <div class="container-fluid">
 
+    <label class="accordion-label" for="paciente-accordion">
+        <div class="accordion-title-container">
+                <h1 class="main-tittle">Paciente</h1>
+        </div>
+    </label>
+    <input type="checkbox" checked class="accordion" id="paciente-accordion">
     <div class="user-container container-fluid">
         <form class="align-middle" action="ConsultaServlet.do" method="post">
 
             <table>
-                <tr>
-                    <td colspan="2"><h1 class="main-tittle">Paciente</h1></td>
-                </tr>
                 <tr>
                     <td><label class="table-form-label" for="codigoUsuario">Codigo:</label></td>
                     <td class="search">
@@ -21,37 +24,37 @@
                         </ul>
                     </td>
                     <td><label class="table-form-label" for="nombreUsuario">Nombre:</label></td>
-                    <td colspan="3"><input type="text" id="nombreUsuario" class="form-control" value="${paciente.nombrePaciente} ${paciente.apellidosPaciente}"></td>
+                    <td colspan="3"><input type="text" id="nombreUsuario" class="form-control" readonly value="${paciente.nombrePaciente} ${paciente.apellidosPaciente}"></td>
                 </tr>
                 <tr>
                     <td><label class="table-form-label" for="estadoCivilUsuario">Estado civil:</label></td>
-                    <td><input type="text" id="estadoCivilUsuario" class="form-control" value="${paciente.estadoCivil}"></td>
+                    <td><input type="text" id="estadoCivilUsuario" class="form-control" readonly value="${paciente.estadoCivil}"></td>
                     <td><label class="table-form-label" for="ocupacionUsuario">Ocupacion:</label></td>
-                    <td><input type="text" id="ocupacionUsuario" class="form-control" value="${paciente.ocupacionPaciente}"></td>
+                    <td><input type="text" id="ocupacionUsuario" class="form-control" readonly value="${paciente.ocupacionPaciente}"></td>
                     <td><label class="table-form-label" for="edadUsuario">Edad:</label></td>
-                    <td><input type="number" id="edadUsuario" class="form-control" value="${paciente.calculateAge()}"></td>
+                    <td><input type="number" id="edadUsuario" class="form-control" readonly value="${paciente.calculateAge()}"></td>
                 </tr>
                 <tr>
                     <td><label class="table-form-label" for="emailUsuario">Email:</label></td>
-                    <td><input type="email" id="emailUsuario" class="form-control" value="${paciente.emailPaciente}"></td>
+                    <td><input type="email" id="emailUsuario" class="form-control" readonly value="${paciente.emailPaciente}"></td>
                     <td><label class="table-form-label" for="telefonoUsuario">Telefono:</label></td>
-                    <td><input type="number" id="telefonoUsuario" class="form-control" value="${paciente.telefonoPaciente}"></td>
+                    <td><input type="number" id="telefonoUsuario" class="form-control" readonly value="${paciente.telefonoPaciente}"></td>
                 </tr>
             </table>
-            <button id="guardarPaciente">Guardar</button>
         </form>
     </div>
 
-    <div class="action-container left-padding-align">
-    </div>
+    <label class="accordion-label" for="lesion-accordion">
+        <div class="accordion-title-container">
+            <h1 class="main-tittle">Lesion</h1>
+        </div>
+    </label>
+    <input type="checkbox" class="accordion" id="lesion-accordion">
 
     <div class="lesion-container container-fluid">
         <form class="align-middle" action="ConsultaServlet.do" method="post">
 
             <table>
-                <tr>
-                    <td colspan="2"><h1 class="main-tittle">Lesion</h1></td>
-                </tr>
                 <tr>
                     <td><label class="table-form-label" for="tamano">Tamaño:</label></td>
                     <td><input type="text" id="tamano" class="form-control"></td>
@@ -137,6 +140,14 @@
                 </tr>
                 <tr>
                     <td>
+                        <input type="checkbox" id="necesitaBiopsia"><label for="necesitaBiopsia"> Necesita biopsia</label>
+                    </td>
+                    <td>
+                        <input type="checkbox" id="necesitaFrote"><label for="necesitaFrote"> Necesita frote</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
                         <label class="table-form-label" for="datosImportantes">Datos Importantes:</label>
                     </td>
                     <td colspan="3">
@@ -146,24 +157,40 @@
                         <button class="btn btn-light">Imagenes</button>
                     </td>
                 </tr>
+                <tr>
+                    <td>
+                        <label class="table-form-label" for="datosImportantes">Otros Datos Importantes:</label>
+                    </td>
+                    <td colspan="3">
+                        <textarea name="datosImportantes" class="form-control" id="otrosDatosImportantes" cols="300" rows="5"></textarea>
+                    </td>
+                    <td></td>
+                </tr>
             </table>
-            <button id="guardarExamen">Guardar</button>
+            <button id="guardarExamen" class="btn btn-light">Guardar</button>
         </form>
     </div>
 
-    <div class="action-container left-padding-align">
-    </div>
 
+
+    <label class="accordion-label" for="tab-accordion">
+        <div class="accordion-title-container">
+        </div>
+    </label>
+    <input type="checkbox" class="accordion" id="tab-accordion">
     <div class="container-fluid">
         <ul class="nav nav-tabs" role="tablist">
             <li class="nav-item">
-                <a class="nav-link active main-tittle" data-toggle="tab" href="#tabs-1" role="tab">Biopsis</a>
+                <a class="nav-link active" data-toggle="tab" href="#tabs-1" role="tab">Biopsia</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link main-tittle" data-toggle="tab" href="#tabs-2" role="tab">Frote</a>
+                <a class="nav-link" data-toggle="tab" href="#tabs-2" role="tab">Frote</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link main-tittle" data-toggle="tab" href="#tabs-3" role="tab">Receta</a>
+                <a class="nav-link" data-toggle="tab" href="#tabs-3" role="tab">Receta</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#tabs-4" role="tab">Informe</a>
             </li>
         </ul><!-- Tab panes -->
         <div class="tab-content">
@@ -174,6 +201,9 @@
 
             </div>
             <div class="tab-pane" id="tabs-3" role="tabpanel">
+
+            </div>
+            <div class="tab-pane" id="tabs-4" role="tabpanel">
 
             </div>
         </div>
