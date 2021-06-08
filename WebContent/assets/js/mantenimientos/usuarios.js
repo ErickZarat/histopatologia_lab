@@ -28,57 +28,65 @@ $(document).ready(function() {
 		var colegiadoDoctor = $('#colegiadoDoctor').val().trim();
 		var emailDoctor = $('#emailDoctor').val().trim();
 		var passUser = $('#pswUsuario').val();
-		var tipoUsuario = $('#tipoUsuario').val();
+		var tipoUsuario = $('#tipoUsuarioSearch').val();
+		//var tipoUsuario = $('#tipoUsuario').val();
+
+
 		
-		
-		if ($('#nombreUsuario').val().trim() == "" || $('#apellidosUsuario').val().trim() == "") {
-			 toastr.error("Debe ingresar por lo menos un nombre y un apellido de usuario");
+		if ($('#loginUsuario').val().trim().length == 0) {
+			 toastr.error("Debe ingresar un login de usuario");
 			 e.preventDefault(); 
 		} else { 
-			if ($('#loginUsuario').val().trim().length == 0) {
-				toastr.error("Debe ingresar un login de usuario");
+			if (!validarNombreUsuario(loginUser)){
+				toastr.error("El usuario debe tener entre 4 y 15 caracteres sin espacios. Únicamente puede contener letras");
 			 	e.preventDefault(); 
 			} else {
-				if (!validarNombreUsuario(loginUser)){
-					toastr.error("El usuario debe tener entre 4 y 15 caracteres sin espacios. Únicamente puede contener letras");
+				if ($('#nombreUsuario').val().trim() == "" || $('#apellidosUsuario').val().trim() == "") {
+					toastr.error("Debe ingresar por lo menos un nombre y un apellido de usuario");
 				 	e.preventDefault(); 					
-				} else {				
-					if ($('#pswUsuario').val().trim().length == 0 || $('#pswConfirm').val().trim().length == 0) {
-						toastr.error("Debe ingresar el Password y la Confirmacion de Password");
+				} else {			
+					//if (!(validarEmail(emailDoctor)) || (emailDoctor.trim()== "")){	
+					if (emailDoctor.trim()== "" || (!(validarEmail(emailDoctor)))) {
+						toastr.error("El correo ingresado no es válido");
 				 		e.preventDefault(); 
 				 	} else {
-						if ($('#pswUsuario').val().trim() != $('#pswConfirm').val().trim()) {
-								toastr.error("El password y la Confirmación no coinciden");
+						if ($('#pswUsuario').val().trim().length == 0 || $('#pswConfirm').val().trim().length == 0) {
+								toastr.error("Debe ingresar la contraseña y la Confirmacion de Contraseña");
 				 				e.preventDefault(); 
 							} else { 	
-								if(!(validarEmail(emailDoctor)||emailDoctor.trim()=='')){
-									toastr.error("El correo ingresado no es válido");
+								if ($('#pswUsuario').val().trim() != $('#pswConfirm').val().trim()) {
+									toastr.error("La contraseña y la Confirmación no coinciden");
 				 					e.preventDefault();
-								} else {															
-							    	$.ajax({
-							        	url: 'UsuarioServlet.do',
-							        	method: 'post',
-							        	data: {
-							            	accion: 'CREAR',
-							            	loginUser: loginUser,
-											pswUser: passUser,
-											nombresDoctor: nombreUsuario,
-											apellidosDoctor: apellidosUsuario,
-											colegiadoDoctor: colegiadoDoctor,
-											emailDoctor: emailDoctor,
-											tipoUsuario: tipoUsuario,								
-							        	},
-							        	success: function(data) {
-							            	$('#agregarUsuarioModal').modal('hide');
-											$("#AgregarFormModal")[0].reset();
-							            	if (data.success){
-							                	toastr.success("Se agrego con exito el Usuario");
-							                	getListadoUsuarios()
-							            	} else {
-							                	toastr.error("Error al agregar el Usuario")
-							            	}								
-				        				}
-				   					 })
+								} else {	
+									if (tipoUsuario == 0) {
+										toastr.error("Debe seleccionar un tipo de Usuario");
+										e.preventDefault();
+									} else {																							
+								    	$.ajax({
+								        	url: 'UsuarioServlet.do',
+								        	method: 'post',
+								        	data: {
+								            	accion: 'CREAR',
+								            	loginUser: loginUser,
+												pswUser: passUser,
+												nombresDoctor: nombreUsuario,
+												apellidosDoctor: apellidosUsuario,
+												colegiadoDoctor: colegiadoDoctor,
+												emailDoctor: emailDoctor,
+												tipoUsuario: tipoUsuario,								
+								        	},
+								        	success: function(data) {
+								            	$('#agregarUsuarioModal').modal('hide');
+												$("#AgregarFormModal")[0].reset();
+								            	if (data.success){
+								                	toastr.success("Se agrego con exito el Usuario");
+								                	getListadoUsuarios()
+								            	} else {
+								                	toastr.error("Error al agregar el Usuario")
+								            	}								
+					        				}
+					   					 })
+									}
 								}
 							}
 				  		}
@@ -124,8 +132,8 @@ $(document).ready(function() {
 							'<label for="usuario-' + element.codUsuario + '" class="text">' + element.emailUsuario + '</label>',
 							'<label for="usuario-' + element.codUsuario + '" class="text">' + devuelveEstado(element.estado) + '</label>',
                             '<div class="btn-group" >'
-                            + '<button type="button" class="btn btn-light" data-modificar-usuario="true" ' + data + ' data-toggle="modal"  id="modifUsuarioBtn" data-target="#modificarUsuarioModal" ><i class="fas fa-edit"></i></button>'
-                            + '<button type="button" class="btn btn-light" data-baja-usuario="true" ' + data + ' data-toggle="modal" data-target="#darBajaUsuarioModal" id="darBajaPresentacionModalBtn"><i class="fas fa-times"></i></button>'
+                            + '<button type="button" class="btn btn-light" data-modificar-usuario="true" ' + data + ' data-toggle="modal"  id="modifUsuarioBtn" data-target="#modificarUsuarioModal" data-toggle="tooltip" data-placement="right" title="Modificar Usuario"><i class="fas fa-edit"></i></button>'
+                            + '<button type="button" class="btn btn-light" data-baja-usuario="true" ' + data + ' data-toggle="modal" data-target="#darBajaUsuarioModal" id="darBajaUsuarioModalBtn" data-toggle="tooltip" data-placement="right" title="Cambio de Estado"><i class="fas fa-times"></i></button>'
                             + '</div>'
                         ]
                         usuariosTable.row.add(row).draw(false);
@@ -168,7 +176,9 @@ $(document).ready(function() {
 						$('#apellidosUsuarioMod').val(respuesta.data.apellidosDoctor);
         				$('#colegiadoUsuarioMod').val(respuesta.data.numColegiado);
         				$('#emailUsuarioMod').val( respuesta.data.emailUsuario);
-        				$('#tipUsuarioMod').val(respuesta.data.tipoUsuario);				
+        				//$('#tipUsuarioMod').val(respuesta.data.tipoUsuario);
+						//$("#tipoUsuarioModSearch").val(respuesta.data.tipoUsuario);
+						$("#tipoUsuarioModSearch").val(respuesta.data.tipoUsuario);			
 			    	}
 			 else 
 				{
@@ -196,7 +206,9 @@ $(document).ready(function() {
 		var apellidosDoctor = $('#apellidosUsuarioMod').val();
 		var emailDoctor = $('#emailUsuarioMod').val();
 		var colegiadoDoctor = $('#colegiadoUsuarioMod').val();
-		var tipoUsuario = $('#tipUsuarioMod').val();
+		//var tipoUsuario = $('#tipUsuarioMod').val();
+		var tipoUsuario = $('#tipoUsuarioModSearch').val();
+
 
 		if ($('#nombresUsuarioMod').val().trim() == "" || $('#apellidosUsuarioMod').val().trim() == "") {
 			 toastr.error("Debe ingresar por lo menos un nombre y un apellido de usuario");

@@ -14,14 +14,16 @@
             <button type="button" class="btn btn-light" data-toggle="modal" data-target="#agregarPacienteModal" id="agregarPacienteModalBtn" >Agregar <i class="fas fa-plus"></i></button>
         </div>
 
-        <table class="table table-striped w-50 left-margin-align" id="pacientesTable">
+        <table class="table table-striped w-75 left-margin-align" id="pacientesTable">
             <thead class="table thead-light">
             <tr style="font-weight: bold;">
                 <td></td>
-                <td>Codigo</td>
+                <td>Código<br></td>
                 <td>Nombres Paciente</td>
                 <td>Apellidos Paciente</td>
-                <td>Numero Identificacion</td>
+                <td>Tipo Identificación</td>
+                <td>Número Identificación</td>
+                <td>Estado Civil</td>
                 <td></td>
             </tr>
             </thead>

@@ -12,6 +12,7 @@ import java.util.List;
 
 import histopatologialab.core.JsonResponse;
 import histopatologialab.core.RequestAction;
+import histopatologialab.usuario.dto.TipoUsuario;
 import histopatologialab.usuario.controller.IUsuarioController;
 import histopatologialab.usuario.dto.Usuario;
 
@@ -80,7 +81,8 @@ public class UsuarioServlet extends HttpServlet {
     }
 
     private void getDefaultPage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+    	request.setAttribute("TipUsuario", TipoUsuario.values());
+    	request.setAttribute("TipUsuarioMod", TipoUsuario.values());
         RequestDispatcher despachador = request.getRequestDispatcher("mantenimientos/usuarios.jsp");
         despachador.forward(request, response);
     }

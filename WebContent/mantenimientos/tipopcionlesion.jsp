@@ -26,11 +26,11 @@
             </form>
         </div>
 
-        <h7 class="sub-tittle left-padding-align">Detalle Valores Opcion</h7>
+        <h6 class="sub-tittle left-padding-align">Detalle Valores Opcion</h6>
 
         <div class="action-container left-padding-align">
             <!-- Button trigger modal -->
-            <button type="button" class="btn btn-light" data-toggle="modal" data-target="#agregarOpcionLesionModal" id="agregarOpcionLesionModalBtn" >Agregar <i class="fas fa-plus"></i></button>
+            <button type="button" class="btn btn-light" data-toggle="modal" data-target="#agregarOpcionLesionModal" id="agregarOpcionLesionModalBtn" disabled >Agregar <i class="fas fa-plus"></i></button>
         </div>
 
         <table class="table table-striped w-50 left-margin-align" id="opcionlesionTable">
@@ -72,6 +72,12 @@
             </div>
             <div class="modal-body">
                 <table>
+                 <tr>
+                        <td><label for="TipoOpcionAdd" class="col-sm-4 col-form-label">Tipo Opcion:</label></td>
+                        <td>
+                            <input type="text" class="form-control" id="tipOpcionLesionvalue" disabled>
+                        </td>
+                    </tr>
                     <tr>
                         <td><label for="valorOpcion" class="col-sm-4 col-form-label">Valor Opcion:</label></td>
                         <td>

@@ -90,13 +90,13 @@
                         </td>
                     </tr>
                     <tr>
-                        <td><label for="pswUsuario" class="col-sm-4 col-form-label">Password:</label></td>
+                        <td><label for="pswUsuario" class="col-sm-4 col-form-label">Contraseña:</label></td>
                         <td>
                             <input type="password" class="form-control validate" id="pswUsuario" autocomplete="off" style="width: 322px; ">
                         </td>
                     </tr>
                     <tr>
-                        <td><label for="pswConfirm" class="col-sm-4 col-form-label">Confirmar Password:</label></td>
+                        <td><label for="pswConfirm" class="col-sm-4 col-form-label">Confirmar Contraseña:</label></td>
                         <td>
                             <input type="password" class="form-control" id="pswConfirm" autocomplete="off" style="width: 322px; ">
                         </td>
@@ -104,7 +104,13 @@
                     <tr>
                         <td><label for="tipoUsuario" class="col-sm-4 col-form-label">Tipo Usuario:</label></td>
                         <td>
-                            <input type="text" class="form-control" id="tipoUsuario" style="width: 322px; ">
+                             <select  class="form-control" name="tipoUsuarioSelect" id="tipoUsuarioSearch">
+                                <option value="0">Selecciona una opcion</option>
+                                <c:forEach items="${TipUsuario}" var="tipousuario">
+                                    <option value="${tipousuario.codigo}">${tipousuario.nombre}</option>
+                                </c:forEach>
+                            </select>
+                            
                         </td>
                     </tr>                                                                                                                 
                 </table>
@@ -146,31 +152,37 @@
                     <tr>
                         <td><label for="nombresUsuarioMod" class="col-sm-4 col-form-label">Nombres Usuario:</label></td>
                         <td>
-                            <input type="text" class="form-control" id="nombresUsuarioMod"  style="width: 322px; ">
+                            <input type="text" class="form-control" id="nombresUsuarioMod"  placeholder="Nombres Doctor/Usuario" style="width: 322px; ">
                         </td>
                     </tr>
                     <tr>
                         <td><label for="apellidosUsuarioMod" class="col-sm-4 col-form-label">Apellidos Usuario:</label></td>
                         <td>
-                            <input type="text" class="form-control" id="apellidosUsuarioMod" style="width: 322px; ">
+                            <input type="text" class="form-control" id="apellidosUsuarioMod" placeholder="Apellidos Doctor/Usuario" style="width: 322px; ">
                         </td>
                     </tr>
                     <tr>
                         <td><label for="colegiadoUsuarioMod" class="col-sm-4 col-form-label">Numero Colegiado:</label></td>
                         <td>
-                            <input type="text" class="form-control" id="colegiadoUsuarioMod" style="width: 322px; ">
+                            <input type="text" class="form-control" id="colegiadoUsuarioMod"  placeholder="Colegiado Doctor/Usuario" style="width: 322px; ">
                         </td>
                     </tr>
                     <tr>
                         <td><label for="emailUsuarioMod" class="col-sm-4 col-form-label">email Usuario: </label></td>
                         <td>
-                            <input type="text" class="form-control" id="emailUsuarioMod" style="width: 322px; ">
+                            <input type="text" class="form-control" id="emailUsuarioMod" placeholder="Email Doctor/Usuario" style="width: 322px; ">
                         </td>
                     </tr>
                     <tr>
                         <td><label for="tipUsuarioMod" class="col-sm-4 col-form-label">Tipo Usuario:</label></td>
                         <td>
-                            <input type="text" class="form-control" id="tipUsuarioMod" style="width: 322px; ">
+                        	<select class="form-control" name="tipoUsuarioModSelect" id="tipoUsuarioModSearch">
+                                <option value="0">Selecciona una opcion</option>
+                                <c:forEach items="${TipUsuarioMod}" var="tipousuariomod">
+                                    <option value="${tipousuariomod.codigo}">${tipousuariomod.nombre}</option>
+                                </c:forEach>
+                            </select>
+                            
                         </td>
                     </tr>                                                                                                                                            
                 </table>
@@ -191,7 +203,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Dar de Baja Usuario</h5>
+                <h5 class="modal-title">Cambio de Estado Usuario</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>

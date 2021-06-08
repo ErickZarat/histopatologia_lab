@@ -99,10 +99,12 @@ $(document).ready(function() {
                             '<label for="paciente-' + element.codigoPaciente + '">' + element.codigoPaciente + '</label>',
                             '<label for="paciente-' + element.codigoPaciente + '" class="text-capitalize">' + element.nombrePaciente + '</label>',
 							'<label for="paciente-' + element.codigoPaciente + '" class="text-capitalize">' + element.apellidosPaciente + '</label>',
+							'<label for="paciente-' + element.codigoPaciente + '" class="text-capitalize">' + element.tipoidPaciente + '</label>',	
 							'<label for="paciente-' + element.codigoPaciente + '" class="text-capitalize">' + element.identificacionPaciente + '</label>',
+							'<label for="paciente-' + element.codigoPaciente + '" class="text-capitalize">' + element.estCivilPaciente + '</label>',
                             '<div class="btn-group" >'
-                            + '<button type="button" class="btn btn-light" data-modificar-paciente="true" ' + data + ' data-toggle="modal"  id="modifPacienteBtn" data-target="#modificarPacienteModal" ><i class="fas fa-edit"></i></button>'
-                            + '<button type="button" class="btn btn-light" data-baja-paciente="true" ' + data + ' data-toggle="modal" data-target="#darBajaPacienteModal" id="darBajaPresentacionModalBtn"><i class="far fa-calendar"></i></button>'
+                            + '<button type="button" class="btn btn-light" data-modificar-paciente="true" ' + data + ' data-toggle="modal"  id="modifPacienteBtn" data-target="#modificarPacienteModal" data-toggle="tooltip" data-placement="right" title="Modificar Datos Paciente"><i class="fas fa-edit"></i></button>'
+                            + '<button type="button" class="btn btn-light" data-baja-paciente="true" ' + data + ' data-toggle="modal" data-target="#darBajaPacienteModal" id="darBajaPacienteModalBtn"><i class="far fa-calendar"></i></button>'
                             + '</div>'
                         ]
                         pacientesTable.row.add(row).draw(false);

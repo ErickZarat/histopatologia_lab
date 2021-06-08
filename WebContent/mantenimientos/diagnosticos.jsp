@@ -17,7 +17,7 @@
             <thead class="table thead-light">
             <tr style="font-weight: bold;">
                 <td></td>
-                <td >Codigo Diagnóstico</td>
+                <td >Código Diagnóstico</td>
                 <td >Nombre Diagnóstico</td>
                 <td >Estado Diagnóstico</td>                
                 <td></td>
@@ -53,7 +53,7 @@
                     <tr>
                         <td style="width: 132px; "><label for="nombreDiagnostico" class="col-sm-4 col-form-label">Nombre Diagnostico:</label></td>
                         <td style="width: 350px; ">
-                            <input type="text" class="form-control" id="nombreDiagnostico" style="width: 320px; ">
+                            <input type="text" class="form-control" id="nombreDiagnostico" style="width: 320px; " placeholder="Nombre Diagnostico">
                         </td>
                     </tr>
                 </table>
@@ -85,9 +85,9 @@
                         </td>
                     </tr>
                     <tr>
-                        <td style="width: 161px; "><label for="nombreDiagnosticoMod" class="col-sm-4 col-form-label">Nombre Diagnostico:</label></td>
+                        <td style="width: 161px; "><label for="nombreDiagnosticoMod" class="col-sm-7 col-form-label">Nombre Diagnostico:</label></td>
                         <td>
-                            <input type="text" class="form-control" id="nombreDiagnosticoMod">
+                            <input type="text" class="form-control" id="nombreDiagnosticoMod" placeholder="Nombre Diagnostico">
                         </td>
                     </tr>
                 </table>

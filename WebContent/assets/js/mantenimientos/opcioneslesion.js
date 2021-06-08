@@ -58,7 +58,15 @@ $(document).ready(function() {
     $('#TipoOpcionSearch').change(getListadoOpcionLesion);
 
     function getListadoOpcionLesion() {
-        $('#agregarOpcionLesionModalBtn').prop('disabled', false);
+		if ($('#TipoOpcionSearch').val()== 0)
+		{  $('#agregarOpcionLesionModalBtn').prop('disabled', true); 
+		   $('#tipOpcionLesionvalue').val("");  
+		} else {
+			 $('#agregarOpcionLesionModalBtn').prop('disabled', false);
+			// $('#tipOpcionLesionvalue').val($('#TipoOpcionSearch').val());  
+			$('#tipOpcionLesionvalue').val($('#TipoOpcionSearch option:selected').text());  
+			//tipOpcionLesionvalue
+		}
 
         opcionlesionTable.rows().remove().draw(false);
         var tipoOpcion = $('#TipoOpcionSearch').val()
@@ -79,8 +87,8 @@ $(document).ready(function() {
                             '<label for="opcion-' + element.codigoOpcion + '" class="text-capitalize">' + element.valor + '</label>',
                             '<label for="opcion-' + element.codigoOpcion + '" class="text-capitalize">' + devuelveEstado(element.estado) + '</label>',
                             '<div class="btn-group" >'
-                            + '<button type="button" class="btn btn-light" data-modificar-opcion="true" ' + data + ' data-toggle="modal" data-target="#modificarOpcionModal"><i class="fas fa-edit"></i></button>'
-                            + '<button type="button" class="btn btn-light" data-baja-opcion="true" ' + data + ' data-toggle="modal" data-target="#darBajaOpcionModal" id="darBajaPresentacionModalBtn"><i class="fas fa-times"></i></button>'
+                            + '<button type="button" class="btn btn-light" data-modificar-opcion="true" ' + data + ' data-toggle="modal" data-target="#modificarOpcionModal"  data-toggle="tooltip" data-placement="right" title="Modificar Valor"><i class="fas fa-edit"></i></button>'
+                            + '<button type="button" class="btn btn-light" data-baja-opcion="true" ' + data + ' data-toggle="modal" data-target="#darBajaOpcionModal" id="darBajaPresentacionModalBtn" data-toggle="tooltip" data-placement="right" title="Cambio de Estado" ><i class="fas fa-times"></i></button>'
                             + '</div>'
                         ]
                         opcionlesionTable.row.add(row).draw(false);
@@ -106,8 +114,8 @@ $(document).ready(function() {
 
 
     function setOpcionDataDarBaja() {
-        $('#codigoMedicamentoBaja').text($(this).data('codigo-opcion'))
-        $('#nombreMedicamentoBaja').text($(this).data('nombre-opcion'))
+        $('#codigoOpcionLesionBaja').text($(this).data('codigo-opcion'))
+        $('#valorOpcionLesionBaja').text($(this).data('nombre-opcion'))
     }
 
     function setOpcionDataModificar(){

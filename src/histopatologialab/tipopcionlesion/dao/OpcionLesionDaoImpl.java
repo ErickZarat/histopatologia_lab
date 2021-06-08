@@ -35,8 +35,9 @@ public class OpcionLesionDaoImpl implements IOpcionLesionDao{
     	 List<Record> results = query
                  .select(tabla.asterisk())
                  .from(tabla)
-                 .where(tabla.ESTADO_TIPO_OPCION.notEqualIgnoreCase(Estado.DESHABILITADO.getSlug())
-                         .and(tabla.NOMBRE_TIPO_OPCION.eq(tipOpcion)))
+                 .where(tabla.NOMBRE_TIPO_OPCION.eq(tipOpcion)
+                		 //.and(tabla.ESTADO_TIPO_OPCION.notEqualIgnoreCase(Estado.DESHABILITADO.getSlug()))
+                         )
                  .orderBy(tabla.COD_TIPO_OPCION_LESION.desc())
                  .fetch();
          return results.stream().map(this::parseItem).collect(Collectors.toList());

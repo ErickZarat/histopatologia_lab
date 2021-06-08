@@ -17,7 +17,7 @@
             <thead class="table thead-light">
             <tr style="font-weight: bold;">
                 <td></td>
-                <td >Codigo Enfermedad</td>
+                <td >Código Enfermedad</td>
                 <td >Nombre Enfermedad</td>
                 <td >Estado Enfermedad</td>
                 <td></td>
@@ -53,7 +53,7 @@
                     <tr>
                         <td style="width: 132px; "><label for="nombreEnfermedad" class="col-sm-4 col-form-label">Nombre Enfermedad:</label></td>
                         <td style="width: 350px; ">
-                            <input type="text" class="form-control" id="nombreEnfermedad" style="width: 320px; ">
+                            <input type="text" class="form-control" id="nombreEnfermedad" style="width: 320px;" placeholder="Nombre Enfermedad">
                         </td>
                     </tr>
                 </table>
@@ -87,7 +87,7 @@
                     <tr>
                         <td style="width: 161px; "><label for="nombreEnfermedadMod" class="col-sm-4 col-form-label">Nombre Enfermedad:</label></td>
                         <td>
-                            <input type="text" class="form-control" id="nombreEnfermedadMod">
+                            <input type="text" class="form-control" id="nombreEnfermedadMod" placeholder="Nombre Enfermedad">
                         </td>
                     </tr>
                 </table>
@@ -106,7 +106,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Dar de Baja Enfermedad</h5>
+                <h5 class="modal-title">Cambio de Estado Enfermedad</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>

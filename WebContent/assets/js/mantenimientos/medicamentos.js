@@ -32,8 +32,13 @@ $(document).ready(function() {
     $('#tipoMedicamentoSearch').change(getListadoMedicamentos);
 
     function getListadoMedicamentos() {
-        $('#agregarMedicamentoModalBtn').prop('disabled', false);
-
+	
+		if ($('#tipoMedicamentoSearch').val()== 0)
+		{   $('#agregarMedicamentoModalBtn').prop('disabled', true);
+		} else {
+			 $('#agregarMedicamentoModalBtn').prop('disabled', false);
+		}
+	
         medicamentosTable.rows().remove().draw(false);
         presentacionMedicamentosTable.rows().remove().draw(false);
 

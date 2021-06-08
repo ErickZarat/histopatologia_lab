@@ -7,7 +7,7 @@ public enum TipOpcion {
   FORMA("FORMA","Forma de la Lesion"),
   SUPERFICIE("SUPERFICIE","Superficie de la Lesion"),
   CONSISTENCIA("CONSISTENCIA","Consistencia de la Lesion"),
-  INTRA("INTRAOSEO","Es Ingraoseo"),
+  INTRA("INTRAOSEO","Es Intraoseo"),
   PIEZA("PIEZA","Asociado a pieza dental"),
   PROCEDIMIENTO("PROCEDIMIENTO","Procedimiento Biopsia");
   
