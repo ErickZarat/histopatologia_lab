@@ -82,4 +82,11 @@ public class PacienteControllerImpl implements IPacienteController{
 		return pacientesDao.getPaciente(codPaciente);
 	}
 
+	@Override
+	public List<Paciente> buscarPaciente(String value) {
+		if(value == null) return null;
+		if(value.isEmpty()) return null;
+		return pacientesDao.buscarPaciente(value);
+	}
+
 }

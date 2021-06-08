@@ -15,7 +15,11 @@
                 </tr>
                 <tr>
                     <td><label class="table-form-label" for="codigoUsuario">Codigo:</label></td>
-                    <td><input type="text" id="codigoUsuario" class="form-control" disabled value="${paciente.codigoPaciente}"></td>
+                    <td class="search">
+                        <input type="text" id="codigoUsuario" class="form-control" value="${paciente.codigoPaciente}">
+                        <ul class="results" >
+                        </ul>
+                    </td>
                     <td><label class="table-form-label" for="nombreUsuario">Nombre:</label></td>
                     <td colspan="3"><input type="text" id="nombreUsuario" class="form-control" value="${paciente.nombrePaciente} ${paciente.apellidosPaciente}"></td>
                 </tr>

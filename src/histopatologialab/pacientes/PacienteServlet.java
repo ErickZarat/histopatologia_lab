@@ -73,12 +73,20 @@ public class PacienteServlet extends HttpServlet {
 
         if (action == RequestAction.LISTAR_JSON) {
             getJsonPaciente(request, response);
+        } else if (action == RequestAction.BUSCAR) {
+            buscarPaciente(request, response);
         } else {
             getDefaultPage(request, response);
         }
 	}
-	
-	private void getJsonPaciente(HttpServletRequest request, HttpServletResponse response) throws IOException {
+
+    private void buscarPaciente(HttpServletRequest request, HttpServletResponse response) throws IOException {
+	    String value = request.getParameter("value");
+	    List<Paciente> pacientes = controller.buscarPaciente(value);
+        toJsonResponse(response, new JsonResponse<List<Paciente>>(pacientes != null, pacientes));
+    }
+
+    private void getJsonPaciente(HttpServletRequest request, HttpServletResponse response) throws IOException {
 	        List<Paciente> pacientesList = controller.getPacientes();
 	        toJsonResponse(response, new JsonResponse<>(pacientesList != null, pacientesList));
 	    }

@@ -11,6 +11,7 @@ public interface IPacienteDao {
 	
     Paciente getPaciente(long codPaciente); 
 	Paciente guardarPaciente(Paciente paciente); 
-	Paciente modificarPaciente(Paciente paciente); 
+	Paciente modificarPaciente(Paciente paciente);
 
+    List<Paciente> buscarPaciente(String value);
 }

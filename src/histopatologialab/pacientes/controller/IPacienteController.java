@@ -20,4 +20,6 @@ public interface IPacienteController {
     List<Paciente> getPacientesByidentificacion( String tipo, String numident);
 
 	Paciente getPacienteByCodigo(long codPaciente);
+
+    List<Paciente> buscarPaciente(String value);
 }
