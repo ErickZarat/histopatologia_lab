@@ -18,4 +18,6 @@ public interface IExamenDao {
     int getNextExamenNumber(LocalDate date);
 
     List<Integer> getCaracteristicas(int codExamen);
+
+    List<Examen> getExamenes();
 }

@@ -7,6 +7,7 @@
 <div class="container-fluid">
 
     <div>
+        <h1 class="main-tittle">Consultas</h1>
 
         <div class="search-container">
             <form class="align-middle" action="ConsultaServlet.do" method="post">

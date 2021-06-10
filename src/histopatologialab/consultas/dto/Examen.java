@@ -1,5 +1,8 @@
 package histopatologialab.consultas.dto;
 
+import histopatologialab.pacientes.dto.Paciente;
+import histopatologialab.usuario.dto.Usuario;
+
 import java.time.LocalDate;
 import java.util.List;
 
@@ -23,9 +26,13 @@ public class Examen {
     String telefonoDoctorRemision;
     String emailDoctorRemision;
     String dependenciaDoctorRemision;
+
+    Paciente paciente;
+    Usuario doctor;
+
     List<Integer> caracteristicas;
 
-    public Examen(int codExamen, int codPaciente, String numExamen, LocalDate fechaExamen, String estado, String historiaExamenLesion, String tamanoLesion, String dimensionalLesion, int duracionLesionDias, int duracionLesionMeses, int duracionLesionAnios, String datosImportantesLesion, int doctorExamen, String tipoRemision, String doctorRemision, String direccionDoctorRemision, String telefonoDoctorRemision, String emailDoctorRemision, String dependenciaDoctorRemision) {
+    public Examen(int codExamen, int codPaciente, String numExamen, LocalDate fechaExamen, String estado, String historiaExamenLesion, String tamanoLesion, String dimensionalLesion, int duracionLesionDias, int duracionLesionMeses, int duracionLesionAnios, String datosImportantesLesion, int doctorExamen, String tipoRemision, String doctorRemision, String direccionDoctorRemision, String telefonoDoctorRemision, String emailDoctorRemision, String dependenciaDoctorRemision, Paciente paciente, Usuario doctor) {
         this.codExamen = codExamen;
         this.codPaciente = codPaciente;
         this.numExamen = numExamen;
@@ -45,6 +52,8 @@ public class Examen {
         this.telefonoDoctorRemision = telefonoDoctorRemision;
         this.emailDoctorRemision = emailDoctorRemision;
         this.dependenciaDoctorRemision = dependenciaDoctorRemision;
+        this.paciente = paciente;
+        this.doctor = doctor;
     }
 
     public Examen() {

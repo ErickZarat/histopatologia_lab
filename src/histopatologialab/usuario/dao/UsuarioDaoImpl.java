@@ -16,32 +16,32 @@ import org.jooq.Record;
 public class UsuarioDaoImpl implements IUsuarioDao{
 
     private final DSLContext query = DB.getConexion();
-    private final LabUsuario tabla = LabUsuario.LAB_USUARIO; 
+    private final LabUsuario tablaUsuario = LabUsuario.LAB_USUARIO;
 	
 	
     public Usuario parseItem(Record record) {
     	return new Usuario(
-    		record.getValue(tabla.COD_USUARIO),
-    		record.getValue(tabla.LOGIN_USUARIO),
-    		record.getValue(tabla.PASSWORD),
-    		record.getValue(tabla.NOMBRES_DOCTOR), 
-    		record.getValue(tabla.APELLIDOS_DOCTOR) ,
-    		record.getValue(tabla.NUM_COLEGIADO),
-    		record.getValue(tabla.EMAILUSUARIO), 
-    		record.getValue(tabla.TIPO_USUARIO), 
-    		record.getValue(tabla.ESTADO), 
-            record.getValue(tabla.FECHACREACION),
-            record.getValue(tabla.CREADOPOR),
-            record.getValue(tabla.MODIFICADOPOR),
-            record.getValue(tabla.FECHAMODIFICACION) 	
+    		record.getValue(tablaUsuario.COD_USUARIO),
+    		record.getValue(tablaUsuario.LOGIN_USUARIO),
+    		record.getValue(tablaUsuario.PASSWORD),
+    		record.getValue(tablaUsuario.NOMBRES_DOCTOR),
+    		record.getValue(tablaUsuario.APELLIDOS_DOCTOR) ,
+    		record.getValue(tablaUsuario.NUM_COLEGIADO),
+    		record.getValue(tablaUsuario.EMAILUSUARIO),
+    		record.getValue(tablaUsuario.TIPO_USUARIO),
+    		record.getValue(tablaUsuario.ESTADO),
+            record.getValue(tablaUsuario.FECHACREACION),
+            record.getValue(tablaUsuario.CREADOPOR),
+            record.getValue(tablaUsuario.MODIFICADOPOR),
+            record.getValue(tablaUsuario.FECHAMODIFICACION)
     	);    			
     }
     
     @Override
 	 public List<Usuario> getUsuarios(){
     	List<Record> results = query
-                .select(tabla.asterisk())
-                .from(tabla)
+                .select(tablaUsuario.asterisk())
+                .from(tablaUsuario)
                 .fetch();
         return results.stream().map(this::parseItem).collect(Collectors.toList());
 		 
@@ -51,9 +51,9 @@ public class UsuarioDaoImpl implements IUsuarioDao{
     @Override
      public Usuario getUsuario(String loginUsuario) {
         Record result = query
-                .select(tabla.asterisk())
-                .from(tabla)
-                .where(tabla.LOGIN_USUARIO.equal(loginUsuario))
+                .select(tablaUsuario.asterisk())
+                .from(tablaUsuario)
+                .where(tablaUsuario.LOGIN_USUARIO.equal(loginUsuario))
                 .fetchOne();
 		System.out.println(loginUsuario);
 		System.out.println(result);
@@ -64,7 +64,7 @@ public class UsuarioDaoImpl implements IUsuarioDao{
     @Override
 	 public Usuario guardarUsuario(Usuario usuario) {
         //System.out.println("guardando el usuario antes ");
-    	LabUsuarioRecord record =  query.newRecord(tabla);
+    	LabUsuarioRecord record =  query.newRecord(tablaUsuario);
     	record.setLoginUsuario(usuario.getLoginUsuario());
 		record.setNombresDoctor(usuario.getNombresDoctor());
 		record.setApellidosDoctor(usuario.getApellidosDoctor());
@@ -82,15 +82,15 @@ public class UsuarioDaoImpl implements IUsuarioDao{
 	 
     @Override
 	 public Usuario modificarUsuario(Usuario usuario) {
-    	query.update(tabla)
-        .set(tabla.NOMBRES_DOCTOR, usuario.getNombresDoctor())
-        .set(tabla.APELLIDOS_DOCTOR, usuario.getApellidosDoctor())
-        .set(tabla.EMAILUSUARIO, usuario.getEmailUsuario())
-        .set(tabla.TIPO_USUARIO, usuario.getTipoUsuario())
-        .set(tabla.FECHAMODIFICACION, LocalDate.now())
-        .set(tabla.MODIFICADOPOR, usuario.getModificadoPor())
-        .set(tabla.ESTADO, usuario.getEstado())
-        .where(tabla.LOGIN_USUARIO.eq(usuario.getLoginUsuario()))
+    	query.update(tablaUsuario)
+        .set(tablaUsuario.NOMBRES_DOCTOR, usuario.getNombresDoctor())
+        .set(tablaUsuario.APELLIDOS_DOCTOR, usuario.getApellidosDoctor())
+        .set(tablaUsuario.EMAILUSUARIO, usuario.getEmailUsuario())
+        .set(tablaUsuario.TIPO_USUARIO, usuario.getTipoUsuario())
+        .set(tablaUsuario.FECHAMODIFICACION, LocalDate.now())
+        .set(tablaUsuario.MODIFICADOPOR, usuario.getModificadoPor())
+        .set(tablaUsuario.ESTADO, usuario.getEstado())
+        .where(tablaUsuario.LOGIN_USUARIO.eq(usuario.getLoginUsuario()))
         .execute();
         return getUsuario(usuario.getLoginUsuario());
 	 }

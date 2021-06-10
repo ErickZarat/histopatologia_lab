@@ -41,7 +41,7 @@ public class ConsultaServlet extends HttpServlet {
         RequestAction action = getRequestAction(request);
 
         if (action == RequestAction.CREAR || action == RequestAction.VER) {
-            handleGetCreatePaciente(request, response);
+            handleGetCreateWithPaciente(request, response);
         } else {
             getDefaultPage(request, response);
         }
@@ -54,7 +54,7 @@ public class ConsultaServlet extends HttpServlet {
 
     }
 
-    private void handleGetCreatePaciente(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    private void handleGetCreateWithPaciente(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String codPaciente = request.getParameter("cod_paciente");
 
         Paciente paciente = null;
@@ -97,6 +97,7 @@ public class ConsultaServlet extends HttpServlet {
 
 
     private void getDefaultPage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setAttribute("examenes", controller.getExamenes());
         RequestDispatcher despachador = request.getRequestDispatcher("consulta/consulta.jsp");
         despachador.forward(request, response);
     }

@@ -33,6 +33,11 @@ public class ConsultaControllerImpl implements IConsultaController {
         return examenDao.getExamen(codExamen);
     }
 
+    @Override
+    public List<Examen> getExamenes() {
+        return examenDao.getExamenes();
+    }
+
     public Examen guardarExamen(Examen examen) {
         return examenDao.guardarExamen(examen);
     }

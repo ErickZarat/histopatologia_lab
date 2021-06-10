@@ -12,4 +12,6 @@ public interface IConsultaController {
 
     Examen getExamen(int codExamen);
 
+    List<Examen> getExamenes();
+
 }
