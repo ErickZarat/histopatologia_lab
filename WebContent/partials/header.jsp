@@ -46,11 +46,14 @@
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                 <a class="dropdown-item" href="#">Dashboard</a>
-                <a class="dropdown-item" href="#">Edit Profile</a>
-                <a class="dropdown-item" href="#">Log Out</a>
+                <a class="dropdown-item"href="MenuServlet.do?accion=CAMBIO">Cambiar Contraseña</a>
+                <a class="dropdown-item"href="MenuServlet.do?accion=SALIR">Log Out</a>
             </div>
         </li>
     </ul>
 </nav>
 
+
+
 <img src="assets/img/logo.png" class="fondo-logo" >
+

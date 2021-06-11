@@ -15,7 +15,8 @@ public class PasswordUtils {
 	    private static final String ALPHABET = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
 	    private static final int ITERATIONS = 10000;
 	    private static final int KEY_LENGTH = 256;
-	    private static final String SALT = "HISTOPATOLOGIA2021"; 
+	    private static final String SALT = "HISTOPATOLOGIA2021_998877$"; 
+	   // private static final String SALT = "HISTOPATOLOGIA2021"; 
 	    
 	/*     public static String getSalt(int length) {
 	        StringBuilder returnValue = new StringBuilder(length);
@@ -31,7 +32,7 @@ public class PasswordUtils {
 	            SecretKeyFactory skf = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA1");
 	            return skf.generateSecret(spec).getEncoded();
 	        } catch (NoSuchAlgorithmException | InvalidKeySpecException e) {
-	            throw new AssertionError("Error while hashing a password: " + e.getMessage(), e);
+	            throw new AssertionError("Error al generar password: " + e.getMessage(), e);
 	        } finally {
 	            spec.clearPassword();
 	        }
@@ -45,13 +46,12 @@ public class PasswordUtils {
 	        return returnValue;
 	    }
 	    
-	    public static boolean verifyUserPassword(String providedPassword,
-	            String securedPassword, String salt)
+	   // public static boolean verifyUserPassword(String providedPassword, String securedPassword, String salt)
+	    public static boolean verifyUserPassword(String providedPassword, String securedPassword)
 	    {
 	        boolean returnValue = false;
 	        
 	        // Generando el password con el valor Salt
-	        //String newSecurePassword = generateSecurePassword(providedPassword, salt);
 	        String newSecurePassword = generateSecurePassword(providedPassword);
 	        
 	        // Validando si los valores son iguales 

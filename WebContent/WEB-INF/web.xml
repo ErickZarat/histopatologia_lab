@@ -87,4 +87,14 @@
         <url-pattern>/DiagnosticoServlet.do</url-pattern>
     </servlet-mapping>
 
+
+    <servlet>
+        <servlet-name>MenuServlet</servlet-name>
+        <servlet-class>histopatologialab.menu.MenuServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>MenuServlet</servlet-name>
+        <url-pattern>/MenuServlet.do</url-pattern>
+    </servlet-mapping>
+
 </web-app>

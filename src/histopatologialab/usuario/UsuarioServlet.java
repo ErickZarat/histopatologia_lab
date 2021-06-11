@@ -70,7 +70,9 @@ public class UsuarioServlet extends HttpServlet {
             buscarUsuario(request, response);
         } else if (action == RequestAction.REINICIO_PSW) { 
         	ReinicioPswUsuario(request, response);
-        }    
+        }  else if (action == RequestAction.CAMBIO_PSW) { 
+	    	CambioPswUsuario(request, response);
+	    }   
     }
 
 	
@@ -142,5 +144,17 @@ public class UsuarioServlet extends HttpServlet {
         System.out.println(usuario);
         toJsonResponse(response, new JsonResponse<>(usuario != null, usuario));
     }
+    
+    private void CambioPswUsuario(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        String loginUsuario =request.getParameter("loginUser"); 
+        String usuarioMod = getUsuarioFromSession(request);
+        System.out.println("antes de modificar controller");
+        Usuario usuario = controller.reinicioPswUsuario(loginUsuario, usuarioMod);
+        System.out.println("DESPUES DE MODIFICAR EL PSW");
+        System.out.println(usuario);
+        toJsonResponse(response, new JsonResponse<>(usuario != null, usuario));
+    }
+    
+    
 
 }

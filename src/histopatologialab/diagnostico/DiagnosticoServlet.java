@@ -47,6 +47,7 @@ public class DiagnosticoServlet extends HttpServlet {
 	    checkSession(request, response);
         System.out.println("Hola Servlet post..");
         RequestAction action = getRequestAction(request);
+        System.out.println(action);
 
         if (action == RequestAction.CREAR) {
            crearDiagnostico(request, response);
@@ -72,6 +73,7 @@ public class DiagnosticoServlet extends HttpServlet {
         checkSession(request, response);
         System.out.println("Hola Servlet get diagnostico..");
         RequestAction action = getRequestAction(request);
+        System.out.println(action);
 
         if (action == RequestAction.LISTAR_JSON) {
         	getJsonDiagnostico(request, response);

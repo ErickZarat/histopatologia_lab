@@ -11,25 +11,18 @@ import histopatologialab.usuario.controller.IUsuarioController;
 public class LoginController {
 
     public Boolean iniciarSession(String usuario, String password) {
-        //agregar logica del login
-    	
-    	////return true;
+
     	IUsuarioController controller = usuarioController; 
 	    try {// validar que no exista un usuario con ese login
-	    	 System.out.println(usuario);
 	        Usuario usuarioBD = controller.buscarUsuario(usuario);
-	        System.out.println("usaurio devuelto");
-	        System.out.println(usuarioBD);
 	    	if (!(usuarioBD == null))
 	    	{	// usuario existe, validando password
-	    		String salt = "HISTOPATOLOGIA2021" ; //usuarioBD.getLlave(); 
-	    		//System.out.println(salt);
-	            boolean passwordMatch = PasswordUtils.verifyUserPassword(password, usuarioBD.getPasswordUsuario(), salt);
+	        	 boolean passwordMatch = PasswordUtils.verifyUserPassword(password, usuarioBD.getPasswordUsuario());
 	            if(passwordMatch) 
-	            { System.out.println("Provided  password is correct.");
+	            { System.out.println("El password ingresado es correcto.");
 		    		return true; 
 	            } else {
-	                System.out.println("Provided password is incorrect");
+	                System.out.println("El password ingresado no es correcto");
 		    		return false;
 	            }
 	    	}

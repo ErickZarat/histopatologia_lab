@@ -101,9 +101,7 @@ public class UsuarioControllerImpl implements IUsuarioController{
     	}	    			
 	} catch (Exception e) {
 		return null;
-	}
-	
-		
+	}		
 	}
 	
 	
