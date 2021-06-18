@@ -21,14 +21,7 @@ public class RoleHandler {
     }
 
     private Role getRole() {
-        String roleSlug;
-        try {
-            roleSlug = (String) this.session.getAttribute(ROLE_KEY);
-        } catch (IllegalStateException exception){
-            roleSlug = "";
-//            Logger.warn("session already invalidated");
-        }
-
+        String roleSlug = (String) this.session.getAttribute(ROLE_KEY);
         return Role.findBySlug(roleSlug);
     }
 

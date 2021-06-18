@@ -64,7 +64,7 @@ public class MedicamentosServlet extends HttpServlet {
 
     private void getDefaultPage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setAttribute("tiposMedicamento", TipoMedicamento.values());
-//        request.setAttribute("roleHandler", roleHandler);
+        request.setAttribute("roleHandler", roleHandler);
         RequestDispatcher despachador = request.getRequestDispatcher("mantenimientos/medicamentos.jsp");
         despachador.forward(request, response);
     }

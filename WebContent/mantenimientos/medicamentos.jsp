@@ -33,7 +33,9 @@
 
         <div class="action-container left-padding-align">
             <!-- Button trigger modal -->
+            <c:if test="!roleHandler.isNormal()">
                 <button type="button" class="btn btn-light" data-toggle="modal" data-target="#agregarMedicamentoModal" id="agregarMedicamentoModalBtn" disabled>Agregar <i class="fas fa-plus"></i></button>
+            </c:if>
         </div>
 
         <table class="table table-striped w-50 left-margin-align" id="medicamentosTable">
