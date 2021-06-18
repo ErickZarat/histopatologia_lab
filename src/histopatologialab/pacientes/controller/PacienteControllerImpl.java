@@ -5,6 +5,7 @@ import java.time.LocalDate;
 
 
 import histopatologialab.core.Estado;
+import histopatologialab.core.JsonResponse;
 import histopatologialab.pacientes.dto.Paciente;
 import histopatologialab.pacientes.dao.IPacienteDao;
 
@@ -17,15 +18,17 @@ public class PacienteControllerImpl implements IPacienteController{
     }
 
     @Override
-	public Paciente crearPaciente( String identificacionPaciente, String nombrePaciente, String apellidosPaciente,
-			String direccionPaciente, String telefonoPaciente, LocalDate fecNacimientoPaciente,
-			String generoPaciente, String ocupacionPaciente, String tipoidPaciente, String emailPaciente, String estCivilPaciente, String usuario) 
+	public JsonResponse<Paciente> crearPaciente(String identificacionPaciente, String nombrePaciente, String apellidosPaciente,
+									  String direccionPaciente, String telefonoPaciente, LocalDate fecNacimientoPaciente,
+									  String generoPaciente, String ocupacionPaciente, String tipoidPaciente, String emailPaciente, String estCivilPaciente, String usuario)
 	{
 		  try { Long id = null;
 		        Paciente paciente = new Paciente(id, identificacionPaciente,  nombrePaciente, apellidosPaciente, 
 		    			 direccionPaciente,  telefonoPaciente,  fecNacimientoPaciente, generoPaciente,  ocupacionPaciente,  tipoidPaciente,  emailPaciente, estCivilPaciente, 
 		    			 usuario, LocalDate.now(), null, null);
-		        return pacientesDao.guardarPaciente(paciente);
+
+		        paciente = pacientesDao.guardarPaciente(paciente);
+		        return new JsonResponse<>(paciente != null, paciente);
 		    	} catch (Exception e) {
 		        	return null;
 		    	}
@@ -33,7 +36,7 @@ public class PacienteControllerImpl implements IPacienteController{
 	
 	
     @Override
-    public Paciente modificarPaciente(Long codPaciente, String identificacionPaciente, String nombrePaciente, String apellidosPaciente,
+    public JsonResponse<Paciente> modificarPaciente(Long codPaciente, String identificacionPaciente, String nombrePaciente, String apellidosPaciente,
     		String direccionPaciente,String tipoidPaciente, String ocupacionPaciente, String emailPaciente,
     		String telefonoPaciente, String generoPaciente, String estCivilPaciente, String usuario)    {
      	 try {	
@@ -50,7 +53,8 @@ public class PacienteControllerImpl implements IPacienteController{
     		 paciente.setEstCivilPaciente(estCivilPaciente);
     		 paciente.setModificadoPor(usuario);
     		 paciente.setFechaModificacion(LocalDate.now());
-    		 return pacientesDao.modificarPaciente(paciente);	 
+    		 paciente = pacientesDao.modificarPaciente(paciente);
+    		 return new JsonResponse<>(paciente != null, paciente);
          } catch (Exception e) {
              return null;
          }    	
@@ -62,26 +66,28 @@ public class PacienteControllerImpl implements IPacienteController{
    // }
     
     @Override
-    public List<Paciente>getPacientes(){
-    	return pacientesDao.getPacientes();
-    	
+    public JsonResponse<List<Paciente>> getPacientes(){
+    	List<Paciente> pacientes = pacientesDao.getPacientes();
+    	return new JsonResponse<>(pacientes != null, pacientes);
     }
     
     @Override
-    public List<Paciente>getPacientesByNombre(String Nombre){
-    	return pacientesDao.getPacientesByNombre(Nombre);
-    	
+    public JsonResponse<List<Paciente>> getPacientesByNombre(String Nombre){
+    	List<Paciente> pacientes = pacientesDao.getPacientesByNombre(Nombre);
+    	return new JsonResponse<>(pacientes != null, pacientes);
+
     }
     
     @Override
-    public List<Paciente> getPacientesByidentificacion( String tipo, String numident){
-    	return pacientesDao.getPacientesByidentificacion(tipo, numident);
-    	
+    public JsonResponse<List<Paciente>> getPacientesByidentificacion( String tipo, String numident){
+    	List<Paciente> pacientes = pacientesDao.getPacientesByidentificacion(tipo, numident);
+    	return new JsonResponse<>(pacientes != null, pacientes);
     }
     
     @Override
-    public Paciente buscarPaciente(Long codPaciente)
-    {  return pacientesDao.getPaciente(codPaciente);    	
+    public JsonResponse<Paciente> buscarPaciente(Long codPaciente) {
+    	Paciente paciente = pacientesDao.getPaciente(codPaciente);
+    	return new JsonResponse(paciente != null, paciente);
     }
 	
 }

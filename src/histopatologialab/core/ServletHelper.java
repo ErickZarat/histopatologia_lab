@@ -52,7 +52,7 @@ public class ServletHelper {
         return requestAction;
     }
 
-    public static void toJsonResponse(HttpServletResponse response, JsonResponse object) throws IOException {
+    public static void returnJson(HttpServletResponse response, JsonResponse object) throws IOException {
         response.setContentType("application/json; charset=UTF-8");
         PrintWriter printout = response.getWriter();
 

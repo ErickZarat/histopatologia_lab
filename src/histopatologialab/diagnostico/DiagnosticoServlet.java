@@ -1,8 +1,6 @@
 package histopatologialab.diagnostico;
 
 import java.io.IOException;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -84,8 +82,8 @@ public class DiagnosticoServlet extends HttpServlet {
 	
 		
 	private void getJsonDiagnostico(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        List<Diagnostico> diagnosticosList = controller.getDiagnosticos();
-        toJsonResponse(response, new JsonResponse<>(diagnosticosList != null, diagnosticosList));
+        JsonResponse<List<Diagnostico>> diagnosticosList = controller.getDiagnosticos();
+        returnJson(response, diagnosticosList);
     }
 
 	
@@ -101,8 +99,8 @@ public class DiagnosticoServlet extends HttpServlet {
 	    String nombreDiagnostico  = request.getParameter("nombreDiagnostico");	    
 	    
    
-	    Diagnostico  diagnostico = controller.crearDiagnostico(nombreDiagnostico,  usuario);
-	    toJsonResponse(response, new JsonResponse<>(diagnostico != null, diagnostico));
+	    JsonResponse<Diagnostico>  diagnostico = controller.crearDiagnostico(nombreDiagnostico,  usuario);
+	    returnJson(response, diagnostico);
 	}
 	
 	
@@ -111,9 +109,9 @@ public class DiagnosticoServlet extends HttpServlet {
 	    try {
 		    Long codDiagnostico = Long.parseLong(request.getParameter("codigoDiagnostico"));  
 		    String nombreDiagnostico  = request.getParameter("nombreDiagnostico");
-		
-		    Diagnostico diagnostico = controller.modificarDiagnostico(codDiagnostico, nombreDiagnostico, usuario);
-		    toJsonResponse(response, new JsonResponse<>(diagnostico != null, diagnostico));
+
+			JsonResponse<Diagnostico> diagnostico = controller.modificarDiagnostico(codDiagnostico, nombreDiagnostico, usuario);
+		    returnJson(response, diagnostico);
         } catch (Exception e) {
             
         }
@@ -130,8 +128,8 @@ public class DiagnosticoServlet extends HttpServlet {
 	
 	private void buscarDiagnostico(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		Long codDiagnostico = Long. parseLong(request.getParameter("codDiagnostico")) ;
-	    Diagnostico diagnostico = controller.buscarDiagnostico(codDiagnostico);
-	    toJsonResponse(response, new JsonResponse<>(diagnostico != null, diagnostico));
+		JsonResponse<Diagnostico> diagnostico = controller.buscarDiagnostico(codDiagnostico);
+	    returnJson(response, diagnostico);
 	}
 	
 	
@@ -144,8 +142,8 @@ public class DiagnosticoServlet extends HttpServlet {
         
         String estadoNuevo = new String(request.getParameter("estadoNuevoDiagnostico"));
         System.out.println(estadoNuevo);
-        boolean success = controller.cambiaEstadoDiagnostico(codDiagnostico, estadoNuevo,usuario);
-        toJsonResponse(response, new JsonResponse<>(success, success));
+        JsonResponse<Boolean> success = controller.cambiaEstadoDiagnostico(codDiagnostico, estadoNuevo,usuario);
+        returnJson(response, success);
     }
 	
 	
