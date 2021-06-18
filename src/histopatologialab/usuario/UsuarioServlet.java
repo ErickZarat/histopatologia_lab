@@ -19,8 +19,6 @@ import histopatologialab.usuario.dto.Usuario;
 import static histopatologialab.core.ServletHelper.*;
 import static histopatologialab.core.Controllers.usuarioController;
 
-import org.tinylog.Logger;
-
 /**
  * Servlet implementation class UsuarioServlet
  */
@@ -78,8 +76,8 @@ public class UsuarioServlet extends HttpServlet {
 	
     private void getJsonUsuario(HttpServletRequest request, HttpServletResponse response) throws IOException {
         //int tipoMedicamento = Integer.parseInt(request.getParameter("tipoMedicamento"));
-        List<Usuario> usuariosList = controller.getUsuarios();
-        toJsonResponse(response, new JsonResponse<>(usuariosList != null, usuariosList));
+        JsonResponse<List<Usuario>> usuariosList = controller.getUsuarios();
+        returnJson(response, usuariosList);
     }
 
     private void getDefaultPage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -101,8 +99,8 @@ public class UsuarioServlet extends HttpServlet {
         String tipoUsuario = request.getParameter("tipoUsuario");
         
         
-        Usuario usuario = controller.crearUsuario(loginUsuario, passUser,nombresDoctor,apellidosDoctor,emailDoctor, colegiadoDoctor, tipoUsuario,usuarioCrea  );
-        toJsonResponse(response, new JsonResponse<>(usuario != null, usuario));
+        JsonResponse<Usuario> usuario = controller.crearUsuario(loginUsuario, passUser,nombresDoctor,apellidosDoctor,emailDoctor, colegiadoDoctor, tipoUsuario,usuarioCrea  );
+        returnJson(response, usuario);
     }
 
     private void modificarUsuario(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -114,16 +112,16 @@ public class UsuarioServlet extends HttpServlet {
         String tipoUsuario = request.getParameter("tipoUsuario");
         String usuarioMod = getUsuarioFromSession(request);
         System.out.println("antes de modificar controller");
-        Usuario usuario = controller.modificarUsuario(loginUsuario, nombresDoctor, apellidosDoctor, emailDoctor, colegiadoDoctor, tipoUsuario, usuarioMod);
+        JsonResponse<Usuario> usuario = controller.modificarUsuario(loginUsuario, nombresDoctor, apellidosDoctor, emailDoctor, colegiadoDoctor, tipoUsuario, usuarioMod);
         System.out.println(usuario);
-        toJsonResponse(response, new JsonResponse<>(usuario != null, usuario));
+        returnJson(response, usuario);
     }
 
     private void darBajaUsuario(HttpServletRequest request, HttpServletResponse response) throws IOException {
     	String loginUser = request.getParameter("loginUser");
         String usuarioSesion = getUsuarioFromSession(request);
-        boolean success = controller.darBajaUsuario(loginUser, usuarioSesion);
-        toJsonResponse(response, new JsonResponse<>(success, success));
+        JsonResponse<Boolean> success = controller.darBajaUsuario(loginUser, usuarioSesion);
+        returnJson(response, success);
     }
     
    
@@ -131,28 +129,28 @@ public class UsuarioServlet extends HttpServlet {
     	String loginUser = request.getParameter("loginUser");
         //System.out.println("entra a la funcion buscar");
         //System.out.println(loginUser);
-        Usuario usuario = controller.buscarUsuario(loginUser);
-        toJsonResponse(response, new JsonResponse<>(usuario != null, usuario));
+        JsonResponse<Usuario> usuario = controller.buscarUsuario(loginUser);
+        returnJson(response, usuario);
     } 
     
     private void ReinicioPswUsuario(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String loginUsuario =request.getParameter("loginUser"); 
         String usuarioMod = getUsuarioFromSession(request);
         System.out.println("antes de modificar controller");
-        Usuario usuario = controller.reinicioPswUsuario(loginUsuario, usuarioMod);
+        JsonResponse<Usuario> usuario = controller.reinicioPswUsuario(loginUsuario, usuarioMod);
         System.out.println("DESPUES DE MODIFICAR EL PSW");
         System.out.println(usuario);
-        toJsonResponse(response, new JsonResponse<>(usuario != null, usuario));
+        returnJson(response, usuario);
     }
     
     private void CambioPswUsuario(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String loginUsuario =request.getParameter("loginUser"); 
         String usuarioMod = getUsuarioFromSession(request);
         System.out.println("antes de modificar controller");
-        Usuario usuario = controller.reinicioPswUsuario(loginUsuario, usuarioMod);
+        JsonResponse<Usuario> usuario = controller.reinicioPswUsuario(loginUsuario, usuarioMod);
         System.out.println("DESPUES DE MODIFICAR EL PSW");
         System.out.println(usuario);
-        toJsonResponse(response, new JsonResponse<>(usuario != null, usuario));
+        returnJson(response, usuario);
     }
     
     

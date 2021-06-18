@@ -4,7 +4,6 @@ import histopatologialab.core.JsonResponse;
 import histopatologialab.core.RequestAction;
 import histopatologialab.enfsistemica.controller.IEnfSistemicaController;
 import histopatologialab.enfsistemica.dto.EnfSistemica;
-import org.tinylog.Logger;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -56,8 +55,7 @@ public class EnfSistemicaServlet extends HttpServlet {
 
     private void getJsonEnfsistemica(HttpServletRequest request, HttpServletResponse response) throws IOException {
         //int tipoMedicamento = Integer.parseInt(request.getParameter("tipoMedicamento"));
-        List<EnfSistemica> enfermedadesList = controller.getEnfermedadesSistemicas();
-        toJsonResponse(response, new JsonResponse<>(enfermedadesList != null, enfermedadesList));
+        returnJson(response, controller.getEnfermedadesSistemicas());
     }
 
     private void getDefaultPage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -70,9 +68,7 @@ public class EnfSistemicaServlet extends HttpServlet {
         String nombre = request.getParameter("nombre");
         //int tipoMedicamento = Integer.parseInt(request.getParameter("tipoMedicamento"));
         String usuario = getUsuarioFromSession(request);
-
-        EnfSistemica enfermedad = controller.crearEnfermedad(nombre, usuario);
-        toJsonResponse(response, new JsonResponse<>(enfermedad != null, enfermedad));
+        returnJson(response, controller.crearEnfermedad(nombre, usuario));
     }
 
     private void modificarEnfSistemica(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -80,15 +76,13 @@ public class EnfSistemicaServlet extends HttpServlet {
         String nombre = request.getParameter("nombreEnfermedad");
         String usuario = getUsuarioFromSession(request);
 
-        EnfSistemica enfermedad = controller.modificarEnfermedad(codigo, nombre, usuario);
-        toJsonResponse(response, new JsonResponse<>(enfermedad != null, enfermedad));
+        returnJson(response, controller.modificarEnfermedad(codigo, nombre, usuario));
     }
 
     private void darBajaEnfSistemica(HttpServletRequest request, HttpServletResponse response) throws IOException {
         int codigo = Integer.parseInt(request.getParameter("codigoEnfermedad"));
         String usuario = getUsuarioFromSession(request);
-        boolean success = controller.darBajaEnfermedad(codigo, usuario);
-        toJsonResponse(response, new JsonResponse<>(success, success));
+        returnJson(response, controller.darBajaEnfermedad(codigo, usuario));
     }
     
     private void cambioEstadoEnfSistemica(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -97,8 +91,7 @@ public class EnfSistemicaServlet extends HttpServlet {
         String estadoNuevo = (request.getParameter("estadoEnfermedadBaja"));
         System.out.println(estadoNuevo);
         //cambiaEstadoEnfermedad(int codigo, String estado, String usuario)
-        boolean success = controller.cambiaEstadoEnfermedad(codigo, estadoNuevo,usuario);
-        toJsonResponse(response, new JsonResponse<>(success, success));
+        returnJson(response, controller.cambiaEstadoEnfermedad(codigo, estadoNuevo,usuario));
     }
 
 }

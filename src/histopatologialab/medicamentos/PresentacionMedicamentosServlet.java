@@ -59,8 +59,8 @@ public class PresentacionMedicamentosServlet extends HttpServlet {
                 Estado.HABILITADO.getSlug()
         );
 
-        PresentacionMedicamento presentacion = controller.crearPresentacionMedicamento(presentacionMedicamento);
-        toJsonResponse(response, new JsonResponse<>(presentacion != null, presentacion));
+        JsonResponse<PresentacionMedicamento> presentacion = controller.crearPresentacionMedicamento(presentacionMedicamento);
+        returnJson(response, presentacion);
     }
 
     private void modificarPresentacion(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -75,28 +75,28 @@ public class PresentacionMedicamentosServlet extends HttpServlet {
                 Estado.HABILITADO.getSlug()
         );
 
-        PresentacionMedicamento presentacion = controller.modificarPresentacionMedicamento(tipoPresentacion, presentacionMedicamento);
-        toJsonResponse(response, new JsonResponse<>(presentacion != null, presentacion));
+        JsonResponse<PresentacionMedicamento> presentacion = controller.modificarPresentacionMedicamento(tipoPresentacion, presentacionMedicamento);
+        returnJson(response, presentacion);
     }
 
     private void darBajaPresentacion(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String tipoPresentacion = request.getParameter("tipoPresentacion");
         int codigoMedicamento = Integer.parseInt(request.getParameter("codigoMedicamento"));
 
-        Boolean success = controller.darBajaPresentacion(codigoMedicamento, tipoPresentacion, getUsuarioFromSession(request));
-        toJsonResponse(response, new JsonResponse<>(success, success));
+        JsonResponse<Boolean> success = controller.darBajaPresentacion(codigoMedicamento, tipoPresentacion, getUsuarioFromSession(request));
+        returnJson(response, success);
     }
 
     private void getPresentacion(HttpServletRequest request, HttpServletResponse response) throws IOException {
         int codigoMedicamento = Integer.parseInt(request.getParameter("codigoMedicamento"));
         String tipoMedicamento = request.getParameter("tipoPresentacion");
-        PresentacionMedicamento presentacion = controller.getPresentacion(codigoMedicamento, tipoMedicamento);
-        toJsonResponse(response, new JsonResponse<>(presentacion != null, presentacion));
+        JsonResponse<PresentacionMedicamento> presentacion = controller.getPresentacion(codigoMedicamento, tipoMedicamento);
+        returnJson(response, presentacion);
     }
 
     private void getPresentaciones(HttpServletRequest request, HttpServletResponse response) throws IOException {
         int codigoMedicamento = Integer.parseInt(request.getParameter("codigoMedicamento"));
-        List<PresentacionMedicamento> presentaciones = controller.getPresentaciones(codigoMedicamento);
-        toJsonResponse(response, new JsonResponse<>(presentaciones != null, presentaciones));
+        JsonResponse<List<PresentacionMedicamento>> presentaciones = controller.getPresentaciones(codigoMedicamento);
+        returnJson(response, presentaciones);
     }
 }

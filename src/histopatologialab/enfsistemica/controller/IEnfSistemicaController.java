@@ -1,14 +1,16 @@
 package histopatologialab.enfsistemica.controller;
 
 import java.util.List;
+
+import histopatologialab.core.JsonResponse;
 import histopatologialab.enfsistemica.dto.EnfSistemica;
 
 public interface IEnfSistemicaController {
 	
-    EnfSistemica crearEnfermedad(String nombre, String usuario);
-    EnfSistemica modificarEnfermedad(int codigo, String nombre, String usuario);
-    Boolean darBajaEnfermedad(int codigo, String usuario);
-    Boolean cambiaEstadoEnfermedad(int codigo, String estado, String usuario);
-    List<EnfSistemica> getEnfermedadesSistemicas();
+    JsonResponse<EnfSistemica> crearEnfermedad(String nombre, String usuario);
+    JsonResponse<EnfSistemica> modificarEnfermedad(int codigo, String nombre, String usuario);
+    JsonResponse<Boolean> darBajaEnfermedad(int codigo, String usuario);
+    JsonResponse<Boolean> cambiaEstadoEnfermedad(int codigo, String estado, String usuario);
+    JsonResponse<List<EnfSistemica>> getEnfermedadesSistemicas();
     
 }

@@ -1,6 +1,7 @@
 package histopatologialab.tipopcionlesion.controller;
 
 import histopatologialab.core.Estado;
+import histopatologialab.core.JsonResponse;
 import histopatologialab.tipopcionlesion.dao.IOpcionLesionDao;
 import histopatologialab.tipopcionlesion.dto.OpcionLesion;
 
@@ -19,25 +20,26 @@ public class OpcionLesionControllerImpl implements IOpcionLesionController {
 	
 	
     @Override
-    public OpcionLesion crearOpcionLesion(String nombre, String valor, String usuario) {
+    public JsonResponse<OpcionLesion> crearOpcionLesion(String nombre, String valor, String usuario) {
     	  try {
     		  OpcionLesion tipopcionlesion = new OpcionLesion(0, nombre, valor,  Estado.HABILITADO.getSlug(), usuario, LocalDate.now(), null, null);
-    		  return opcionLesionDao.guardarOpcionLesion(tipopcionlesion);
+    		  tipopcionlesion = opcionLesionDao.guardarOpcionLesion(tipopcionlesion);
+    		  return new JsonResponse<>(tipopcionlesion != null, tipopcionlesion);
           } catch (Exception e) {
               return null;
           }
     }
     
     @Override
-    public OpcionLesion modificarOpcionLesion(int codigo, String nombre, String valor, String usuario) {
+    public JsonResponse<OpcionLesion> modificarOpcionLesion(int codigo, String nombre, String valor, String usuario) {
     	try {
     		OpcionLesion tipopcionlesion = opcionLesionDao.getOpcion(codigo);
     		tipopcionlesion.setNombreOpcion(nombre);
     		tipopcionlesion.setValor(valor);
     		tipopcionlesion.setModificadoPor(usuario);
     		tipopcionlesion.setFechaModificacion(LocalDate.now());
-            return opcionLesionDao.modificarOpcionLesion(tipopcionlesion);
-    		
+    		tipopcionlesion = opcionLesionDao.modificarOpcionLesion(tipopcionlesion);
+            return new JsonResponse<>(tipopcionlesion != null, tipopcionlesion);
         } catch (Exception e) {
             return null;
         }
@@ -45,14 +47,17 @@ public class OpcionLesionControllerImpl implements IOpcionLesionController {
     }
     
     @Override
-    public Boolean darBajaOpcionLesion(int codigo, String usuario) {
-    	return opcionLesionDao.darDeBaja(codigo, usuario);
+    public JsonResponse<Boolean> darBajaOpcionLesion(int codigo, String usuario) {
+        Boolean success = opcionLesionDao.darDeBaja(codigo, usuario);
+    	return new JsonResponse<>(success, success);
     }
     
     @Override
-    public List<OpcionLesion> getOpciones(String nombreOpcion){
-    	   System.out.println(nombreOpcion);
-    	return opcionLesionDao.getOpcionesByTipo(nombreOpcion);
+    public JsonResponse<List<OpcionLesion>> getOpciones(String nombreOpcion){
+        System.out.println(nombreOpcion);
+        List<OpcionLesion> opcion = opcionLesionDao.getOpcionesByTipo(nombreOpcion);
+
+    	return new JsonResponse<List<OpcionLesion>>(opcion != null, opcion);
     }
     
 	

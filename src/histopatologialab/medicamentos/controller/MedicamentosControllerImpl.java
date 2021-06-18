@@ -1,6 +1,7 @@
 package histopatologialab.medicamentos.controller;
 
 import histopatologialab.core.Estado;
+import histopatologialab.core.JsonResponse;
 import histopatologialab.medicamentos.dao.IMedicamentosDao;
 import histopatologialab.medicamentos.dao.IPresentacionMedicamentosDao;
 import histopatologialab.medicamentos.dto.Medicamento;
@@ -20,79 +21,87 @@ public class MedicamentosControllerImpl implements IMedicamentosController {
     }
 
     @Override
-    public Medicamento crearMedicamento(String nombre, int tipo, String usuario) {
+    public JsonResponse<Medicamento> crearMedicamento(String nombre, int tipo, String usuario) {
         try {
             Medicamento medicamento = new Medicamento(0, nombre, Estado.HABILITADO.getSlug(), usuario, LocalDate.now(), null, null, tipo);
-            return medicamentosDao.guardarMedicamento(medicamento);
+            medicamento = medicamentosDao.guardarMedicamento(medicamento);
+            return new JsonResponse<Medicamento>(medicamento != null, medicamento);
         } catch (Exception e) {
             return null;
         }
     }
 
     @Override
-    public Medicamento modificarMedicamento(int codigo, String nombre, String usuario) {
+    public JsonResponse<Medicamento> modificarMedicamento(int codigo, String nombre, String usuario) {
         try {
             Medicamento medicamento = medicamentosDao.getMedicamento(codigo);
             medicamento.setNombreMedicamento(nombre);
             medicamento.setModificadoPor(usuario);
             medicamento.setFechaModificacion(LocalDate.now());
-            return medicamentosDao.modificarMedicamento(medicamento);
-
+            medicamento = medicamentosDao.modificarMedicamento(medicamento);
+            return new JsonResponse(medicamento != null, medicamento);
         } catch (Exception e) {
             return null;
         }
     }
 
     @Override
-    public Boolean darBajaMedicamento(int codigo, String usuario) {
-        return medicamentosDao.darDeBaja(codigo, usuario);
+    public JsonResponse<Boolean> darBajaMedicamento(int codigo, String usuario) {
+        Boolean success = medicamentosDao.darDeBaja(codigo, usuario);
+        return new JsonResponse<Boolean>(success, success) ;
     }
 
     @Override
-    public List<Medicamento> getMedicamentos(Integer tipoMedicamento) {
-        return medicamentosDao.getMedicamentosByTipo(tipoMedicamento);
+    public JsonResponse<List<Medicamento>> getMedicamentos(Integer tipoMedicamento) {
+        List<Medicamento> medicamentos = medicamentosDao.getMedicamentosByTipo(tipoMedicamento);
+        return new JsonResponse<List<Medicamento>>(medicamentos != null, medicamentos);
     }
 
     @Override
-    public List<PresentacionMedicamento> getPresentaciones(int codigo) {
+    public JsonResponse<List<PresentacionMedicamento>> getPresentaciones(int codigo) {
         try {
-            return presentacionDao.getPresentaciones(codigo);
+            List<PresentacionMedicamento> presentaciones = presentacionDao.getPresentaciones(codigo);
+            return new JsonResponse<List<PresentacionMedicamento>>(presentaciones != null, presentaciones);
         } catch (Exception e) {
             return null;
         }
     }
 
     @Override
-    public PresentacionMedicamento getPresentacion(int codigo, String tipoMedicamento) {
+    public JsonResponse<PresentacionMedicamento> getPresentacion(int codigo, String tipoMedicamento) {
         try {
-            return presentacionDao.getPresentacion(codigo, tipoMedicamento);
+            PresentacionMedicamento presentacion = presentacionDao.getPresentacion(codigo, tipoMedicamento);
+            return new JsonResponse<>(presentacion != null, presentacion);
         } catch (Exception e) {
             return null;
         }
     }
 
     @Override
-    public PresentacionMedicamento crearPresentacionMedicamento(PresentacionMedicamento presentacionMedicamento) {
+    public JsonResponse<PresentacionMedicamento> crearPresentacionMedicamento(PresentacionMedicamento presentacionMedicamento) {
         try {
-            return presentacionDao.guardarPresentacion(presentacionMedicamento);
+            PresentacionMedicamento presentacion = presentacionDao.guardarPresentacion(presentacionMedicamento);
+            return new JsonResponse<>(presentacion != null, presentacion);
         } catch (Exception e) {
             return null;
         }
     }
 
     @Override
-    public PresentacionMedicamento modificarPresentacionMedicamento(String tipoPresentacion, PresentacionMedicamento presentacionMedicamento) {
+    public JsonResponse<PresentacionMedicamento> modificarPresentacionMedicamento(String tipoPresentacion, PresentacionMedicamento presentacionMedicamento) {
         try {
-            return presentacionDao.modificarPresentacion(presentacionMedicamento.getCodMedicamento(), tipoPresentacion, presentacionMedicamento);
+            PresentacionMedicamento presentacion = presentacionDao.modificarPresentacion(presentacionMedicamento.getCodMedicamento(), tipoPresentacion, presentacionMedicamento);
+            return new JsonResponse<>(presentacion != null, presentacionDao.modificarPresentacion(presentacionMedicamento.getCodMedicamento(), tipoPresentacion, presentacionMedicamento));
         } catch (Exception e) {
             return null;
         }
     }
 
     @Override
-    public Boolean darBajaPresentacion(int codigo, String tipoMedicamento, String usuario) {
+    public JsonResponse<Boolean> darBajaPresentacion(int codigo, String tipoMedicamento, String usuario) {
         try {
-            return presentacionDao.darBajaPresentacion(codigo, tipoMedicamento, usuario);
+            Boolean success = presentacionDao.darBajaPresentacion(codigo, tipoMedicamento, usuario);
+            return new JsonResponse<>(success, success);
         } catch (Exception e) {
             return null;
         }

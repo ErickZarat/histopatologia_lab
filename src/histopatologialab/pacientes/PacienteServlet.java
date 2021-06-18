@@ -15,8 +15,6 @@ import histopatologialab.pacientes.controller.IPacienteController;
 import histopatologialab.pacientes.dto.Paciente;
 
 
-import org.tinylog.Logger;
-
 import javax.servlet.RequestDispatcher;
 
 import java.util.List;
@@ -83,8 +81,8 @@ public class PacienteServlet extends HttpServlet {
 	}
 	
 	private void getJsonPaciente(HttpServletRequest request, HttpServletResponse response) throws IOException {
-	        List<Paciente> pacientesList = controller.getPacientes();
-	        toJsonResponse(response, new JsonResponse<>(pacientesList != null, pacientesList));
+	        JsonResponse<List<Paciente>> pacientesList = controller.getPacientes();
+	        returnJson(response, pacientesList);
 	    }
 
 	private void getDefaultPage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -120,8 +118,8 @@ public class PacienteServlet extends HttpServlet {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/MM/yyyy"); 
         LocalDate fecnacimiento = LocalDate.parse(fecNacimientoPaciente, formatter);
 
-        Paciente paciente = controller.crearPaciente(identificacionPaciente, nombrePaciente, apellidosPaciente, direccionPaciente, telefonoPaciente, fecnacimiento, generoPaciente, ocupacionPaciente, tipoidPaciente, emailPaciente, estCivilPaciente, usuario);
-        toJsonResponse(response, new JsonResponse<>(paciente != null, paciente));
+        JsonResponse<Paciente> paciente = controller.crearPaciente(identificacionPaciente, nombrePaciente, apellidosPaciente, direccionPaciente, telefonoPaciente, fecnacimiento, generoPaciente, ocupacionPaciente, tipoidPaciente, emailPaciente, estCivilPaciente, usuario);
+        returnJson(response, paciente);
     }
 
     private void modificarPaciente(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -139,10 +137,10 @@ public class PacienteServlet extends HttpServlet {
         String generoPaciente = request.getParameter("emailPaciente");
         String estCivilPaciente = request.getParameter("emailPaciente");
 
-        Paciente paciente = controller.modificarPaciente( codPaciente,  identificacionPaciente,  nombrePaciente, apellidosPaciente, 
+        JsonResponse<Paciente> paciente = controller.modificarPaciente( codPaciente,  identificacionPaciente,  nombrePaciente, apellidosPaciente,
         		 direccionPaciente, tipoidPaciente,  ocupacionPaciente,  emailPaciente,
         		 telefonoPaciente, generoPaciente,estCivilPaciente, usuario);
-        toJsonResponse(response, new JsonResponse<>(paciente != null, paciente));
+        returnJson(response, paciente);
     }
 
     private void darBajaPaciente(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -156,8 +154,8 @@ public class PacienteServlet extends HttpServlet {
     	Long codigoPaciente = Long. parseLong(request.getParameter("codPaciente")) ;
         System.out.println("entra a la funcion buscar");
         System.out.println(codigoPaciente);
-        Paciente paciente = controller.buscarPaciente(codigoPaciente);
-        toJsonResponse(response, new JsonResponse<>(paciente != null, paciente));
+        JsonResponse<Paciente> paciente = controller.buscarPaciente(codigoPaciente);
+        returnJson(response, paciente);
     } 
 	
 }
