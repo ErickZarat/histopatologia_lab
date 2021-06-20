@@ -43,6 +43,14 @@ public class ServletHelper {
         }
     }
 
+    public static void checkRole(boolean allowedUser, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        if (allowedUser) {
+            response.setStatus(HttpServletResponse.SC_FORBIDDEN);
+            RequestDispatcher despachador = request.getRequestDispatcher("error.jsp");
+            despachador.forward(request, response);
+        }
+    }
+
     public static RequestAction getRequestAction(HttpServletRequest request) {
         String action = request.getParameter("accion");
         RequestAction requestAction = RequestAction.DEFAULT;

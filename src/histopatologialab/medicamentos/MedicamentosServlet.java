@@ -2,6 +2,7 @@ package histopatologialab.medicamentos;
 
 import histopatologialab.core.JsonResponse;
 import histopatologialab.core.RequestAction;
+import histopatologialab.core.RoleHandler;
 import histopatologialab.medicamentos.controller.IMedicamentosController;
 import histopatologialab.medicamentos.dto.Medicamento;
 import histopatologialab.medicamentos.dto.TipoMedicamento;
@@ -21,9 +22,13 @@ import static histopatologialab.core.ServletHelper.*;
 @WebServlet(name = "MedicamentosServlet")
 public class MedicamentosServlet extends HttpServlet {
     IMedicamentosController controller = medicamentosController;
+    RoleHandler roleHandler;
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         checkSession(request, response);
+
+        roleHandler = RoleHandler.getInstance(request.getSession());
+        checkRole(roleHandler.isNormal(), request, response);
 
         RequestAction action = getRequestAction(request);
 
@@ -32,12 +37,15 @@ public class MedicamentosServlet extends HttpServlet {
         } else if (action == RequestAction.MODIFICAR) {
             modificarMedicamento(request, response);
         } else if (action == RequestAction.DAR_BAJA) {
+//            checkRole(roleHandler.isNormal(), request, response);
             darBajaMedicamento(request, response);
         }
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         checkSession(request, response);
+        roleHandler = RoleHandler.getInstance(request.getSession());
+//        checkRole(roleHandler.isNormal(), request, response);
 
         RequestAction action = getRequestAction(request);
         if (action == RequestAction.LISTAR_JSON) {
@@ -55,6 +63,7 @@ public class MedicamentosServlet extends HttpServlet {
 
     private void getDefaultPage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setAttribute("tiposMedicamento", TipoMedicamento.values());
+        request.setAttribute("roleHandler", roleHandler);
         RequestDispatcher despachador = request.getRequestDispatcher("mantenimientos/medicamentos.jsp");
         despachador.forward(request, response);
     }

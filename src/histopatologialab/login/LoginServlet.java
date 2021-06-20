@@ -23,9 +23,9 @@ public class LoginServlet extends HttpServlet {
         String usuario = request.getParameter("usuario");
         String password = request.getParameter("password");
 
-        boolean seInicioSesion = loginController.iniciarSession(usuario, password);
+        boolean seInicioSesion = loginController.iniciarSession(usuario, password, request.getSession(true));
         if (seInicioSesion) {
-            crearSesion(request, usuario);
+            request.setAttribute("username", usuario);
             despachador = request.getRequestDispatcher("principal.jsp");
         } else {
             despachador = request.getRequestDispatcher("index.jsp");
@@ -46,17 +46,4 @@ public class LoginServlet extends HttpServlet {
         despachador.forward(request, response);
     }
 
-    private void crearSesion(HttpServletRequest request, String usuario) {
-        HttpSession session = request.getSession(true);
-        request.setAttribute("username", usuario);
-        session.setAttribute("usuario", usuario);
-        session.setAttribute("sesionIniciada", true);
-    }
-
-    private void cerrarSesion(HttpServletRequest request) {
-        HttpSession session = request.getSession();
-        if (session == null) return;
-        session.removeAttribute("usuario");
-        session.removeAttribute("sesionIniciada");
-    }
 }
