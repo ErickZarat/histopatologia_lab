@@ -1,6 +1,6 @@
 package histopatologialab.pacientes.dto;
+
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 public class Paciente {
 

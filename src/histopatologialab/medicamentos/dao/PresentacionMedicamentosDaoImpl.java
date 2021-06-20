@@ -2,9 +2,9 @@ package histopatologialab.medicamentos.dao;
 
 import histopatologialab.core.DB;
 import histopatologialab.core.Estado;
-import histopatologialab.medicamentos.dto.PresentacionMedicamento;
 import histopatologialab.core.db.tables.LabPresentacionMedicamento;
 import histopatologialab.core.db.tables.records.LabPresentacionMedicamentoRecord;
+import histopatologialab.medicamentos.dto.PresentacionMedicamento;
 import org.jooq.DSLContext;
 import org.jooq.Record;
 

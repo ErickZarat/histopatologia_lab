@@ -15,8 +15,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-import static histopatologialab.core.ServletHelper.*;
 import static histopatologialab.core.Controllers.medicamentosController;
+import static histopatologialab.core.ServletHelper.*;
 
 @WebServlet(name = "MedicamentosServlet")
 public class MedicamentosServlet extends HttpServlet {

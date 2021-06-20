@@ -3,8 +3,8 @@ package histopatologialab.tipopcionlesion.dao;
 import histopatologialab.core.DB;
 import histopatologialab.core.Estado;
 import histopatologialab.core.db.tables.LabTipoOpcionLesion;
-import histopatologialab.tipopcionlesion.dto.OpcionLesion;
 import histopatologialab.core.db.tables.records.LabTipoOpcionLesionRecord;
+import histopatologialab.tipopcionlesion.dto.OpcionLesion;
 import org.jooq.DSLContext;
 import org.jooq.Record;
 

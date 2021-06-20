@@ -1,12 +1,11 @@
 package histopatologialab.tipopcionlesion;
 
 
+import histopatologialab.core.JsonResponse;
+import histopatologialab.core.RequestAction;
 import histopatologialab.tipopcionlesion.controller.IOpcionLesionController;
 import histopatologialab.tipopcionlesion.dto.OpcionLesion;
 import histopatologialab.tipopcionlesion.dto.TipOpcion;
-import histopatologialab.core.JsonResponse;
-import histopatologialab.core.RequestAction;
-
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -17,8 +16,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-import static histopatologialab.core.ServletHelper.*;
 import static histopatologialab.core.Controllers.opcionlesionController;
+import static histopatologialab.core.ServletHelper.*;
 
 
 @WebServlet(name ="OpcionLesionServlet")

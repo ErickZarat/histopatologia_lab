@@ -1,23 +1,22 @@
 package histopatologialab.usuario;
 
-import java.io.IOException;
+import histopatologialab.core.JsonResponse;
+import histopatologialab.core.RequestAction;
+import histopatologialab.usuario.controller.IUsuarioController;
+import histopatologialab.usuario.dto.TipoUsuario;
+import histopatologialab.usuario.dto.Usuario;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.RequestDispatcher;
+import java.io.IOException;
 import java.util.List;
 
-
-import histopatologialab.core.JsonResponse;
-import histopatologialab.core.RequestAction;
-import histopatologialab.usuario.dto.TipoUsuario;
-import histopatologialab.usuario.controller.IUsuarioController;
-import histopatologialab.usuario.dto.Usuario;
-
-import static histopatologialab.core.ServletHelper.*;
 import static histopatologialab.core.Controllers.usuarioController;
+import static histopatologialab.core.ServletHelper.*;
 
 /**
  * Servlet implementation class UsuarioServlet

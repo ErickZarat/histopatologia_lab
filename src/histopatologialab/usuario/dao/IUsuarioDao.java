@@ -2,6 +2,7 @@ package histopatologialab.usuario.dao;
 
 
 import histopatologialab.usuario.dto.Usuario;
+
 import java.util.List;
 
 public interface IUsuarioDao {

@@ -1,10 +1,10 @@
 package histopatologialab.diagnostico.controller;
 
 
-import java.util.List;
-
 import histopatologialab.core.JsonResponse;
 import histopatologialab.diagnostico.dto.Diagnostico;
+
+import java.util.List;
 
 
 public interface IDiagnosticoController {

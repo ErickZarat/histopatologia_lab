@@ -1,6 +1,7 @@
 package histopatologialab.tipopcionlesion.dao;
 
 import histopatologialab.tipopcionlesion.dto.OpcionLesion;
+
 import java.util.List;
 
 public interface IOpcionLesionDao {

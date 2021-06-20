@@ -1,13 +1,11 @@
 package histopatologialab.pacientes.controller;
 
-import java.util.List;
-import java.time.LocalDate;
-
-
-import histopatologialab.core.Estado;
 import histopatologialab.core.JsonResponse;
-import histopatologialab.pacientes.dto.Paciente;
 import histopatologialab.pacientes.dao.IPacienteDao;
+import histopatologialab.pacientes.dto.Paciente;
+
+import java.time.LocalDate;
+import java.util.List;
 
 public class PacienteControllerImpl implements IPacienteController{
 	

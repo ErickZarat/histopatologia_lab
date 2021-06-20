@@ -1,12 +1,10 @@
 package histopatologialab.login;
-import static histopatologialab.core.Controllers.usuarioController;
 
-import java.time.LocalDate;
-
-import histopatologialab.core.Estado;
 import histopatologialab.password.PasswordUtils;
-import histopatologialab.usuario.dto.Usuario;
 import histopatologialab.usuario.controller.IUsuarioController;
+import histopatologialab.usuario.dto.Usuario;
+
+import static histopatologialab.core.Controllers.usuarioController;
 
 public class LoginController {
 

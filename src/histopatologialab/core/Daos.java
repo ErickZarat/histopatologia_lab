@@ -1,24 +1,19 @@
 package histopatologialab.core;
 
+import histopatologialab.diagnostico.dao.DiagnosticoDaoImpl;
+import histopatologialab.diagnostico.dao.IDiagnosticoDao;
+import histopatologialab.enfsistemica.dao.EnfSistemicaDaoImpl;
+import histopatologialab.enfsistemica.dao.IEnfSistemicaDao;
 import histopatologialab.medicamentos.dao.IMedicamentosDao;
 import histopatologialab.medicamentos.dao.IPresentacionMedicamentosDao;
 import histopatologialab.medicamentos.dao.MedicamentosDaoImpl;
 import histopatologialab.medicamentos.dao.PresentacionMedicamentosDaoImpl;
-
-import histopatologialab.enfsistemica.dao.IEnfSistemicaDao;
-import histopatologialab.enfsistemica.dao.EnfSistemicaDaoImpl;
-
-import histopatologialab.tipopcionlesion.dao.IOpcionLesionDao;
-import histopatologialab.tipopcionlesion.dao.OpcionLesionDaoImpl;
-
 import histopatologialab.pacientes.dao.IPacienteDao;
 import histopatologialab.pacientes.dao.PacienteDaoImpl;
-
+import histopatologialab.tipopcionlesion.dao.IOpcionLesionDao;
+import histopatologialab.tipopcionlesion.dao.OpcionLesionDaoImpl;
 import histopatologialab.usuario.dao.IUsuarioDao;
 import histopatologialab.usuario.dao.UsuarioDaoImpl;
-
-import histopatologialab.diagnostico.dao.IDiagnosticoDao;
-import histopatologialab.diagnostico.dao.DiagnosticoDaoImpl;
 
 public class Daos {
 

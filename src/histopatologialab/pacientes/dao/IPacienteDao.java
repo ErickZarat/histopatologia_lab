@@ -1,7 +1,8 @@
 package histopatologialab.pacientes.dao;
 
-import java.util.List;
 import histopatologialab.pacientes.dto.Paciente;
+
+import java.util.List;
 
 public interface IPacienteDao {
 	

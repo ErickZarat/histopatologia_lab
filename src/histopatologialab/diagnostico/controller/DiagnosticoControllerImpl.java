@@ -1,14 +1,12 @@
 package histopatologialab.diagnostico.controller;
 
+import histopatologialab.core.Estado;
+import histopatologialab.core.JsonResponse;
+import histopatologialab.diagnostico.dao.IDiagnosticoDao;
+import histopatologialab.diagnostico.dto.Diagnostico;
+
 import java.time.LocalDate;
 import java.util.List;
-
-import com.sun.org.apache.xpath.internal.operations.Bool;
-import histopatologialab.core.JsonResponse;
-import histopatologialab.diagnostico.dto.Diagnostico;
-import histopatologialab.diagnostico.dao.IDiagnosticoDao;
-import histopatologialab.core.Estado;
-import histopatologialab.diagnostico.dao.DiagnosticoDaoImpl;
 
 public class DiagnosticoControllerImpl implements IDiagnosticoController {
 
