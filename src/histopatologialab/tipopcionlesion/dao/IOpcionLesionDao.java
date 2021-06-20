@@ -13,5 +13,6 @@ public interface IOpcionLesionDao {
     OpcionLesion guardarOpcionLesion(OpcionLesion tipopcionlesion);
     OpcionLesion modificarOpcionLesion(OpcionLesion tipopcionlesion);
     Boolean darDeBaja(int codigoOpcion, String usuario);
+    List<OpcionLesion> getOpciones();
 
 }
