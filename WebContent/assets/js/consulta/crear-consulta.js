@@ -31,7 +31,7 @@ function onPacienteSelected(){
 
     $('#codigoUsuario').val(paciente.codigoPaciente);
     $('#nombreUsuario').val(paciente.nombrePaciente + ' ' + paciente.apellidosPaciente);
-    $('#estadoCivilUsuario').val(paciente.estadoCivil);
+    $('#estadoCivilUsuario').val(paciente.estCivilPaciente);
     $('#ocupacionUsuario').val(paciente.ocupacionPaciente);
     $('#edadUsuario').val('');
     $('#emailUsuario').val(paciente.emailPaciente);

@@ -34,7 +34,7 @@
                     <td><label for="paciente-${paciente.codigoPaciente}">${paciente.codigoPaciente}</label></td>
                     <td><label for="paciente-${paciente.codigoPaciente}" class="text">${paciente.nombrePaciente}</label></td>
                     <td><label for="paciente-${paciente.codigoPaciente}" class="text">${paciente.apellidosPaciente}</label></td>
-                  <td> <button type="button" class="btn btn-secondary" id="btnCancelAgregarPaciente" data-dismiss="modal">Cancelar</button></td>
+                    <td> <button type="button" class="btn btn-secondary" id="btnCancelAgregarPaciente" data-dismiss="modal">Cancelar</button></td>
                 </tr>
             </c:forEach>
             </tbody>

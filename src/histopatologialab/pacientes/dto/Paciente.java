@@ -1,6 +1,7 @@
 package histopatologialab.pacientes.dto;
 
 import java.time.LocalDate;
+import java.time.Period;
 
 public class Paciente {
 
@@ -210,6 +211,12 @@ public class Paciente {
 
 	public void setFechaModificacion(LocalDate fechaModificacion) {
 		this.fechaModificacion = fechaModificacion;
+	}
+
+	public int calculateAge(){
+   		if (this.fecNacimientoPaciente == null) return -1;
+		Period period = Period.between(this.fecNacimientoPaciente, LocalDate.now());
+		return period.getYears();
 	}
 	
 	

@@ -28,7 +28,7 @@
                 </tr>
                 <tr>
                     <td><label class="table-form-label" for="estadoCivilUsuario">Estado civil:</label></td>
-                    <td><input type="text" id="estadoCivilUsuario" class="form-control" readonly value="${paciente.estadoCivil}"></td>
+                    <td><input type="text" id="estadoCivilUsuario" class="form-control" readonly value="${paciente.estCivilPaciente}"></td>
                     <td><label class="table-form-label" for="ocupacionUsuario">Ocupacion:</label></td>
                     <td><input type="text" id="ocupacionUsuario" class="form-control" readonly value="${paciente.ocupacionPaciente}"></td>
                     <td><label class="table-form-label" for="edadUsuario">Edad:</label></td>

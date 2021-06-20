@@ -40,10 +40,7 @@ public class PacienteServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		//doGet(request, response);
         checkSession(request, response);
-        System.out.println("Hola Servlet post..");
         RequestAction action = getRequestAction(request);
 
         if (action == RequestAction.CREAR) {
@@ -52,23 +49,20 @@ public class PacienteServlet extends HttpServlet {
             modificarPaciente(request, response);
         } else if (action == RequestAction.DAR_BAJA) {
             darBajaPaciente(request, response);
-        } else if (action == RequestAction.BUSCAR) { 
-        	buscarPaciente(request, response);
+        }
     }
-}
 	
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		//response.getWriter().append("Served at: ").append(request.getContextPath());
         checkSession(request, response);
-        System.out.println("Hola Servlet get..");
         RequestAction action = getRequestAction(request);
 
         if (action == RequestAction.LISTAR_JSON) {
             getJsonPaciente(request, response);
+        } else if (action == RequestAction.BUSCAR) {
+            buscarPaciente(request, response);
         } else {
             getDefaultPage(request, response);
         }
@@ -145,11 +139,9 @@ public class PacienteServlet extends HttpServlet {
     }	
 	
     private void buscarPaciente(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    	Long codigoPaciente = Long. parseLong(request.getParameter("codPaciente")) ;
-        System.out.println("entra a la funcion buscar");
-        System.out.println(codigoPaciente);
-        JsonResponse<Paciente> paciente = controller.buscarPaciente(codigoPaciente);
-        returnJson(response, paciente);
+        String value = request.getParameter("value");
+        JsonResponse<List<Paciente>> pacientes = controller.buscarPaciente(value);
+        returnJson(response, pacientes);
     } 
 	
 }
