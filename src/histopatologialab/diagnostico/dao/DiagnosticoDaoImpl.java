@@ -1,18 +1,17 @@
 package histopatologialab.diagnostico.dao;
 
 
+import histopatologialab.core.DB;
+import histopatologialab.core.Estado;
+import histopatologialab.core.db.tables.LabDiagnostico;
+import histopatologialab.core.db.tables.records.LabDiagnosticoRecord;
+import histopatologialab.diagnostico.dto.Diagnostico;
+import org.jooq.DSLContext;
+import org.jooq.Record;
+
 import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
-
-import histopatologialab.core.DB;
-import histopatologialab.core.Estado;
-
-import org.jooq.DSLContext;
-import org.jooq.Record;
-import histopatologialab.diagnostico.dto.Diagnostico;
-import histopatologialab.core.db.tables.records.LabDiagnosticoRecord;
-import histopatologialab.core.db.tables.LabDiagnostico;
 
 
 public class DiagnosticoDaoImpl implements IDiagnosticoDao {

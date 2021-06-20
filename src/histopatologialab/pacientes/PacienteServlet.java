@@ -1,29 +1,23 @@
 package histopatologialab.pacientes;
 
-import java.io.IOException;
+import histopatologialab.core.JsonResponse;
+import histopatologialab.core.RequestAction;
+import histopatologialab.pacientes.controller.IPacienteController;
+import histopatologialab.pacientes.dto.Paciente;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-
-import histopatologialab.core.JsonResponse;
-import histopatologialab.core.RequestAction;
-
-import histopatologialab.pacientes.controller.IPacienteController;
-import histopatologialab.pacientes.dto.Paciente;
-
-
-import javax.servlet.RequestDispatcher;
-
-import java.util.List;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-
-import static histopatologialab.core.ServletHelper.*;
+import java.util.List;
 
 import static histopatologialab.core.Controllers.pacienteController;
+import static histopatologialab.core.ServletHelper.*;
 
 /**
  * Servlet implementation class PacienteServlet

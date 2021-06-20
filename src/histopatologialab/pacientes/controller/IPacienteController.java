@@ -3,7 +3,6 @@ package histopatologialab.pacientes.controller;
 import histopatologialab.core.JsonResponse;
 import histopatologialab.pacientes.dto.Paciente;
 
-
 import java.time.LocalDate;
 import java.util.List;
 

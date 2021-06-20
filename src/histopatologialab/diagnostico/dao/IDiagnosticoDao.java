@@ -1,8 +1,8 @@
 package histopatologialab.diagnostico.dao;
 
-import java.util.List;
-
 import histopatologialab.diagnostico.dto.Diagnostico;
+
+import java.util.List;
 
 
 public interface IDiagnosticoDao {

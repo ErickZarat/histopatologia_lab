@@ -1,9 +1,9 @@
 package histopatologialab.enfsistemica.controller;
 
-import java.util.List;
-
 import histopatologialab.core.JsonResponse;
 import histopatologialab.enfsistemica.dto.EnfSistemica;
+
+import java.util.List;
 
 public interface IEnfSistemicaController {
 	

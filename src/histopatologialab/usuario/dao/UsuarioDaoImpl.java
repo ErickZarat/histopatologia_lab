@@ -1,9 +1,5 @@
 package histopatologialab.usuario.dao;
 
-import java.time.LocalDate;
-import java.util.List;
-import java.util.stream.Collectors;
-
 import histopatologialab.core.DB;
 import histopatologialab.core.Estado;
 import histopatologialab.core.db.tables.LabUsuario;
@@ -11,6 +7,10 @@ import histopatologialab.core.db.tables.records.LabUsuarioRecord;
 import histopatologialab.usuario.dto.Usuario;
 import org.jooq.DSLContext;
 import org.jooq.Record;
+
+import java.time.LocalDate;
+import java.util.List;
+import java.util.stream.Collectors;
 
 
 public class UsuarioDaoImpl implements IUsuarioDao{

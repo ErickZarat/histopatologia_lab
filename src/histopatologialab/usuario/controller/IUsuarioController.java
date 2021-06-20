@@ -1,9 +1,9 @@
 package histopatologialab.usuario.controller;
 
-import java.util.List;
-
 import histopatologialab.core.JsonResponse;
 import histopatologialab.usuario.dto.Usuario;
+
+import java.util.List;
 
 public interface IUsuarioController {
 	JsonResponse<Usuario> crearUsuario(String loginUsuario, String passUser, String nombresDoctor, String apellidosDoctor, String emailDoctor, String colegiadoDoctor, String tipoUsuario, String usuarioCreado);

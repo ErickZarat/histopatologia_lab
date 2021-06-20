@@ -1,14 +1,13 @@
 package histopatologialab.enfsistemica.controller;
 
 
-import java.time.LocalDate;
-import java.util.List;
-
-import com.sun.org.apache.xpath.internal.operations.Bool;
 import histopatologialab.core.Estado;
 import histopatologialab.core.JsonResponse;
 import histopatologialab.enfsistemica.dao.IEnfSistemicaDao;
 import histopatologialab.enfsistemica.dto.EnfSistemica;
+
+import java.time.LocalDate;
+import java.util.List;
 
 
 public class EnfSistemicaControllerImpl implements IEnfSistemicaController {

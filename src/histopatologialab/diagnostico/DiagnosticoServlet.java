@@ -1,22 +1,21 @@
 package histopatologialab.diagnostico;
 
-import java.io.IOException;
+import histopatologialab.core.JsonResponse;
+import histopatologialab.core.RequestAction;
+import histopatologialab.diagnostico.controller.IDiagnosticoController;
+import histopatologialab.diagnostico.dto.Diagnostico;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import histopatologialab.diagnostico.controller.IDiagnosticoController;
-import histopatologialab.diagnostico.dto.Diagnostico;
-
-import static histopatologialab.core.ServletHelper.*;
-import static histopatologialab.core.Controllers.diagnosticoController;
-
-import histopatologialab.core.JsonResponse;
-import histopatologialab.core.RequestAction;
-import javax.servlet.RequestDispatcher;
+import java.io.IOException;
 import java.util.List;
+
+import static histopatologialab.core.Controllers.diagnosticoController;
+import static histopatologialab.core.ServletHelper.*;
 
 /**
  * Servlet implementation class DiagnosticoServlet

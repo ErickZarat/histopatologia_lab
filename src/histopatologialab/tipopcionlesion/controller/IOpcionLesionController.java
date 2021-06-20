@@ -2,6 +2,7 @@ package histopatologialab.tipopcionlesion.controller;
 
 import histopatologialab.core.JsonResponse;
 import histopatologialab.tipopcionlesion.dto.OpcionLesion;
+
 import java.util.List;
 
 public interface IOpcionLesionController {

@@ -1,9 +1,7 @@
 package histopatologialab.enfsistemica;
 
-import histopatologialab.core.JsonResponse;
 import histopatologialab.core.RequestAction;
 import histopatologialab.enfsistemica.controller.IEnfSistemicaController;
-import histopatologialab.enfsistemica.dto.EnfSistemica;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -12,10 +10,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.List;
 
-import static histopatologialab.core.ServletHelper.*;
 import static histopatologialab.core.Controllers.enfsistemicaController;
+import static histopatologialab.core.ServletHelper.*;
 
 
 @WebServlet(name = "EnfSistemicaServlet")
