@@ -17,11 +17,11 @@ public class LoginController {
 
     private final String ROLE_KEY = "user_role";
 
-    public Boolean iniciarSession(String usuario, String password) {
+    public Boolean iniciarSession(String usuario, String password, HttpSession session) {
 
     	IUsuarioController controller = usuarioController; 
 	    try {// validar que no exista un usuario con ese login
-	        Usuario usuarioBD = controller.buscarUsuario(usuario);
+	        Usuario usuarioBD = controller.buscarUsuario(usuario).getData();
 	    	if (!(usuarioBD == null))
 	    	{	// usuario existe, validando password
 	        	 boolean passwordMatch = PasswordUtils.verifyUserPassword(password, usuarioBD.getPasswordUsuario());
