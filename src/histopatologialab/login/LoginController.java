@@ -1,15 +1,13 @@
 package histopatologialab.login;
 
+import histopatologialab.core.Role;
 import histopatologialab.password.PasswordUtils;
 import histopatologialab.usuario.controller.IUsuarioController;
 import histopatologialab.usuario.dto.Usuario;
 
-import static histopatologialab.core.Controllers.usuarioController;
-
-import histopatologialab.core.Role;
-import histopatologialab.core.RoleHandler;
-
 import javax.servlet.http.HttpSession;
+
+import static histopatologialab.core.Controllers.usuarioController;
 
 public class LoginController {
 
