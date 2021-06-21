@@ -1,9 +1,19 @@
 
 currentSearchResults = [];
+$('#codigoUsuario').focusout(function(){
+    setTimeout(function (){
+        $('.search .results').hide();
+        $('.search .results li').remove();
+    }, 900);
+});
 
 $('#codigoUsuario').keyup($.debounce(850, function(e) {
     value = $(this).val();
-    if (value.length < 3) return;
+    if (value.length < 3) {
+        $('.search .results li').remove();
+        $('.search .results').hide();
+        return;
+    }
 
     $.ajax({
         url: 'PacienteServlet.do',
@@ -15,15 +25,21 @@ $('#codigoUsuario').keyup($.debounce(850, function(e) {
         success: function(response) {
             currentSearchResults = response.data;
             $('.search .results li').remove();
-            response.data.forEach(function(element, index){
-                $('.search .results').append('<li><a onClick="onPacienteSelected()" data-idx="' + index + '" href="#">' + element['nombrePaciente'] + ' ' + element['apellidosPaciente'] + '<br /><span>' + element['identificacionPaciente'] + '</span></a></li>');
-            });
+
+            if (currentSearchResults && currentSearchResults.length >= 1) {
+                $('.search .results').show();
+                currentSearchResults.forEach(function (element, index) {
+                    $('.search .results').append('<li><a onClick="onPacienteSelected(this)" data-idx="' + index + '" href="#">' + element['nombrePaciente'] + ' ' + element['apellidosPaciente'] + '<br /><span>' + element['identificacionPaciente'] + '</span></a></li>');
+                });
+            }
         }
     })
 }));
 
-function onPacienteSelected(){
-    idx = $(this).data(idx);
+function onPacienteSelected(item){
+    $('.search .results').hide();
+
+    idx = $(item).data('idx');
     paciente = currentSearchResults[idx];
     $('#codigoUsuario').prop('readonly', true);
     $('#codigoUsuario').unbind('keyup');
@@ -33,11 +49,11 @@ function onPacienteSelected(){
     $('#nombreUsuario').val(paciente.nombrePaciente + ' ' + paciente.apellidosPaciente);
     $('#estadoCivilUsuario').val(paciente.estCivilPaciente);
     $('#ocupacionUsuario').val(paciente.ocupacionPaciente);
-    $('#edadUsuario').val('');
+    $('#edadUsuario').val(paciente.edad);
     $('#emailUsuario').val(paciente.emailPaciente);
     $('#telefonoUsuario').val(paciente.telefonoPaciente);
 
-    $('.search .results a').click(onPacienteSelected);
+    $('#lesion-accordion').prop("checked", true)
 }
 
 function extractExamen(){

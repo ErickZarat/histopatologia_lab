@@ -21,6 +21,7 @@ public class Paciente {
 	private String creadoPor;
 	private String modificadoPor;
 	private LocalDate fechaModificacion;
+	private int edad;
 	
    public Paciente () {	   
    }
@@ -47,6 +48,8 @@ public class Paciente {
         this.fechaCreacion = fechaCreacion;
         this.modificadoPor = modificadoPor;
         this.fechaModificacion = fechaModificacion;
+
+        calculateAge();
         
 	}
 
@@ -119,6 +122,7 @@ public class Paciente {
 
 	public void setFecNacimientoPaciente(LocalDate fecNacimientoPaciente) {
 		this.fecNacimientoPaciente = fecNacimientoPaciente;
+		calculateAge();
 	}
 
 
@@ -214,10 +218,17 @@ public class Paciente {
 	}
 
 	public int calculateAge(){
-   		if (this.fecNacimientoPaciente == null) return -1;
+   		if (this.fecNacimientoPaciente == null) return 0;
 		Period period = Period.between(this.fecNacimientoPaciente, LocalDate.now());
-		return period.getYears();
+		this.setEdad(period.getYears());
+		return this.getEdad();
 	}
-	
-	
+
+	public int getEdad() {
+		return edad;
+	}
+
+	public void setEdad(int edad) {
+		this.edad = edad;
+	}
 }

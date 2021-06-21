@@ -13,13 +13,13 @@
     </label>
     <input type="checkbox" checked class="accordion" id="paciente-accordion">
     <div class="user-container container-fluid">
-        <form class="align-middle" action="ConsultaServlet.do" method="post">
+        <form autocomplete="off" class="align-middle" action="ConsultaServlet.do" method="post">
 
             <table>
                 <tr>
                     <td><label class="table-form-label" for="codigoUsuario">Codigo:</label></td>
                     <td class="search">
-                        <input type="text" id="codigoUsuario" class="form-control" value="${paciente.codigoPaciente}">
+                        <input type="text" id="codigoUsuario" class="form-control" value="${paciente.codigoPaciente}" autocomplete="off">
                         <ul class="results" >
                         </ul>
                     </td>
