@@ -27,11 +27,12 @@ $('#codigoUsuario').keyup($.debounce(850, function(e) {
             $('.search .results li').remove();
 
             if (currentSearchResults && currentSearchResults.length >= 1) {
-                $('.search .results').show();
                 currentSearchResults.forEach(function (element, index) {
                     $('.search .results').append('<li><a onClick="onPacienteSelected(this)" data-idx="' + index + '" href="#">' + element['nombrePaciente'] + ' ' + element['apellidosPaciente'] + '<br /><span>' + element['identificacionPaciente'] + '</span></a></li>');
                 });
             }
+            $('.search .results').append('<li><a data-toggle="modal" data-target="#agregarPacienteModal" id="agregarPacienteModalBtn" href="#">Agregar paciente nuevo</a></li>');
+            $('.search .results').show();
         }
     })
 }));
@@ -57,33 +58,48 @@ function onPacienteSelected(item){
 }
 
 function extractExamen(){
-    var examen = {
-        // 'codExamen': $('#'),
+    return {
+        // 'codExamen': $('#'), //generated on backend
         'codPaciente': $('#codigoUsuario').val(),
-        // 'numExamen': $('#'),
+        // 'numExamen': $('#'), //generated on backend
         // 'fechaExamen': $('#'),
         // 'estado': $('#'),
         // 'historiaExamenLesion': $('#'),
-        'tamanoLesion': $('#tamano'),
-        'dimensionalLesion': $('#'),
-        'duracionLesionDias': $('#duracionDias'),
-        'duracionLesionMeses': $('#duracionMeses'),
-        'duracionLesionAnios': $('#duracionAnios'),
-        'datosImportantesLesion': $('#'),
-        // 'doctorExamen': $('#'),
-        // 'tipoRemision': $('#'),
-        // 'doctorRemision': $('#'),
-        // 'direccionDoctorRemision': $('#'),
-        // 'telefonoDoctorRemision': $('#'),
-        // 'emailDoctorRemision': $('#'),
-        // 'dependenciaDoctorRemision': $('#'),
-    }
+        'tamanoLesion': $('#tamano').val(),
+        'dimensionalLesion': "cm",
+        'duracionLesionDias': $('#duracionDias').val(),
+        'duracionLesionMeses': $('#duracionMeses').val(),
+        'duracionLesionAnios': $('#duracionAnios').val(),
+        'datosImportantesLesion': $('#datosImportantes').val(),
+        // 'doctorExamen': $('#'), //comes from session
 
-    return examen;
+        'tipoRemision': $('#tipoRemision').val(),
+        'doctorRemision': $('#doctorRemision').val(),
+        'direccionDoctorRemision': $('#direccionDoctorRemision').val(),
+        'telefonoDoctorRemision': $('#telefonoDoctorRemision').val(),
+        'emailDoctorRemision': $('#emailDoctorRemision').val(),
+        'dependenciaDoctorRemision': $('#dependenciaDoctorRemision').val(),
+    }
 }
 
 $('#guardarExamen').click(function(e){
     e.preventDefault();
+    var examen = extractExamen();
+    $.ajax({
+        url: 'ConsultaServlet.do',
+        method: 'post',
+        data: {
+            accion: 'CREAR',
+            examen: JSON.stringify(examen)
+        },
+        success: function (response) {
+            if(response.success) {
+                toastr.success("se guardo el examen");
+            } else {
+                toastr.error("No se pudo agregar el examen, " + response.error);
+            }
+        }
+    });
 });
 
 

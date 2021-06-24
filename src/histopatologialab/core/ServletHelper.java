@@ -31,6 +31,19 @@ public class ServletHelper {
         return usuario.toString();
     }
 
+    public static Long getIdUsuarioFromSession(HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        if (session == null) return 0L;
+
+        Object usuario = session.getAttribute("idUsuario");
+
+        if (usuario == null) {
+            return 0L;
+        }
+        request.setAttribute("idUsuario", usuario.toString());
+        return Long.valueOf(usuario.toString());
+    }
+
     public static boolean isValidSession(HttpServletRequest request) {
         return getUsuarioFromSession(request) != null;
     }

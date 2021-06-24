@@ -11,7 +11,7 @@ public interface IExamenDao {
     Examen getExamen(String numExamen);
     Examen getExamen(int codExamen);
 
-    List<Examen> getExamenesByPaciente(int codPaciente);
+    List<Examen> getExamenesByPaciente(Long codPaciente);
     Examen guardarExamen(Examen examen);
     Examen modificarExamen(Examen examen);
 

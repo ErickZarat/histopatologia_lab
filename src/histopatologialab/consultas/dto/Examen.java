@@ -8,7 +8,7 @@ import java.util.List;
 
 public class Examen {
     int codExamen;
-    int codPaciente;
+    Long codPaciente;
     String numExamen;
     LocalDate fechaExamen;
     String estado;
@@ -18,21 +18,24 @@ public class Examen {
     int duracionLesionDias;
     int duracionLesionMeses;
     int duracionLesionAnios;
+
     String datosImportantesLesion;
-    int doctorExamen;
+    Long doctorExamen;
     String tipoRemision;
+
     String doctorRemision;
     String direccionDoctorRemision;
     String telefonoDoctorRemision;
     String emailDoctorRemision;
     String dependenciaDoctorRemision;
+    String registroDoctorRemision;
 
     Paciente paciente;
     Usuario doctor;
 
     List<Integer> caracteristicas;
 
-    public Examen(int codExamen, int codPaciente, String numExamen, LocalDate fechaExamen, String estado, String historiaExamenLesion, String tamanoLesion, String dimensionalLesion, int duracionLesionDias, int duracionLesionMeses, int duracionLesionAnios, String datosImportantesLesion, int doctorExamen, String tipoRemision, String doctorRemision, String direccionDoctorRemision, String telefonoDoctorRemision, String emailDoctorRemision, String dependenciaDoctorRemision, Paciente paciente, Usuario doctor) {
+    public Examen(int codExamen, Long codPaciente, String numExamen, LocalDate fechaExamen, String estado, String historiaExamenLesion, String tamanoLesion, String dimensionalLesion, int duracionLesionDias, int duracionLesionMeses, int duracionLesionAnios, String datosImportantesLesion, Long doctorExamen, String tipoRemision, String doctorRemision, String direccionDoctorRemision, String telefonoDoctorRemision, String emailDoctorRemision, String dependenciaDoctorRemision, String registroDoctorRemision, Paciente paciente, Usuario doctor) {
         this.codExamen = codExamen;
         this.codPaciente = codPaciente;
         this.numExamen = numExamen;
@@ -52,12 +55,21 @@ public class Examen {
         this.telefonoDoctorRemision = telefonoDoctorRemision;
         this.emailDoctorRemision = emailDoctorRemision;
         this.dependenciaDoctorRemision = dependenciaDoctorRemision;
+        this.registroDoctorRemision = registroDoctorRemision;
         this.paciente = paciente;
         this.doctor = doctor;
     }
 
     public Examen() {
 
+    }
+
+    public String getRegistroDoctorRemision() {
+        return registroDoctorRemision;
+    }
+
+    public void setRegistroDoctorRemision(String registroDoctorRemision) {
+        this.registroDoctorRemision = registroDoctorRemision;
     }
 
     public int getCodExamen() {
@@ -68,11 +80,11 @@ public class Examen {
         this.codExamen = codExamen;
     }
 
-    public int getCodPaciente() {
+    public Long getCodPaciente() {
         return codPaciente;
     }
 
-    public void setCodPaciente(int codPaciente) {
+    public void setCodPaciente(Long codPaciente) {
         this.codPaciente = codPaciente;
     }
 
@@ -156,11 +168,11 @@ public class Examen {
         this.datosImportantesLesion = datosImportantesLesion;
     }
 
-    public int getDoctorExamen() {
+    public Long getDoctorExamen() {
         return doctorExamen;
     }
 
-    public void setDoctorExamen(int doctorExamen) {
+    public void setDoctorExamen(Long doctorExamen) {
         this.doctorExamen = doctorExamen;
     }
 

@@ -14,4 +14,6 @@ public interface IConsultaController {
 
     List<Examen> getExamenes();
 
+    Examen guardarExamen(Examen examen);
+
 }

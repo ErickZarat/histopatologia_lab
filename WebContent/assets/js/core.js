@@ -17,9 +17,6 @@ window.coreTableConfig = {
     // bFilter: false,
     bLengthChange: false,
     iDisplayLength: 10,
-columnDefs: [{ 'width': '5%', 'targets': [0,1]  },
-    {'width': '90%','targets': [2, 3] },
-    { "className": 'dt-center', 'targets': '_all'  },  ],
     oLanguage: {
         oPaginate: {
             sPrevious: "Anterior", // This is the link to the previous page

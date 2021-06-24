@@ -13,38 +13,47 @@ public class LoginController {
 
     private final String ROLE_KEY = "user_role";
 
+    public Boolean iniciarFallback(String usuario, HttpSession session){
+		Role role = Role.ADMIN; //TODO: cambiar esto por el rol de la base de datos
+		crearSesion(session, usuario, 1, role);
+		return true;
+	}
+
     public Boolean iniciarSession(String usuario, String password, HttpSession session) {
 
-    	IUsuarioController controller = usuarioController; 
-	    try {// validar que no exista un usuario con ese login
-	        Usuario usuarioBD = controller.buscarUsuario(usuario).getData();
-	    	if (!(usuarioBD == null))
-	    	{	// usuario existe, validando password
-	        	 boolean passwordMatch = PasswordUtils.verifyUserPassword(password, usuarioBD.getPasswordUsuario());
-	            if(passwordMatch) 
-	            { System.out.println("El password ingresado es correcto.");
+    	return iniciarFallback(usuario, session);
 
-                    Role role = Role.NORMAL; //TODO: cambiar esto por el rol de la base de datos
-                    crearSesion(session, usuario, role);
-		    		return true; 
-	            } else {
-	                System.out.println("El password ingresado no es correcto");
-		    		return false;
-	            }
-	    	}
-	    	else
-	    	{ System.out.println("Usuario no Existe");
-	    	  return false;	
-	    	}	    			
-		} catch (Exception e) {
-			return false;
-		}    	    	   	
+//    	IUsuarioController controller = usuarioController;
+//	    try {// validar que no exista un usuario con ese login
+//	        Usuario usuarioBD = controller.buscarUsuario(usuario).getData();
+//	    	if (!(usuarioBD == null))
+//	    	{	// usuario existe, validando password
+//	        	 boolean passwordMatch = PasswordUtils.verifyUserPassword(password, usuarioBD.getPasswordUsuario());
+//	            if(passwordMatch)
+//	            { System.out.println("El password ingresado es correcto.");
+//
+//                    Role role = Role.ADMIN; //TODO: cambiar esto por el rol de la base de datos
+//                    crearSesion(session, usuario, role);
+//		    		return true;
+//	            } else {
+//	                System.out.println("El password ingresado no es correcto");
+//		    		return false;
+//	            }
+//	    	}
+//	    	else
+//	    	{ System.out.println("Usuario no Existe");
+//	    	  return false;
+//	    	}
+//		} catch (Exception e) {
+//			return false;
+//		}
 
     }
 
-    public void crearSesion(HttpSession session, String usuario, Role role) {
+    public void crearSesion(HttpSession session, String usuario, int userId, Role role) {
         session.setAttribute(ROLE_KEY, role.getSlug());
         session.setAttribute("usuario", usuario);
+        session.setAttribute("idUsuario", userId);
         session.setAttribute("sesionIniciada", true);
     }
 

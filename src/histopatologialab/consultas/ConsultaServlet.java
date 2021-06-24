@@ -4,6 +4,7 @@ import histopatologialab.consultas.controller.IConsultaController;
 import histopatologialab.consultas.dto.Examen;
 import histopatologialab.core.RequestAction;
 import histopatologialab.pacientes.dto.Paciente;
+import org.tinylog.Logger;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -15,8 +16,7 @@ import java.io.IOException;
 
 import static histopatologialab.core.Controllers.consultaController;
 import static histopatologialab.core.Controllers.pacienteController;
-import static histopatologialab.core.ServletHelper.checkSession;
-import static histopatologialab.core.ServletHelper.getRequestAction;
+import static histopatologialab.core.ServletHelper.*;
 
 @WebServlet(name = "ConsultaServlet")
 public class ConsultaServlet extends HttpServlet {
@@ -50,41 +50,43 @@ public class ConsultaServlet extends HttpServlet {
     }
 
     private void handlePostCreateExamen(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        String examenJson = request.getParameter("examen");
+        Logger.info(examenJson);
+        Examen examen = jackson.readValue(examenJson, Examen.class);
+        if (examen == null) {
+            Logger.error("error parsing examen request");
+        }
+        examen.setDoctorExamen(getIdUsuarioFromSession(request));
 
+        controller.guardarExamen(examen);
     }
 
     private void handleGetCreateWithPaciente(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String codPaciente = request.getParameter("cod_paciente");
-
-        Paciente paciente = null;
-
-        try {
-            paciente = pacienteController.getPacienteByCodigo(Long.parseLong(codPaciente)).getData();
-        } catch (Exception e) {
-
-        }
-
-        if (paciente == null) {
-            paciente = new Paciente();
-        }
-        request.setAttribute("paciente", paciente);
-
         String codExamen = request.getParameter("cod_examen");
+        String codPaciente = request.getParameter("cod_paciente");
 
         Examen examen = null;
 
-        try {
+        if (codExamen != null) {
             examen = consultaController.getExamen(Integer.parseInt(codExamen));
-        } catch (Exception e) {
-
+            if (examen == null) {
+                examen = new Examen();
+            } else {
+                codPaciente = String.valueOf(examen.getCodPaciente());
+            }
         }
 
-        if (examen == null) {
-            examen = new Examen();
+        Paciente paciente = null;
+
+        if (codPaciente != null) {
+            paciente = pacienteController.getPacienteByCodigo(Long.parseLong(codPaciente)).getData();
+            if (paciente == null) {
+                paciente = new Paciente();
+            }
         }
-        request.setAttribute("examen", examen);
 
-
+        request.setAttribute("paciente", paciente != null? paciente : new Paciente());
+        request.setAttribute("examen", examen != null? examen: new Examen());
         getCreateConsultaPage(request, response);
     }
 

@@ -2,15 +2,12 @@ $(document).ready(function() {
 
     var consultasTable = $('#consultasTable').DataTable(window.coreTableConfig);
 
-    function getListadoMedicamentos() {
-        $('#agregarMedicamentoModalBtn').prop('disabled', false);
+    function getListadoConsultas() {
 
-        medicamentosTable.rows().remove().draw(false);
-        presentacionMedicamentosTable.rows().remove().draw(false);
+        consultasTable.rows().remove().draw(false);
 
-        var tipoMedicamento = $('#tipoMedicamentoSearch').val()
         $.ajax({
-            url: 'ConsultasServlet.do',
+            url: 'ConsultaServlet.do',
             method: 'get',
             data: {
                 accion: 'LISTAR_JSON'
@@ -38,5 +35,7 @@ $(document).ready(function() {
             }
         });
     }
+
+    getListadoConsultas();
 
 });

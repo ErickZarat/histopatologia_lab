@@ -44,40 +44,9 @@ public class ExamenDaoImpl implements IExamenDao {
                 record.getValue(tabla.TELEFONO_DOCTOR_REMISION),
                 record.getValue(tabla.EMAIL_DOCTOR_REMISION),
                 record.getValue(tabla.DEPENDENCIA_DOCTOR_REMISION),
-                new Paciente(
-                        record.getValue(tablapaciente.COD_PACIENTE),
-                        record.getValue(tablapaciente.IDENTIFICACION),
-                        record.getValue(tablapaciente.NOMBRE),
-                        record.getValue(tablapaciente.APELLIDOS),
-                        record.getValue(tablapaciente.DIRECCION),
-                        record.getValue(tablapaciente.TELEFONO),
-                        record.getValue(tablapaciente.FECHANACIMIENTO),
-                        record.getValue(tablapaciente.GENERO),
-                        record.getValue(tablapaciente.OCUPACION),
-                        record.getValue(tablapaciente.TIPO_IDENTIFICACION),
-                        record.getValue(tablapaciente.EMAIL),
-                        record.getValue(tablapaciente.CREADOPOR),
-                        record.getValue(tablapaciente.ESTADOCIVIL),
-                        record.getValue(tablapaciente.FECHACREACION),
-                        record.getValue(tablapaciente.MODIFICADOPOR),
-                        record.getValue(tablapaciente.FECHAMODIFICACION)
-                ),
-                new Usuario(
-                        record.getValue(tablaUsuario.COD_USUARIO),
-                        record.getValue(tablaUsuario.LOGIN_USUARIO),
-                        record.getValue(tablaUsuario.PASSWORD),
-                        record.getValue(tablaUsuario.LLAVE),
-                        record.getValue(tablaUsuario.NOMBRES_DOCTOR),
-                        record.getValue(tablaUsuario.APELLIDOS_DOCTOR) ,
-                        record.getValue(tablaUsuario.NUM_COLEGIADO),
-                        record.getValue(tablaUsuario.EMAILUSUARIO),
-                        record.getValue(tablaUsuario.TIPO_USUARIO),
-                        record.getValue(tablaUsuario.ESTADO),
-                        record.getValue(tablaUsuario.FECHACREACION),
-                        record.getValue(tablaUsuario.CREADOPOR),
-                        record.getValue(tablaUsuario.MODIFICADOPOR),
-                        record.getValue(tablaUsuario.FECHAMODIFICACION)
-                )
+                record.getValue(tabla.REGISTRO_DOCTOR_REMISION),
+                null,
+                null
         );
     }
 
@@ -98,7 +67,7 @@ public class ExamenDaoImpl implements IExamenDao {
     }
 
     @Override
-    public List<Examen> getExamenesByPaciente(int codPaciente) {
+    public List<Examen> getExamenesByPaciente(Long codPaciente) {
         List<Record> result = query.select(tabla.asterisk())
                 .where(tabla.COD_PACIENTE.eq(codPaciente)).
                 orderBy(tabla.FECHA_EXAMEN.desc())
@@ -108,7 +77,7 @@ public class ExamenDaoImpl implements IExamenDao {
 
     @Override
     public Examen guardarExamen(Examen examen) {
-        LabExamenRecord record = new LabExamenRecord();
+        LabExamenRecord record = query.newRecord(tabla);
 
         record.setCodPaciente(examen.getCodPaciente());
         record.setNumExamen(examen.getNumExamen());
@@ -128,14 +97,14 @@ public class ExamenDaoImpl implements IExamenDao {
         record.setTelefonoDoctorRemision(examen.getTelefonoDoctorRemision());
         record.setEmailDoctorRemision(examen.getEmailDoctorRemision());
         record.setDependenciaDoctorRemision(examen.getDependenciaDoctorRemision());
-        record.insert();
+        record.store();
 
         return parseItem(record);
     }
 
     @Override
     public Examen modificarExamen(Examen examen) {
-        LabExamenRecord record = new LabExamenRecord();
+        LabExamenRecord record = query.newRecord(tabla);
 
         record.setCodExamen(examen.getCodExamen());
         record.setCodPaciente(examen.getCodPaciente());

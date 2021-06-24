@@ -31,7 +31,6 @@ public class Paciente {
 			String direccionPaciente, String telefonoPaciente, LocalDate fecNacimientoPaciente,
 			String generoPaciente, String ocupacionPaciente, String tipoidPaciente, String emailPaciente, String estCivilPaciente,
 			String creadoPor, LocalDate fechaCreacion, String modificadoPor, LocalDate fechaModificacion) {
-		super();
 		this.codigoPaciente = codigoPaciente;
 		this.identificacionPaciente = identificacionPaciente;
 		this.nombrePaciente = nombrePaciente;

@@ -57,21 +57,30 @@
             <table>
                 <tr>
                     <td><label class="table-form-label" for="tamano">Tamaño:</label></td>
-                    <td><input type="text" id="tamano" class="form-control"></td>
+                    <td><input type="number" id="tamano" class="form-control"></td>
                     <td><label class="table-form-label">Cm</label></td>
-                    <td><label class="table-form-label" for="duracionDias">Duracion: Dias: </label></td>
-                    <td><input type="text" id="duracionDias" class="form-control"></td>
+                    <td><label class="table-form-label" for="duracionDias">Duracion:</label></td>
 
-                    <td><label class="table-form-label" for="duracionMeses">Meses: </label></td>
-                    <td><input type="text" id="duracionMeses" class="form-control"></td>
+                    <td colspan="4">
+                        <table>
+                            <tr>
+                                <td><label>Dias: </label></td>
+                                <td><input type="number" id="duracionDias" class="form-control"></td>
 
-                    <td><label class="table-form-label" for="duracionAnios">Años: </label></td>
-                    <td><input type="text" id="duracionAnios" class="form-control"></td>
+                                <td><label class="table-form-label" for="duracionMeses">Meses: </label></td>
+                                <td><input type="number" id="duracionMeses" class="form-control"></td>
+
+                                <td><label class="table-form-label" for="duracionAnios">Años: </label></td>
+                                <td><input type="number" id="duracionAnios" class="form-control"></td>
+                            </tr>
+                        </table>
+                    </td>
                 </tr>
                 <tr>
                     <td><label class="table-form-label" for="colorLesionSelect">Color:</label></td>
                     <td>
                         <select  class="form-control" name="colorLesionSelect" id="colorLesionSelect">
+                            <option value="">Selecciona una opcion</option>
                             <c:forEach items="${tipoOpcion.COLOR}" var="tipo">
                                 <option value="${tipo.codigoOpcion}">${tipo.valor}</option>
                             </c:forEach>
@@ -80,6 +89,7 @@
                     <td><label class="table-form-label" for="naturalezaLesionSelect">Naturaleza:</label></td>
                     <td>
                         <select  class="form-control" name="naturalezaLesionSelect" id="naturalezaLesionSelect">
+                            <option value="">Selecciona una opcion</option>
                             <c:forEach items="${tipoOpcion.NATURALEZA}" var="tipo">
                                 <option value="${tipo.codigoOpcion}">${tipo.valor}</option>
                             </c:forEach>
@@ -88,6 +98,7 @@
                     <td><label class="table-form-label" for="sintomaLesionSelect">Sintomas:</label></td>
                     <td>
                         <select  class="form-control" name="sintomaLesionSelect" id="sintomaLesionSelect">
+                            <option value="">Selecciona una opcion</option>
                             <c:forEach items="${tipoOpcion.SINTOMA}" var="tipo">
                                 <option value="${tipo.codigoOpcion}">${tipo.valor}</option>
                             </c:forEach>
@@ -96,6 +107,7 @@
                     <td><label class="table-form-label" for="formaLesionSelect">Forma:</label></td>
                     <td>
                         <select  class="form-control" name="formaLesionSelect" id="formaLesionSelect">
+                            <option value="">Selecciona una opcion</option>
                             <c:forEach items="${tipoOpcion.FORMA}" var="tipo">
                                 <option value="${tipo.codigoOpcion}">${tipo.valor}</option>
                             </c:forEach>
@@ -106,22 +118,25 @@
                     <td><label class="table-form-label" for="superficieLesionSelect">Superficie:</label></td>
                     <td>
                         <select  class="form-control" name="superficieLesionSelect" id="superficieLesionSelect">
+                            <option value="">Selecciona una opcion</option>
                             <c:forEach items="${tipoOpcion.SUPERFICIE}" var="tipo">
                                 <option value="${tipo.codigoOpcion}">${tipo.valor}</option>
                             </c:forEach>
                         </select>
                     </td>
-                    <td><label class="table-form-label" for="consistenciaLesionSelect">Color:</label></td>
+                    <td><label class="table-form-label" for="consistenciaLesionSelect">Consistencia:</label></td>
                     <td>
                         <select  class="form-control" name="consistenciaLesionSelect" id="consistenciaLesionSelect">
+                            <option value="">Selecciona una opcion</option>
                             <c:forEach items="${tipoOpcion.CONSISTENCIA}" var="tipo">
                                 <option value="${tipo.codigoOpcion}">${tipo.valor}</option>
                             </c:forEach>
                         </select>
                     </td>
-                    <td><label class="table-form-label" for="esIntaoseoLesionSelect">Color:</label></td>
+                    <td><label class="table-form-label" for="esIntaoseoLesionSelect">Intraoseo:</label></td>
                     <td>
                         <select  class="form-control" name="esIntaoseoLesionSelect" id="esIntaoseoLesionSelect">
+                            <option value="">Selecciona una opcion</option>
                             <c:forEach items="${tipoOpcion.INTRAOSEO}" var="tipo">
                                 <option value="${tipo.codigoOpcion}">${tipo.valor}</option>
                             </c:forEach>
@@ -132,11 +147,67 @@
                     <td><label class="table-form-label" for="piezaLesionSelect">Asocia Pieza:</label></td>
                     <td>
                         <select  class="form-control" name="piezaLesionSelect" id="piezaLesionSelect">
+                            <option value="">Selecciona una opcion</option>
                             <c:forEach items="${tipoOpcion.PIEZA}" var="tipo">
                                 <option value="${tipo.codigoOpcion}">${tipo.valor}</option>
                             </c:forEach>
                         </select>
                     </td>
+                </tr>
+            </table>
+            <hr>
+
+            <table>
+                <tr>
+                    <td><label class="table-form-label" for="tipoRemision">Tipo Remision:</label></td>
+                    <td>
+                        <select  class="form-control" name="tipoRemision" id="tipoRemision">
+                            <option value="">Selecciona una opcion</option>
+                            <c:forEach items="${tipoOpcion.PIEZA}" var="tipo">
+                                <option value="${tipo.codigoOpcion}">${tipo.valor}</option>
+                            </c:forEach>
+                        </select>
+                    </td>
+                    <td><label class="table-form-label" for="registroDoctorRemision">Registro Remision:</label></td>
+                    <td><input type="text" id="registroDoctorRemision" class="form-control"></td>
+                </tr>
+                <tr>
+
+                    <td><label class="table-form-label" for="doctorRemision">Doctor Remision:</label></td>
+                    <td><input type="text" id="doctorRemision" class="form-control"></td>
+
+                    <td><label class="table-form-label" for="direccionDoctorRemision">Direccion Doctor Remision:</label></td>
+                    <td colspan="2"><input type="text" id="direccionDoctorRemision" class="form-control"></td>
+
+                </tr>
+                <tr>
+                    <td><label class="table-form-label" for="telefonoDoctorRemision">Telefono Doctor Remision:</label></td>
+                    <td><input type="text" id="telefonoDoctorRemision" class="form-control"></td>
+
+                    <td><label class="table-form-label" for="emailDoctorRemision">Email Doctor Remision:</label></td>
+                    <td><input type="text" id="emailDoctorRemision" class="form-control"></td>
+
+                    <td><label class="table-form-label" for="dependenciaDoctorRemision">Dependencia Doctor Remision:</label></td>
+                    <td><input type="text" id="dependenciaDoctorRemision" class="form-control"></td>
+
+                </tr>
+            </table>
+
+            <hr>
+
+            <table>
+                <tr>
+                    <td>
+                        <label class="table-form-label" for="datosImportantes">Datos Importantes:</label>
+                    </td>
+                    <td>
+                        <textarea name="datosImportantes" class="form-control" id="datosImportantes" cols="150" rows="5"></textarea>
+                    </td>
+                    <td colspan="2">
+                        <input type="file" multiple accept="image/*">
+                        <button class="btn btn-light" style="margin-left: 35%;">Imagenes</button>
+                    </td>
+                    <td style="width: 10%;"></td>
                 </tr>
                 <tr>
                     <td>
@@ -145,26 +216,6 @@
                     <td>
                         <input type="checkbox" id="necesitaFrote"><label for="necesitaFrote"> Necesita frote</label>
                     </td>
-                </tr>
-                <tr>
-                    <td>
-                        <label class="table-form-label" for="datosImportantes">Datos Importantes:</label>
-                    </td>
-                    <td colspan="3">
-                        <textarea name="datosImportantes" class="form-control" id="datosImportantes" cols="300" rows="5"></textarea>
-                    </td>
-                    <td>
-                        <button class="btn btn-light">Imagenes</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <label class="table-form-label" for="datosImportantes">Otros Datos Importantes:</label>
-                    </td>
-                    <td colspan="3">
-                        <textarea name="datosImportantes" class="form-control" id="otrosDatosImportantes" cols="300" rows="5"></textarea>
-                    </td>
-                    <td></td>
                 </tr>
             </table>
             <button id="guardarExamen" class="btn btn-light">Guardar</button>
@@ -214,5 +265,6 @@
 
 
 <%@include file="../partials/footer.jsp"%>
+<%@ include file="../mantenimientos/agregar-paciente.jsp"%>
 <script src="assets/js/consulta/crear-consulta.js"></script>
 

@@ -24,6 +24,7 @@ public class ConsultaControllerImpl implements IConsultaController {
                 .collect(groupingBy(OpcionLesion::getNombreOpcion));
     }
 
+
     private void genConsultaNumber() {
 
     }
@@ -38,6 +39,7 @@ public class ConsultaControllerImpl implements IConsultaController {
         return examenDao.getExamenes();
     }
 
+    @Override
     public Examen guardarExamen(Examen examen) {
         return examenDao.guardarExamen(examen);
     }

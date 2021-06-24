@@ -28,17 +28,32 @@ public class Sequences {
     /**
      * The sequence <code>public.lab_examen_biopsia_cod_biopsia_seq</code>
      */
-    public static final Sequence<Integer> LAB_EXAMEN_BIOPSIA_COD_BIOPSIA_SEQ = Internal.createSequence("lab_examen_biopsia_cod_biopsia_seq", Public.PUBLIC, SQLDataType.INTEGER.nullable(false), null, null, null, null, false, null);
+    public static final Sequence<Long> LAB_EXAMEN_BIOPSIA_COD_BIOPSIA_SEQ = Internal.createSequence("lab_examen_biopsia_cod_biopsia_seq", Public.PUBLIC, SQLDataType.BIGINT.nullable(false), null, null, null, 2147483647, false, null);
+
+    /**
+     * The sequence <code>public.lab_examen_biopsia_cod_biopsia_seq1</code>
+     */
+    public static final Sequence<Integer> LAB_EXAMEN_BIOPSIA_COD_BIOPSIA_SEQ1 = Internal.createSequence("lab_examen_biopsia_cod_biopsia_seq1", Public.PUBLIC, SQLDataType.INTEGER.nullable(false), null, null, null, null, false, null);
 
     /**
      * The sequence <code>public.lab_examen_caracteristica_cod_examen_seq</code>
      */
-    public static final Sequence<Integer> LAB_EXAMEN_CARACTERISTICA_COD_EXAMEN_SEQ = Internal.createSequence("lab_examen_caracteristica_cod_examen_seq", Public.PUBLIC, SQLDataType.INTEGER.nullable(false), null, null, null, null, false, null);
+    public static final Sequence<Long> LAB_EXAMEN_CARACTERISTICA_COD_EXAMEN_SEQ = Internal.createSequence("lab_examen_caracteristica_cod_examen_seq", Public.PUBLIC, SQLDataType.BIGINT.nullable(false), null, null, null, 2147483647, false, null);
+
+    /**
+     * The sequence <code>public.lab_examen_caracteristica_cod_examen_seq1</code>
+     */
+    public static final Sequence<Integer> LAB_EXAMEN_CARACTERISTICA_COD_EXAMEN_SEQ1 = Internal.createSequence("lab_examen_caracteristica_cod_examen_seq1", Public.PUBLIC, SQLDataType.INTEGER.nullable(false), null, null, null, null, false, null);
 
     /**
      * The sequence <code>public.lab_examen_cod_examen_seq</code>
      */
-    public static final Sequence<Integer> LAB_EXAMEN_COD_EXAMEN_SEQ = Internal.createSequence("lab_examen_cod_examen_seq", Public.PUBLIC, SQLDataType.INTEGER.nullable(false), null, null, null, null, false, null);
+    public static final Sequence<Long> LAB_EXAMEN_COD_EXAMEN_SEQ = Internal.createSequence("lab_examen_cod_examen_seq", Public.PUBLIC, SQLDataType.BIGINT.nullable(false), null, null, null, 2147483647, false, null);
+
+    /**
+     * The sequence <code>public.lab_examen_cod_examen_seq1</code>
+     */
+    public static final Sequence<Integer> LAB_EXAMEN_COD_EXAMEN_SEQ1 = Internal.createSequence("lab_examen_cod_examen_seq1", Public.PUBLIC, SQLDataType.INTEGER.nullable(false), null, null, null, null, false, null);
 
     /**
      * The sequence <code>public.lab_medicamento_seq</code>
