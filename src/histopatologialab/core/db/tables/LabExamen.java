@@ -14,10 +14,9 @@ import java.util.List;
 
 import org.jooq.Field;
 import org.jooq.ForeignKey;
-import org.jooq.Identity;
 import org.jooq.Name;
 import org.jooq.Record;
-import org.jooq.Row20;
+import org.jooq.Row21;
 import org.jooq.Schema;
 import org.jooq.Table;
 import org.jooq.TableField;
@@ -52,12 +51,12 @@ public class LabExamen extends TableImpl<LabExamenRecord> {
     /**
      * The column <code>public.lab_examen.cod_examen</code>.
      */
-    public final TableField<LabExamenRecord, Integer> COD_EXAMEN = createField(DSL.name("cod_examen"), SQLDataType.INTEGER.nullable(false).identity(true), this, "");
+    public final TableField<LabExamenRecord, Integer> COD_EXAMEN = createField(DSL.name("cod_examen"), SQLDataType.INTEGER.nullable(false).defaultValue(DSL.field("nextval('lab_examen_cod_examen_seq1'::regclass)", SQLDataType.INTEGER)), this, "");
 
     /**
      * The column <code>public.lab_examen.cod_paciente</code>.
      */
-    public final TableField<LabExamenRecord, Integer> COD_PACIENTE = createField(DSL.name("cod_paciente"), SQLDataType.INTEGER, this, "");
+    public final TableField<LabExamenRecord, Long> COD_PACIENTE = createField(DSL.name("cod_paciente"), SQLDataType.BIGINT, this, "");
 
     /**
      * The column <code>public.lab_examen.num_examen</code>.
@@ -117,7 +116,7 @@ public class LabExamen extends TableImpl<LabExamenRecord> {
     /**
      * The column <code>public.lab_examen.doctor_examen</code>.
      */
-    public final TableField<LabExamenRecord, Integer> DOCTOR_EXAMEN = createField(DSL.name("doctor_examen"), SQLDataType.INTEGER, this, "");
+    public final TableField<LabExamenRecord, Long> DOCTOR_EXAMEN = createField(DSL.name("doctor_examen"), SQLDataType.BIGINT, this, "");
 
     /**
      * The column <code>public.lab_examen.tipo_remision</code>.
@@ -148,6 +147,11 @@ public class LabExamen extends TableImpl<LabExamenRecord> {
      * The column <code>public.lab_examen.dependencia_doctor_remision</code>.
      */
     public final TableField<LabExamenRecord, String> DEPENDENCIA_DOCTOR_REMISION = createField(DSL.name("dependencia_doctor_remision"), SQLDataType.VARCHAR(50), this, "");
+
+    /**
+     * The column <code>public.lab_examen.registro_doctor_remision</code>.
+     */
+    public final TableField<LabExamenRecord, String> REGISTRO_DOCTOR_REMISION = createField(DSL.name("registro_doctor_remision"), SQLDataType.VARCHAR(50), this, "");
 
     private LabExamen(Name alias, Table<LabExamenRecord> aliased) {
         this(alias, aliased, null);
@@ -185,11 +189,6 @@ public class LabExamen extends TableImpl<LabExamenRecord> {
     @Override
     public Schema getSchema() {
         return Public.PUBLIC;
-    }
-
-    @Override
-    public Identity<LabExamenRecord, Integer> getIdentity() {
-        return (Identity<LabExamenRecord, Integer>) super.getIdentity();
     }
 
     @Override
@@ -251,11 +250,11 @@ public class LabExamen extends TableImpl<LabExamenRecord> {
     }
 
     // -------------------------------------------------------------------------
-    // Row20 type methods
+    // Row21 type methods
     // -------------------------------------------------------------------------
 
     @Override
-    public Row20<Integer, Integer, String, LocalDate, String, String, Integer, String, String, Integer, Integer, Integer, String, Integer, String, String, String, String, String, String> fieldsRow() {
-        return (Row20) super.fieldsRow();
+    public Row21<Integer, Long, String, LocalDate, String, String, Integer, String, String, Integer, Integer, Integer, String, Long, String, String, String, String, String, String, String> fieldsRow() {
+        return (Row21) super.fieldsRow();
     }
 }

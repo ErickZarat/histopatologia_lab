@@ -2,7 +2,7 @@
 $(document).ready(function() {
 
     var pacientesTable = $('#pacientesTable').DataTable(window.coreTableConfig);
-         pacientesTable.rows().remove().draw(false);  
+    pacientesTable.rows().remove().draw(false);  
 
 	getListadoPacientes(); 
 

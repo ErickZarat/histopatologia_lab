@@ -6,21 +6,20 @@ package histopatologialab.core.db;
 
 import histopatologialab.core.db.tables.LabDiagnostico;
 import histopatologialab.core.db.tables.LabEnfermedadSistemica;
-import histopatologialab.core.db.tables.LabEnfsistemicaListar;
 import histopatologialab.core.db.tables.LabExamen;
 import histopatologialab.core.db.tables.LabExamenBiopsia;
 import histopatologialab.core.db.tables.LabExamenCaracteristica;
+import histopatologialab.core.db.tables.LabExamenDiagnostico;
 import histopatologialab.core.db.tables.LabExamenEnfermedadSistemica;
+import histopatologialab.core.db.tables.LabExamenFrote;
+import histopatologialab.core.db.tables.LabExamenHistEstados;
+import histopatologialab.core.db.tables.LabExamenImagen;
 import histopatologialab.core.db.tables.LabMedicamento;
 import histopatologialab.core.db.tables.LabPaciente;
 import histopatologialab.core.db.tables.LabPresentacionMedicamento;
 import histopatologialab.core.db.tables.LabTincion;
 import histopatologialab.core.db.tables.LabTipoOpcionLesion;
 import histopatologialab.core.db.tables.LabUsuario;
-import histopatologialab.core.db.tables.records.LabEnfsistemicaListarRecord;
-
-import org.jooq.Configuration;
-import org.jooq.Result;
 
 
 /**
@@ -40,29 +39,6 @@ public class Tables {
     public static final LabEnfermedadSistemica LAB_ENFERMEDAD_SISTEMICA = LabEnfermedadSistemica.LAB_ENFERMEDAD_SISTEMICA;
 
     /**
-     * The table <code>public.lab_enfsistemica_listar</code>.
-     */
-    public static final LabEnfsistemicaListar LAB_ENFSISTEMICA_LISTAR = LabEnfsistemicaListar.LAB_ENFSISTEMICA_LISTAR;
-
-    /**
-     * Call <code>public.lab_enfsistemica_listar</code>.
-     */
-    public static Result<LabEnfsistemicaListarRecord> LAB_ENFSISTEMICA_LISTAR(
-          Configuration configuration
-    ) {
-        return configuration.dsl().selectFrom(histopatologialab.core.db.tables.LabEnfsistemicaListar.LAB_ENFSISTEMICA_LISTAR.call(
-        )).fetch();
-    }
-
-    /**
-     * Get <code>public.lab_enfsistemica_listar</code> as a table.
-     */
-    public static LabEnfsistemicaListar LAB_ENFSISTEMICA_LISTAR() {
-        return histopatologialab.core.db.tables.LabEnfsistemicaListar.LAB_ENFSISTEMICA_LISTAR.call(
-        );
-    }
-
-    /**
      * The table <code>public.lab_examen</code>.
      */
     public static final LabExamen LAB_EXAMEN = LabExamen.LAB_EXAMEN;
@@ -78,9 +54,29 @@ public class Tables {
     public static final LabExamenCaracteristica LAB_EXAMEN_CARACTERISTICA = LabExamenCaracteristica.LAB_EXAMEN_CARACTERISTICA;
 
     /**
+     * The table <code>public.lab_examen_diagnostico</code>.
+     */
+    public static final LabExamenDiagnostico LAB_EXAMEN_DIAGNOSTICO = LabExamenDiagnostico.LAB_EXAMEN_DIAGNOSTICO;
+
+    /**
      * The table <code>public.lab_examen_enfermedad_sistemica</code>.
      */
     public static final LabExamenEnfermedadSistemica LAB_EXAMEN_ENFERMEDAD_SISTEMICA = LabExamenEnfermedadSistemica.LAB_EXAMEN_ENFERMEDAD_SISTEMICA;
+
+    /**
+     * The table <code>public.lab_examen_frote</code>.
+     */
+    public static final LabExamenFrote LAB_EXAMEN_FROTE = LabExamenFrote.LAB_EXAMEN_FROTE;
+
+    /**
+     * The table <code>public.lab_examen_hist_estados</code>.
+     */
+    public static final LabExamenHistEstados LAB_EXAMEN_HIST_ESTADOS = LabExamenHistEstados.LAB_EXAMEN_HIST_ESTADOS;
+
+    /**
+     * The table <code>public.lab_examen_imagen</code>.
+     */
+    public static final LabExamenImagen LAB_EXAMEN_IMAGEN = LabExamenImagen.LAB_EXAMEN_IMAGEN;
 
     /**
      * The table <code>public.lab_medicamento</code>.

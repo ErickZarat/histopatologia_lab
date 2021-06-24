@@ -1,5 +1,6 @@
 package histopatologialab.core;
 
+import histopatologialab.consultas.controller.ConsultaControllerImpl;
 import histopatologialab.diagnostico.controller.DiagnosticoControllerImpl;
 import histopatologialab.diagnostico.controller.IDiagnosticoController;
 import histopatologialab.enfsistemica.controller.EnfSistemicaControllerImpl;
@@ -23,4 +24,6 @@ public class Controllers {
     public static IPacienteController pacienteController = new PacienteControllerImpl(pacienteDao);
     public static IUsuarioController usuarioController =  new UsuarioControllerImpl(usuarioDao);
     public static IDiagnosticoController diagnosticoController = new DiagnosticoControllerImpl(diagnosticoDao);
+    public static ConsultaControllerImpl consultaController = new ConsultaControllerImpl(opcionlesionDao);
+
 }

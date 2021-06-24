@@ -18,5 +18,6 @@ public interface IPacienteController {
     JsonResponse<List<Paciente>> getPacientes();
 	JsonResponse<List<Paciente>> getPacientesByNombre(String Nombre);
 	JsonResponse<List<Paciente>> getPacientesByidentificacion( String tipo, String numident);
-	JsonResponse<Paciente> buscarPaciente(Long codPaciente);
+	JsonResponse<Paciente> getPacienteByCodigo(Long codPaciente);
+	JsonResponse<List<Paciente>> buscarPaciente(String value);
 }

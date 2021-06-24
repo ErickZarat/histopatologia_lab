@@ -89,5 +89,15 @@ public class OpcionLesionDaoImpl implements IOpcionLesionDao{
     	OpcionLesion tipopcionlesionmodificado = modificarOpcionLesion(tipopcionlesion);
     	return tipopcionlesionmodificado != null;
     	
-    }    
+    }
+
+    @Override
+    public List<OpcionLesion> getOpciones(){
+        List<Record> results = query
+                .select(tabla.asterisk())
+                .from(tabla)
+                .fetch();
+
+        return results.stream().map(this::parseItem).collect(Collectors.toList());
+    }
 }

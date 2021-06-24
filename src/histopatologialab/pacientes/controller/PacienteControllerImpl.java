@@ -81,11 +81,17 @@ public class PacienteControllerImpl implements IPacienteController{
     	List<Paciente> pacientes = pacientesDao.getPacientesByidentificacion(tipo, numident);
     	return new JsonResponse<>(pacientes != null, pacientes);
     }
-    
-    @Override
-    public JsonResponse<Paciente> buscarPaciente(Long codPaciente) {
-    	Paciente paciente = pacientesDao.getPaciente(codPaciente);
-    	return new JsonResponse(paciente != null, paciente);
+
+	@Override
+	public JsonResponse<Paciente> getPacienteByCodigo(Long codPaciente) {
+		Paciente paciente = pacientesDao.getPaciente(codPaciente);
+		return new JsonResponse<>(paciente != null, paciente);
+	}
+
+	@Override
+    public JsonResponse<List<Paciente>> buscarPaciente(String value) {
+    	List<Paciente> pacientes = pacientesDao.buscarPaciente(value);
+    	return new JsonResponse<>(pacientes != null, pacientes);
     }
 	
 }

@@ -122,8 +122,19 @@ public class PacienteDaoImpl implements IPacienteDao {
             .execute();
 	        return getPaciente(paciente.getCodigoPaciente());
 	 }
-	 
-	 
+
+	@Override
+	public List<Paciente> buscarPaciente(String value) {
+		List<Record> results = query.select(tablapaciente.asterisk())
+				.from(tablapaciente)
+				.where(
+						tablapaciente.NOMBRE.containsIgnoreCase(value)
+								.or(tablapaciente.APELLIDOS.containsIgnoreCase(value))
+								.or(tablapaciente.IDENTIFICACION.containsIgnoreCase(value))
+								.or(tablapaciente.TELEFONO.containsIgnoreCase(value))
+				).fetch();
+		return results.stream().map(this::parseItem).collect(Collectors.toList());
+	}
 
 
 }

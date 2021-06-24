@@ -24,9 +24,10 @@
                 Consultas
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdownConsultas">
-                <a class="dropdown-item" href="#">Consulta 1</a>
-                <a class="dropdown-item" href="#">Consulta 2</a>
-                <a class="dropdown-item" href="#">Consulta 3</a>
+                <a class="dropdown-item" href="ConsultaServlet.do?accion=CREAR">Ingreso de Consulta</a>
+                <a class="dropdown-item" href="ConsultaServlet.do">Busqueda de Consultas</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#">Reportes</a>
             </div>
         </li>
 
@@ -49,6 +50,7 @@
                 <c:if test="roleHandler.isAdmin()">
                     <a class="dropdown-item"href="MenuServlet.do?accion=CAMBIO">Cambiar Contraseña</a>
                 </c:if>
+                <div class="dropdown-divider"></div>
                 <a class="dropdown-item"href="MenuServlet.do?accion=SALIR">Log Out</a>
             </div>
         </li>

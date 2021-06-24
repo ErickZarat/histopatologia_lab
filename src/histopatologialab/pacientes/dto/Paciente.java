@@ -1,6 +1,7 @@
 package histopatologialab.pacientes.dto;
 
 import java.time.LocalDate;
+import java.time.Period;
 
 public class Paciente {
 
@@ -20,6 +21,7 @@ public class Paciente {
 	private String creadoPor;
 	private String modificadoPor;
 	private LocalDate fechaModificacion;
+	private int edad;
 	
    public Paciente () {	   
    }
@@ -29,7 +31,6 @@ public class Paciente {
 			String direccionPaciente, String telefonoPaciente, LocalDate fecNacimientoPaciente,
 			String generoPaciente, String ocupacionPaciente, String tipoidPaciente, String emailPaciente, String estCivilPaciente,
 			String creadoPor, LocalDate fechaCreacion, String modificadoPor, LocalDate fechaModificacion) {
-		super();
 		this.codigoPaciente = codigoPaciente;
 		this.identificacionPaciente = identificacionPaciente;
 		this.nombrePaciente = nombrePaciente;
@@ -46,6 +47,8 @@ public class Paciente {
         this.fechaCreacion = fechaCreacion;
         this.modificadoPor = modificadoPor;
         this.fechaModificacion = fechaModificacion;
+
+        calculateAge();
         
 	}
 
@@ -118,6 +121,7 @@ public class Paciente {
 
 	public void setFecNacimientoPaciente(LocalDate fecNacimientoPaciente) {
 		this.fecNacimientoPaciente = fecNacimientoPaciente;
+		calculateAge();
 	}
 
 
@@ -211,6 +215,19 @@ public class Paciente {
 	public void setFechaModificacion(LocalDate fechaModificacion) {
 		this.fechaModificacion = fechaModificacion;
 	}
-	
-	
+
+	public int calculateAge(){
+   		if (this.fecNacimientoPaciente == null) return 0;
+		Period period = Period.between(this.fecNacimientoPaciente, LocalDate.now());
+		this.setEdad(period.getYears());
+		return this.getEdad();
+	}
+
+	public int getEdad() {
+		return edad;
+	}
+
+	public void setEdad(int edad) {
+		this.edad = edad;
+	}
 }

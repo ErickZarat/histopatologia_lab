@@ -1,5 +1,7 @@
 package histopatologialab.core;
 
+import histopatologialab.consultas.dao.ExamenDaoImpl;
+import histopatologialab.consultas.dao.IExamenDao;
 import histopatologialab.diagnostico.dao.DiagnosticoDaoImpl;
 import histopatologialab.diagnostico.dao.IDiagnosticoDao;
 import histopatologialab.enfsistemica.dao.EnfSistemicaDaoImpl;
@@ -24,5 +26,6 @@ public class Daos {
     public static IPacienteDao pacienteDao = new PacienteDaoImpl();
     public static IUsuarioDao usuarioDao = new UsuarioDaoImpl();
     public static IDiagnosticoDao diagnosticoDao = new DiagnosticoDaoImpl();
-    
+    public static IExamenDao examenDao = new ExamenDaoImpl();
+
 }
