@@ -1,5 +1,5 @@
 
-$(document).ready(function() {
+$(document).ready(function(e) {
 
     var pacientesTable = $('#pacientesTable').DataTable(window.coreTableConfig);
     pacientesTable.rows().remove().draw(false);  
@@ -7,16 +7,16 @@ $(document).ready(function() {
 	getListadoPacientes(); 
 
     $('#btnAgregarPaciente').click(function(e){
-        var idPaciente = $('#numIdPaciente').val();
-		var nomPaciente = $('#nombresPaciente').val();
-		var apellidosPaciente = $('#apellidosPaciente').val();
-		var dirPaciente = $('#direccionPaciente').val();
-		var telPaciente = $('#telPaciente').val();
+        var idPaciente = $('#numIdPaciente').val().trim().toUpperCase();
+		var nomPaciente = $('#nombresPaciente').val().trim();
+		var apellidosPaciente = $('#apellidosPaciente').val().trim();
+		var dirPaciente = $('#direccionPaciente').val().trim();
+		var telPaciente = $('#telPaciente').val().trim();
 		var fecNacimiento = $('#fecNacimientoPaciente').val();
 		var generoPaciente = $('#generoPaciente').val();
-		var ocupacionPaciente = $('#ocupacionPaciente').val();
+		var ocupacionPaciente = $('#ocupacionPaciente').val().trim();
 		var tipoIdPaciente = $('#tipoIdPaciente').val();
-		var emailPaciente = $('#emailPaciente').val();
+		var emailPaciente = $('#emailPaciente').val().trim();
 		var estCivilPaciente = $('#estadoCivilPacienteSearch').val();
 				
 
@@ -56,7 +56,7 @@ $(document).ready(function() {
 			                    toastr.success("Se agrego con exito el paciente");
 			                    getListadoPacientes()
 			                } else {
-			                    toastr.error("Error al agregar Paciente")
+			                    toastr.error(data.error)
 			                }
 			            }
 			        })
@@ -99,8 +99,8 @@ $(document).ready(function() {
                             '<label for="paciente-' + element.codigoPaciente + '">' + element.codigoPaciente + '</label>',
                             '<label for="paciente-' + element.codigoPaciente + '" class="text-capitalize">' + element.nombrePaciente + '</label>',
 							'<label for="paciente-' + element.codigoPaciente + '" class="text-capitalize">' + element.apellidosPaciente + '</label>',
-							'<label for="paciente-' + element.codigoPaciente + '" class="text-capitalize">' + element.tipoidPaciente + '</label>',	
-							'<label for="paciente-' + element.codigoPaciente + '" class="text-capitalize">' + element.identificacionPaciente + '</label>',
+							'<label for="paciente-' + element.codigoPaciente + '" class="text">' + element.tipoidPaciente + '</label>',	
+							'<label for="paciente-' + element.codigoPaciente + '" class="text">' + element.identificacionPaciente + '</label>',
 							'<label for="paciente-' + element.codigoPaciente + '" class="text-capitalize">' + element.estCivilPaciente + '</label>',
                             '<div class="btn-group" >'
                             + '<button type="button" class="btn btn-light" data-modificar-paciente="true" ' + data + ' data-toggle="modal"  id="modifPacienteBtn" data-target="#modificarPacienteModal" data-toggle="tooltip" data-placement="right" title="Modificar Datos Paciente"><i class="fas fa-edit"></i></button>'
@@ -131,18 +131,25 @@ $(document).ready(function() {
         $('#loginPacienteBaja').text($(this).data('nombre-paciente'))
     }
 
+
+	function convertirfecha(fecha) {
+		var strYear = fecha.substr(0,4);
+		fecha = fecha.substr(5,fecha.length-5) ; 
+		var posicion=fecha.indexOf("-");
+		var strMonth = fecha.substr(0,2); 
+		var strDay = fecha.substr(posicion+1,2); 
+		var StrFecha = strDay +"/"+strMonth +"/"+strYear; 
+		return StrFecha;
+	} 
+	
+	function validarEmail(email) { 
+		    var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+		    return re.test(email);
+		} 
+
+
    function setPacienteDataModificar(){	
 	 var codPaciente =  $(this).data('codigo-paciente'); 
-      //alert(loginUsuario); 
-	  ///$.ajax({
-      ///      url: 'UsuarioServlet.do',
-      ///      method: 'post',
-      ///      data: {
-///                accion: 'BUSCAR',
-	///			loginUser: loginUsuario,
-       ///     },
-        ///    success: function (response)
-
                var datos = {
 					"accion": 'BUSCAR',
 					"codPaciente": codPaciente
@@ -157,8 +164,7 @@ $(document).ready(function() {
 						$('#apellidosPacienteMod').val(respuesta.data.apellidosPaciente);	
 						$('#direccionPacienteMod').val(respuesta.data.direccionPaciente); 
 						$('#telefonoPacienteMod').val(respuesta.data.telefonoPaciente);
-        				//$('#fecNacimientoPacienteMod').val(respuesta.data.fecNacimientoPaciente);
-						$('#fecNacimientoPacienteMod').datepicker('setDate',respuesta.data.fecNacimientoPaciente);
+						$('#fecNacimientoPacienteMod').val(convertirfecha(respuesta.data.fecNacimientoPaciente));
         				$('#generoPacienteMod').val( respuesta.data.generoPaciente);
         				$('#ocupacionPacienteMod').val(respuesta.data.ocupacionPaciente);
 						$('#tipoIdPacienteMod').val(respuesta.data.tipoidPaciente);
@@ -171,16 +177,6 @@ $(document).ready(function() {
 					 toastr.error("No se pudo obtener la información del Paciente");
 					}
          
-        //$('#loginUsuarioMod').val($(this).data('nombre-usuario'))
-       //alert($(this).data('codigo-usuario'));
-
-        //$('#nombresUsuarioMod').val($(this).data(element.nombresDoctor))
-        //$('#apellidosUsuarioMod').val($(this).data(element.apellidosDoctor))
-        //$('#colegiadoUsuarioMod').val($(this).data(element.colegiadoDoctor))
-
-        //$('#passwordUsuarioMod').val($(this).data(element.passUser))
-        //$('#emailUsuarioMod').val($(this).data(element.emailDoctor))
-        //$('#tipUsuarioMod').val($(this).data(element.tipoUsuario))
     }
    }
 
@@ -196,9 +192,19 @@ $(document).ready(function() {
     });
 	
 
-    $('#btnModificarPaciente').click(function(){
+    $('#btnModificarPaciente').click(function(e){
         var codPaciente = $('#codigoPacienteMod').val();
-        //var loginUsuario = $('#loginUsuarioMod').val().toUpperCase();
+		var nomPaciente = $('#nombresPacienteMod').val().trim();
+		var apellidosPaciente = $('#apellidosPacienteMod').val().trim();
+		var dirPaciente = $('#direccionPacienteMod').val().trim();
+		var telPaciente = $('#telefonoPacienteMod').val().trim();
+		var fecNacimiento = $('#fecNacimientoPacienteMod').val();
+		var generoPaciente = $('#generoPacienteMod').val();
+		var ocupacionPaciente = $('#ocupacionPacienteMod').val().trim();
+		var tipoIdPaciente = $('#tipoIdPacienteMod').val();
+		var emailPaciente = $('#emailPacienteMod').val().trim();
+		var estCivilPaciente = $('#estCivilPacienteMod').val();
+		var numIdPaciente =  $('#numIdPacienteMod').val();
 
 
  		if ($('#nombresPacienteMod').val().trim().length == 0) {
@@ -216,13 +222,14 @@ $(document).ready(function() {
                 nomPaciente: nomPaciente,
 				apellidosPaciente: apellidosPaciente,
 				dirPaciente: dirPaciente,
-				tipIdPaciente: tipIdPaciente,
+				tipIdPaciente: tipoIdPaciente,
 				numIdPaciente: numIdPaciente, 
 				telPaciente: telPaciente,
 				ocupacionPaciente: ocupacionPaciente,
 				emailPaciente: emailPaciente,
 				generoPaciente: generoPaciente,
 				estCivilPaciente: estCivilPaciente,
+				fecNacimiento: fecNacimiento,
             },
             success: function(response) {
                 $('#modificarPacienteModal').modal('hide');
@@ -238,10 +245,10 @@ $(document).ready(function() {
 				$('#emailPacienteMod').val("");
 				$('#estCivilPacienteMod').val("");
                 if (response.success){
-                    toastr.success("Se modifico con exito el Paciente");
+                    toastr.success("Se modificó con éxito el Paciente");
                     getListadoPacientes();
                 } else {
-                    toastr.error("Error al modificar el Paciente");
+                    toastr.error("response.error");
                 }
             }
         });

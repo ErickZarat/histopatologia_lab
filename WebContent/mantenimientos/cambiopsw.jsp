@@ -21,10 +21,16 @@
             <div class="modal-body">
          	<form role="form" id="CambioPswFormModal">            
                 <table >
+                   <tr>
+                        <td ><label for="Usuario" class="col-sm-4 col-form-label">Usuario:</label></td>
+                        <td >
+                            <h5> ${username} </h5><input type="hidden" name="loginUsuario" value="${username}">
+                        </td>
+                    </tr>                
                     <tr>
                         <td ><label for="paswordAnterior" class="col-sm-4 col-form-label">Contraseña Anterior:</label></td>
                         <td >
-                            <input type="password" class="form-control validate" id="passwordAnterior" style="width: 320px;" placeholder="Contraseña Anterior">
+                            <input type="password" class="form-control validate" id="passwordAnterior" style="width: 320px;" placeholder="Contraseña Actual">
                         </td>
                     </tr>
  					<tr>
@@ -61,7 +67,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body"> ¿Deseas cerrar tu sesion actual? </div>
+            <div class="modal-body"> ¿Deseas cerrar tu sesión actual? </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" id="btnCancelCerrarSesion" data-dismiss="modal">Cancelar</button>
                 <button type="button" class="btn btn-primary" id="btnCerrarSesion">Cerrar Sesion</button>

@@ -29,10 +29,10 @@ $(document).ready(function() {
                 $('#agregarDiagnosticoModal').modal('hide');
                 $('#nombreDiagnostico').val("");
                 if (data.success){
-                    toastr.success("Se agrego con exito el diagnóstico");
+                    toastr.success("Se agregó con éxito el diagnóstico");
                     getListadoDiagnosticos()
                 } else {
-                    toastr.error("Error al agregar Diagnostico")
+                    toastr.error(data.error)
                 }
             }
         })
@@ -119,7 +119,7 @@ $(document).ready(function() {
         var nombreDiagnostico = $('#nombreDiagnosticoMod').val().toUpperCase();
 
  		if ($('#nombreDiagnosticoMod').val().trim().length == 0) {
-			 toastr.error("El nombre del diagnostico no puede ser nulo");
+			 toastr.error("El nombre del diagnóstico no puede ser nulo");
 			 e.preventDefault();
 		}
 		else 
@@ -137,10 +137,10 @@ $(document).ready(function() {
                 $('#codigoDiagnosticoMod').val("")
                 $('#nombreDiagnosticoMod').val("")
                 if (response.success){
-                    toastr.success("Se modifico con exito el diagnóstico");
+                    toastr.success("Se modificó con éxito el diagnóstico");
                     getListadoDiagnosticos();
                 } else {
-                    toastr.error("Error al modificar el diagnóstico");
+                    toastr.error(response.error);
                 }
             }
         });
@@ -166,7 +166,7 @@ $(document).ready(function() {
                 $('#codigoDiagnosticoBaja').text("")
 				$('#estadoDiagnosticoBaja').text("");
                 if (response.success){
-                    toastr.success("Se cambio exitosamente el estado al diagnóstico");
+                    toastr.success("Se cambió el estado del diagnóstico con éxito");
                     getListadoDiagnosticos();
                 } else {
                     toastr.error("Error al cambiar el estado del diagnóstico");

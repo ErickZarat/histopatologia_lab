@@ -27,7 +27,7 @@ public class MedicamentosControllerImpl implements IMedicamentosController {
             medicamento = medicamentosDao.guardarMedicamento(medicamento);
             return new JsonResponse<Medicamento>(medicamento != null, medicamento);
         } catch (Exception e) {
-            return null;
+        	return new JsonResponse<>(false, null, e.getMessage());
         }
     }
 
@@ -41,7 +41,7 @@ public class MedicamentosControllerImpl implements IMedicamentosController {
             medicamento = medicamentosDao.modificarMedicamento(medicamento);
             return new JsonResponse(medicamento != null, medicamento);
         } catch (Exception e) {
-            return null;
+        	return new JsonResponse<>(false, null, e.getMessage());
         }
     }
 
@@ -63,7 +63,7 @@ public class MedicamentosControllerImpl implements IMedicamentosController {
             List<PresentacionMedicamento> presentaciones = presentacionDao.getPresentaciones(codigo);
             return new JsonResponse<List<PresentacionMedicamento>>(presentaciones != null, presentaciones);
         } catch (Exception e) {
-            return null;
+        	return new JsonResponse<>(false, null, e.getMessage());
         }
     }
 
@@ -73,7 +73,7 @@ public class MedicamentosControllerImpl implements IMedicamentosController {
             PresentacionMedicamento presentacion = presentacionDao.getPresentacion(codigo, tipoMedicamento);
             return new JsonResponse<>(presentacion != null, presentacion);
         } catch (Exception e) {
-            return null;
+        	return new JsonResponse<>(false, null, e.getMessage());
         }
     }
 
@@ -83,7 +83,7 @@ public class MedicamentosControllerImpl implements IMedicamentosController {
             PresentacionMedicamento presentacion = presentacionDao.guardarPresentacion(presentacionMedicamento);
             return new JsonResponse<>(presentacion != null, presentacion);
         } catch (Exception e) {
-            return null;
+        	return new JsonResponse<>(false, null, e.getMessage());
         }
     }
 
@@ -93,7 +93,7 @@ public class MedicamentosControllerImpl implements IMedicamentosController {
             PresentacionMedicamento presentacion = presentacionDao.modificarPresentacion(presentacionMedicamento.getCodMedicamento(), tipoPresentacion, presentacionMedicamento);
             return new JsonResponse<>(presentacion != null, presentacionDao.modificarPresentacion(presentacionMedicamento.getCodMedicamento(), tipoPresentacion, presentacionMedicamento));
         } catch (Exception e) {
-            return null;
+        	return new JsonResponse<>(false, null, e.getMessage());
         }
     }
 
@@ -103,7 +103,7 @@ public class MedicamentosControllerImpl implements IMedicamentosController {
             Boolean success = presentacionDao.darBajaPresentacion(codigo, tipoMedicamento, usuario);
             return new JsonResponse<>(success, success);
         } catch (Exception e) {
-            return null;
+        	return new JsonResponse<>(false, null, e.getMessage());
         }
     }
 }

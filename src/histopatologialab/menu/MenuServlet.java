@@ -37,7 +37,6 @@ public class MenuServlet extends HttpServlet {
         checkSession(request, response);
         System.out.println("Hola Servlet menu..");
         RequestAction action = getRequestAction(request);
-
        
         if (action == RequestAction.SALIR) {
         	getCerrarSesion(request, response);

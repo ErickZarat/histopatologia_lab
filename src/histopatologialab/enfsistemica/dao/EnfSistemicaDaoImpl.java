@@ -103,4 +103,16 @@ public class EnfSistemicaDaoImpl implements IEnfSistemicaDao{
         return enfermedadModificada != null;
     }
 
+    @Override
+    public EnfSistemica getEnfermedadByNombre(String nomEnfermedad) {
+        Record result = query
+                .select(tabla.asterisk())
+                .from(tabla)
+                .where(tabla.NOMBRE_ENFERMEDAD.eq(nomEnfermedad))
+                .fetchOne();
+        return result != null ? parseItem(result): null;
+    }    
+    
+    
+    
 }

@@ -220,7 +220,7 @@
                         <td>
                             <select id="estCivilPacienteMod" class="form-control" style="width: 322px; ">
                               <option value="CASADO">Casado</option>
-                              <option value="FEMENINO">Soltero</option>
+                              <option value="SOLTERO">Soltero</option>
                             </select>
                         </td>
                     </tr>
@@ -230,7 +230,7 @@
                            <div class="form-group">
                             <div class="input-group date" data-provide="fecha">
                                <input type="text" id="fecNacimientoPacienteMod" class="form-control fecha" autocomplete="off" placeholder="dd/mm/yyyy" required>
-                              <span class="input-group-addon"> <i class="far fa-calendar"></i>
+                              <span class="input-group-addon"> <i class='fas fa-calendar-alt' style='font-size:24px'></i>
                               </span>
                             </div>                        
                         	</div> 

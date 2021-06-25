@@ -32,9 +32,9 @@ $(document).ready(function() {
                     toastr.success("Se agrego con exito la enfermedad");
                     getListadoEnfermedades()
                 } else {
-                    toastr.error("Error al agregar Enfermedad")
+                    toastr.error(data.error)
                 }
-            }
+            }			
         })
 	  }
 	//e.preventDefault();
@@ -138,7 +138,7 @@ $(document).ready(function() {
                     toastr.success("Se modifico con exito la enfermedad");
                     getListadoEnfermedades();
                 } else {
-                    toastr.error("Error al modificar Enfermedad");
+                    toastr.error(response.error);
                 }
             }
         });
@@ -164,7 +164,7 @@ $(document).ready(function() {
                 $('#codigoEnfermedadBaja').text("")
 				$('#estadoEnfermedadBaja').text("");
                 if (response.success){
-                    toastr.success("Se dio de baja la enfermedad");
+                    toastr.success("Se cambió el estado de la enfermedad con éxito");
                     getListadoEnfermedades();
                 } else {
                     toastr.error("Error al dar baja Enfermedad");

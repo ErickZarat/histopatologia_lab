@@ -13,5 +13,6 @@ public interface IDiagnosticoDao {
 		Diagnostico modificarDiagnostico(Diagnostico diagnostico);
 		Boolean darDeBajaDiagnostico(Long codigoDiagnostico, String usuario);
 	    Boolean cambioEstadoDiagnostico(Long codigoDiagnostico, String estadoNuevo, String usuario);
+		Diagnostico getDiagnosticoByNombre(String nombreDiagnostico);
 
 }

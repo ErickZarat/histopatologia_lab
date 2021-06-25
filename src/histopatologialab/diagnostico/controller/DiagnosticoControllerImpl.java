@@ -20,9 +20,14 @@ public class DiagnosticoControllerImpl implements IDiagnosticoController {
     @Override
     public JsonResponse<Diagnostico> crearDiagnostico(String nombreDiagnostico, String usuario) {
         try {
-            Diagnostico diagnostico = new Diagnostico(null, nombreDiagnostico, Estado.HABILITADO.getSlug(), LocalDate.now(), usuario, null, null);
-            diagnostico = diagnosticosDao.guardarDiagnostico(diagnostico);
-            return new JsonResponse<Diagnostico>(diagnostico != null, diagnostico);
+        	Diagnostico diagnosticoExiste = diagnosticosDao.getDiagnosticoByNombre(nombreDiagnostico);
+        	if (!(diagnosticoExiste == null)) {  
+        		return new JsonResponse<>( false, null, "El nombre del diagnóstico ingresado, ya existe");
+        	} else {        	
+        		Diagnostico diagnostico = new Diagnostico(null, nombreDiagnostico, Estado.HABILITADO.getSlug(), LocalDate.now(), usuario, null, null);
+        		diagnostico = diagnosticosDao.guardarDiagnostico(diagnostico);
+        		return new JsonResponse<Diagnostico>(diagnostico != null, diagnostico);
+        	}	
         } catch (Exception e) {
             return new JsonResponse<Diagnostico>(false, null, e.getMessage());
         }
@@ -31,13 +36,23 @@ public class DiagnosticoControllerImpl implements IDiagnosticoController {
 
     @Override
     public JsonResponse<Diagnostico> modificarDiagnostico(Long codigoDiagnostico, String nombreDiagnostico, String usuario) {
-        try {
-            Diagnostico diagnostico = diagnosticosDao.getDiagnostico(codigoDiagnostico);
-            diagnostico.setNombreDiagnostico(nombreDiagnostico);
-            diagnostico.setModificadoPor(usuario);
-            diagnostico.setFechaModificacion(LocalDate.now());
-            diagnostico = diagnosticosDao.modificarDiagnostico(diagnostico);
-            return new JsonResponse<Diagnostico>(diagnostico != null, diagnostico);
+        try {   
+         	// buscar nombre que no sea repetido con otro diagnostico
+        	Diagnostico diagnosticoExiste = diagnosticosDao.getDiagnosticoByNombre(nombreDiagnostico);
+        	if ((diagnosticoExiste == null)) {  
+	            Diagnostico diagnostico = diagnosticosDao.getDiagnostico(codigoDiagnostico);
+	            diagnostico.setNombreDiagnostico(nombreDiagnostico);
+	            diagnostico.setModificadoPor(usuario);
+	            diagnostico.setFechaModificacion(LocalDate.now());
+	            diagnostico = diagnosticosDao.modificarDiagnostico(diagnostico);
+	            return new JsonResponse<Diagnostico>(diagnostico != null, diagnostico);        		
+        	} else {  // si existe, se valida que sea el mismo codigo  
+        		if ( codigoDiagnostico !=  diagnosticoExiste.getCodigoDiagnostico()) 
+        		{ return new JsonResponse<>(false, null, "Hubo un error al modificar el diagnóstico"); 
+        		} else {
+        			return new JsonResponse<>(false, null, "Hubo un error al modificar el diagnóstico");  
+        		}        			
+        	}
         } catch (Exception e) {
             return new JsonResponse<Diagnostico>(false, null, e.getMessage());
         }

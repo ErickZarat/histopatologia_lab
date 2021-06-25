@@ -26,7 +26,7 @@ public class OpcionLesionControllerImpl implements IOpcionLesionController {
     		  tipopcionlesion = opcionLesionDao.guardarOpcionLesion(tipopcionlesion);
     		  return new JsonResponse<>(tipopcionlesion != null, tipopcionlesion);
           } catch (Exception e) {
-              return null;
+        	  return new JsonResponse<>(false, null, e.getMessage());
           }
     }
     
@@ -41,7 +41,7 @@ public class OpcionLesionControllerImpl implements IOpcionLesionController {
     		tipopcionlesion = opcionLesionDao.modificarOpcionLesion(tipopcionlesion);
             return new JsonResponse<>(tipopcionlesion != null, tipopcionlesion);
         } catch (Exception e) {
-            return null;
+        	return new JsonResponse<>(false, null, e.getMessage());
         }
     	
     }

@@ -110,9 +110,7 @@ public class UsuarioServlet extends HttpServlet {
         String colegiadoDoctor = request.getParameter("colegiadoDoctor"); 
         String tipoUsuario = request.getParameter("tipoUsuario");
         String usuarioMod = getUsuarioFromSession(request);
-        System.out.println("antes de modificar controller");
         JsonResponse<Usuario> usuario = controller.modificarUsuario(loginUsuario, nombresDoctor, apellidosDoctor, emailDoctor, colegiadoDoctor, tipoUsuario, usuarioMod);
-        System.out.println(usuario);
         returnJson(response, usuario);
     }
 
@@ -135,20 +133,18 @@ public class UsuarioServlet extends HttpServlet {
     private void ReinicioPswUsuario(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String loginUsuario =request.getParameter("loginUser"); 
         String usuarioMod = getUsuarioFromSession(request);
-        System.out.println("antes de modificar controller");
         JsonResponse<Usuario> usuario = controller.reinicioPswUsuario(loginUsuario, usuarioMod);
-        System.out.println("DESPUES DE MODIFICAR EL PSW");
-        System.out.println(usuario);
+        System.out.println("DESPUES DE REINICIO EL PSW");
         returnJson(response, usuario);
     }
     
     private void CambioPswUsuario(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        String loginUsuario =request.getParameter("loginUser"); 
         String usuarioMod = getUsuarioFromSession(request);
-        System.out.println("antes de modificar controller");
-        JsonResponse<Usuario> usuario = controller.reinicioPswUsuario(loginUsuario, usuarioMod);
-        System.out.println("DESPUES DE MODIFICAR EL PSW");
-        System.out.println(usuario);
+        String pswAnterior= request.getParameter("pswAnterior"); 
+        String pswActual = request.getParameter("pswActual"); 
+        System.out.println("antes de modificar controller");        
+        JsonResponse<Usuario> usuario = controller.cambioPswUsuario(usuarioMod, pswAnterior, pswActual);
+        System.out.println("DESPUES DE CAMBIO DE PSW");
         returnJson(response, usuario);
     }
     

@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 
 <body>
 
@@ -14,6 +15,9 @@
                 <a class="dropdown-item" href="EnfSistemicaServlet.do">Enfermedades Sistemicas</a>
                 <a class="dropdown-item" href="OpcionLesionServlet.do">Tipos de Opcion Lesion</a>
                 <a class="dropdown-item" href="UsuarioServlet.do">Usuarios</a>
+                <c:if test="roleHandler.isAdmin()">
+                	<a class="dropdown-item" href="UsuarioServlet.do">Usuarios</a>
+                </c:if>
                 <a class="dropdown-item" href="PacienteServlet.do">Pacientes</a>
                 <a class="dropdown-item" href="DiagnosticoServlet.do">Diagnósticos</a>
             </div>
@@ -47,6 +51,7 @@
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                 <a class="dropdown-item" href="#">Dashboard</a>
+  				<a class="dropdown-item"href="MenuServlet.do?accion=CAMBIO">Cambiar Contraseña</a>       
                 <c:if test="roleHandler.isAdmin()">
                     <a class="dropdown-item"href="MenuServlet.do?accion=CAMBIO">Cambiar Contraseña</a>
                 </c:if>

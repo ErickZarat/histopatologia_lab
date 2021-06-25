@@ -122,5 +122,14 @@ public class DiagnosticoDaoImpl implements IDiagnosticoDao {
 		
 	}
 	
+	@Override
+	public Diagnostico getDiagnosticoByNombre(String nombreDiagnostico)
+	{	Record result = query
+            .select(tabla.asterisk())
+            .from(tabla)
+            .where(tabla.NOMBRE_DIAGNOSTICO.eq(nombreDiagnostico))
+            .fetchOne();
+    	return result != null ? parseItem(result): null;
+	}    
 	
 }

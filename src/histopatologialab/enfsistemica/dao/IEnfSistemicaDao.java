@@ -13,4 +13,5 @@ public interface IEnfSistemicaDao {
 	    EnfSistemica modificarEnfermedad(EnfSistemica enfermedad);
 	    Boolean darDeBaja(int codEnfermedad, String usuario);
 	    Boolean cambioEstadoEnfermedad(int codEnfermedad, String estado, String usuario);
+	    EnfSistemica getEnfermedadByNombre(String nomEnfermedad);
 }

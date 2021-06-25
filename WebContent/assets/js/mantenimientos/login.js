@@ -12,127 +12,7 @@ $(document).ready(function() {
 	}
 
 
- 	$('#btnCambioPsw').click(function(e){
-		var loginUser = $('#username').val().toUpperCase().trim();
-		alert(loginUser);
-		var passUser = $('#pswUsuario').val();
-		if ($('#nuevoPassword').val().trim().length == 0 || $('#confirNuevoPassword').val().trim().length == 0) {
-			toastr.error("Debe ingresar la contraseña y la Confirmacion de Contraseña");
-			e.preventDefault(); 
-		} else { 	
-			if ($('#nuevoPassword').val().trim() != $('#confirNuevoPassword').val().trim()) {
-				toastr.error("La contraseña y la Confirmación no coinciden");
-				e.preventDefault();
-			}
-		}
-    });
-
-    $('#btnAgregarUsuario').click(function(e){
-        var loginUser = $('#loginUsuario').val().toUpperCase().trim();
-		var nombreUsuario = $('#nombreUsuario').val();
-		var apellidosUsuario = $('#apellidosUsuario').val().toUpperCase();
-		var colegiadoDoctor = $('#colegiadoDoctor').val().trim();
-		var emailDoctor = $('#emailDoctor').val().trim();
-		var passUser = $('#pswUsuario').val();
-		var tipoUsuario = $('#tipoUsuarioSearch').val();
-		//var tipoUsuario = $('#tipoUsuario').val();
-
-
-		
-		if ($('#loginUsuario').val().trim().length == 0) {
-			 toastr.error("Debe ingresar un login de usuario");
-			 e.preventDefault(); 
-		} else { 
-			if (!validarNombreUsuario(loginUser)){
-				toastr.error("El usuario debe tener entre 4 y 15 caracteres sin espacios. Únicamente puede contener letras");
-			 	e.preventDefault(); 
-			} else {
-				if ($('#nombreUsuario').val().trim() == "" || $('#apellidosUsuario').val().trim() == "") {
-					toastr.error("Debe ingresar por lo menos un nombre y un apellido de usuario");
-				 	e.preventDefault(); 					
-				} else {			
-					//if (!(validarEmail(emailDoctor)) || (emailDoctor.trim()== "")){	
-					if (emailDoctor.trim()== "" || (!(validarEmail(emailDoctor)))) {
-						toastr.error("El correo ingresado no es válido");
-				 		e.preventDefault(); 
-				 	} else {
-						if ($('#pswUsuario').val().trim().length == 0 || $('#pswConfirm').val().trim().length == 0) {
-								toastr.error("Debe ingresar la contraseña y la Confirmacion de Contraseña");
-				 				e.preventDefault(); 
-							} else { 	
-								if ($('#pswUsuario').val().trim() != $('#pswConfirm').val().trim()) {
-									toastr.error("La contraseña y la Confirmación no coinciden");
-				 					e.preventDefault();
-								} else {	
-									if (tipoUsuario == 0) {
-										toastr.error("Debe seleccionar un tipo de Usuario");
-										e.preventDefault();
-									} else {																							
-								    	$.ajax({
-								        	url: 'UsuarioServlet.do',
-								        	method: 'post',
-								        	data: {
-								            	accion: 'CREAR',
-								            	loginUser: loginUser,
-												pswUser: passUser,
-												nombresDoctor: nombreUsuario,
-												apellidosDoctor: apellidosUsuario,
-												colegiadoDoctor: colegiadoDoctor,
-												emailDoctor: emailDoctor,
-												tipoUsuario: tipoUsuario,								
-								        	},
-								        	success: function(data) {
-								            	$('#agregarUsuarioModal').modal('hide');
-												$("#AgregarFormModal")[0].reset();
-								            	if (data.success){
-								                	toastr.success("Se agrego con exito el Usuario");
-								                	getListadoUsuarios()
-								            	} else {
-								                	toastr.error("Error al agregar el Usuario")
-								            	}								
-					        				}
-					   					 })
-									}
-								}
-							}
-				  		}
-					}
-				}
-			}
-		//e.preventDefault();
-    });
-
-
-
-    function setUsuarioDataModificar(){	
-	 var loginUsuario = $(this).data('nombre-usuario'); 
-               var datos = {
-					"accion": 'BUSCAR',
-					"loginUser": loginUsuario
-				};
-				$.post('UsuarioServlet.do', datos, callback2, 'json');
-
-				function callback2(respuesta) {
-					if(respuesta.data)
-					{ //console.log(respuesta.data);
-						$('#codigoUsuarioMod').val(respuesta.data.codUsuario);	
-						$('#loginUsuarioMod').val(respuesta.data.loginUsuario);	
-						$('#nombresUsuarioMod').val(respuesta.data.nombresDoctor); 
-						$('#apellidosUsuarioMod').val(respuesta.data.apellidosDoctor);
-        				$('#colegiadoUsuarioMod').val(respuesta.data.numColegiado);
-        				$('#emailUsuarioMod').val( respuesta.data.emailUsuario);
-        				//$('#tipUsuarioMod').val(respuesta.data.tipoUsuario);
-						//$("#tipoUsuarioModSearch").val(respuesta.data.tipoUsuario);
-						$("#tipoUsuarioModSearch").val(respuesta.data.tipoUsuario);			
-			    	}
-			 else 
-				{
-					 toastr.error("No se pudo obtener la información del Usuario");
-				}
-    }
-   }
-
-
+  
     $('#btnCancelCerrarSesion').click(function(){
  		 $("#logoutUsuarioModal")[0].reset();
     });
@@ -195,55 +75,66 @@ $(document).ready(function() {
 		};	
 
 
-  $('#btnReinicioPswUsuario').click(function(e){
-        var loginUser = $('#loginUsuarioMod').val();	
-
-		if ($('#nombresUsuarioMod').val().trim() == "" || $('#apellidosUsuarioMod').val().trim() == "") {
-			 toastr.error("Debe ingresar por lo menos un nombre y un apellido de usuario");
-			 e.preventDefault(); 
-		} else { 
-
-		var mensajito=Messenger().post({
-			message:"¿Está seguro que desea restablecer la contraseña del usuario : " + loginUser+"?",
-		  	type:'info',
-		  	showCloseButton:true,
-		  	id:1,
-		  	hideAfter:36000,
-		  	actions: {
-		  		aceptar: {
-		 			label: "Aceptar",
-		   			action: function(){  //ejecutarComando();
-							mensajito.hide();		
-					        $.ajax({
-				            url: 'UsuarioServlet.do',
-				            method: 'post',
-				            data: {
-				                accion: 'REINICIO_PSW',
-				                loginUser: loginUser,
-				            },
-				            success: function(response) {
-				                $('#modificarUsuarioModal').modal('hide');
-								$("#ModificarFormModal")[0].reset();
-				                if (response.success){
-				                    toastr.success("Se reinicio con exito la contraseña Usuario");
-				                    getListadoUsuarios();
-				                } else {
-				                    toastr.error("Error al reiniciar la contraseña del Usuario");
-				                }
-				            }
-				        });	
+  $('#btnCambioPsw').click(function(e){
+        var loginUser = $('#loginUsuario').val();	
+		var pswAnterior = $('#passwordAnterior').val();
+		var pswActual = $('#nuevoPassword').val();
 		
-						}
-		    	},
-		   		cancelar: {
-			 		label: "Cancelar",
-			   		action: function(){mensajito.hide();}
-					}
-		  		}
-			});			
-		
-		}
-	//e.preventDefault();
+	if ($('#passwordAnterior').val().trim().length == 0) {
+				toastr.error("Debe ingresar la contraseña actual");
+					e.preventDefault(); 
+			} else { 		
+				if ($('#nuevoPassword').val().trim().length == 0 || $('#confirNuevoPassword').val().trim().length == 0) {
+						toastr.error("Debe ingresar la nueva contraseña y la ConfirmaciÓ de Contraseña");
+						e.preventDefault(); 
+				} else { 	
+					if ($('#nuevoPassword').val().trim() != $('#confirNuevoPassword').val().trim()) {
+						toastr.error("La nueva contraseña y la Confirmación no coinciden");
+						e.preventDefault();		
+					} else {
+						var mensajito=Messenger().post({
+							message:"¿Está seguro que desea cambiar su contraseña?",
+						  	type:'info',
+						  	showCloseButton:true,
+						  	id:1,
+						  	hideAfter:36000,
+						  	actions: {
+						  		aceptar: {
+						 			label: "Aceptar",
+						   			action: function(){  //ejecutarComando();
+											mensajito.hide();		
+									        $.ajax({
+								            url: 'UsuarioServlet.do',
+								            method: 'post',
+								            data: {
+								                accion: 'CAMBIO_PSW',
+								                loginUser: loginUser,
+												pswAnterior: pswAnterior,
+												pswActual :pswActual,
+								            },
+								            success: function(response) {
+								                $('#cambioPswUsuarioModal').modal('hide');
+												$("#CambioPswFormModal")[0].reset();
+								                if (response.success){
+								                    toastr.success("Se cambio con éxito la contraseña");
+								                } else {
+								                    toastr.error(response.error);
+								                }
+								            }
+								        });	
+						
+										}
+						    	},
+						   		cancelar: {
+							 		label: "Cancelar",
+							   		action: function(){mensajito.hide();}
+									}
+						  		}
+							});		// mensajito
+					}				 	
+				}	 	
+			} // else de condiciones 
+		e.preventDefault();
     });
 
 

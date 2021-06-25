@@ -25,24 +25,19 @@ public class UsuarioControllerImpl implements IUsuarioController{
 	    try {// validar que no exista un usuario con ese login	    	
 	    	if (usuariosDao.getUsuario(loginUsuario) == null)
 	    	{	//encriptando el psw
-	    		// String salt = PasswordUtils.getSalt(30);
-	    		// String passwordSegura = PasswordUtils.generateSecurePassword(passUser, salt);
 	    		 String passwordSegura = PasswordUtils.generateSecurePassword(passUser);
-	    		 System.out.println(passwordSegura);   
-	    		// System.out.println(salt);
 	    		String valor = "";
 	    		Usuario usuario = new Usuario(null, loginUsuario, passwordSegura, valor, nombresDoctor, apellidosDoctor , colegiadoDoctor, emailDoctor, tipoUsuario,  Estado.HABILITADO.getSlug(), LocalDate.now(), usuarioCreado, null,null  ) ;
 	    		System.out.println("antes de crearlo en la base de datos");
-	    		System.out.println(usuario.getLoginUsuario());
 	    		usuario = usuariosDao.guardarUsuario(usuario);
 	    		return new JsonResponse<>(usuario != null, usuario);
 	    	}
 	    	else
 	    	{ System.out.println("ya existe el usuario");
-	    	  return null;	
+	    		return new JsonResponse<>(false,null , "Ya existe un usuario con ese login");
 	    	}	    			
 		} catch (Exception e) {
-			return null;
+			return new JsonResponse<>(false, null, e.getMessage());
 		}
 		
 	}
@@ -62,7 +57,7 @@ public class UsuarioControllerImpl implements IUsuarioController{
    		 return new JsonResponse<>(usuario != null, usuario);
    		 
      } catch (Exception e) {
-         return null;
+    	 return new JsonResponse<>(false, null, e.getMessage());
      }   
 	}
 	
@@ -93,13 +88,12 @@ public class UsuarioControllerImpl implements IUsuarioController{
 		Usuario usuario = usuariosDao.getUsuario(loginUsuario); 
     	if (usuario == null)
     	{	System.out.println("no existe el usuario");
-  	  		return null;
+    		return new JsonResponse<>(false, null, "No se pudo obtener la información del usuario");
     	}
     	else
     	{ System.out.println("si existe el usuario");
   		//generando el psw del login
   		 String passwordSegura = PasswordUtils.generateSecurePassword(loginUsuario);
-  		 System.out.println(passwordSegura);   
   		 usuario.setPasswordUsuario(passwordSegura);
    		 usuario.setModificadoPor(usuarioMod);
   		 usuario.setFechaModificacion(LocalDate.now());
@@ -107,9 +101,45 @@ public class UsuarioControllerImpl implements IUsuarioController{
    		 return new JsonResponse<>(usuario != null, usuario);
     	}	    			
 	} catch (Exception e) {
-		return null;
+		return new JsonResponse<>(false, null, e.getMessage());
 	}		
 	}
-	
+
+	@Override 
+	public JsonResponse<Usuario> cambioPswUsuario(String loginUsuario, String pswAnterior, String pswActual)
+	{try {// buscar el usuario con esos datos en la base de datos
+		Usuario usuario = usuariosDao.getUsuario(loginUsuario); 
+    	if (usuario == null)
+    	{	System.out.println("no existe el usuario");
+    		return new JsonResponse<>(false, null, "No se pudo obtener la información del usuario");
+    	}
+    	else
+    	{ System.out.println("si existe el usuario");
+  			//validación del psw anterior
+    		String genPswAnterior = PasswordUtils.generateSecurePassword(pswAnterior);
+    		// comparar los dos psw     		
+    		if (!( usuario.getPasswordUsuario().equals(genPswAnterior)))
+    		{	System.out.println("contraseña actual no es la correcta");
+    			return new JsonResponse<>(false, null, "La contraseña actual no es la correcta");
+    		} else {    			
+    			// si se cambia el psw 	    	
+		  		 String passwordSegura = PasswordUtils.generateSecurePassword(pswActual);
+		  		 if (( usuario.getPasswordUsuario().equals(passwordSegura)))
+		  		 {  System.out.println("nueva y la contraseña actual iguales");
+		  			 return new JsonResponse<>(false, null, "La contraseña nueva y la contraseña actual no pueden ser iguales");		 
+		  		 } else {  // si se actualiza el psw
+		  			System.out.println("si se cambio de psw");
+			  		 usuario.setPasswordUsuario(passwordSegura);
+			   		 usuario.setModificadoPor(loginUsuario);
+			  		 usuario.setFechaModificacion(LocalDate.now());
+			  		 usuario = usuariosDao.modificarUsuario(usuario);
+			   		 return new JsonResponse<>(usuario != null, usuario);
+		  		 }
+    		}    			   		 
+    	}	    			
+	} catch (Exception e) {
+		return new JsonResponse<>(false, null, e.getMessage());
+	}		
+	}
 	
 }

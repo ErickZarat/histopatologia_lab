@@ -79,10 +79,11 @@ $(document).ready(function() {
 								            	$('#agregarUsuarioModal').modal('hide');
 												$("#AgregarFormModal")[0].reset();
 								            	if (data.success){
-								                	toastr.success("Se agrego con exito el Usuario");
+								                	toastr.success("Se agregó con éxito el Usuario");
 								                	getListadoUsuarios()
 								            	} else {
-								                	toastr.error("Error al agregar el Usuario")
+								                	toastr.error(data.error);
+													e.preventDefault();
 								            	}								
 					        				}
 					   					 })

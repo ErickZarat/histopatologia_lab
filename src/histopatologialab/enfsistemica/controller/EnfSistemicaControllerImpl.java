@@ -22,28 +22,46 @@ public class EnfSistemicaControllerImpl implements IEnfSistemicaController {
     @Override
     public JsonResponse<EnfSistemica> crearEnfermedad(String nombre, String usuario) {
         try {
-            EnfSistemica enfermedad = new EnfSistemica(0, nombre, Estado.HABILITADO.getSlug(), usuario, LocalDate.now(), null, null);
-            enfermedad = enfermedadesDao.guardarEnfermedad(enfermedad);
-            return new JsonResponse<EnfSistemica>(enfermedad != null, enfermedad);
+        	EnfSistemica enfermedadExiste = enfermedadesDao.getEnfermedadByNombre(nombre);
+        	if (!(enfermedadExiste == null)) {  
+        		return new JsonResponse<>( false, null, "El nombre de la enfermedad ingresada, ya existe");
+        	}
+	        else {
+	            EnfSistemica enfermedad = new EnfSistemica(0, nombre, Estado.HABILITADO.getSlug(), usuario, LocalDate.now(), null, null);
+	            enfermedad = enfermedadesDao.guardarEnfermedad(enfermedad);
+	            return new JsonResponse<EnfSistemica>(enfermedad != null, enfermedad);
+	        }
         } catch (Exception e) {
-            return null;
+        	//System.out.println("ENTRA AL NULL "+e.getMessage() );
+        	return new JsonResponse<>( false, null, "Hubo un error al ingresar la enfermedad, Consulte al Administrador");
         }
     }
 
 
     @Override
     public JsonResponse<EnfSistemica> modificarEnfermedad(int codigo, String nombre, String usuario) {
-        try {
-            EnfSistemica enfermedad = enfermedadesDao.getEnfermedad(codigo);
-            enfermedad.setNombreEnfermedad(nombre);
-            enfermedad.setModificadoPor(usuario);
-            enfermedad.setFechaModificacion(LocalDate.now());
-
-            enfermedad = enfermedadesDao.modificarEnfermedad(enfermedad);
-
-            return new JsonResponse<EnfSistemica>(enfermedad != null, enfermedad);
+        try {        	
+        	// buscar nombre que no sea repetido con otra enfermedad
+        	EnfSistemica enfermedadExiste = enfermedadesDao.getEnfermedadByNombre(nombre);        	
+        	if ((enfermedadExiste == null)) {    // no existe la enfermedad
+        		// buscar los datos de la enfermedad que se esta modificando
+	            EnfSistemica enfermedad = enfermedadesDao.getEnfermedad(codigo);
+	            enfermedad.setNombreEnfermedad(nombre);
+	            enfermedad.setModificadoPor(usuario);
+	            enfermedad.setFechaModificacion(LocalDate.now());
+	            enfermedad = enfermedadesDao.modificarEnfermedad(enfermedad);
+	
+	            return new JsonResponse<EnfSistemica>(enfermedad != null, enfermedad);
+        	} else  { // si existe, se valida que sea el mismo codigo        		
+        		if (codigo != enfermedadExiste.getCodigoEnfermedad())
+        		{	return new JsonResponse<EnfSistemica>(false, null, "El nombre de la enfermedad ya existe");
+        		} else {
+        			return new JsonResponse<>( false, null, "No ha realizado cambios a la enfermedad");
+        		}        		
+        	}
         } catch (Exception e) {
-            return null;
+        	return new JsonResponse<>( false, null, "Hubo un error al modificar la enfermedad, Consulte al Administrador");
+            //return null;
         }
     }
 

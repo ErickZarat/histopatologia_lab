@@ -122,12 +122,20 @@ public class PacienteServlet extends HttpServlet {
         String ocupacionPaciente= request.getParameter("ocupacionPaciente");
         String tipoidPaciente= request.getParameter("tipIdPaciente");
         String emailPaciente= request.getParameter("emailPaciente");
-        String generoPaciente = request.getParameter("emailPaciente");
-        String estCivilPaciente = request.getParameter("emailPaciente");
+        String generoPaciente = request.getParameter("generoPaciente");
+        String estCivilPaciente = request.getParameter("estCivilPaciente");
+        String fecNacimientoPaciente=  request.getParameter("fecNacimiento");
+        System.out.println(fecNacimientoPaciente);
+        
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/MM/yyyy"); 
+
+        LocalDate fecnacimiento = LocalDate.parse(fecNacimientoPaciente, formatter);
+        System.out.println(fecnacimiento);
+        
 
         JsonResponse<Paciente> paciente = controller.modificarPaciente( codPaciente,  identificacionPaciente,  nombrePaciente, apellidosPaciente,
         		 direccionPaciente, tipoidPaciente,  ocupacionPaciente,  emailPaciente,
-        		 telefonoPaciente, generoPaciente,estCivilPaciente, usuario);
+        		 telefonoPaciente, generoPaciente,estCivilPaciente, fecnacimiento,  usuario);
         returnJson(response, paciente);
     }
 

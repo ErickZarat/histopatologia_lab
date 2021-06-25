@@ -137,4 +137,16 @@ public class PacienteDaoImpl implements IPacienteDao {
 	}
 
 
+	 
+	 @Override
+	  public Paciente getPacienteByID(String tipo, String numident)
+	  {   Record result = query
+			.select(tablapaciente.asterisk())
+			.from (tablapaciente)
+			.where (tablapaciente.IDENTIFICACION.like("%" + numident +"%", '!')
+			.and(tablapaciente.TIPO_IDENTIFICACION.eq(tipo)))
+	      .fetchOne();
+	  	return result != null ? parseItem(result): null;		 
+	  }
+	 
 }
