@@ -113,9 +113,9 @@ $(document).ready(function() {
 												pswActual :pswActual,
 								            },
 								            success: function(response) {
-								                $('#cambioPswUsuarioModal').modal('hide');
-												$("#CambioPswFormModal")[0].reset();
 								                if (response.success){
+									                $('#cambioPswUsuarioModal').modal('hide');
+													$("#CambioPswFormModal")[0].reset();									
 								                    toastr.success("Se cambio con éxito la contraseña");
 								                } else {
 								                    toastr.error(response.error);

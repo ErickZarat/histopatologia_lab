@@ -142,4 +142,11 @@ public class UsuarioControllerImpl implements IUsuarioController{
 	}		
 	}
 	
+	@Override 
+	public JsonResponse<Boolean> cambiaEstadoUsuario(String loginUsuario, String estado, String usuariomod)
+	{	Boolean success = usuariosDao.cambioEstadoUsuario(loginUsuario, estado, usuariomod);
+    	return new JsonResponse<Boolean>(success, success);
+		
+	}
+	
 }

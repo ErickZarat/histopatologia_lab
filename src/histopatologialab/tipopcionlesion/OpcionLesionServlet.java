@@ -51,6 +51,8 @@ public class OpcionLesionServlet extends HttpServlet {
         	modificarOpcionLesion(request, response);
         } else if (action == RequestAction.DAR_BAJA) {
         	darBajaOpcionLesion(request, response);
+        } else if (action == RequestAction.CAMBIO_ESTADO) {
+        	cambiaEstadoOpcionLesion(request, response);
         }
 		
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
@@ -108,6 +110,15 @@ public class OpcionLesionServlet extends HttpServlet {
         int codigo = Integer.parseInt(request.getParameter("codigoOpcion"));
         String usuario = getUsuarioFromSession(request);
         JsonResponse<Boolean> success = controller.darBajaOpcionLesion(codigo, usuario);
+        returnJson(response, success);
+    }
+    
+    
+    private void cambiaEstadoOpcionLesion(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        int codigo = Integer.parseInt(request.getParameter("codigoOpcion"));
+        String usuario = getUsuarioFromSession(request);
+        String estadoNuevo = request.getParameter("estadoOpcionBaja");
+        JsonResponse<Boolean> success = controller.cambiaEstadoOpcion(codigo, estadoNuevo, usuario);
         returnJson(response, success);
     }
 

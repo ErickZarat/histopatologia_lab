@@ -14,7 +14,6 @@ public interface IPacienteDao {
 	Paciente guardarPaciente(Paciente paciente); 
 	Paciente modificarPaciente(Paciente paciente);
 	List<Paciente> buscarPaciente(String value);
-	Paciente modificarPaciente(Paciente paciente); 
 	Paciente getPacienteByID(String tipo, String numident); 
 
 }

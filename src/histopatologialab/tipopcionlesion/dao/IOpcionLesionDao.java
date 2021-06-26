@@ -5,8 +5,7 @@ import histopatologialab.tipopcionlesion.dto.OpcionLesion;
 import java.util.List;
 
 public interface IOpcionLesionDao {
-	
-	
+		
     List<OpcionLesion> getOpcionesByTipo(String tipOpcion);
 
     OpcionLesion getOpcion(int codigoOpcion);
@@ -14,5 +13,5 @@ public interface IOpcionLesionDao {
     OpcionLesion modificarOpcionLesion(OpcionLesion tipopcionlesion);
     Boolean darDeBaja(int codigoOpcion, String usuario);
     List<OpcionLesion> getOpciones();
-
+    Boolean cambioEstadoOpcion(int codigoOpcion, String estado, String usuario);
 }

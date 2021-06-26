@@ -26,9 +26,9 @@ $(document).ready(function() {
                 nombreDiagnostico: nombreDiagnostico
             },
             success: function(data) {
-                $('#agregarDiagnosticoModal').modal('hide');
-                $('#nombreDiagnostico').val("");
                 if (data.success){
+	                $('#agregarDiagnosticoModal').modal('hide');
+	                $('#nombreDiagnostico').val("");	
                     toastr.success("Se agregó con éxito el diagnóstico");
                     getListadoDiagnosticos()
                 } else {
@@ -133,10 +133,11 @@ $(document).ready(function() {
                 nombreDiagnostico: nombreDiagnostico,
             },
             success: function(response) {
-                $('#modificarDiagnosticoModal').modal('hide');
-                $('#codigoDiagnosticoMod').val("")
-                $('#nombreDiagnosticoMod').val("")
+
                 if (response.success){
+	                $('#modificarDiagnosticoModal').modal('hide');
+	                $('#codigoDiagnosticoMod').val("")
+	                $('#nombreDiagnosticoMod').val("")	
                     toastr.success("Se modificó con éxito el diagnóstico");
                     getListadoDiagnosticos();
                 } else {

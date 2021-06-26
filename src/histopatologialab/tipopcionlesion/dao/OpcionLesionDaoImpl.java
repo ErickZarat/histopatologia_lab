@@ -100,4 +100,24 @@ public class OpcionLesionDaoImpl implements IOpcionLesionDao{
 
         return results.stream().map(this::parseItem).collect(Collectors.toList());
     }
+    
+
+    public Boolean cambioEstadoOpcion(int codigoOpcion,String estado, String usuario) {
+    	OpcionLesion tipopcionlesion = getOpcion(codigoOpcion); 
+    	tipopcionlesion.setModificadoPor(usuario);
+    	
+        String valEstado = new String("Alta");
+          
+        if (estado.equals(valEstado)) {
+        	tipopcionlesion.setEstado(Estado.DESHABILITADO.getSlug());
+        	} 
+        else {
+        	tipopcionlesion.setEstado(Estado.HABILITADO.getSlug());
+        	}
+        tipopcionlesion.setFechaModificacion(LocalDate.now());
+
+    	OpcionLesion tipopcionlesionmodificado = modificarOpcionLesion(tipopcionlesion);
+    	return tipopcionlesionmodificado != null;    	
+    }
+    
 }

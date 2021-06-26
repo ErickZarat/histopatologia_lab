@@ -60,5 +60,12 @@ public class OpcionLesionControllerImpl implements IOpcionLesionController {
     	return new JsonResponse<List<OpcionLesion>>(opcion != null, opcion);
     }
     
+    
+    @Override
+    public JsonResponse<Boolean> cambiaEstadoOpcion(int codigo, String estado, String usuario){
+    	Boolean success = opcionLesionDao.cambioEstadoOpcion(codigo, estado, usuario);
+        return new JsonResponse<Boolean>(success, success);
+    }
+    
 	
 }

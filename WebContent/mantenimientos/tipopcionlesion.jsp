@@ -134,18 +134,19 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Dar de Baja Opcion Lesion</h5>
+                <h5 class="modal-title">Cambio de Estado Opcion Lesión</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <p>Estas seguro en dar de baja a la opcion lesion: <span id="codigoOpcionLesionBaja"></span> - <span id="valorOpcionLesionBaja"></span>?</p>
+                <p>Estas seguro de cambiar el estado a la opción lesión: <span id="codigoOpcionLesionBaja"></span> - <span id="valorOpcionLesionBaja"></span>?</p>
+                <span id="estadoOpcionLesionBaja" hidden=true></span>
 
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                <button type="button" class="btn btn-primary" id="btnDarBajaOpcionLesion">Dar Baja</button>
+                <button type="button" class="btn btn-primary" id="btnCambioEstadoOpcionLesion">Cambiar Estado</button>
             </div>
         </div>
     </div>

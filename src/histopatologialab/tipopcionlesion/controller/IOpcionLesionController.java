@@ -11,6 +11,6 @@ public interface IOpcionLesionController {
     JsonResponse<OpcionLesion> modificarOpcionLesion(int codigo, String nombre, String valor, String usuario);
     JsonResponse<Boolean> darBajaOpcionLesion(int codigo, String usuario);
     JsonResponse<List<OpcionLesion>> getOpciones(String nombreOpcion);
-
+    JsonResponse<Boolean> cambiaEstadoOpcion(int codigo, String estado, String usuario);
 
 }

@@ -13,6 +13,7 @@ public interface IUsuarioDao {
 	 Usuario guardarUsuario(Usuario usuario);
 	 Usuario modificarUsuario(Usuario usuario);
 	 Boolean darDeBaja(String loginUsuario, String usuario);
+	 Boolean cambioEstadoUsuario(String loginUsuario,String estado, String usuario) ;
 	
 	
 }

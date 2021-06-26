@@ -69,7 +69,10 @@ public class UsuarioServlet extends HttpServlet {
         	ReinicioPswUsuario(request, response);
         }  else if (action == RequestAction.CAMBIO_PSW) { 
 	    	CambioPswUsuario(request, response);
+	    }   else if (action == RequestAction.CAMBIO_ESTADO) { 
+	    	CambioEstadoUsuario(request, response);
 	    }   
+        
     }
 
 	
@@ -146,6 +149,14 @@ public class UsuarioServlet extends HttpServlet {
         JsonResponse<Usuario> usuario = controller.cambioPswUsuario(usuarioMod, pswAnterior, pswActual);
         System.out.println("DESPUES DE CAMBIO DE PSW");
         returnJson(response, usuario);
+    }
+    
+    private void CambioEstadoUsuario(HttpServletRequest request, HttpServletResponse response) throws IOException {
+       
+        String loginUsuario =request.getParameter("loginUser");        
+        String usuariomod = getUsuarioFromSession(request);        
+        String estadoNuevo = (request.getParameter("estadoUsuarioBaja"));
+        returnJson(response, controller.cambiaEstadoUsuario(loginUsuario, estadoNuevo,usuariomod));        
     }
     
     

@@ -80,7 +80,7 @@ $(document).ready(function() {
             success: function (response) {
                 if(response.success) {
                     response.data.forEach(function (element) {
-                        var data = ' data-codigo-opcion="' + element.codigoOpcion + '" data-nombre-opcion="' + element.valor + '" ';
+                        var data = ' data-codigo-opcion="' + element.codigoOpcion + '" data-nombre-opcion="' + element.valor + '" '+ '" data-estado-opcion="' + devuelveEstado(element.estado) + '" ';
                         var row = [
                             '<input type="radio" name="opcion" data-nombre-opcion="'+element.valor+'" id="opcion-' + element.codigoOpcion + '" value="' + element.codigoOpcion + '"/>',
                             '<label for="opcion-' + element.codigoOpcion + '">' + element.codigoOpcion + '</label>',
@@ -88,7 +88,7 @@ $(document).ready(function() {
                             '<label for="opcion-' + element.codigoOpcion + '" class="text-capitalize">' + devuelveEstado(element.estado) + '</label>',
                             '<div class="btn-group" >'
                             + '<button type="button" class="btn btn-light" data-modificar-opcion="true" ' + data + ' data-toggle="modal" data-target="#modificarOpcionModal"  data-toggle="tooltip" data-placement="right" title="Modificar Valor"><i class="fas fa-edit"></i></button>'
-                            + '<button type="button" class="btn btn-light" data-baja-opcion="true" ' + data + ' data-toggle="modal" data-target="#darBajaOpcionModal" id="darBajaPresentacionModalBtn" data-toggle="tooltip" data-placement="right" title="Cambio de Estado" ><i class="fas fa-times"></i></button>'
+                            + '<button type="button" class="btn btn-light" data-baja-opcion="true" ' + data + ' data-toggle="modal" data-target="#darBajaOpcionModal" id="darBajaPresentacionModalBtn" data-toggle="tooltip" data-placement="right" title="Cambio de Estado" ><i class="fas fa-toggle-on"></i></button>'
                             + '</div>'
                         ]
                         opcionlesionTable.row.add(row).draw(false);
@@ -116,6 +116,7 @@ $(document).ready(function() {
     function setOpcionDataDarBaja() {
         $('#codigoOpcionLesionBaja').text($(this).data('codigo-opcion'))
         $('#valorOpcionLesionBaja').text($(this).data('nombre-opcion'))
+		$('#estadoOpcionLesionBaja').text($(this).data('estado-opcion'))
     }
 
     function setOpcionDataModificar(){
@@ -176,10 +177,39 @@ $(document).ready(function() {
                     toastr.success("Se dio de baja el valor");
                     getListadoOpcionLesion();
                 } else {
-                    toastr.error("Error al dar baja al valor");
+                    toastr.error("Error al dar baja al valor: " + response.error);
                 }
             }
         });
     });
+
+
+    $('#btnCambioEstadoOpcionLesion').click(function(){
+        var codigoOpcion = $('#codigoOpcionLesionBaja').text();
+		var estadoOpcionBaja = $('#estadoOpcionLesionBaja').text().trim();
+
+        $.ajax({
+            url: 'OpcionLesionServlet.do',
+            method: 'post',
+            data: {
+                accion: 'CAMBIO_ESTADO',
+                codigoOpcion: codigoOpcion,
+				estadoOpcionBaja: estadoOpcionBaja			
+            },
+            success: function(response) {
+                $('#darBajaOpcionModal').modal('hide');
+                $('#codigoOpcionLesionBaja').text("")
+				$('#estadoOpcionLesionBaja').text("");
+                if (response.success){
+                    toastr.success("Se cambió el estado de la opción con éxito");
+                    getListadoOpcionLesion();
+                } else {
+                    toastr.error("Error al cambiar el estado de la opción");
+                }
+            }
+        });
+    });
+
+
 
 });

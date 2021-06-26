@@ -49,6 +49,8 @@ public class PacienteServlet extends HttpServlet {
             modificarPaciente(request, response);
         } else if (action == RequestAction.DAR_BAJA) {
             darBajaPaciente(request, response);
+        } else if (action == RequestAction.BUSCAR) { 
+        	buscarPacienteByCodigo(request, response);            
         }
     }
 	
@@ -97,12 +99,7 @@ public class PacienteServlet extends HttpServlet {
        // DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MMM/yyyy");
         //LocalDate localDate = LocalDate.parse(fecNacimientoPaciente,formatter);
         
-        System.out.println("genero");
-        System.out.println(generoPaciente);
-        System.out.println("estado civil");
-        System.out.println(estCivilPaciente);
-        
-      
+     
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/MM/yyyy"); 
         LocalDate fecnacimiento = LocalDate.parse(fecNacimientoPaciente, formatter);
 
@@ -125,12 +122,10 @@ public class PacienteServlet extends HttpServlet {
         String generoPaciente = request.getParameter("generoPaciente");
         String estCivilPaciente = request.getParameter("estCivilPaciente");
         String fecNacimientoPaciente=  request.getParameter("fecNacimiento");
-        System.out.println(fecNacimientoPaciente);
         
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/MM/yyyy"); 
 
         LocalDate fecnacimiento = LocalDate.parse(fecNacimientoPaciente, formatter);
-        System.out.println(fecnacimiento);
         
 
         JsonResponse<Paciente> paciente = controller.modificarPaciente( codPaciente,  identificacionPaciente,  nombrePaciente, apellidosPaciente,
@@ -151,5 +146,11 @@ public class PacienteServlet extends HttpServlet {
         JsonResponse<List<Paciente>> pacientes = controller.buscarPaciente(value);
         returnJson(response, pacientes);
     } 
+    
+    private void buscarPacienteByCodigo(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    	Long codigoPaciente = Long. parseLong(request.getParameter("codPaciente")) ;
+        JsonResponse<Paciente> paciente = controller.getPacienteByCodigo(codigoPaciente);
+        returnJson(response, paciente);
+    }     
 	
 }

@@ -76,9 +76,9 @@ $(document).ready(function() {
 												tipoUsuario: tipoUsuario,								
 								        	},
 								        	success: function(data) {
-								            	$('#agregarUsuarioModal').modal('hide');
-												$("#AgregarFormModal")[0].reset();
 								            	if (data.success){
+													$('#agregarUsuarioModal').modal('hide');
+													$("#AgregarFormModal")[0].reset();
 								                	toastr.success("Se agregó con éxito el Usuario");
 								                	getListadoUsuarios()
 								            	} else {
@@ -123,7 +123,7 @@ $(document).ready(function() {
             success: function (response) {
                 if(response.success) {
                     response.data.forEach(function (element) {
-                        var data = ' data-codigo-usuario="' + element.codUsuario + '" data-nombre-usuario="' + element.loginUsuario + '" ';
+                        var data = ' data-codigo-usuario="' + element.codUsuario + '" data-nombre-usuario="' + element.loginUsuario + '" '+ '" data-estado-usuario="' + devuelveEstado(element.estado) + '" ';
                         var row = [
                             '<input type="radio" name="usuario" data-nombre-usuario="'+element.loginUsuario+'" id="usuario-' + element.codUsuario + '" value="' + element.codUsuario + '"/>',
                             '<label for="usuario-' + element.codUsuario + '">' + element.codUsuario + '</label>',
@@ -134,7 +134,7 @@ $(document).ready(function() {
 							'<label for="usuario-' + element.codUsuario + '" class="text">' + devuelveEstado(element.estado) + '</label>',
                             '<div class="btn-group" >'
                             + '<button type="button" class="btn btn-light" data-modificar-usuario="true" ' + data + ' data-toggle="modal"  id="modifUsuarioBtn" data-target="#modificarUsuarioModal" data-toggle="tooltip" data-placement="right" title="Modificar Usuario"><i class="fas fa-edit"></i></button>'
-                            + '<button type="button" class="btn btn-light" data-baja-usuario="true" ' + data + ' data-toggle="modal" data-target="#darBajaUsuarioModal" id="darBajaUsuarioModalBtn" data-toggle="tooltip" data-placement="right" title="Cambio de Estado"><i class="fas fa-times"></i></button>'
+                            + '<button type="button" class="btn btn-light" data-baja-usuario="true" ' + data + ' data-toggle="modal" data-target="#darBajaUsuarioModal" id="darBajaUsuarioModalBtn" data-toggle="tooltip" data-placement="right" title="Cambio de Estado"><i class="fas fa-toggle-on"></i></button>'
                             + '</div>'
                         ]
                         usuariosTable.row.add(row).draw(false);
@@ -158,6 +158,7 @@ $(document).ready(function() {
      function setUsuarioDataDarBaja() {
         $('#codigoUsuarioBaja').text($(this).data('codigo-usuario'))
         $('#loginUsuarioBaja').text($(this).data('nombre-usuario'))
+ 		$('#estadoUsuarioBaja').text($(this).data('estado-usuario'))
     }
 
     function setUsuarioDataModificar(){	
@@ -232,9 +233,10 @@ $(document).ready(function() {
 						tipoUsuario: tipoUsuario,
 		            },
 		            success: function(response) {
-		                $('#modificarUsuarioModal').modal('hide');
-						$("#ModificarFormModal")[0].reset();
+
 		                if (response.success){
+					    	$('#modificarUsuarioModal').modal('hide');
+							$("#ModificarFormModal")[0].reset();
 		                    toastr.success("Se modifico con exito el Usuario");
 		                    getListadoUsuarios();
 		                } else {
@@ -328,5 +330,35 @@ $(document).ready(function() {
             }
         });
     });
+
+
+	   $('#btnCambioEstadoUsuario').click(function(e){
+        var loginUser = $('#loginUsuarioBaja').text();
+		var estadoUsuarioBaja = $('#estadoUsuarioBaja').text().trim();
+
+        $.ajax({
+            url: 'UsuarioServlet.do',
+            method: 'post',
+            data: {
+                accion: 'CAMBIO_ESTADO',
+                loginUser: loginUser,
+				estadoUsuarioBaja: estadoUsuarioBaja			
+            },
+            success: function(response) {
+                $('#darBajaUsuarioModal').modal('hide');
+                $('#loginUsuarioBaja').text("")
+				$('#estadoUsuarioBaja').text("");
+                if (response.success){
+                    toastr.success("Se cambió el estado del usuario con éxito");
+                    getListadoUsuarios();
+                } else {
+                    toastr.error(response.error);
+                }
+            }
+        });
+    });
+
+
+
 
 });

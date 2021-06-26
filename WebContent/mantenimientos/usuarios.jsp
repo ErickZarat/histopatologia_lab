@@ -14,7 +14,7 @@
             <button type="button" class="btn btn-light" data-toggle="modal" data-target="#agregarUsuarioModal" id="agregarUsuarioModalBtn" >Agregar <i class="fas fa-plus"></i></button>
         </div>
 
-        <table class="table table-striped w-50 left-margin-align" id="usuariosTable">
+        <table class="table table-striped w-75 left-margin-align" id="usuariosTable">
             <thead class="table thead-light">
             <tr style="font-weight: bold;">
                 <td></td>
@@ -209,12 +209,13 @@
                 </button>
             </div>
             <div class="modal-body">
-                <p>Estas seguro en dar de baja el Usuario   : <span id="codigoUsuarioBaja"></span> - <span id="loginUsuarioBaja"></span>?</p>
+                <p>Estas seguro de cambiar el estado del Usuario   : <span id="codigoUsuarioBaja"></span> - <span id="loginUsuarioBaja"></span>?</p>
+                 <span id="estadoUsuarioBaja" hidden=true></span>
 
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                <button type="button" class="btn btn-primary" id="btnDarBajaUsuario">Dar Baja</button>
+                <button type="button" class="btn btn-primary" id="btnCambioEstadoUsuario">Cambiar Estado</button>
             </div>
         </div>
     </div>

@@ -26,9 +26,10 @@ $(document).ready(function() {
                 nombre: nombre
             },
             success: function(data) {
-                $('#agregarEnfermedadModal').modal('hide');
-                $('#nombreEnfermedad').val("");
+
                 if (data.success){
+	                $('#agregarEnfermedadModal').modal('hide');
+	                $('#nombreEnfermedad').val("");	
                     toastr.success("Se agrego con exito la enfermedad");
                     getListadoEnfermedades()
                 } else {
@@ -131,10 +132,10 @@ $(document).ready(function() {
                 nombreEnfermedad: nombreEnfermedad,
             },
             success: function(response) {
-                $('#modificarEnfermedadModal').modal('hide');
-                $('#codigoEnfermedadMod').val("")
-                $('#nombreEnfermedadMod').val("")
                 if (response.success){
+	                $('#modificarEnfermedadModal').modal('hide');
+	                $('#codigoEnfermedadMod').val("")
+	                $('#nombreEnfermedadMod').val("")	
                     toastr.success("Se modifico con exito la enfermedad");
                     getListadoEnfermedades();
                 } else {

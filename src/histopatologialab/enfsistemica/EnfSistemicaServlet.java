@@ -86,7 +86,6 @@ public class EnfSistemicaServlet extends HttpServlet {
         int codigo = Integer.parseInt(request.getParameter("codigoEnfermedad"));
         String usuario = getUsuarioFromSession(request);
         String estadoNuevo = (request.getParameter("estadoEnfermedadBaja"));
-        System.out.println(estadoNuevo);
         //cambiaEstadoEnfermedad(int codigo, String estado, String usuario)
         returnJson(response, controller.cambiaEstadoEnfermedad(codigo, estadoNuevo,usuario));
     }

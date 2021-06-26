@@ -109,6 +109,7 @@ public class UsuarioDaoImpl implements IUsuarioDao{
 	 }
 	 
     
+    @Override
 	 public Boolean darDeBaja(String loginUsuario, String usuariomod) {
 		 Usuario usuario = getUsuario(loginUsuario);
 		 
@@ -118,4 +119,22 @@ public class UsuarioDaoImpl implements IUsuarioDao{
 		 Usuario usuariomodificado = modificarUsuario(usuario); 
 		 return usuariomodificado != null;
 	 }
+	 
+    @Override
+	 public  Boolean cambioEstadoUsuario(String loginUsuario,String estado, String usuariomod) {
+    	Usuario usuario = getUsuario(loginUsuario);
+    	usuario.setModificadoPor(usuariomod);
+    	
+    	String valEstado = new String("Alta");
+        
+	        if (estado.equals(valEstado)) {
+	        	usuario.setEstado(Estado.DESHABILITADO.getSlug());
+	        	} 
+	        else {
+	        	usuario.setEstado(Estado.HABILITADO.getSlug());
+	        	}
+	        usuario.setFechaModificacion(LocalDate.now());
+	        Usuario usuariomodificado = modificarUsuario(usuario); 
+	        return usuariomodificado != null; 
+    }
 }
