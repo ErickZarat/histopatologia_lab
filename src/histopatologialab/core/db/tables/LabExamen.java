@@ -51,7 +51,7 @@ public class LabExamen extends TableImpl<LabExamenRecord> {
     /**
      * The column <code>public.lab_examen.cod_examen</code>.
      */
-    public final TableField<LabExamenRecord, Integer> COD_EXAMEN = createField(DSL.name("cod_examen"), SQLDataType.INTEGER.nullable(false).defaultValue(DSL.field("nextval('lab_examen_cod_examen_seq1'::regclass)", SQLDataType.INTEGER)), this, "");
+    public final TableField<LabExamenRecord, Integer> COD_EXAMEN = createField(DSL.name("cod_examen"), SQLDataType.INTEGER.nullable(false).defaultValue(DSL.field("nextval('lab_examen_cod_examen_seq2'::regclass)", SQLDataType.INTEGER)), this, "");
 
     /**
      * The column <code>public.lab_examen.cod_paciente</code>.

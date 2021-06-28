@@ -11,6 +11,7 @@ import histopatologialab.pacientes.dto.Paciente;
 import histopatologialab.usuario.dto.Usuario;
 import org.jooq.DSLContext;
 import org.jooq.Record;
+import org.tinylog.Logger;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -53,6 +54,7 @@ public class ExamenDaoImpl implements IExamenDao {
     @Override
     public Examen getExamen(String numExamen) {
         Record result = query.select(tabla.asterisk())
+                .from(tabla)
                 .where(tabla.NUM_EXAMEN.eq(numExamen))
                 .fetchOne();
         return result != null ? parseItem(result): null;
@@ -61,6 +63,7 @@ public class ExamenDaoImpl implements IExamenDao {
     @Override
     public Examen getExamen(int codExamen) {
         Record result = query.select(tabla.asterisk())
+                .from(tabla)
                 .where(tabla.COD_EXAMEN.eq(codExamen))
                 .fetchOne();
         return result != null ? parseItem(result): null;
@@ -69,8 +72,9 @@ public class ExamenDaoImpl implements IExamenDao {
     @Override
     public List<Examen> getExamenesByPaciente(Long codPaciente) {
         List<Record> result = query.select(tabla.asterisk())
-                .where(tabla.COD_PACIENTE.eq(codPaciente)).
-                orderBy(tabla.FECHA_EXAMEN.desc())
+                .from(tabla)
+                .where(tabla.COD_PACIENTE.eq(codPaciente))
+                .orderBy(tabla.FECHA_EXAMEN.desc())
                 .fetch();
         return result.stream().map(this::parseItem).collect(Collectors.toList());
     }
@@ -99,7 +103,7 @@ public class ExamenDaoImpl implements IExamenDao {
         record.setDependenciaDoctorRemision(examen.getDependenciaDoctorRemision());
         record.store();
 
-        return parseItem(record);
+        return getExamen(record.getCodExamen());
     }
 
     @Override

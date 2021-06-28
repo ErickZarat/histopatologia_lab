@@ -2,6 +2,7 @@ package histopatologialab.consultas;
 
 import histopatologialab.consultas.controller.IConsultaController;
 import histopatologialab.consultas.dto.Examen;
+import histopatologialab.core.JsonResponse;
 import histopatologialab.core.RequestAction;
 import histopatologialab.pacientes.dto.Paciente;
 import org.tinylog.Logger;
@@ -58,7 +59,9 @@ public class ConsultaServlet extends HttpServlet {
         }
         examen.setDoctorExamen(getIdUsuarioFromSession(request));
 
-        controller.guardarExamen(examen);
+        JsonResponse<Examen> examenGuardado =  controller.guardarExamen(examen);
+        Logger.info(jackson.writeValueAsString(examenGuardado));
+        returnJson(response, examenGuardado);
     }
 
     private void handleGetCreateWithPaciente(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -68,7 +71,7 @@ public class ConsultaServlet extends HttpServlet {
         Examen examen = null;
 
         if (codExamen != null) {
-            examen = consultaController.getExamen(Integer.parseInt(codExamen));
+            examen = consultaController.getExamen(Integer.parseInt(codExamen)).getData();
             if (examen == null) {
                 examen = new Examen();
             } else {
@@ -91,7 +94,7 @@ public class ConsultaServlet extends HttpServlet {
     }
 
     private void getCreateConsultaPage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.setAttribute("tipoOpcion", controller.getOpciones());
+        request.setAttribute("tipoOpcion", controller.getOpciones().getData());
         RequestDispatcher despachador = request.getRequestDispatcher("consulta/crear-consulta.jsp");
         despachador.forward(request, response);
     }

@@ -320,7 +320,7 @@ CREATE TABLE public.lab_usuario (
 
 CREATE TABLE public.lab_examen (
 	cod_examen serial NOT NULL,
-	cod_paciente int4 NULL,
+	cod_paciente int8 NULL,
 	num_examen varchar(20) NULL,
 	fecha_examen date NULL,
 	estado_examen varchar(25) NULL,
@@ -332,13 +332,14 @@ CREATE TABLE public.lab_examen (
 	duracion_lesion_meses int4 NULL,
 	duracion_lesion_anios int4 NULL,
 	datos_importantes_lesion varchar(200) NULL,
-	doctor_examen int4 NULL,
+	doctor_examen int8 NULL,
 	tipo_remision varchar(20) NULL,
 	doctor_remision varchar(30) NULL,
 	direccion_doctor_remision varchar(50) NULL,
 	telefono_doctor_remision varchar(50) NULL,
 	email_doctor_remision varchar(50) NULL,
 	dependencia_doctor_remision varchar(50) NULL,
+	registro_doctor_remision varchar(50) NULL,
 	CONSTRAINT lab_examen_pkey PRIMARY KEY (cod_examen),
 	CONSTRAINT cod_paciente_fk FOREIGN KEY (cod_paciente) REFERENCES lab_paciente(cod_paciente),
 	CONSTRAINT doctor_examen_fk FOREIGN KEY (doctor_examen) REFERENCES lab_usuario(cod_usuario)
