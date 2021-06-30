@@ -26,13 +26,8 @@ public class LoginServlet extends HttpServlet {
 
         boolean seInicioSesion = loginController.iniciarSession(usuario, password, request.getSession(true));
         if (seInicioSesion) {
-        	
-        	HttpSession session=request.getSession();
-        	System.out.println("varible role_key en servlet");
-        	System.out.println(session.getAttribute("user_role"));
-            request.setAttribute("username", usuario);            
-            request.setAttribute("roleHandler", session.getAttribute("user_role"));
-            
+            checkSession(request, response);
+            request.setAttribute("username", usuario);
             despachador = request.getRequestDispatcher("principal.jsp");
         } else {
             despachador = request.getRequestDispatcher("index.jsp");

@@ -35,7 +35,10 @@ public class Examen {
 
     List<Integer> caracteristicas;
 
-    public Examen(int codExamen, Long codPaciente, String numExamen, LocalDate fechaExamen, String estado, String historiaExamenLesion, String tamanoLesion, String dimensionalLesion, int duracionLesionDias, int duracionLesionMeses, int duracionLesionAnios, String datosImportantesLesion, Long doctorExamen, String tipoRemision, String doctorRemision, String direccionDoctorRemision, String telefonoDoctorRemision, String emailDoctorRemision, String dependenciaDoctorRemision, String registroDoctorRemision, Paciente paciente, Usuario doctor) {
+    boolean necesitaBiopsia;
+    boolean necesitaFrote;
+
+    public Examen(int codExamen, Long codPaciente, String numExamen, LocalDate fechaExamen, String estado, String historiaExamenLesion, String tamanoLesion, String dimensionalLesion, int duracionLesionDias, int duracionLesionMeses, int duracionLesionAnios, String datosImportantesLesion, Long doctorExamen, String tipoRemision, String doctorRemision, String direccionDoctorRemision, String telefonoDoctorRemision, String emailDoctorRemision, String dependenciaDoctorRemision, String registroDoctorRemision, Paciente paciente, Usuario doctor, List<Integer> caracteristicas, boolean necesitaBiopsia, boolean necesitaFrote) {
         this.codExamen = codExamen;
         this.codPaciente = codPaciente;
         this.numExamen = numExamen;
@@ -58,6 +61,9 @@ public class Examen {
         this.registroDoctorRemision = registroDoctorRemision;
         this.paciente = paciente;
         this.doctor = doctor;
+        this.caracteristicas = caracteristicas;
+        this.necesitaBiopsia = necesitaBiopsia;
+        this.necesitaFrote = necesitaFrote;
     }
 
     public Examen() {
@@ -237,5 +243,21 @@ public class Examen {
         int month = this.fechaExamen.getMonthValue();
 
         return day + "-" + month + "-" + nextInt;
+    }
+
+    public boolean isNecesitaBiopsia() {
+        return necesitaBiopsia;
+    }
+
+    public void setNecesitaBiopsia(boolean necesitaBiopsia) {
+        this.necesitaBiopsia = necesitaBiopsia;
+    }
+
+    public boolean isNecesitaFrote() {
+        return necesitaFrote;
+    }
+
+    public void setNecesitaFrote(boolean necesitaFrote) {
+        this.necesitaFrote = necesitaFrote;
     }
 }

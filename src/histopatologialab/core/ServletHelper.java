@@ -1,5 +1,6 @@
 package histopatologialab.core;
 
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JSR310Module;
@@ -49,6 +50,7 @@ public class ServletHelper {
     }
 
     public static void checkSession(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        request.setAttribute("roleHandler", RoleHandler.getInstance(request.getSession()));
         if (!isValidSession(request)) {
             response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
             RequestDispatcher despachador = request.getRequestDispatcher("index.jsp");
@@ -86,6 +88,7 @@ public class ServletHelper {
             jackson = new ObjectMapper();
             jackson.registerModule(new JSR310Module());
             jackson.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
+            jackson.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
         }
         return jackson;
     }

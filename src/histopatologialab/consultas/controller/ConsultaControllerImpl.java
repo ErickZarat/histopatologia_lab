@@ -1,6 +1,7 @@
 package histopatologialab.consultas.controller;
 
 import histopatologialab.consultas.dto.Examen;
+import histopatologialab.core.JsonResponse;
 import histopatologialab.tipopcionlesion.dao.IOpcionLesionDao;
 import histopatologialab.tipopcionlesion.dto.OpcionLesion;
 
@@ -18,10 +19,11 @@ public class ConsultaControllerImpl implements IConsultaController {
     }
 
     @Override
-    public Map<String, List<OpcionLesion>> getOpciones(){
-        return tipoOpcionLesionDao.getOpciones()
+    public JsonResponse<Map<String, List<OpcionLesion>>> getOpciones(){
+        Map<String, List<OpcionLesion>> opciones = tipoOpcionLesionDao.getOpciones()
                 .stream()
                 .collect(groupingBy(OpcionLesion::getNombreOpcion));
+        return new JsonResponse<>(opciones != null, opciones);
     }
 
 
@@ -30,17 +32,20 @@ public class ConsultaControllerImpl implements IConsultaController {
     }
 
     @Override
-    public Examen getExamen(int codExamen) {
-        return examenDao.getExamen(codExamen);
+    public JsonResponse<Examen> getExamen(int codExamen) {
+        Examen examen = examenDao.getExamen(codExamen);
+        return new JsonResponse<>(examen != null, examen);
     }
 
     @Override
-    public List<Examen> getExamenes() {
-        return examenDao.getExamenes();
+    public JsonResponse<List<Examen>> getExamenes() {
+        List<Examen> examenes = examenDao.getExamenes();
+        return new JsonResponse<>(examenes != null, examenes);
     }
 
     @Override
-    public Examen guardarExamen(Examen examen) {
-        return examenDao.guardarExamen(examen);
+    public JsonResponse<Examen> guardarExamen(Examen examen) {
+        Examen examen1 = examenDao.guardarExamen(examen);
+        return new JsonResponse<Examen>(examen1 != null, examen1);
     }
 }

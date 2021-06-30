@@ -16,7 +16,7 @@ import java.io.IOException;
 import java.util.Iterator;
 import java.util.List;
 
-@WebServlet("/UploadServlet")
+@WebServlet(name = "UploadServlet")
 public class UploadServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doPost(request, response);
@@ -37,12 +37,12 @@ public class UploadServlet extends HttpServlet {
             Iterator itr = items.iterator();
             while (itr.hasNext()) {
                 FileItem item = (FileItem) itr.next();
-                if (item.isFormField()) {
-                } else {
+                if (!item.isFormField()) {
                     try {
                         String itemName = item.getName();
-                        File savedFile = new File("D:\\"+itemName);
-                        item.write(savedFile);
+                        File fileToSave = new File("/opt/lab-img/"+itemName);
+                        item.write(fileToSave);
+
                     } catch (Exception e) {
                         e.printStackTrace();
                     }

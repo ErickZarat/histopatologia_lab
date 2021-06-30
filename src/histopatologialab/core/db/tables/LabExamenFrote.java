@@ -133,7 +133,7 @@ public class LabExamenFrote extends TableImpl<LabExamenFroteRecord> {
 
     @Override
     public List<UniqueKey<LabExamenFroteRecord>> getKeys() {
-        return Arrays.<UniqueKey<LabExamenFroteRecord>>asList(Keys.LAB_EXAMEN_FROTE_PKEY, Keys.NUM_FROTE_UQ);
+        return Arrays.<UniqueKey<LabExamenFroteRecord>>asList(Keys.LAB_EXAMEN_FROTE_PKEY);
     }
 
     @Override

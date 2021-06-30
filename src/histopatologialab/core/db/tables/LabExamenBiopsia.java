@@ -52,7 +52,7 @@ public class LabExamenBiopsia extends TableImpl<LabExamenBiopsiaRecord> {
     /**
      * The column <code>public.lab_examen_biopsia.cod_biopsia</code>.
      */
-    public final TableField<LabExamenBiopsiaRecord, Integer> COD_BIOPSIA = createField(DSL.name("cod_biopsia"), SQLDataType.INTEGER.nullable(false).defaultValue(DSL.field("nextval('lab_examen_biopsia_cod_biopsia_seq1'::regclass)", SQLDataType.INTEGER)), this, "");
+    public final TableField<LabExamenBiopsiaRecord, Integer> COD_BIOPSIA = createField(DSL.name("cod_biopsia"), SQLDataType.INTEGER.nullable(false).defaultValue(DSL.field("nextval('lab_examen_biopsia_cod_biopsia_seq2'::regclass)", SQLDataType.INTEGER)), this, "");
 
     /**
      * The column <code>public.lab_examen_biopsia.cod_examen</code>.

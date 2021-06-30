@@ -6,6 +6,7 @@ import histopatologialab.core.RoleHandler;
 import histopatologialab.medicamentos.controller.IMedicamentosController;
 import histopatologialab.medicamentos.dto.Medicamento;
 import histopatologialab.medicamentos.dto.TipoMedicamento;
+import org.tinylog.Logger;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -63,7 +64,7 @@ public class MedicamentosServlet extends HttpServlet {
 
     private void getDefaultPage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setAttribute("tiposMedicamento", TipoMedicamento.values());
-        request.setAttribute("roleHandler", roleHandler);
+//        request.setAttribute("roleHandler", roleHandler);
         RequestDispatcher despachador = request.getRequestDispatcher("mantenimientos/medicamentos.jsp");
         despachador.forward(request, response);
     }

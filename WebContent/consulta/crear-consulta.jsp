@@ -54,7 +54,11 @@
     <div class="lesion-container container-fluid">
         <form class="align-middle" action="ConsultaServlet.do" method="post">
 
-            <table>
+            <table id="lesion-section">
+                <tr>
+                    <td><label for="fechaExamen">Feche examen:</label></td>
+                    <td><input id="fechaExamen" class="form-control" readonly></td>
+                </tr>
                 <tr>
                     <td><label class="table-form-label" for="tamano">Tamaño:</label></td>
                     <td><input type="number" id="tamano" class="form-control"></td>
@@ -155,19 +159,41 @@
                     </td>
                 </tr>
             </table>
+
+            <hr>
+
+            <table>
+                <tr>
+                    <td>
+                        <label class="table-form-label" for="datosImportantes">Datos Importantes:</label>
+                    </td>
+                    <td>
+                        <textarea name="datosImportantes" class="form-control" id="datosImportantes" cols="150" rows="5"></textarea>
+                    </td>
+                    <td colspan="2">
+                        <form id="upload-img-form" action="UploadServlet.do" method="post" enctype="multipart/form-data">
+                            <input type="file" id="file" name="file1" />
+                            <input type="submit" id="upload-button" value="upload" />
+                        </form>
+                    </td>
+                    <td style="width: 10%;"></td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="checkbox" id="necesitaBiopsia"><label for="necesitaBiopsia"> Necesita biopsia</label>
+                    </td>
+                    <td>
+                        <input type="checkbox" id="necesitaFrote"><label for="necesitaFrote"> Necesita frote</label>
+                    </td>
+                </tr>
+            </table>
+
             <hr>
 
             <table>
                 <tr>
                     <td><label class="table-form-label" for="tipoRemision">Tipo Remision:</label></td>
-                    <td>
-                        <select  class="form-control" name="tipoRemision" id="tipoRemision">
-                            <option value="">Selecciona una opcion</option>
-                            <c:forEach items="${tipoOpcion.PIEZA}" var="tipo">
-                                <option value="${tipo.codigoOpcion}">${tipo.valor}</option>
-                            </c:forEach>
-                        </select>
-                    </td>
+                    <td><input type="text" id="tipoRemision" class="form-control"></td>
                     <td><label class="table-form-label" for="registroDoctorRemision">Registro Remision:</label></td>
                     <td><input type="text" id="registroDoctorRemision" class="form-control"></td>
                 </tr>
@@ -195,29 +221,6 @@
 
             <hr>
 
-            <table>
-                <tr>
-                    <td>
-                        <label class="table-form-label" for="datosImportantes">Datos Importantes:</label>
-                    </td>
-                    <td>
-                        <textarea name="datosImportantes" class="form-control" id="datosImportantes" cols="150" rows="5"></textarea>
-                    </td>
-                    <td colspan="2">
-                        <input type="file" multiple accept="image/*">
-                        <button class="btn btn-light" style="margin-left: 35%;">Imagenes</button>
-                    </td>
-                    <td style="width: 10%;"></td>
-                </tr>
-                <tr>
-                    <td>
-                        <input type="checkbox" id="necesitaBiopsia"><label for="necesitaBiopsia"> Necesita biopsia</label>
-                    </td>
-                    <td>
-                        <input type="checkbox" id="necesitaFrote"><label for="necesitaFrote"> Necesita frote</label>
-                    </td>
-                </tr>
-            </table>
             <button id="guardarExamen" class="btn btn-light">Guardar</button>
         </form>
     </div>

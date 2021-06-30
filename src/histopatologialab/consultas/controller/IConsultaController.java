@@ -1,6 +1,7 @@
 package histopatologialab.consultas.controller;
 
 import histopatologialab.consultas.dto.Examen;
+import histopatologialab.core.JsonResponse;
 import histopatologialab.tipopcionlesion.dto.OpcionLesion;
 
 import java.util.List;
@@ -8,12 +9,12 @@ import java.util.Map;
 
 public interface IConsultaController {
 
-    Map<String, List<OpcionLesion>> getOpciones();
+    JsonResponse<Map<String, List<OpcionLesion>>> getOpciones();
 
-    Examen getExamen(int codExamen);
+    JsonResponse<Examen> getExamen(int codExamen);
 
-    List<Examen> getExamenes();
+    JsonResponse<List<Examen>> getExamenes();
 
-    Examen guardarExamen(Examen examen);
+    JsonResponse<Examen> guardarExamen(Examen examen);
 
 }
