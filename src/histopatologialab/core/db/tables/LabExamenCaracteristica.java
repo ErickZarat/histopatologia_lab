@@ -56,7 +56,7 @@ public class LabExamenCaracteristica extends TableImpl<LabExamenCaracteristicaRe
     /**
      * The column <code>public.lab_examen_caracteristica.codigo_tipo_opcion_lesion</code>.
      */
-    public final TableField<LabExamenCaracteristicaRecord, Integer> CODIGO_TIPO_OPCION_LESION = createField(DSL.name("codigo_tipo_opcion_lesion"), SQLDataType.INTEGER, this, "");
+    public final TableField<LabExamenCaracteristicaRecord, Integer> CODIGO_TIPO_OPCION_LESION = createField(DSL.name("codigo_tipo_opcion_lesion"), SQLDataType.INTEGER.nullable(false), this, "");
 
     /**
      * The column <code>public.lab_examen_caracteristica.fecha_creacion</code>.
@@ -118,24 +118,32 @@ public class LabExamenCaracteristica extends TableImpl<LabExamenCaracteristicaRe
 
     @Override
     public UniqueKey<LabExamenCaracteristicaRecord> getPrimaryKey() {
-        return Keys.LAB_EXAMEN_CARACTERISTICA_PKEY;
+        return Keys.LAB_EXAMEN_CARACTERISTICA_PK;
     }
 
     @Override
     public List<UniqueKey<LabExamenCaracteristicaRecord>> getKeys() {
-        return Arrays.<UniqueKey<LabExamenCaracteristicaRecord>>asList(Keys.LAB_EXAMEN_CARACTERISTICA_PKEY);
+        return Arrays.<UniqueKey<LabExamenCaracteristicaRecord>>asList(Keys.LAB_EXAMEN_CARACTERISTICA_PK);
     }
 
     @Override
     public List<ForeignKey<LabExamenCaracteristicaRecord, ?>> getReferences() {
-        return Arrays.<ForeignKey<LabExamenCaracteristicaRecord, ?>>asList(Keys.LAB_EXAMEN_CARACTERISTICA__FK_LAB_TIPO_OPCION_LESION);
+        return Arrays.<ForeignKey<LabExamenCaracteristicaRecord, ?>>asList(Keys.LAB_EXAMEN_CARACTERISTICA__FK_LAB_EXAMEN_CARACTERISTICA_FK, Keys.LAB_EXAMEN_CARACTERISTICA__FK_LAB_TIPO_OPCION_LESION_FK);
     }
 
+    private transient LabExamen _labExamen;
     private transient LabTipoOpcionLesion _labTipoOpcionLesion;
+
+    public LabExamen labExamen() {
+        if (_labExamen == null)
+            _labExamen = new LabExamen(this, Keys.LAB_EXAMEN_CARACTERISTICA__FK_LAB_EXAMEN_CARACTERISTICA_FK);
+
+        return _labExamen;
+    }
 
     public LabTipoOpcionLesion labTipoOpcionLesion() {
         if (_labTipoOpcionLesion == null)
-            _labTipoOpcionLesion = new LabTipoOpcionLesion(this, Keys.LAB_EXAMEN_CARACTERISTICA__FK_LAB_TIPO_OPCION_LESION);
+            _labTipoOpcionLesion = new LabTipoOpcionLesion(this, Keys.LAB_EXAMEN_CARACTERISTICA__FK_LAB_TIPO_OPCION_LESION_FK);
 
         return _labTipoOpcionLesion;
     }

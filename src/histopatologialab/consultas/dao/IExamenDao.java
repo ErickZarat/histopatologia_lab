@@ -15,7 +15,7 @@ public interface IExamenDao {
     Examen guardarExamen(Examen examen);
     Examen modificarExamen(Examen examen);
 
-    int getNextExamenNumber(LocalDate date);
+    String getNextExamenNumber(LocalDate date);
 
     List<Integer> getCaracteristicas(int codExamen);
 

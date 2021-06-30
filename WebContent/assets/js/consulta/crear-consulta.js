@@ -62,7 +62,7 @@ function extractExamen(){
         // 'codExamen': $('#'), //generated on backend
         'codPaciente': $('#codigoUsuario').val(),
         // 'numExamen': $('#'), //generated on backend
-        // 'fechaExamen': $('#'),
+        // 'fechaExamen': $('#fechaExamen').val(), // current date
         // 'estado': $('#'),
         // 'historiaExamenLesion': $('#'),
         'tamanoLesion': $('#tamano').val(),
@@ -79,6 +79,10 @@ function extractExamen(){
         'telefonoDoctorRemision': $('#telefonoDoctorRemision').val(),
         'emailDoctorRemision': $('#emailDoctorRemision').val(),
         'dependenciaDoctorRemision': $('#dependenciaDoctorRemision').val(),
+        'caracteristicas': $('#lesion-section select').map(function(){return $(this).val()}).get(),
+        'necesitaBiopsia': $('#necesitaBiopsia').prop(':checked'),
+        'necesitaFrote': $('#necesitaFrote').prop(':checked'),
+        'registroDoctorRemision': $('#registroDoctorRemision').val()
     }
 }
 
@@ -102,4 +106,27 @@ $('#guardarExamen').click(function(e){
     });
 });
 
+$('#upload-button').click(function(e){
+    e.preventDefault();
+    uploadImage()
+})
 
+function uploadImage(){
+    var data = new FormData();
+    $.each($('#file')[0].files, function(i, file) {
+        data.append('file-'+i, file);
+    });
+
+    $.ajax({
+        url: 'UploadServlet.do',
+        data: data,
+        cache: false,
+        contentType: false,
+        processData: false,
+        method: 'POST',
+        success: function(data){
+            alert(data);
+        }
+    });
+
+}

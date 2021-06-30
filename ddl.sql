@@ -325,7 +325,6 @@ CREATE TABLE public.lab_examen (
 	fecha_examen date NULL,
 	estado_examen varchar(25) NULL,
 	historia_examen_lesion varchar(200) NULL,
-	enfermedad_sistemica int4 NULL,
 	tamano_lesion varchar(15) NULL,
 	dimensional_lesion varchar(20) NULL,
 	duracion_lesion_dias int4 NULL,
@@ -340,6 +339,8 @@ CREATE TABLE public.lab_examen (
 	email_doctor_remision varchar(50) NULL,
 	dependencia_doctor_remision varchar(50) NULL,
 	registro_doctor_remision varchar(50) NULL,
+	necesita_biopsia boolean NULL,
+	necesita_frote boolean NULL,
 	CONSTRAINT lab_examen_pkey PRIMARY KEY (cod_examen),
 	CONSTRAINT cod_paciente_fk FOREIGN KEY (cod_paciente) REFERENCES lab_paciente(cod_paciente),
 	CONSTRAINT doctor_examen_fk FOREIGN KEY (doctor_examen) REFERENCES lab_usuario(cod_usuario)
@@ -385,8 +386,9 @@ CREATE TABLE public.lab_examen_caracteristica (
 	creado_por varchar(20) NULL,
 	fecha_modificacion date NULL,
 	modificado_por varchar(20) NULL,
-	CONSTRAINT lab_examen_caracteristica_pkey PRIMARY KEY (cod_examen),
-	CONSTRAINT fk_lab_tipo_opcion_lesion FOREIGN KEY (codigo_tipo_opcion_lesion) REFERENCES lab_tipo_opcion_lesion(cod_tipo_opcion_lesion)
+	constraint fk_lab_tipo_opcion_lesion_fk foreign key (codigo_tipo_opcion_lesion) references lab_tipo_opcion_lesion(cod_tipo_opcion_lesion),
+    constraint fk_lab_examen_caracteristica_fk foreign key (cod_examen) references lab_examen(cod_examen),
+    constraint lab_examen_caracteristica_pk primary key (cod_examen, codigo_tipo_opcion_lesion)
 );
 
 

@@ -50,6 +50,7 @@ public class ServletHelper {
     }
 
     public static void checkSession(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        request.setAttribute("roleHandler", RoleHandler.getInstance(request.getSession()));
         if (!isValidSession(request)) {
             response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
             RequestDispatcher despachador = request.getRequestDispatcher("index.jsp");

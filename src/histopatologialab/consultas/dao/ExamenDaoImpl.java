@@ -6,9 +6,8 @@ import histopatologialab.core.db.tables.LabExamen;
 import histopatologialab.core.db.tables.LabExamenCaracteristica;
 import histopatologialab.core.db.tables.LabPaciente;
 import histopatologialab.core.db.tables.LabUsuario;
+import histopatologialab.core.db.tables.records.LabExamenCaracteristicaRecord;
 import histopatologialab.core.db.tables.records.LabExamenRecord;
-import histopatologialab.pacientes.dto.Paciente;
-import histopatologialab.usuario.dto.Usuario;
 import org.jooq.DSLContext;
 import org.jooq.Record;
 import org.tinylog.Logger;
@@ -20,7 +19,7 @@ import java.util.stream.Collectors;
 public class ExamenDaoImpl implements IExamenDao {
     private final DSLContext query = DB.getConexion();
     private final LabExamen tabla = LabExamen.LAB_EXAMEN;
-    private final LabExamenCaracteristica tablaCaract = LabExamenCaracteristica.LAB_EXAMEN_CARACTERISTICA;
+    private final LabExamenCaracteristica tablaCaracteristica = LabExamenCaracteristica.LAB_EXAMEN_CARACTERISTICA;
     private final LabPaciente tablapaciente = LabPaciente.LAB_PACIENTE;
     private final LabUsuario tablaUsuario = LabUsuario.LAB_USUARIO;
 
@@ -47,7 +46,10 @@ public class ExamenDaoImpl implements IExamenDao {
                 record.getValue(tabla.DEPENDENCIA_DOCTOR_REMISION),
                 record.getValue(tabla.REGISTRO_DOCTOR_REMISION),
                 null,
-                null
+                null,
+                null,
+                record.getValue(tabla.NECESITA_BIOPSIA) != null ? record.getValue(tabla.NECESITA_BIOPSIA) : false,
+                record.getValue(tabla.NECESITA_FROTE) != null ? record.getValue(tabla.NECESITA_FROTE) : false
         );
     }
 
@@ -84,7 +86,6 @@ public class ExamenDaoImpl implements IExamenDao {
         LabExamenRecord record = query.newRecord(tabla);
 
         record.setCodPaciente(examen.getCodPaciente());
-        record.setNumExamen(examen.getNumExamen());
         record.setFechaExamen(examen.getFechaExamen());
         record.setEstadoExamen(examen.getEstado());
         record.setHistoriaExamenLesion(examen.getHistoriaExamenLesion());
@@ -101,7 +102,19 @@ public class ExamenDaoImpl implements IExamenDao {
         record.setTelefonoDoctorRemision(examen.getTelefonoDoctorRemision());
         record.setEmailDoctorRemision(examen.getEmailDoctorRemision());
         record.setDependenciaDoctorRemision(examen.getDependenciaDoctorRemision());
-        record.store();
+        record.setNecesitaBiopsia(examen.isNecesitaBiopsia());
+        record.setNecesitaFrote(examen.isNecesitaFrote());
+        examen.setFechaExamen(LocalDate.now());
+        record.setFechaExamen(examen.getFechaExamen());
+
+        examen.setNumExamen(getNextExamenNumber(examen.getFechaExamen()));
+        record.setNumExamen(examen.getNumExamen());
+
+        record.insert();
+
+        examen.setCodExamen(record.getCodExamen());
+
+        guardarCaracteristicas(examen, examen.getCaracteristicas());
 
         return getExamen(record.getCodExamen());
     }
@@ -129,41 +142,48 @@ public class ExamenDaoImpl implements IExamenDao {
         record.setTelefonoDoctorRemision(examen.getTelefonoDoctorRemision());
         record.setEmailDoctorRemision(examen.getEmailDoctorRemision());
         record.setDependenciaDoctorRemision(examen.getDependenciaDoctorRemision());
+        record.setNecesitaBiopsia(examen.isNecesitaBiopsia());
+        record.setNecesitaFrote(examen.isNecesitaFrote());
         record.update();
 
         return getExamen(examen.getCodExamen());
     }
 
     @Override
-    public int getNextExamenNumber(LocalDate date) {
+    public String getNextExamenNumber(LocalDate date) {
         date.withDayOfMonth(1);
-        Record result = query.select(tabla.NUM_EXAMEN)
-                .where(tabla.FECHA_EXAMEN.greaterOrEqual(date))
-                .orderBy(tabla.COD_EXAMEN.desc())
-                .fetchOne();
+        int newNumber = query
+                .fetchCount(tabla, tabla.FECHA_EXAMEN.greaterOrEqual(date));
 
-        int newNumber = 1;
-        try {
-            String examen = result.getValue(tabla.NUM_EXAMEN);
-            String[] parts = examen.split("-");
-            String number = parts[parts.length - 1];
-
-            newNumber = Integer.parseInt(number) + 1;
-
-        } catch (Exception e) {
-        }
-        return newNumber;
+        return (newNumber + 1) + "-" + date.getMonthValue() + "-" + date.getYear();
     }
 
     @Override
     public List<Integer> getCaracteristicas(int codExamen){
-        List<Record> result = query.select(tablaCaract.asterisk())
-                .from(tablaCaract)
-                .where(tablaCaract.COD_EXAMEN.eq(codExamen))
+        List<Record> result = query.select(tablaCaracteristica.asterisk())
+                .from(tablaCaracteristica)
+                .where(tablaCaracteristica.COD_EXAMEN.eq(codExamen))
                 .fetch();
 
-        return result.stream().map(x -> x.getValue(tablaCaract.CODIGO_TIPO_OPCION_LESION)).collect(Collectors.toList());
+        return result.stream().map(x -> x.getValue(tablaCaracteristica.CODIGO_TIPO_OPCION_LESION)).collect(Collectors.toList());
 
+    }
+
+    private void guardarCaracteristicas(Examen examen, List<Integer> caracteristicas){
+        if (caracteristicas == null)  {
+            Logger.info("ignoring null caracteristicas");
+            return;
+        }
+        for (Integer opcionLesionCod: caracteristicas) {
+            Logger.info("guardando caracteristicas");
+            LabExamenCaracteristicaRecord record = query.newRecord(tablaCaracteristica);
+            record.setCodExamen(examen.getCodExamen());
+            record.setCodigoTipoOpcionLesion(opcionLesionCod);
+            record.setCreadoPor("");
+            record.setFechaCreacion(LocalDate.now());
+
+            query.insertInto(tablaCaracteristica).set(record).execute();
+        }
     }
 
     @Override
@@ -175,7 +195,4 @@ public class ExamenDaoImpl implements IExamenDao {
         return result.stream().map(this::parseItem).collect(Collectors.toList());
     }
 
-    public void setCaracteristicas(){
-
-    }
 }

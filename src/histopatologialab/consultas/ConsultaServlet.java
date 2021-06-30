@@ -52,11 +52,11 @@ public class ConsultaServlet extends HttpServlet {
 
     private void handlePostCreateExamen(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         String examenJson = request.getParameter("examen");
-        Logger.info(examenJson);
         Examen examen = jackson.readValue(examenJson, Examen.class);
         if (examen == null) {
             Logger.error("error parsing examen request");
         }
+        Logger.info(examen.getCaracteristicas());
         examen.setDoctorExamen(getIdUsuarioFromSession(request));
 
         JsonResponse<Examen> examenGuardado =  controller.guardarExamen(examen);

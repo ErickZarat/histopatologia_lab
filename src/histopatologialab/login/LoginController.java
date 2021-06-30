@@ -14,7 +14,11 @@ public class LoginController {
     private final String ROLE_KEY = "user_role";
 
     public Boolean iniciarFallback(String usuario, HttpSession session){
-		Role role = Role.ADMIN; //TODO: cambiar esto por el rol de la base de datos
+        String db = "ADM";
+
+        Role role = Role.findBySlug(db);
+
+//		Role role = Role.ADMIN; //TODO: cambiar esto por el rol de la base de datos
 		crearSesion(session, usuario, 1, role);
 		return true;
 	}
