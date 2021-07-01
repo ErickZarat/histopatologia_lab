@@ -79,7 +79,12 @@ function extractExamen(){
         'telefonoDoctorRemision': $('#telefonoDoctorRemision').val(),
         'emailDoctorRemision': $('#emailDoctorRemision').val(),
         'dependenciaDoctorRemision': $('#dependenciaDoctorRemision').val(),
-        'caracteristicas': $('#lesion-section select').map(function(){return $(this).val()}).get(),
+        'caracteristicas': $('#lesion-section select')
+            .map(function(){
+                return $(this).val()
+            }).get().filter(function(el){
+                return el !== '' && el !== undefined && el !== null;
+            }),
         'necesitaBiopsia': $('#necesitaBiopsia').prop(':checked'),
         'necesitaFrote': $('#necesitaFrote').prop(':checked'),
         'registroDoctorRemision': $('#registroDoctorRemision').val()
