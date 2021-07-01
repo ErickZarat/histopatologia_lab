@@ -34,6 +34,7 @@ public class Examen {
     Usuario doctor;
 
     List<Integer> caracteristicas;
+    List<Integer> enfermedades;
 
     boolean necesitaBiopsia;
     boolean necesitaFrote;
@@ -275,5 +276,13 @@ public class Examen {
 
     public void setDoctor(Usuario doctor) {
         this.doctor = doctor;
+    }
+
+    public List<Integer> getEnfermedades() {
+        return enfermedades;
+    }
+
+    public void setEnfermedades(List<Integer> enfermedades) {
+        this.enfermedades = enfermedades;
     }
 }

@@ -4,6 +4,7 @@ import histopatologialab.consultas.controller.IConsultaController;
 import histopatologialab.consultas.dto.Examen;
 import histopatologialab.core.JsonResponse;
 import histopatologialab.core.RequestAction;
+import histopatologialab.enfsistemica.controller.IEnfSistemicaController;
 import histopatologialab.pacientes.dto.Paciente;
 import org.tinylog.Logger;
 
@@ -15,13 +16,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-import static histopatologialab.core.Controllers.consultaController;
-import static histopatologialab.core.Controllers.pacienteController;
+import static histopatologialab.core.Controllers.*;
 import static histopatologialab.core.ServletHelper.*;
 
 @WebServlet(name = "ConsultaServlet")
 public class ConsultaServlet extends HttpServlet {
     private final IConsultaController controller = consultaController;
+    private final IEnfSistemicaController enfSistemicaController = enfsistemicaController;
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         checkSession(request, response);
@@ -101,6 +102,7 @@ public class ConsultaServlet extends HttpServlet {
 
     private void getCreateConsultaPage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setAttribute("tipoOpcion", controller.getOpciones().getData());
+        request.setAttribute("enfermedades", enfSistemicaController.getEnfermedadesSistemicas().getData());
         RequestDispatcher despachador = request.getRequestDispatcher("consulta/crear-consulta.jsp");
         despachador.forward(request, response);
     }

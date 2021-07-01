@@ -13,9 +13,9 @@
     </label>
     <input type="checkbox" checked class="accordion" id="paciente-accordion">
     <div class="user-container container-fluid">
-        <form autocomplete="off" class="align-middle" action="ConsultaServlet.do" method="post">
+        <form id="consultaForm" autocomplete="off" class="align-middle" action="ConsultaServlet.do" method="post">
 
-            <table>
+            <table id="pacienteSection">
                 <tr>
                     <td><label class="table-form-label" for="codigoUsuario">Codigo:</label></td>
                     <td class="search">
@@ -39,6 +39,7 @@
                     <td><input type="email" id="emailUsuario" class="form-control" readonly value="${paciente.emailPaciente}"></td>
                     <td><label class="table-form-label" for="telefonoUsuario">Telefono:</label></td>
                     <td><input type="number" id="telefonoUsuario" class="form-control" readonly value="${paciente.telefonoPaciente}"></td>
+                    <td><button id="resetUserForm" class="btn btn-light">X</button></td>
                 </tr>
             </table>
         </form>
@@ -186,6 +187,24 @@
                     </td>
                     <td>
                         <input type="checkbox" id="necesitaFrote"><label for="necesitaFrote"> Necesita frote</label>
+                    </td>
+                </tr>
+            </table>
+
+            <hr>
+
+            <table>
+                <tr>
+                    <td>
+                        <label class="table-form-label" for="enfermedadSistemica">Enfermedad Sistemica:</label>
+                    </td>
+                    <td>
+                        <select multiple class="form-control" name="enfermedadSistemica" id="enfermedadSistemica">
+                            <option value="">Selecciona una opcion</option>
+                            <c:forEach items="${enfermedades}" var="enfermedad">
+                                <option value="${enfermedad.codigoEnfermedad}">${enfermedad.nombreEnfermedad}</option>
+                            </c:forEach>
+                        </select>
                     </td>
                 </tr>
             </table>

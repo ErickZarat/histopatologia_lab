@@ -47,8 +47,8 @@ function onPacienteSelected(item){
 
 function selectPaciente(paciente) {
     $('#codigoUsuario').prop('readonly', true);
-    $('#codigoUsuario').unbind('keyup');
     $('#codigoUsuario').focusout();
+    $('#resetUserForm').show();
 
     $('#codigoUsuario').val(paciente.codigoPaciente);
     $('#nombreUsuario').val(paciente.nombrePaciente + ' ' + paciente.apellidosPaciente);
@@ -91,9 +91,18 @@ function extractExamen(){
             }),
         'necesitaBiopsia': $('#necesitaBiopsia').prop(':checked'),
         'necesitaFrote': $('#necesitaFrote').prop(':checked'),
-        'registroDoctorRemision': $('#registroDoctorRemision').val()
+        'registroDoctorRemision': $('#registroDoctorRemision').val(),
+        'enfermedades': $('#enfermedadSistemica').val()
     }
 }
+
+$('#resetUserForm').click(function(e){
+    e.preventDefault();
+    $('#consultaForm')[0].reset();
+    // $('#pacienteSection').find("input[type=text], textarea").val("");
+    $('#codigoUsuario').prop('readonly', false);
+    $('#resetUserForm').hide();
+})
 
 $('#guardarExamen').click(function(e){
     e.preventDefault();
