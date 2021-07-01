@@ -43,12 +43,19 @@ $(document).ready(function(){
                             emailPaciente: emailPaciente,
                             estadoCivilPaciente: estCivilPaciente,
                         },
-                        success: function(data) {
+                        success: function(response) {
                             $('#agregarPacienteModal').modal('hide');
                             $("#CreaPacienteFormModal")[0].reset();
-                            if (data.success){
+                            if (response.success){
                                 toastr.success("Se agrego con exito el paciente");
-                                getListadoPacientes()
+                                try {
+                                    selectPaciente(response.data)
+                                } catch (e) {
+                                }
+                                try {
+                                    getListadoPacientes()
+                                } catch(e){
+                                }
                             } else {
                                 toastr.error("Error al agregar Paciente")
                             }

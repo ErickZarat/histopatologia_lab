@@ -56,7 +56,9 @@
 
             <table id="lesion-section">
                 <tr>
-                    <td><label for="fechaExamen">Feche examen:</label></td>
+                    <td><label for="numeroExamen">Numero examen:</label></td>
+                    <td><input id="numeroExamen" class="form-control" readonly></td>
+                    <td><label for="fechaExamen">Fecha examen:</label></td>
                     <td><input id="fechaExamen" class="form-control" readonly></td>
                 </tr>
                 <tr>

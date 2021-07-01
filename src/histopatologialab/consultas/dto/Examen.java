@@ -260,4 +260,20 @@ public class Examen {
     public void setNecesitaFrote(boolean necesitaFrote) {
         this.necesitaFrote = necesitaFrote;
     }
+
+    public Paciente getPaciente() {
+        return paciente;
+    }
+
+    public void setPaciente(Paciente paciente) {
+        this.paciente = paciente;
+    }
+
+    public Usuario getDoctor() {
+        return doctor;
+    }
+
+    public void setDoctor(Usuario doctor) {
+        this.doctor = doctor;
+    }
 }

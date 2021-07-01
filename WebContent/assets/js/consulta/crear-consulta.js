@@ -42,6 +42,10 @@ function onPacienteSelected(item){
 
     idx = $(item).data('idx');
     paciente = currentSearchResults[idx];
+    selectPaciente(paciente);
+}
+
+function selectPaciente(paciente) {
     $('#codigoUsuario').prop('readonly', true);
     $('#codigoUsuario').unbind('keyup');
     $('#codigoUsuario').focusout();
@@ -79,7 +83,12 @@ function extractExamen(){
         'telefonoDoctorRemision': $('#telefonoDoctorRemision').val(),
         'emailDoctorRemision': $('#emailDoctorRemision').val(),
         'dependenciaDoctorRemision': $('#dependenciaDoctorRemision').val(),
-        'caracteristicas': $('#lesion-section select').map(function(){return $(this).val()}).get(),
+        'caracteristicas': $('#lesion-section select')
+            .map(function(){
+                return $(this).val()
+            }).get().filter(function(el){
+                return el !== '' && el !== undefined && el !== null;
+            }),
         'necesitaBiopsia': $('#necesitaBiopsia').prop(':checked'),
         'necesitaFrote': $('#necesitaFrote').prop(':checked'),
         'registroDoctorRemision': $('#registroDoctorRemision').val()
@@ -88,6 +97,7 @@ function extractExamen(){
 
 $('#guardarExamen').click(function(e){
     e.preventDefault();
+    $('#guardarExamen').prop('disabled', true);
     var examen = extractExamen();
     $.ajax({
         url: 'ConsultaServlet.do',
@@ -99,6 +109,8 @@ $('#guardarExamen').click(function(e){
         success: function (response) {
             if(response.success) {
                 toastr.success("se guardo el examen");
+                $('#numeroExamen').val(response.data.numExamen)
+                $('#fechaExamen').val(response.data.fechaExamen)
             } else {
                 toastr.error("No se pudo agregar el examen, " + response.error);
             }
