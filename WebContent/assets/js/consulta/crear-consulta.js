@@ -88,6 +88,7 @@ function extractExamen(){
 
 $('#guardarExamen').click(function(e){
     e.preventDefault();
+    $('#guardarExamen').prop('disabled', true);
     var examen = extractExamen();
     $.ajax({
         url: 'ConsultaServlet.do',
