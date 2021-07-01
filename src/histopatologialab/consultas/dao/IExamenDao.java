@@ -12,7 +12,9 @@ public interface IExamenDao {
     Examen getExamen(int codExamen);
 
     List<Examen> getExamenesByPaciente(Long codPaciente);
+
     Examen guardarExamen(Examen examen);
+
     Examen modificarExamen(Examen examen);
 
     String getNextExamenNumber(LocalDate date);

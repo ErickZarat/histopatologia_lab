@@ -16,7 +16,7 @@ import org.jooq.Field;
 import org.jooq.ForeignKey;
 import org.jooq.Name;
 import org.jooq.Record;
-import org.jooq.Row8;
+import org.jooq.Row7;
 import org.jooq.Schema;
 import org.jooq.Table;
 import org.jooq.TableField;
@@ -57,11 +57,6 @@ public class LabExamenDiagnostico extends TableImpl<LabExamenDiagnosticoRecord> 
      * The column <code>public.lab_examen_diagnostico.cod_diagnostico</code>.
      */
     public final TableField<LabExamenDiagnosticoRecord, Integer> COD_DIAGNOSTICO = createField(DSL.name("cod_diagnostico"), SQLDataType.INTEGER.nullable(false), this, "");
-
-    /**
-     * The column <code>public.lab_examen_diagnostico.indice_diagnostico</code>.
-     */
-    public final TableField<LabExamenDiagnosticoRecord, Integer> INDICE_DIAGNOSTICO = createField(DSL.name("indice_diagnostico"), SQLDataType.INTEGER, this, "");
 
     /**
      * The column <code>public.lab_examen_diagnostico.tipo_diagnostico</code>.
@@ -193,11 +188,11 @@ public class LabExamenDiagnostico extends TableImpl<LabExamenDiagnosticoRecord> 
     }
 
     // -------------------------------------------------------------------------
-    // Row8 type methods
+    // Row7 type methods
     // -------------------------------------------------------------------------
 
     @Override
-    public Row8<Integer, Integer, Integer, Integer, LocalDate, Integer, LocalDate, String> fieldsRow() {
-        return (Row8) super.fieldsRow();
+    public Row7<Integer, Integer, Integer, LocalDate, Integer, LocalDate, String> fieldsRow() {
+        return (Row7) super.fieldsRow();
     }
 }

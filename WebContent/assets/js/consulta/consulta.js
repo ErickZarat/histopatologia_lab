@@ -24,8 +24,7 @@ $(document).ready(function() {
                             '<label class="text-capitalize">' + element.paciente.nombrePaciente + ' ' + element.paciente.apellidosPaciente + '</label>',
 
                             '<div class="btn-group" >'
-                            + '<button type="button" class="btn btn-light" data-modificar="true" ' + data + ' data-toggle="modal" data-target="#"><i class="fas fa-edit"></i></button>'
-                            + '<button type="button" class="btn btn-light" data-baja="true" ' + data + ' data-toggle="modal" data-target="#" id=""><i class="fas fa-times"></i></button>'
+                            + '<a class="btn btn-light" href="/ConsultaServlet.do?codExamen=' + element.codExamen + '"><i class="fas fa-eye"></i></a>'
                             + '</div>'
                         ]
                         consultasTable.row.add(row).draw(false);

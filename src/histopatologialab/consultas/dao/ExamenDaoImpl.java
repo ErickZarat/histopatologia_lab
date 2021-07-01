@@ -2,11 +2,10 @@ package histopatologialab.consultas.dao;
 
 import histopatologialab.consultas.dto.Examen;
 import histopatologialab.core.DB;
-import histopatologialab.core.db.tables.LabExamen;
-import histopatologialab.core.db.tables.LabExamenCaracteristica;
-import histopatologialab.core.db.tables.LabPaciente;
-import histopatologialab.core.db.tables.LabUsuario;
+import histopatologialab.core.db.tables.*;
 import histopatologialab.core.db.tables.records.LabExamenCaracteristicaRecord;
+import histopatologialab.core.db.tables.records.LabExamenDiagnosticoRecord;
+import histopatologialab.core.db.tables.records.LabExamenEnfermedadSistemicaRecord;
 import histopatologialab.core.db.tables.records.LabExamenRecord;
 import histopatologialab.pacientes.dto.Paciente;
 import histopatologialab.usuario.dto.Usuario;
@@ -24,6 +23,8 @@ public class ExamenDaoImpl implements IExamenDao {
     private final LabExamenCaracteristica tablaCaracteristica = LabExamenCaracteristica.LAB_EXAMEN_CARACTERISTICA;
     private final LabPaciente tablapaciente = LabPaciente.LAB_PACIENTE;
     private final LabUsuario tablaUsuario = LabUsuario.LAB_USUARIO;
+    private final LabExamenEnfermedadSistemica tablaEnfermedad = LabExamenEnfermedadSistemica.LAB_EXAMEN_ENFERMEDAD_SISTEMICA;
+    private final LabExamenDiagnostico tablaDiagnostico = LabExamenDiagnostico.LAB_EXAMEN_DIAGNOSTICO;
 
     public Examen parseItem(Record record) {
         return new Examen(
@@ -154,7 +155,9 @@ public class ExamenDaoImpl implements IExamenDao {
 
         examen.setCodExamen(record.getCodExamen());
 
-        guardarCaracteristicas(examen, examen.getCaracteristicas());
+        guardarCaracteristicas(examen);
+        guardarEnfermedades(examen);
+        guardarDiagnostico(examen, true);
 
         return getExamen(record.getCodExamen());
     }
@@ -208,7 +211,8 @@ public class ExamenDaoImpl implements IExamenDao {
         return result.stream().map(x -> x.getValue(tablaCaracteristica.CODIGO_TIPO_OPCION_LESION)).collect(Collectors.toList());
     }
 
-    private void guardarCaracteristicas(Examen examen, List<Integer> caracteristicas){
+    private void guardarCaracteristicas(Examen examen){
+        List<Integer> caracteristicas = examen.getCaracteristicas();
         if (caracteristicas == null)  {
             Logger.info("ignoring null caracteristicas");
             return;
@@ -223,6 +227,44 @@ public class ExamenDaoImpl implements IExamenDao {
 
             query.insertInto(tablaCaracteristica).set(record).execute();
         }
+    }
+
+    private void guardarEnfermedades(Examen examen){
+        List<Integer> enfermedades = examen.getEnfermedades();
+        if(enfermedades == null) {
+            Logger.info("ignoring null enfermedades");
+            return;
+        }
+        for (Integer enfermedad: enfermedades) {
+            Logger.info("guardando enfermedad");
+            LabExamenEnfermedadSistemicaRecord record = query.newRecord(tablaEnfermedad);
+            record.setCodExamen(examen.getCodExamen());
+            record.setCodEnfermedadSistemica(enfermedad);
+            record.setFechaCreacion(LocalDate.now());
+            query.insertInto(tablaEnfermedad).set(record).execute();
+        }
+    }
+
+    private void guardarDiagnostico(Examen examen, boolean esInicial){
+        List<Integer> diagnosticos = examen.getDiagnosticos();
+        if(diagnosticos == null) {
+            Logger.info("ignoring null diagnosticos");
+            return;
+        }
+
+        for(Integer diagnostico: diagnosticos) {
+            Logger.info("guardando diagnostico");
+            LabExamenDiagnosticoRecord record = query.newRecord(tablaDiagnostico);
+            record.setCodExamen(examen.getCodExamen());
+            record.setCodDiagnostico(diagnostico);
+            record.setTipoDiagnostico(esInicial ? 0 : 1);
+            record.setFechaCreacion(LocalDate.now());
+
+            query.insertInto(tablaDiagnostico).set(record).execute();
+        }
+
+
+
     }
 
     @Override

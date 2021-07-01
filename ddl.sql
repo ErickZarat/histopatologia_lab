@@ -175,7 +175,6 @@ CREATE SEQUENCE public.lab_usuario_seq
 CREATE TABLE public.lab_diagnostico (
 	cod_diagnostico int8 NOT NULL DEFAULT nextval('lab_diagnostico_seq'::regclass),
 	nombre_diagnostico varchar(35) NOT NULL,
-	tipo_diagnostico varchar(20) NULL,
 	estado_diagnostico varchar(20) NOT NULL,
 	fecha_creacion date NULL,
 	creado_por varchar(35) NULL,
@@ -401,7 +400,6 @@ CREATE TABLE public.lab_examen_caracteristica (
 CREATE TABLE public.lab_examen_diagnostico (
 	cod_examen int4 NOT NULL,
 	cod_diagnostico int4 NOT NULL,
-	indice_diagnostico int4 NULL,
 	tipo_diagnostico int4 NULL,
 	fecha_creacion date NULL,
 	creado_por int4 NULL,

@@ -1,5 +1,6 @@
 package histopatologialab.consultas.controller;
 
+import histopatologialab.consultas.dto.EstadoExamen;
 import histopatologialab.consultas.dto.Examen;
 import histopatologialab.core.JsonResponse;
 import histopatologialab.tipopcionlesion.dao.IOpcionLesionDao;
@@ -45,6 +46,17 @@ public class ConsultaControllerImpl implements IConsultaController {
 
     @Override
     public JsonResponse<Examen> guardarExamen(Examen examen) {
+        EstadoExamen estado;
+        if (examen.isNecesitaBiopsia()){
+            estado = EstadoExamen.PENDIENTE_BIOPSIA;
+        } else if (examen.isNecesitaFrote()){
+            estado = EstadoExamen.PENDIENTE_FROTE;
+        } else {
+            estado = EstadoExamen.INGRESADA;
+        }
+
+        examen.setEstado(estado.getSlug());
+
         Examen examen1 = examenDao.guardarExamen(examen);
         return new JsonResponse<Examen>(examen1 != null, examen1);
     }
