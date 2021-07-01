@@ -42,6 +42,10 @@ function onPacienteSelected(item){
 
     idx = $(item).data('idx');
     paciente = currentSearchResults[idx];
+    selectPaciente(paciente);
+}
+
+function selectPaciente(paciente) {
     $('#codigoUsuario').prop('readonly', true);
     $('#codigoUsuario').unbind('keyup');
     $('#codigoUsuario').focusout();

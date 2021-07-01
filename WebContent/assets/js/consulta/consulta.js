@@ -22,6 +22,7 @@ $(document).ready(function() {
                             '<label class="text-capitalize">' + element.estado + '</label>',
                             '<label class="text-capitalize">' + element.doctor.nombresDoctor + ' ' + element.doctor.apellidosDoctor + '</label>',
                             '<label class="text-capitalize">' + element.paciente.nombrePaciente + ' ' + element.paciente.apellidosPaciente + '</label>',
+
                             '<div class="btn-group" >'
                             + '<button type="button" class="btn btn-light" data-modificar="true" ' + data + ' data-toggle="modal" data-target="#"><i class="fas fa-edit"></i></button>'
                             + '<button type="button" class="btn btn-light" data-baja="true" ' + data + ' data-toggle="modal" data-target="#" id=""><i class="fas fa-times"></i></button>'
