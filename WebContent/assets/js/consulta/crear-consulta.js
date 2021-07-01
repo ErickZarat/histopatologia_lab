@@ -89,17 +89,17 @@ function extractExamen(){
             }).get().filter(function(el){
                 return el !== '' && el !== undefined && el !== null;
             }),
-        'necesitaBiopsia': $('#necesitaBiopsia').prop(':checked'),
-        'necesitaFrote': $('#necesitaFrote').prop(':checked'),
+        'necesitaBiopsia': $('#necesitaBiopsia').prop('checked'),
+        'necesitaFrote': $('#necesitaFrote').prop('checked'),
         'registroDoctorRemision': $('#registroDoctorRemision').val(),
-        'enfermedades': $('#enfermedadSistemica').val()
+        'enfermedades': $('#enfermedadSistemica').val(),
+        'diagnosticos': $('#diagnosticoInicial').val()
     }
 }
 
 $('#resetUserForm').click(function(e){
     e.preventDefault();
     $('#consultaForm')[0].reset();
-    // $('#pacienteSection').find("input[type=text], textarea").val("");
     $('#codigoUsuario').prop('readonly', false);
     $('#resetUserForm').hide();
 })
@@ -120,6 +120,7 @@ $('#guardarExamen').click(function(e){
                 toastr.success("se guardo el examen");
                 $('#numeroExamen').val(response.data.numExamen)
                 $('#fechaExamen').val(response.data.fechaExamen)
+                $('#estado').val(response.data.estado)
             } else {
                 toastr.error("No se pudo agregar el examen, " + response.error);
             }

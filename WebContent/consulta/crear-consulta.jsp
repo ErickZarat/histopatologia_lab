@@ -61,6 +61,8 @@
                     <td><input id="numeroExamen" class="form-control" readonly></td>
                     <td><label for="fechaExamen">Fecha examen:</label></td>
                     <td><input id="fechaExamen" class="form-control" readonly></td>
+                    <td><label for="estado">Estado:</label></td>
+                    <td><input id="estado" class="form-control" readonly></td>
                 </tr>
                 <tr>
                     <td><label class="table-form-label" for="tamano">Tamaño:</label></td>
@@ -203,6 +205,17 @@
                             <option value="">Selecciona una opcion</option>
                             <c:forEach items="${enfermedades}" var="enfermedad">
                                 <option value="${enfermedad.codigoEnfermedad}">${enfermedad.nombreEnfermedad}</option>
+                            </c:forEach>
+                        </select>
+                    </td>
+                    <td>
+                        <label class="table-form-label" for="diagnosticoInicial">Diagnostico inicial:</label>
+                    </td>
+                    <td colspan="2">
+                        <select multiple class="form-control" name="diagnosticoInicial" id="diagnosticoInicial">
+                            <option value="">Selecciona una opcion</option>
+                            <c:forEach items="${diagnosticos}" var="diagnostico">
+                                <option value="${diagnostico.codigoDiagnostico}">${diagnostico.nombreDiagnostico}</option>
                             </c:forEach>
                         </select>
                     </td>

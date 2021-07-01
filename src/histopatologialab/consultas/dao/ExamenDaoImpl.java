@@ -4,6 +4,7 @@ import histopatologialab.consultas.dto.Examen;
 import histopatologialab.core.DB;
 import histopatologialab.core.db.tables.*;
 import histopatologialab.core.db.tables.records.LabExamenCaracteristicaRecord;
+import histopatologialab.core.db.tables.records.LabExamenDiagnosticoRecord;
 import histopatologialab.core.db.tables.records.LabExamenEnfermedadSistemicaRecord;
 import histopatologialab.core.db.tables.records.LabExamenRecord;
 import histopatologialab.pacientes.dto.Paciente;
@@ -156,6 +157,7 @@ public class ExamenDaoImpl implements IExamenDao {
 
         guardarCaracteristicas(examen);
         guardarEnfermedades(examen);
+        guardarDiagnostico(examen, true);
 
         return getExamen(record.getCodExamen());
     }
@@ -243,7 +245,25 @@ public class ExamenDaoImpl implements IExamenDao {
         }
     }
 
-    private void guardarDiagnostico(Examen examen){
+    private void guardarDiagnostico(Examen examen, boolean esInicial){
+        List<Integer> diagnosticos = examen.getDiagnosticos();
+        if(diagnosticos == null) {
+            Logger.info("ignoring null diagnosticos");
+            return;
+        }
+
+        for(Integer diagnostico: diagnosticos) {
+            Logger.info("guardando diagnostico");
+            LabExamenDiagnosticoRecord record = query.newRecord(tablaDiagnostico);
+            record.setCodExamen(examen.getCodExamen());
+            record.setCodDiagnostico(diagnostico);
+            record.setTipoDiagnostico(esInicial ? 0 : 1);
+            record.setFechaCreacion(LocalDate.now());
+
+            query.insertInto(tablaDiagnostico).set(record).execute();
+        }
+
+
 
     }
 
