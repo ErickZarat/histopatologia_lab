@@ -42,9 +42,15 @@ public class ConsultaServlet extends HttpServlet {
 
         if (action == RequestAction.CREAR || action == RequestAction.VER) {
             handleGetCreateWithPaciente(request, response);
+        } else if (action == RequestAction.LISTAR_JSON) {
+            handleGetConsultas(request, response);
         } else {
             getDefaultPage(request, response);
         }
+    }
+
+    private void handleGetConsultas(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        returnJson(response, controller.getExamenes());
     }
 
     private void handlePostModificarExamen(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {

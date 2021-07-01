@@ -8,6 +8,8 @@ import histopatologialab.core.db.tables.LabPaciente;
 import histopatologialab.core.db.tables.LabUsuario;
 import histopatologialab.core.db.tables.records.LabExamenCaracteristicaRecord;
 import histopatologialab.core.db.tables.records.LabExamenRecord;
+import histopatologialab.pacientes.dto.Paciente;
+import histopatologialab.usuario.dto.Usuario;
 import org.jooq.DSLContext;
 import org.jooq.Record;
 import org.tinylog.Logger;
@@ -24,7 +26,7 @@ public class ExamenDaoImpl implements IExamenDao {
     private final LabUsuario tablaUsuario = LabUsuario.LAB_USUARIO;
 
     public Examen parseItem(Record record) {
-        return new Examen (
+        return new Examen(
                 record.getValue(tabla.COD_EXAMEN),
                 record.getValue(tabla.COD_PACIENTE),
                 record.getValue(tabla.NUM_EXAMEN),
@@ -45,9 +47,41 @@ public class ExamenDaoImpl implements IExamenDao {
                 record.getValue(tabla.EMAIL_DOCTOR_REMISION),
                 record.getValue(tabla.DEPENDENCIA_DOCTOR_REMISION),
                 record.getValue(tabla.REGISTRO_DOCTOR_REMISION),
-                null,
-                null,
-                null,
+                new Paciente(
+                        record.getValue(tablapaciente.COD_PACIENTE),
+                        record.getValue(tablapaciente.IDENTIFICACION),
+                        record.getValue(tablapaciente.NOMBRE),
+                        record.getValue(tablapaciente.APELLIDOS),
+                        record.getValue(tablapaciente.DIRECCION),
+                        record.getValue(tablapaciente.TELEFONO),
+                        record.getValue(tablapaciente.FECHANACIMIENTO),
+                        record.getValue(tablapaciente.GENERO),
+                        record.getValue(tablapaciente.OCUPACION),
+                        record.getValue(tablapaciente.TIPO_IDENTIFICACION),
+                        record.getValue(tablapaciente.EMAIL),
+                        record.getValue(tablapaciente.ESTADOCIVIL),
+                        record.getValue(tablapaciente.CREADOPOR),
+                        record.getValue(tablapaciente.FECHACREACION),
+                        record.getValue(tablapaciente.MODIFICADOPOR),
+                        record.getValue(tablapaciente.FECHAMODIFICACION)
+                ),
+                new Usuario(
+                        record.getValue(tablaUsuario.COD_USUARIO),
+                        record.getValue(tablaUsuario.LOGIN_USUARIO),
+                        record.getValue(tablaUsuario.PASSWORD),
+                        record.getValue(tablaUsuario.LLAVE),
+                        record.getValue(tablaUsuario.NOMBRES_DOCTOR),
+                        record.getValue(tablaUsuario.APELLIDOS_DOCTOR),
+                        record.getValue(tablaUsuario.NUM_COLEGIADO),
+                        record.getValue(tablaUsuario.EMAILUSUARIO),
+                        record.getValue(tablaUsuario.TIPO_USUARIO),
+                        record.getValue(tablaUsuario.ESTADO),
+                        record.getValue(tablaUsuario.FECHACREACION),
+                        record.getValue(tablaUsuario.CREADOPOR),
+                        record.getValue(tablaUsuario.MODIFICADOPOR),
+                        record.getValue(tablaUsuario.FECHAMODIFICACION)
+                ),
+                getCaracteristicas(record.getValue(tabla.COD_EXAMEN)),
                 record.getValue(tabla.NECESITA_BIOPSIA) != null ? record.getValue(tabla.NECESITA_BIOPSIA) : false,
                 record.getValue(tabla.NECESITA_FROTE) != null ? record.getValue(tabla.NECESITA_FROTE) : false
         );
@@ -55,8 +89,10 @@ public class ExamenDaoImpl implements IExamenDao {
 
     @Override
     public Examen getExamen(String numExamen) {
-        Record result = query.select(tabla.asterisk())
+        Record result = query.select(tabla.asterisk(), tablapaciente.asterisk(), tablaUsuario.asterisk())
                 .from(tabla)
+                .leftJoin(tablapaciente).on(tablapaciente.COD_PACIENTE.eq(tabla.COD_PACIENTE))
+                .leftJoin(tablaUsuario).on(tablaUsuario.COD_USUARIO.eq(tabla.DOCTOR_EXAMEN))
                 .where(tabla.NUM_EXAMEN.eq(numExamen))
                 .fetchOne();
         return result != null ? parseItem(result): null;
@@ -64,8 +100,10 @@ public class ExamenDaoImpl implements IExamenDao {
 
     @Override
     public Examen getExamen(int codExamen) {
-        Record result = query.select(tabla.asterisk())
+        Record result = query.select(tabla.asterisk(), tablapaciente.asterisk(), tablaUsuario.asterisk())
                 .from(tabla)
+                .leftJoin(tablapaciente).on(tablapaciente.COD_PACIENTE.eq(tabla.COD_PACIENTE))
+                .leftJoin(tablaUsuario).on(tablaUsuario.COD_USUARIO.eq(tabla.DOCTOR_EXAMEN))
                 .where(tabla.COD_EXAMEN.eq(codExamen))
                 .fetchOne();
         return result != null ? parseItem(result): null;
@@ -73,8 +111,10 @@ public class ExamenDaoImpl implements IExamenDao {
 
     @Override
     public List<Examen> getExamenesByPaciente(Long codPaciente) {
-        List<Record> result = query.select(tabla.asterisk())
+        List<Record> result = query.select(tabla.asterisk(), tablapaciente.asterisk(), tablaUsuario.asterisk())
                 .from(tabla)
+                .leftJoin(tablapaciente).on(tablapaciente.COD_PACIENTE.eq(tabla.COD_PACIENTE))
+                .leftJoin(tablaUsuario).on(tablaUsuario.COD_USUARIO.eq(tabla.DOCTOR_EXAMEN))
                 .where(tabla.COD_PACIENTE.eq(codPaciente))
                 .orderBy(tabla.FECHA_EXAMEN.desc())
                 .fetch();
@@ -166,7 +206,6 @@ public class ExamenDaoImpl implements IExamenDao {
                 .fetch();
 
         return result.stream().map(x -> x.getValue(tablaCaracteristica.CODIGO_TIPO_OPCION_LESION)).collect(Collectors.toList());
-
     }
 
     private void guardarCaracteristicas(Examen examen, List<Integer> caracteristicas){
@@ -188,8 +227,10 @@ public class ExamenDaoImpl implements IExamenDao {
 
     @Override
     public List<Examen> getExamenes() {
-        List<Record> result =  query.select(tabla.asterisk())
+        List<Record> result = query.select(tabla.asterisk(), tablapaciente.asterisk(), tablaUsuario.asterisk())
                 .from(tabla)
+                .leftJoin(tablapaciente).on(tablapaciente.COD_PACIENTE.eq(tabla.COD_PACIENTE))
+                .leftJoin(tablaUsuario).on(tablaUsuario.COD_USUARIO.eq(tabla.DOCTOR_EXAMEN))
                 .orderBy(tabla.COD_EXAMEN.desc())
                 .fetch();
         return result.stream().map(this::parseItem).collect(Collectors.toList());

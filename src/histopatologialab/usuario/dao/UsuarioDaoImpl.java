@@ -26,7 +26,7 @@ public class UsuarioDaoImpl implements IUsuarioDao{
     		record.getValue(tabla.PASSWORD),
     		record.getValue(tabla.LLAVE),
     		record.getValue(tabla.NOMBRES_DOCTOR), 
-    		record.getValue(tabla.APELLIDOS_DOCTOR) ,
+    		record.getValue(tabla.APELLIDOS_DOCTOR),
     		record.getValue(tabla.NUM_COLEGIADO),
     		record.getValue(tabla.EMAILUSUARIO), 
     		record.getValue(tabla.TIPO_USUARIO), 

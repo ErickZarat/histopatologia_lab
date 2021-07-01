@@ -46,7 +46,6 @@
         <table class="table table-striped w-50 left-margin-align" id="consultasTable">
             <thead class="table thead-light">
                 <tr style="font-weight: bold;">
-                    <td></td>
                     <td>Numero Consulta</td>
                     <td>Fecha Consulta</td>
                     <td>Estado</td>
