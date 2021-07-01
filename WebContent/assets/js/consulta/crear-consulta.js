@@ -99,6 +99,8 @@ $('#guardarExamen').click(function(e){
         success: function (response) {
             if(response.success) {
                 toastr.success("se guardo el examen");
+                $('#numeroExamen').val(response.data.numExamen)
+                $('#fechaExamen').val(response.data.fechaExamen)
             } else {
                 toastr.error("No se pudo agregar el examen, " + response.error);
             }
