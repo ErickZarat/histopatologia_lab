@@ -43,3 +43,8 @@ toastr.options = {
     "showMethod": "fadeIn",
     "hideMethod": "fadeOut"
 }
+
+
+$(document).ready(function() {
+    $('.select2').select2();
+});

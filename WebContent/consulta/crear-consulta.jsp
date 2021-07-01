@@ -204,7 +204,7 @@
                         <label class="table-form-label" for="enfermedadSistemica">Enfermedad Sistemica:</label>
                     </td>
                     <td>
-                        <select multiple class="form-control" name="enfermedadSistemica" id="enfermedadSistemica">
+                        <select multiple class="form-control select2" name="enfermedadSistemica" id="enfermedadSistemica">
                             <option value="">Selecciona una opcion</option>
                             <c:forEach items="${enfermedades}" var="enfermedad">
                                 <option value="${enfermedad.codigoEnfermedad}">${enfermedad.nombreEnfermedad}</option>
@@ -215,7 +215,7 @@
                         <label class="table-form-label" for="diagnosticoInicial">Diagnostico inicial:</label>
                     </td>
                     <td colspan="2">
-                        <select multiple class="form-control" name="diagnosticoInicial" id="diagnosticoInicial">
+                        <select multiple class="form-control select2" name="diagnosticoInicial" id="diagnosticoInicial">
                             <option value="">Selecciona una opcion</option>
                             <c:forEach items="${diagnosticos}" var="diagnostico">
                                 <option value="${diagnostico.codigoDiagnostico}">${diagnostico.nombreDiagnostico}</option>
