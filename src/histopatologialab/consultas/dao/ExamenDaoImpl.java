@@ -3,10 +3,7 @@ package histopatologialab.consultas.dao;
 import histopatologialab.consultas.dto.Examen;
 import histopatologialab.core.DB;
 import histopatologialab.core.db.tables.*;
-import histopatologialab.core.db.tables.records.LabExamenCaracteristicaRecord;
-import histopatologialab.core.db.tables.records.LabExamenDiagnosticoRecord;
-import histopatologialab.core.db.tables.records.LabExamenEnfermedadSistemicaRecord;
-import histopatologialab.core.db.tables.records.LabExamenRecord;
+import histopatologialab.core.db.tables.records.*;
 import histopatologialab.pacientes.dto.Paciente;
 import histopatologialab.usuario.dto.Usuario;
 import org.jooq.DSLContext;
@@ -25,6 +22,7 @@ public class ExamenDaoImpl implements IExamenDao {
     private final LabUsuario tablaUsuario = LabUsuario.LAB_USUARIO;
     private final LabExamenEnfermedadSistemica tablaEnfermedad = LabExamenEnfermedadSistemica.LAB_EXAMEN_ENFERMEDAD_SISTEMICA;
     private final LabExamenDiagnostico tablaDiagnostico = LabExamenDiagnostico.LAB_EXAMEN_DIAGNOSTICO;
+    private final LabExamenImagen tablaImg = LabExamenImagen.LAB_EXAMEN_IMAGEN;
 
     public Examen parseItem(Record record) {
         return new Examen(
@@ -158,6 +156,7 @@ public class ExamenDaoImpl implements IExamenDao {
         guardarCaracteristicas(examen);
         guardarEnfermedades(examen);
         guardarDiagnostico(examen, true);
+        guardarImagenes(examen);
 
         return getExamen(record.getCodExamen());
     }
@@ -245,6 +244,24 @@ public class ExamenDaoImpl implements IExamenDao {
         }
     }
 
+    private void guardarImagenes(Examen examen) {
+        if (examen.getImagenes() == null){
+            Logger.info("ignore null images");
+            return;
+        }
+        for (String img: examen.getImagenes()){
+            LabExamenImagenRecord record = query.newRecord(tablaImg);
+            record.setCodExamen(examen.getCodExamen());
+            record.setFechaCreacion(LocalDate.now());
+            String[] parts = img.split("/");
+            record.setNombreImagen(parts[parts.length - 1]);
+            record.setNumImagen(examen.getImagenes().indexOf(img));
+            record.setRutaImagen(img);
+
+            query.insertInto(tablaImg).set(record).execute();
+        }
+    }
+
     private void guardarDiagnostico(Examen examen, boolean esInicial){
         List<Integer> diagnosticos = examen.getDiagnosticos();
         if(diagnosticos == null) {
@@ -262,9 +279,6 @@ public class ExamenDaoImpl implements IExamenDao {
 
             query.insertInto(tablaDiagnostico).set(record).execute();
         }
-
-
-
     }
 
     @Override

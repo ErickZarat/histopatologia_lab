@@ -176,9 +176,12 @@
                         <textarea name="datosImportantes" class="form-control" id="datosImportantes" cols="150" rows="5"></textarea>
                     </td>
                     <td colspan="2">
+                        <ul id="imageContainer">
+
+                        </ul>
                         <form id="upload-img-form" action="UploadServlet.do" method="post" enctype="multipart/form-data">
                             <input type="file" id="file" name="file1" />
-                            <input type="submit" id="upload-button" value="upload" />
+                            <input class="btn" type="submit" id="upload-button" value="Subir imagenes" />
                         </form>
                     </td>
                     <td style="width: 10%;"></td>

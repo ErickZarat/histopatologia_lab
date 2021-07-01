@@ -66,7 +66,11 @@ public class ConsultaServlet extends HttpServlet {
         if (examen == null) {
             Logger.error("error parsing examen request");
         }
-        Logger.info(examen.getCaracteristicas());
+        Logger.info(examen.getImagenes());
+        Logger.info(examen.getImagenes());
+        Logger.info(examen.getImagenes());
+        Logger.info(examen.getImagenes());
+        Logger.info(examen.getImagenes());
         examen.setDoctorExamen(getIdUsuarioFromSession(request));
 
         JsonResponse<Examen> examenGuardado =  controller.guardarExamen(examen);
