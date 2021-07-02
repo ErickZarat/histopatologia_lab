@@ -97,6 +97,16 @@ public class ExamenDaoImpl implements IExamenDao {
         return result != null ? parseItem(result): null;
     }
 
+    private List<Integer> getEnfermedadesIds(int codExamen) {
+        return query.select(tablaEnfermedad.COD_ENFERMEDAD_SISTEMICA).from(tablaEnfermedad).where(tablaEnfermedad.COD_EXAMEN.eq(codExamen)).fetch(tablaEnfermedad.COD_ENFERMEDAD_SISTEMICA, Integer.class);
+    }
+    private List<Integer> getDiagnosticosIds(int codExamen) {
+        return query.select(tablaDiagnostico.COD_DIAGNOSTICO).from(tablaDiagnostico).where(tablaDiagnostico.COD_EXAMEN.eq(codExamen)).fetch(tablaDiagnostico.COD_DIAGNOSTICO, Integer.class);
+    }
+    private List<String> getImages(int codExamen) {
+        return query.select(tablaImg.RUTA_IMAGEN).from(tablaImg).where(tablaImg.COD_EXAMEN.eq(codExamen)).fetch(tablaImg.RUTA_IMAGEN, String.class);
+    }
+
     @Override
     public Examen getExamen(int codExamen) {
         Record result = query.select(tabla.asterisk(), tablapaciente.asterisk(), tablaUsuario.asterisk())
@@ -105,7 +115,14 @@ public class ExamenDaoImpl implements IExamenDao {
                 .leftJoin(tablaUsuario).on(tablaUsuario.COD_USUARIO.eq(tabla.DOCTOR_EXAMEN))
                 .where(tabla.COD_EXAMEN.eq(codExamen))
                 .fetchOne();
-        return result != null ? parseItem(result): null;
+        Examen examen = result != null ? parseItem(result): null;
+        if (examen != null) {
+            examen.setEnfermedades(getEnfermedadesIds(examen.getCodExamen()));
+            examen.setDiagnosticos(getDiagnosticosIds(examen.getCodExamen()));
+            examen.setImagenes(getImages(examen.getCodExamen()));
+            examen.setCaracteristicas(getCaracteristicas(examen.getCodExamen()));
+        }
+        return examen;
     }
 
     @Override
@@ -143,6 +160,8 @@ public class ExamenDaoImpl implements IExamenDao {
         record.setDependenciaDoctorRemision(examen.getDependenciaDoctorRemision());
         record.setNecesitaBiopsia(examen.isNecesitaBiopsia());
         record.setNecesitaFrote(examen.isNecesitaFrote());
+        record.setDoctorRemision(examen.getDoctorRemision());
+        record.setRegistroDoctorRemision(examen.getRegistroDoctorRemision());
         examen.setFechaExamen(LocalDate.now());
         record.setFechaExamen(examen.getFechaExamen());
 
@@ -202,12 +221,10 @@ public class ExamenDaoImpl implements IExamenDao {
 
     @Override
     public List<Integer> getCaracteristicas(int codExamen){
-        List<Record> result = query.select(tablaCaracteristica.asterisk())
+        return query.select(tablaCaracteristica.CODIGO_TIPO_OPCION_LESION)
                 .from(tablaCaracteristica)
                 .where(tablaCaracteristica.COD_EXAMEN.eq(codExamen))
-                .fetch();
-
-        return result.stream().map(x -> x.getValue(tablaCaracteristica.CODIGO_TIPO_OPCION_LESION)).collect(Collectors.toList());
+                .fetch(tablaCaracteristica.CODIGO_TIPO_OPCION_LESION);
     }
 
     private void guardarCaracteristicas(Examen examen){
