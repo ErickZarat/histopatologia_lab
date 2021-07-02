@@ -321,3 +321,7 @@ tbody .btn-group button {
     left: -306px;
     padding: 5px !important;
 }
+
+.select2-dropdown,.select2-container {
+    width: 200px !important;
+}

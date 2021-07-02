@@ -36,6 +36,7 @@ public class Examen {
     List<Integer> caracteristicas;
     List<Integer> enfermedades;
     List<Integer> diagnosticos;
+    List<String> imagenes;
 
     boolean necesitaBiopsia;
     boolean necesitaFrote;
@@ -293,5 +294,13 @@ public class Examen {
 
     public void setDiagnosticos(List<Integer> diagnosticos) {
         this.diagnosticos = diagnosticos;
+    }
+
+    public List<String> getImagenes() {
+        return imagenes;
+    }
+
+    public void setImagenes(List<String> imagenes) {
+        this.imagenes = imagenes;
     }
 }

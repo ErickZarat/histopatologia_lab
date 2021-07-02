@@ -45,7 +45,7 @@ public class ConsultaServlet extends HttpServlet {
         RequestAction action = getRequestAction(request);
 
         if (action == RequestAction.CREAR || action == RequestAction.VER) {
-            handleGetCreateWithPaciente(request, response);
+            handleGetCreateWithPaciente(request, response, action);
         } else if (action == RequestAction.LISTAR_JSON) {
             handleGetConsultas(request, response);
         } else {
@@ -66,7 +66,6 @@ public class ConsultaServlet extends HttpServlet {
         if (examen == null) {
             Logger.error("error parsing examen request");
         }
-        Logger.info(examen.getCaracteristicas());
         examen.setDoctorExamen(getIdUsuarioFromSession(request));
 
         JsonResponse<Examen> examenGuardado =  controller.guardarExamen(examen);
@@ -74,7 +73,7 @@ public class ConsultaServlet extends HttpServlet {
         returnJson(response, examenGuardado);
     }
 
-    private void handleGetCreateWithPaciente(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    private void handleGetCreateWithPaciente(HttpServletRequest request, HttpServletResponse response, RequestAction requestAction) throws ServletException, IOException {
         String codExamen = request.getParameter("codExamen");
         String codPaciente = request.getParameter("codPaciente");
 
@@ -100,6 +99,7 @@ public class ConsultaServlet extends HttpServlet {
 
         request.setAttribute("paciente", paciente != null? paciente : new Paciente());
         request.setAttribute("examen", examen != null? examen: new Examen());
+        request.setAttribute("action", requestAction.name());
         getCreateConsultaPage(request, response);
     }
 

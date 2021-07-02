@@ -93,7 +93,8 @@ function extractExamen(){
         'necesitaFrote': $('#necesitaFrote').prop('checked'),
         'registroDoctorRemision': $('#registroDoctorRemision').val(),
         'enfermedades': $('#enfermedadSistemica').val(),
-        'diagnosticos': $('#diagnosticoInicial').val()
+        'diagnosticos': $('#diagnosticoInicial').val(),
+        'imagenes': window.consultaImages
     }
 }
 
@@ -146,8 +147,18 @@ function uploadImage(){
         contentType: false,
         processData: false,
         method: 'POST',
-        success: function(data){
-            alert(data);
+        success: function(response){
+            if(response.success) {
+                if (!window.consultaImages) window.consultaImages = [];
+                window.consultaImages = window.consultaImages.concat(response.data);
+                toastr.success("Se subieron " + response.data.length + " imagen(es)");
+                response.data.forEach(function(el, idx){
+                    $('#imageContainer').append('<li><a href="'+el+'">image-'+idx+'</a></li>')
+                })
+
+            } else {
+                toastr.error("Error " + response.error);
+            }
         }
     });
 

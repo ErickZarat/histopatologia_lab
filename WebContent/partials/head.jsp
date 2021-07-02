@@ -16,7 +16,8 @@
     <link rel="stylesheet" href="assets/css/cdnjs/bootstrap-datepicker3.min.css">
     <link rel="stylesheet" href="assets/css/messenger/messenger.css">
 	<link rel="stylesheet" href="assets/css/messenger/messenger-theme-future.css" >
-    
+	<link rel="stylesheet" href="assets/css/select2.min.css" >
+
     <style>
     @media screen and (min-width: 676px) {
         .modal-dialog {

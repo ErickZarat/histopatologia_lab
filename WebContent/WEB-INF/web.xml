@@ -108,7 +108,7 @@
 
     <servlet>
         <servlet-name>UploadServlet</servlet-name>
-        <servlet-class>histopatologialab.core.UploadServlet</servlet-class>
+        <servlet-class>histopatologialab.upload.UploadServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>UploadServlet</servlet-name>
