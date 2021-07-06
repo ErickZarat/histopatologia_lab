@@ -95,6 +95,7 @@ public class PacienteServlet extends HttpServlet {
         String tipoidPaciente= request.getParameter("tipoIdPaciente");
         String emailPaciente= request.getParameter("emailPaciente");
         String estCivilPaciente = request.getParameter("estadoCivilPaciente");
+        String numficha 	= request.getParameter("numficha");
         
        // DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MMM/yyyy");
         //LocalDate localDate = LocalDate.parse(fecNacimientoPaciente,formatter);
@@ -103,7 +104,7 @@ public class PacienteServlet extends HttpServlet {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/MM/yyyy"); 
         LocalDate fecnacimiento = LocalDate.parse(fecNacimientoPaciente, formatter);
 
-        JsonResponse<Paciente> paciente = controller.crearPaciente(identificacionPaciente, nombrePaciente, apellidosPaciente, direccionPaciente, telefonoPaciente, fecnacimiento, generoPaciente, ocupacionPaciente, tipoidPaciente, emailPaciente, estCivilPaciente, usuario);
+        JsonResponse<Paciente> paciente = controller.crearPaciente(identificacionPaciente, nombrePaciente, apellidosPaciente, direccionPaciente, telefonoPaciente, fecnacimiento, generoPaciente, ocupacionPaciente, tipoidPaciente, emailPaciente, estCivilPaciente, numficha, usuario);
         returnJson(response, paciente);
     }
 
@@ -122,6 +123,7 @@ public class PacienteServlet extends HttpServlet {
         String generoPaciente = request.getParameter("generoPaciente");
         String estCivilPaciente = request.getParameter("estCivilPaciente");
         String fecNacimientoPaciente=  request.getParameter("fecNacimiento");
+        String numficha = request.getParameter("numficha");
         
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/MM/yyyy"); 
 
@@ -130,7 +132,7 @@ public class PacienteServlet extends HttpServlet {
 
         JsonResponse<Paciente> paciente = controller.modificarPaciente( codPaciente,  identificacionPaciente,  nombrePaciente, apellidosPaciente,
         		 direccionPaciente, tipoidPaciente,  ocupacionPaciente,  emailPaciente,
-        		 telefonoPaciente, generoPaciente,estCivilPaciente, fecnacimiento,  usuario);
+        		 telefonoPaciente, generoPaciente,estCivilPaciente, fecnacimiento, numficha, usuario);
         returnJson(response, paciente);
     }
 

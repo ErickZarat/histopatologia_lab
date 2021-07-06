@@ -6,6 +6,7 @@ package histopatologialab.core.db;
 
 import histopatologialab.core.db.tables.LabDiagnostico;
 import histopatologialab.core.db.tables.LabEnfermedadSistemica;
+import histopatologialab.core.db.tables.LabEnfsistemicaListar;
 import histopatologialab.core.db.tables.LabExamen;
 import histopatologialab.core.db.tables.LabExamenBiopsia;
 import histopatologialab.core.db.tables.LabExamenCaracteristica;

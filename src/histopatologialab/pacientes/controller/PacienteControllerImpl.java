@@ -18,7 +18,7 @@ public class PacienteControllerImpl implements IPacienteController{
     @Override
 	public JsonResponse<Paciente> crearPaciente(String identificacionPaciente, String nombrePaciente, String apellidosPaciente,
 									  String direccionPaciente, String telefonoPaciente, LocalDate fecNacimientoPaciente,
-									  String generoPaciente, String ocupacionPaciente, String tipoidPaciente, String emailPaciente, String estCivilPaciente, String usuario)
+									  String generoPaciente, String ocupacionPaciente, String tipoidPaciente, String emailPaciente, String estCivilPaciente, String numficha,  String usuario)
 	{
 		  try { 
 			  Paciente pacienteExiste = pacientesDao.getPacienteByID(tipoidPaciente, identificacionPaciente);
@@ -28,7 +28,7 @@ public class PacienteControllerImpl implements IPacienteController{
 				  	Long id = null;
 			        Paciente paciente = new Paciente(id, identificacionPaciente,  nombrePaciente, apellidosPaciente, 
 			    			 direccionPaciente,  telefonoPaciente,  fecNacimientoPaciente, generoPaciente,  ocupacionPaciente,  tipoidPaciente,  emailPaciente, estCivilPaciente, 
-			    			 usuario, LocalDate.now(), null, null);
+			    			 usuario, LocalDate.now(), null, null, numficha);
 	
 			        paciente = pacientesDao.guardarPaciente(paciente);
 			        return new JsonResponse<>(paciente != null, paciente);
@@ -42,24 +42,31 @@ public class PacienteControllerImpl implements IPacienteController{
     @Override
     public JsonResponse<Paciente> modificarPaciente(Long codPaciente, String identificacionPaciente, String nombrePaciente, String apellidosPaciente,
     		String direccionPaciente,String tipoidPaciente, String ocupacionPaciente, String emailPaciente,
-    		String telefonoPaciente, String generoPaciente, String estCivilPaciente, LocalDate fecnacimiento,String usuario)    {
+    		String telefonoPaciente, String generoPaciente, String estCivilPaciente, LocalDate fecnacimiento, String numficha, String usuario)    {
      	 try {	
-    		 Paciente paciente =   pacientesDao.getPaciente(codPaciente) ;
-    		 paciente.setNombrePaciente(nombrePaciente);
-    		 paciente.setApellidosPaciente(apellidosPaciente);
-    		 paciente.setTipoidPaciente(tipoidPaciente);    		 
-    		 paciente.setIdentificacionPaciente(identificacionPaciente);
-    		 paciente.setDireccionPaciente(direccionPaciente);
-    		 paciente.setOcupacionPaciente(ocupacionPaciente);
-    		 paciente.setTelefonoPaciente(telefonoPaciente);
-    		 paciente.setEmailPaciente(emailPaciente);
-    		 paciente.setGeneroPaciente(generoPaciente);
-    		 paciente.setEstCivilPaciente(estCivilPaciente);
-    		 paciente.setFecNacimientoPaciente(fecnacimiento);
-    		 paciente.setModificadoPor(usuario);
-    		 paciente.setFechaModificacion(LocalDate.now());
-    		 paciente = pacientesDao.modificarPaciente(paciente);
-    		 return new JsonResponse<>(paciente != null, paciente);
+     		Paciente pacienteExiste = pacientesDao.getPacienteByID(tipoidPaciente, identificacionPaciente);
+			  if (!(pacienteExiste == null) && (!(pacienteExiste.getCodigoPaciente()==codPaciente))) {
+				  System.out.println("error ya existe ");
+				  return new JsonResponse<>( false, null, "Ya existe un paciente con ese documento de identificación");
+			  } else {   
+		    		 Paciente paciente =   pacientesDao.getPaciente(codPaciente) ;
+		    		 paciente.setNombrePaciente(nombrePaciente);
+		    		 paciente.setApellidosPaciente(apellidosPaciente);
+		    		 paciente.setTipoidPaciente(tipoidPaciente);    		 
+		    		 paciente.setIdentificacionPaciente(identificacionPaciente);
+		    		 paciente.setDireccionPaciente(direccionPaciente);
+		    		 paciente.setOcupacionPaciente(ocupacionPaciente);
+		    		 paciente.setTelefonoPaciente(telefonoPaciente);
+		    		 paciente.setEmailPaciente(emailPaciente);
+		    		 paciente.setGeneroPaciente(generoPaciente);
+		    		 paciente.setEstCivilPaciente(estCivilPaciente);
+		    		 paciente.setFecNacimientoPaciente(fecnacimiento);
+		    		 paciente.setModificadoPor(usuario);
+		    		 paciente.setFechaModificacion(LocalDate.now());
+		    		 paciente.setNum_ficha(numficha);
+		    		 paciente = pacientesDao.modificarPaciente(paciente);
+		    		 return new JsonResponse<>(paciente != null, paciente);
+			  }	 
          } catch (Exception e) {
         	 return new JsonResponse<>(false, null, e.getMessage());
          }    	

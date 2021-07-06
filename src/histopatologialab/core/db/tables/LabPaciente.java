@@ -17,7 +17,7 @@ import org.jooq.ForeignKey;
 import org.jooq.Identity;
 import org.jooq.Name;
 import org.jooq.Record;
-import org.jooq.Row16;
+import org.jooq.Row17;
 import org.jooq.Schema;
 import org.jooq.Table;
 import org.jooq.TableField;
@@ -129,6 +129,11 @@ public class LabPaciente extends TableImpl<LabPacienteRecord> {
      */
     public final TableField<LabPacienteRecord, LocalDate> FECHAMODIFICACION = createField(DSL.name("fechamodificacion"), SQLDataType.LOCALDATE, this, "");
 
+    /**
+     * The column <code>public.lab_paciente.num_ficha</code>.
+     */
+    public final TableField<LabPacienteRecord, String> NUM_FICHA = createField(DSL.name("num_ficha"), SQLDataType.VARCHAR(30), this, "");
+
     private LabPaciente(Name alias, Table<LabPacienteRecord> aliased) {
         this(alias, aliased, null);
     }
@@ -209,11 +214,11 @@ public class LabPaciente extends TableImpl<LabPacienteRecord> {
     }
 
     // -------------------------------------------------------------------------
-    // Row16 type methods
+    // Row17 type methods
     // -------------------------------------------------------------------------
 
     @Override
-    public Row16<Long, String, String, String, String, String, String, String, LocalDate, String, String, String, String, LocalDate, String, LocalDate> fieldsRow() {
-        return (Row16) super.fieldsRow();
+    public Row17<Long, String, String, String, String, String, String, String, LocalDate, String, String, String, String, LocalDate, String, LocalDate, String> fieldsRow() {
+        return (Row17) super.fieldsRow();
     }
 }

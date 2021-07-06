@@ -31,7 +31,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td><label for="tipoIdPaciente" class="col-sm-4 col-form-label">Tipo IdentificaciÃ³n:</label></td>
+                            <td><label for="tipoIdPaciente" class="col-sm-4 col-form-label">Tipo Identificación:</label></td>
                             <td>
                                 <select id="tipoIdPaciente" class="form-control" style="width: 322px; ">
                                     <option value="DPI">DPI</option>
@@ -64,6 +64,7 @@
                                 <select id="estadoCivilPacienteSearch" class="form-control" style="width: 322px; ">
                                     <option value="SOLTERO">SOLTERO</option>
                                     <option value="CASADO">CASADO</option>
+                                    <option value="OTRO">OTRO</option>
                                 </select>
                             </td>
                         </tr>
@@ -88,11 +89,17 @@
                             </td>
                         </tr>
                         <tr>
-                            <td><label for="ocupacionPaciente" class="col-sm-4 col-form-label">OcupaciÃ³n:</label></td>
+                            <td><label for="ocupacionPaciente" class="col-sm-4 col-form-label">Ocupación:</label></td>
                             <td>
-                                <input type="text" class="form-control" id="ocupacionPaciente" placeholder="OcupaciÃ³n Paciente"  style="width: 322px; ">
+                                <input type="text" class="form-control" id="ocupacionPaciente" placeholder="Ocupación Paciente"  style="width: 322px; ">
                             </td>
                         </tr>
+                        <tr>
+                            <td><label for="numFichaPaciente" class="col-sm-4 col-form-label">Número de Ficha:</label></td>
+                            <td>
+                                <input type="text" class="form-control" id="numFichaPaciente" placeholder="Número Ficha Paciente"  style="width: 322px; ">
+                            </td>
+                        </tr>                        
                     </table>
                 </form>
             </div>

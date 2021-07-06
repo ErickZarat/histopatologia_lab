@@ -244,6 +244,7 @@ CREATE TABLE public.lab_paciente (
 	fechacreacion date NULL,
 	modificadopor varchar(20) NULL,
 	fechamodificacion date NULL,
+	num_ficha varchar(30) NULL,
 	CONSTRAINT lab_paciente_pk PRIMARY KEY (cod_paciente)
 );
 

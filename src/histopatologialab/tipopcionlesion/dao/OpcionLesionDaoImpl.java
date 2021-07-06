@@ -101,7 +101,18 @@ public class OpcionLesionDaoImpl implements IOpcionLesionDao{
         return results.stream().map(this::parseItem).collect(Collectors.toList());
     }
     
+    @Override
+    public List<OpcionLesion> getOpcionesByEstado(){
+        List<Record> results = query
+                .select(tabla.asterisk())
+                .from(tabla)
+                .where(tabla.ESTADO_TIPO_OPCION.notEqualIgnoreCase(Estado.DESHABILITADO.getSlug()))                
+                .fetch();
 
+        return results.stream().map(this::parseItem).collect(Collectors.toList());
+    }
+    
+    
     public Boolean cambioEstadoOpcion(int codigoOpcion,String estado, String usuario) {
     	OpcionLesion tipopcionlesion = getOpcion(codigoOpcion); 
     	tipopcionlesion.setModificadoPor(usuario);

@@ -22,6 +22,7 @@ public class Paciente {
 	private String modificadoPor;
 	private LocalDate fechaModificacion;
 	private int edad;
+	private String num_ficha; 
 	
    public Paciente () {	   
    }
@@ -30,7 +31,7 @@ public class Paciente {
 	public Paciente(Long codigoPaciente,  String identificacionPaciente, String nombrePaciente, String apellidosPaciente,
 			String direccionPaciente, String telefonoPaciente, LocalDate fecNacimientoPaciente,
 			String generoPaciente, String ocupacionPaciente, String tipoidPaciente, String emailPaciente, String estCivilPaciente,
-			String creadoPor, LocalDate fechaCreacion, String modificadoPor, LocalDate fechaModificacion) {
+			String creadoPor, LocalDate fechaCreacion, String modificadoPor, LocalDate fechaModificacion, String numficha) {
 		this.codigoPaciente = codigoPaciente;
 		this.identificacionPaciente = identificacionPaciente;
 		this.nombrePaciente = nombrePaciente;
@@ -47,6 +48,7 @@ public class Paciente {
         this.fechaCreacion = fechaCreacion;
         this.modificadoPor = modificadoPor;
         this.fechaModificacion = fechaModificacion;
+        this.num_ficha = numficha;
 
         calculateAge();
         
@@ -229,5 +231,15 @@ public class Paciente {
 
 	public void setEdad(int edad) {
 		this.edad = edad;
+	}
+
+
+	public String getNum_ficha() {
+		return num_ficha;
+	}
+
+
+	public void setNum_ficha(String num_ficha) {
+		this.num_ficha = num_ficha;
 	}
 }

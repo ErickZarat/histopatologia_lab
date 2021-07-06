@@ -62,7 +62,8 @@ public class ExamenDaoImpl implements IExamenDao {
                         record.getValue(tablapaciente.CREADOPOR),
                         record.getValue(tablapaciente.FECHACREACION),
                         record.getValue(tablapaciente.MODIFICADOPOR),
-                        record.getValue(tablapaciente.FECHAMODIFICACION)
+                        record.getValue(tablapaciente.FECHAMODIFICACION),
+                        record.getValue(tablapaciente.NUM_FICHA)
                 ),
                 new Usuario(
                         record.getValue(tablaUsuario.COD_USUARIO),

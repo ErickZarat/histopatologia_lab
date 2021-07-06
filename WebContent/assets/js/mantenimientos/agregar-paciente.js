@@ -12,6 +12,7 @@ $(document).ready(function(){
         var tipoIdPaciente = $('#tipoIdPaciente').val();
         var emailPaciente = $('#emailPaciente').val();
         var estCivilPaciente = $('#estadoCivilPacienteSearch').val();
+		var numficha		= $('#numFichaPaciente').val().trim();
 
 
         if ($('#nombresPaciente').val().trim() == "" || $('#apellidosPaciente').val().trim() == "") {
@@ -42,6 +43,7 @@ $(document).ready(function(){
                             tipoIdPaciente: tipoIdPaciente,
                             emailPaciente: emailPaciente,
                             estadoCivilPaciente: estCivilPaciente,
+							numficha : numficha,	
                         },
                         success: function(response) {
                             $('#agregarPacienteModal').modal('hide');

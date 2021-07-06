@@ -34,7 +34,8 @@ public class PacienteDaoImpl implements IPacienteDao {
 	        		record.getValue(tablapaciente.CREADOPOR),
 	        		record.getValue(tablapaciente.FECHACREACION),
 	        		record.getValue(tablapaciente.MODIFICADOPOR), 
-	        		record.getValue(tablapaciente.FECHAMODIFICACION)
+	        		record.getValue(tablapaciente.FECHAMODIFICACION),
+	        		record.getValue(tablapaciente.NUM_FICHA)
 	        );
 	    }
 	 
@@ -99,6 +100,7 @@ public class PacienteDaoImpl implements IPacienteDao {
 	        	registro2.setEstadocivil(paciente.getEstCivilPaciente());
 	        	registro2.setFechacreacion(LocalDate.now());      	
 	        	registro2.setCreadopor(paciente.getCreadoPor());
+	        	registro2.setNumFicha(paciente.getNum_ficha());
 	        	registro2.store();
 	        
 	        return getPaciente(registro2.getCodPaciente());	 
@@ -118,6 +120,7 @@ public class PacienteDaoImpl implements IPacienteDao {
             .set(tablapaciente.FECHANACIMIENTO, paciente.getFecNacimientoPaciente())
             .set(tablapaciente.FECHAMODIFICACION, LocalDate.now())
             .set(tablapaciente.MODIFICADOPOR, paciente.getModificadoPor())
+            .set(tablapaciente.NUM_FICHA, paciente.getNum_ficha())
             .where(tablapaciente.COD_PACIENTE.eq(paciente.getCodigoPaciente()))
             .execute();
 	        return getPaciente(paciente.getCodigoPaciente());
@@ -140,10 +143,12 @@ public class PacienteDaoImpl implements IPacienteDao {
 	 
 	 @Override
 	  public Paciente getPacienteByID(String tipo, String numident)
-	  {   Record result = query
+	  {  System.out.println(tipo); 
+	  System.out.println(numident);
+		 Record result = query
 			.select(tablapaciente.asterisk())
 			.from (tablapaciente)
-			.where (tablapaciente.IDENTIFICACION.like("%" + numident +"%", '!')
+			.where (tablapaciente.IDENTIFICACION.eq(numident)
 			.and(tablapaciente.TIPO_IDENTIFICACION.eq(tipo)))
 	      .fetchOne();
 	  	return result != null ? parseItem(result): null;		 

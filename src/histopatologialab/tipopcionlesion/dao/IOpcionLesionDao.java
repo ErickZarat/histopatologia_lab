@@ -13,5 +13,6 @@ public interface IOpcionLesionDao {
     OpcionLesion modificarOpcionLesion(OpcionLesion tipopcionlesion);
     Boolean darDeBaja(int codigoOpcion, String usuario);
     List<OpcionLesion> getOpciones();
+    List<OpcionLesion> getOpcionesByEstado();
     Boolean cambioEstadoOpcion(int codigoOpcion, String estado, String usuario);
 }

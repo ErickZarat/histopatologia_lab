@@ -18,6 +18,7 @@ $(document).ready(function(e) {
 		var tipoIdPaciente = $('#tipoIdPaciente').val();
 		var emailPaciente = $('#emailPaciente').val().trim();
 		var estCivilPaciente = $('#estadoCivilPacienteSearch').val();
+		var numficha		= $('#numFichaPaciente').val().trim();
 				
 
 		if ($('#nombresPaciente').val().trim() == "" || $('#apellidosPaciente').val().trim() == "") {
@@ -51,7 +52,8 @@ $(document).ready(function(e) {
 								ocupacionPaciente: ocupacionPaciente,	
 								tipoIdPaciente: tipoIdPaciente,	
 								emailPaciente: emailPaciente,		
-								estadoCivilPaciente: estCivilPaciente,						
+								estadoCivilPaciente: estCivilPaciente,		
+								numficha : numficha,				
 				            },
 				            success: function(data) {
 	
@@ -165,7 +167,7 @@ $(document).ready(function(e) {
 
 				function callback2(respuesta) {
 				if(respuesta.data)
-					{ console.log(respuesta.data); // codigoPacienteMod
+					{   //console.log(respuesta.data); // codigoPacienteMod
 						$('#codigoPacienteMod').val(codPaciente);
 						$('#nombresPacienteMod').val(respuesta.data.nombrePaciente);	
 						$('#apellidosPacienteMod').val(respuesta.data.apellidosPaciente);	
@@ -177,11 +179,13 @@ $(document).ready(function(e) {
 						$('#tipoIdPacienteMod').val(respuesta.data.tipoidPaciente);
 						$('#numIdPacienteMod').val(respuesta.data.identificacionPaciente);
 						$('#emailPacienteMod').val(respuesta.data.emailPaciente);
-						$('#estCivilPacienteMod').val(respuesta.data.estCivilPaciente);										
+						$('#estCivilPacienteMod').val(respuesta.data.estCivilPaciente);	
+						$('#numFichaPacienteMod').val(respuesta.data.num_ficha);
+															
 			    	}
 			 	else 
 					{
-					 toastr.error("No se pudo obtener la información del Paciente");
+					 toastr.error(respuesta.error);
 					}
          
     }
@@ -212,6 +216,9 @@ $(document).ready(function(e) {
 		var emailPaciente = $('#emailPacienteMod').val().trim();
 		var estCivilPaciente = $('#estCivilPacienteMod').val();
 		var numIdPaciente =  $('#numIdPacienteMod').val();
+		var numficha		= $('#numFichaPacienteMod').val().trim();
+		alert(numficha); 
+		
 
 
 		if ($('#nombresPacienteMod').val().trim() == "" || $('#apellidosPacienteMod').val().trim() == "") {
@@ -248,8 +255,9 @@ $(document).ready(function(e) {
 								generoPaciente: generoPaciente,
 								estCivilPaciente: estCivilPaciente,
 								fecNacimiento: fecNacimiento,
+								numficha: numficha,
 				            },
-				            success: function(response) {
+				            success: function(respuesta) {
 				                $('#modificarPacienteModal').modal('hide');
 				 				$('#nombresPacienteMod').val("");
 								$('#apellidosPacienteMod').val("");
@@ -262,11 +270,13 @@ $(document).ready(function(e) {
 								$('#numIdPacienteMod').val("");
 								$('#emailPacienteMod').val("");
 								$('#estCivilPacienteMod').val("");
-				                if (response.success){
+								$('#numFichaPacienteMod').val("");
+				                if (respuesta.success){
 				                    toastr.success("Se modificó con éxito el Paciente");
 				                    getListadoPacientes();
 				                } else {
-				                    toastr.error("response.error");
+									
+				                    toastr.error(respuesta.error);
 				                }
 				            }
 				        });
@@ -295,7 +305,7 @@ $(document).ready(function(e) {
                     toastr.success("Se dio de baja al paciente");
                     getListadoPacientes();
                 } else {
-                    toastr.error("Error al dar baja al paciente");
+                    toastr.error(response.error);
                 }
             }
         });
