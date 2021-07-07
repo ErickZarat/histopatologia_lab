@@ -20,9 +20,8 @@ public class PacienteControllerImpl implements IPacienteController{
 									  String direccionPaciente, String telefonoPaciente, LocalDate fecNacimientoPaciente,
 									  String generoPaciente, String ocupacionPaciente, String tipoidPaciente, String emailPaciente, String estCivilPaciente, String numficha,  String usuario)
 	{
-		  try { 
-			  Paciente pacienteExiste = pacientesDao.getPacienteByID(tipoidPaciente, identificacionPaciente);
-			  if (!(pacienteExiste == null)) {
+		  try { Paciente pacienteExiste = pacientesDao.getPacienteByID(tipoidPaciente, identificacionPaciente);
+			  if (!(pacienteExiste == null) && (!(identificacionPaciente.equalsIgnoreCase("")))) {
 				  return new JsonResponse<>( false, null, "Ya existe un paciente con ese documento de identificación");
 			  } else {
 				  	Long id = null;

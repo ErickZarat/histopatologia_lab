@@ -1,6 +1,8 @@
 
 $(document).ready(function() {
 
+	//$("#AgregarFormModal").validate();
+
     var usuariosTable = $('#usuariosTable').DataTable(window.coreTableConfig);
          usuariosTable.rows().remove().draw(false);  
 

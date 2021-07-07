@@ -325,3 +325,9 @@ tbody .btn-group button {
 .select2-dropdown,.select2-container {
     width: 200px !important;
 }
+
+
+.error
+{   color: red;
+	font-size : 11pt;
+}

@@ -10,30 +10,30 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form role="form" id="CreaPacienteFormModal">
+                <form role="form" id="CreaPacienteFormModal" name="CreaPacienteFormModal">
                     <table>
                         <tr>
                             <td><label for="nombresPaciente" class="col-sm-4 col-form-label">Nombres:</label></td>
                             <td>
-                                <input type="text" class="form-control" id="nombresPaciente" placeholder="Nombres Paciente" style="width: 322px;" required>
+                                <input type="text" class="form-control" id="nombresPaciente" name="nombresPaciente" placeholder="Nombres Paciente" style="width: 322px;" required>
                             </td>
                         </tr>
                         <tr>
                             <td><label for="apellidosPaciente" class="col-sm-4 col-form-label">Apellidos:</label></td>
                             <td>
-                                <input type="text" class="form-control" id="apellidosPaciente" placeholder="Apellidos Paciente" style="width: 322px; " required>
+                                <input type="text" class="form-control" id="apellidosPaciente" name="apellidosPaciente" placeholder="Apellidos Paciente" style="width: 322px; " required>
                             </td>
                         </tr>
                         <tr>
                             <td><label for="direccionPaciente" class="col-sm-4 col-form-label">Direccion:</label></td>
                             <td>
-                                <textarea class="form-control" id="direccionPaciente" placeholder="Direccion Paciente" maxlength="200" style="width: 322px; height: 90px"></textarea>
+                                <textarea class="form-control" id="direccionPaciente" name="direccionPaciente" placeholder="Direccion Paciente" maxlength="200" style="width: 322px; height: 90px"></textarea>
                             </td>
                         </tr>
                         <tr>
                             <td><label for="tipoIdPaciente" class="col-sm-4 col-form-label">Tipo Identificación:</label></td>
                             <td>
-                                <select id="tipoIdPaciente" class="form-control" style="width: 322px; ">
+                                <select id="tipoIdPaciente" name="tipoIdPaciente" class="form-control" style="width: 322px; ">
                                     <option value="DPI">DPI</option>
                                     <option value="PASAPORTE">PASAPORTE</option>
                                     <option value="Otro">Otro</option>
@@ -43,25 +43,25 @@
                         <tr>
                             <td><label for="numIdPaciente" class="col-sm-4 col-form-label">Numero Identificacion:</label></td>
                             <td>
-                                <input type="text" class="form-control" id="numIdPaciente" placeholder="Identificacion Paciente" style="width: 322px; ">
+                                <input type="text" class="form-control" id="numIdPaciente" name="numIdPaciente" placeholder="Identificacion Paciente" style="width: 322px; ">
                             </td>
                         </tr>
                         <tr>
                             <td><label for="telPaciente" class="col-sm-4 col-form-label">Telefono:</label></td>
                             <td>
-                                <input type="text" class="form-control" id="telPaciente" placeholder="Telefono" style="width: 322px; ">
+                                <input type="text" class="form-control" id="telPaciente" name="telPaciente"  placeholder="Telefono" style="width: 322px; ">
                             </td>
                         </tr>
                         <tr>
                             <td><label for="emailPaciente" class="col-sm-4 col-form-label">Email:</label></td>
                             <td>
-                                <input type="text" class="form-control" id="emailPaciente" placeholder="Email Paciente" style="width: 322px; ">
+                                <input type="text" class="form-control" id="emailPaciente" name="emailPaciente"  placeholder="Email Paciente" style="width: 322px; ">
                             </td>
                         </tr>
                         <tr>
                             <td><label for="estadoCivilPaciente" class="col-sm-4 col-form-label">Estado Civil:</label></td>
                             <td>
-                                <select id="estadoCivilPacienteSearch" class="form-control" style="width: 322px; ">
+                                <select id="estadoCivilPacienteSearch" name="estadoCivilPacienteSearch" class="form-control" style="width: 322px; ">
                                     <option value="SOLTERO">SOLTERO</option>
                                     <option value="CASADO">CASADO</option>
                                     <option value="OTRO">OTRO</option>
@@ -73,7 +73,7 @@
                             <td>
                                 <div class="form-group">
                                     <div class="input-group date" data-provide="fecha">
-                                        <input type="text" id="fecNacimientoPaciente" class="form-control fecha" autocomplete="off" placeholder="dd/mm/yyyy" required>
+                                        <input type="text" id="fecNacimientoPaciente" name="fecNacimientoPaciente" class="form-control fecha" autocomplete="off" placeholder="dd/mm/yyyy" required>
                                         <div><i class='fas fa-calendar-alt' style='font-size:24px'></i> </div>
                                     </div>
                                 </div>
@@ -82,7 +82,7 @@
                         <tr>
                             <td><label for="generoPaciente" class="col-sm-4 col-form-label">Genero:</label></td>
                             <td>
-                                <select id="generoPaciente" class="form-control" style="width: 322px; ">
+                                <select id="generoPaciente"  name="generoPaciente" class="form-control" style="width: 322px; ">
                                     <option value="MASCULINO">MASCULINO</option>
                                     <option value="FEMENINO">FEMENINO</option>
                                 </select>
@@ -91,13 +91,13 @@
                         <tr>
                             <td><label for="ocupacionPaciente" class="col-sm-4 col-form-label">Ocupación:</label></td>
                             <td>
-                                <input type="text" class="form-control" id="ocupacionPaciente" placeholder="Ocupación Paciente"  style="width: 322px; ">
+                                <input type="text" class="form-control" id="ocupacionPaciente" name="ocupacionPaciente" placeholder="Ocupación Paciente"  style="width: 322px; ">
                             </td>
                         </tr>
                         <tr>
                             <td><label for="numFichaPaciente" class="col-sm-4 col-form-label">Número de Ficha:</label></td>
                             <td>
-                                <input type="text" class="form-control" id="numFichaPaciente" placeholder="Número Ficha Paciente"  style="width: 322px; ">
+                                <input type="text" class="form-control" id="numFichaPaciente" name="numFichaPaciente" placeholder="Número Ficha Paciente"  style="width: 322px; required ">
                             </td>
                         </tr>                        
                     </table>

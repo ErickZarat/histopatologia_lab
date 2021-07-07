@@ -143,15 +143,17 @@ public class PacienteDaoImpl implements IPacienteDao {
 	 
 	 @Override
 	  public Paciente getPacienteByID(String tipo, String numident)
-	  {  System.out.println(tipo); 
-	  System.out.println(numident);
-		 Record result = query
-			.select(tablapaciente.asterisk())
-			.from (tablapaciente)
-			.where (tablapaciente.IDENTIFICACION.eq(numident)
-			.and(tablapaciente.TIPO_IDENTIFICACION.eq(tipo)))
-	      .fetchOne();
-	  	return result != null ? parseItem(result): null;		 
-	  }
+	  {  if (numident == "") {
+		  	return null; 
+	  	} else {
+			 Record result = query
+				.select(tablapaciente.asterisk())
+				.from (tablapaciente)
+				.where (tablapaciente.IDENTIFICACION.eq(numident)
+				.and(tablapaciente.TIPO_IDENTIFICACION.eq(tipo)))
+		      .fetchOne();
+	  	return result != null ? parseItem(result): null;	  	
+	  	}
+	  }	 
 	 
 }

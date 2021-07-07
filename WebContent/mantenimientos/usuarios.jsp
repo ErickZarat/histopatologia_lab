@@ -57,18 +57,26 @@
                 </button>
             </div>
             <div class="modal-body">
- 			<form role="form" id="AgregarFormModal" autocomplete="off">
+ 			<form role="form" id="AgregarFormModal" class="needs-validation"  autocomplete="off" novalidate>
                 <table>
-                    <tr>
-                        <td><label for="loginUsuario" class="col-sm-4 col-form-label">Login:</label></td>
+                    <tr>                  
                         <td>
-                            <input type="text" class="form-control" id="loginUsuario" style="width: 322px; "  placeholder="Login Usuario" >
+                        	<div class="input-group has-validation">
+                        		<label for="loginUsuario" class="col-sm-4 col-form-label">Login:</label>
+      							<div id="validationServerUsernameFeedback" class="invalid-feedback">
+        							Please choose a username.
+      							</div>
+                        	</div>
+                        </td>
+                        <td>
+                            <input type="text" class="form-control" id="loginUsuario" style="width: 322px; "  placeholder="Login Usuario" required="required">
+
                         </td>                        
                     </tr>
                     <tr>
                         <td><label for="nombreUsuario" class="col-sm-4 col-form-label">Nombres Usuario:</label></td>
                         <td>
-                            <input type="text" class="form-control" id="nombreUsuario"  placeholder="Nombres Doctor/Usuario"  style="width: 322px; ">
+                            <input type="text" class="form-control" id="nombreUsuario"  placeholder="Nombres Doctor/Usuario"  style="width: 322px; " required>
                         </td>                    
                     </tr>
                     <tr>
