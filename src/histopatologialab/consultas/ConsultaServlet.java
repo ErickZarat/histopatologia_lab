@@ -19,6 +19,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 import static histopatologialab.core.Controllers.*;
+import static histopatologialab.core.DateUtils.formatDate;
 import static histopatologialab.core.ServletHelper.*;
 
 @WebServlet(name = "ConsultaServlet")
@@ -99,6 +100,7 @@ public class ConsultaServlet extends HttpServlet {
 
         request.setAttribute("paciente", paciente != null? paciente : new Paciente());
         request.setAttribute("examen", examen != null? examen: new Examen());
+        request.setAttribute("fechaExamen", examen != null? formatDate(examen.getFechaExamen()): "");
         request.setAttribute("action", requestAction.name());
         getCreateConsultaPage(request, response);
     }

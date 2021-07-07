@@ -65,7 +65,7 @@
                     <td><label for="numeroExamen">Numero examen:</label></td>
                     <td><input id="numeroExamen" class="form-control" readonly value="${examen.numExamen}"></td>
                     <td><label for="fechaExamen">Fecha examen:</label></td>
-                    <td><input id="fechaExamen" class="form-control" readonly value="${examen.fechaExamen}"></td>
+                    <td><input id="fechaExamen" class="form-control" readonly value="${fechaExamen}"></td>
                     <td><label for="estado">Estado:</label></td>
                     <td><input id="estado" class="form-control" readonly value="${examen.estado}"></td>
                 </tr>
