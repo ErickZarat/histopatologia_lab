@@ -236,12 +236,6 @@
 
             <table>
                 <tr>
-                    <td><label class="table-form-label" for="tipoRemision">Tipo Remision:</label></td>
-                    <td><input type="text" id="tipoRemision" class="form-control" value="${examen.tipoRemision}"></td>
-                    <td><label class="table-form-label" for="registroDoctorRemision">Registro Remision:</label></td>
-                    <td><input type="text" id="registroDoctorRemision" class="form-control" value="${examen.registroDoctorRemision}"></td>
-                </tr>
-                <tr>
 
                     <td><label class="table-form-label" for="doctorRemision">Doctor Remision:</label></td>
                     <td><input type="text" id="doctorRemision" class="form-control" value="${examen.doctorRemision}"></td>

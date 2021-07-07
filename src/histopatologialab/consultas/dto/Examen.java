@@ -21,14 +21,12 @@ public class Examen {
 
     String datosImportantesLesion;
     Long doctorExamen;
-    String tipoRemision;
 
     String doctorRemision;
     String direccionDoctorRemision;
     String telefonoDoctorRemision;
     String emailDoctorRemision;
     String dependenciaDoctorRemision;
-    String registroDoctorRemision;
 
     Paciente paciente;
     Usuario doctor;
@@ -41,7 +39,7 @@ public class Examen {
     boolean necesitaBiopsia;
     boolean necesitaFrote;
 
-    public Examen(int codExamen, Long codPaciente, String numExamen, LocalDate fechaExamen, String estado, String historiaExamenLesion, String tamanoLesion, String dimensionalLesion, int duracionLesionDias, int duracionLesionMeses, int duracionLesionAnios, String datosImportantesLesion, Long doctorExamen, String tipoRemision, String doctorRemision, String direccionDoctorRemision, String telefonoDoctorRemision, String emailDoctorRemision, String dependenciaDoctorRemision, String registroDoctorRemision, Paciente paciente, Usuario doctor, List<Integer> caracteristicas, boolean necesitaBiopsia, boolean necesitaFrote) {
+    public Examen(int codExamen, Long codPaciente, String numExamen, LocalDate fechaExamen, String estado, String historiaExamenLesion, String tamanoLesion, String dimensionalLesion, int duracionLesionDias, int duracionLesionMeses, int duracionLesionAnios, String datosImportantesLesion, Long doctorExamen, String doctorRemision, String direccionDoctorRemision, String telefonoDoctorRemision, String emailDoctorRemision, String dependenciaDoctorRemision, Paciente paciente, Usuario doctor, List<Integer> caracteristicas, boolean necesitaBiopsia, boolean necesitaFrote) {
         this.codExamen = codExamen;
         this.codPaciente = codPaciente;
         this.numExamen = numExamen;
@@ -55,13 +53,11 @@ public class Examen {
         this.duracionLesionAnios = duracionLesionAnios;
         this.datosImportantesLesion = datosImportantesLesion;
         this.doctorExamen = doctorExamen;
-        this.tipoRemision = tipoRemision;
         this.doctorRemision = doctorRemision;
         this.direccionDoctorRemision = direccionDoctorRemision;
         this.telefonoDoctorRemision = telefonoDoctorRemision;
         this.emailDoctorRemision = emailDoctorRemision;
         this.dependenciaDoctorRemision = dependenciaDoctorRemision;
-        this.registroDoctorRemision = registroDoctorRemision;
         this.paciente = paciente;
         this.doctor = doctor;
         this.caracteristicas = caracteristicas;
@@ -71,14 +67,6 @@ public class Examen {
 
     public Examen() {
 
-    }
-
-    public String getRegistroDoctorRemision() {
-        return registroDoctorRemision;
-    }
-
-    public void setRegistroDoctorRemision(String registroDoctorRemision) {
-        this.registroDoctorRemision = registroDoctorRemision;
     }
 
     public int getCodExamen() {
@@ -183,14 +171,6 @@ public class Examen {
 
     public void setDoctorExamen(Long doctorExamen) {
         this.doctorExamen = doctorExamen;
-    }
-
-    public String getTipoRemision() {
-        return tipoRemision;
-    }
-
-    public void setTipoRemision(String tipoRemision) {
-        this.tipoRemision = tipoRemision;
     }
 
     public String getDoctorRemision() {

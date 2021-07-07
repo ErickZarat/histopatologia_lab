@@ -62,7 +62,7 @@ function selectPaciente(paciente) {
 }
 
 function extractExamen(){
-    return {
+    var examen =  {
         // 'codExamen': $('#'), //generated on backend
         'codPaciente': $('#codigoUsuario').val(),
         // 'numExamen': $('#'), //generated on backend
@@ -77,7 +77,7 @@ function extractExamen(){
         'datosImportantesLesion': $('#datosImportantes').val(),
         // 'doctorExamen': $('#'), //comes from session
 
-        'tipoRemision': $('#tipoRemision').val(),
+
         'doctorRemision': $('#doctorRemision').val(),
         'direccionDoctorRemision': $('#direccionDoctorRemision').val(),
         'telefonoDoctorRemision': $('#telefonoDoctorRemision').val(),
@@ -91,11 +91,17 @@ function extractExamen(){
             }),
         'necesitaBiopsia': $('#necesitaBiopsia').prop('checked'),
         'necesitaFrote': $('#necesitaFrote').prop('checked'),
-        'registroDoctorRemision': $('#registroDoctorRemision').val(),
         'enfermedades': $('#enfermedadSistemica').val(),
         'diagnosticos': $('#diagnosticoInicial').val(),
         'imagenes': window.consultaImages
     }
+
+    if (examen.caracteristicas.length !== 8){
+        toastr.error("no se seleccionaron todas las caracteristicas")
+        return undefined;
+    }
+
+    return examen;
 }
 
 $('#resetUserForm').click(function(e){
@@ -109,6 +115,8 @@ $('#guardarExamen').click(function(e){
     e.preventDefault();
     $('#guardarExamen').prop('disabled', true);
     var examen = extractExamen();
+    if (examen === undefined) return;
+
     $.ajax({
         url: 'ConsultaServlet.do',
         method: 'post',

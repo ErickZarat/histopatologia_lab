@@ -6,7 +6,6 @@ package histopatologialab.core.db;
 
 import histopatologialab.core.db.tables.LabDiagnostico;
 import histopatologialab.core.db.tables.LabEnfermedadSistemica;
-import histopatologialab.core.db.tables.LabEnfsistemicaListar;
 import histopatologialab.core.db.tables.LabExamen;
 import histopatologialab.core.db.tables.LabExamenBiopsia;
 import histopatologialab.core.db.tables.LabExamenCaracteristica;
@@ -21,10 +20,6 @@ import histopatologialab.core.db.tables.LabPresentacionMedicamento;
 import histopatologialab.core.db.tables.LabTincion;
 import histopatologialab.core.db.tables.LabTipoOpcionLesion;
 import histopatologialab.core.db.tables.LabUsuario;
-import histopatologialab.core.db.tables.records.LabEnfsistemicaListarRecord;
-
-import org.jooq.Configuration;
-import org.jooq.Result;
 
 
 /**
@@ -42,29 +37,6 @@ public class Tables {
      * The table <code>public.lab_enfermedad_sistemica</code>.
      */
     public static final LabEnfermedadSistemica LAB_ENFERMEDAD_SISTEMICA = LabEnfermedadSistemica.LAB_ENFERMEDAD_SISTEMICA;
-
-    /**
-     * The table <code>public.lab_enfsistemica_listar</code>.
-     */
-    public static final LabEnfsistemicaListar LAB_ENFSISTEMICA_LISTAR = LabEnfsistemicaListar.LAB_ENFSISTEMICA_LISTAR;
-
-    /**
-     * Call <code>public.lab_enfsistemica_listar</code>.
-     */
-    public static Result<LabEnfsistemicaListarRecord> LAB_ENFSISTEMICA_LISTAR(
-          Configuration configuration
-    ) {
-        return configuration.dsl().selectFrom(histopatologialab.core.db.tables.LabEnfsistemicaListar.LAB_ENFSISTEMICA_LISTAR.call(
-        )).fetch();
-    }
-
-    /**
-     * Get <code>public.lab_enfsistemica_listar</code> as a table.
-     */
-    public static LabEnfsistemicaListar LAB_ENFSISTEMICA_LISTAR() {
-        return histopatologialab.core.db.tables.LabEnfsistemicaListar.LAB_ENFSISTEMICA_LISTAR.call(
-        );
-    }
 
     /**
      * The table <code>public.lab_examen</code>.

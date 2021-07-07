@@ -16,7 +16,7 @@ import org.jooq.Field;
 import org.jooq.ForeignKey;
 import org.jooq.Name;
 import org.jooq.Record;
-import org.jooq.Row22;
+import org.jooq.Row20;
 import org.jooq.Schema;
 import org.jooq.Table;
 import org.jooq.TableField;
@@ -114,11 +114,6 @@ public class LabExamen extends TableImpl<LabExamenRecord> {
     public final TableField<LabExamenRecord, Long> DOCTOR_EXAMEN = createField(DSL.name("doctor_examen"), SQLDataType.BIGINT, this, "");
 
     /**
-     * The column <code>public.lab_examen.tipo_remision</code>.
-     */
-    public final TableField<LabExamenRecord, String> TIPO_REMISION = createField(DSL.name("tipo_remision"), SQLDataType.VARCHAR(20), this, "");
-
-    /**
      * The column <code>public.lab_examen.doctor_remision</code>.
      */
     public final TableField<LabExamenRecord, String> DOCTOR_REMISION = createField(DSL.name("doctor_remision"), SQLDataType.VARCHAR(30), this, "");
@@ -142,11 +137,6 @@ public class LabExamen extends TableImpl<LabExamenRecord> {
      * The column <code>public.lab_examen.dependencia_doctor_remision</code>.
      */
     public final TableField<LabExamenRecord, String> DEPENDENCIA_DOCTOR_REMISION = createField(DSL.name("dependencia_doctor_remision"), SQLDataType.VARCHAR(50), this, "");
-
-    /**
-     * The column <code>public.lab_examen.registro_doctor_remision</code>.
-     */
-    public final TableField<LabExamenRecord, String> REGISTRO_DOCTOR_REMISION = createField(DSL.name("registro_doctor_remision"), SQLDataType.VARCHAR(50), this, "");
 
     /**
      * The column <code>public.lab_examen.necesita_biopsia</code>.
@@ -255,11 +245,11 @@ public class LabExamen extends TableImpl<LabExamenRecord> {
     }
 
     // -------------------------------------------------------------------------
-    // Row22 type methods
+    // Row20 type methods
     // -------------------------------------------------------------------------
 
     @Override
-    public Row22<Integer, Long, String, LocalDate, String, String, String, String, Integer, Integer, Integer, String, Long, String, String, String, String, String, String, String, Boolean, Boolean> fieldsRow() {
-        return (Row22) super.fieldsRow();
+    public Row20<Integer, Long, String, LocalDate, String, String, String, String, Integer, Integer, Integer, String, Long, String, String, String, String, String, Boolean, Boolean> fieldsRow() {
+        return (Row20) super.fieldsRow();
     }
 }

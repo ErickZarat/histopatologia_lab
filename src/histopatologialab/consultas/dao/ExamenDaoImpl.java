@@ -39,13 +39,11 @@ public class ExamenDaoImpl implements IExamenDao {
                 record.getValue(tabla.DURACION_LESION_ANIOS),
                 record.getValue(tabla.DATOS_IMPORTANTES_LESION),
                 record.getValue(tabla.DOCTOR_EXAMEN),
-                record.getValue(tabla.TIPO_REMISION),
                 record.getValue(tabla.DOCTOR_REMISION),
                 record.getValue(tabla.DIRECCION_DOCTOR_REMISION),
                 record.getValue(tabla.TELEFONO_DOCTOR_REMISION),
                 record.getValue(tabla.EMAIL_DOCTOR_REMISION),
                 record.getValue(tabla.DEPENDENCIA_DOCTOR_REMISION),
-                record.getValue(tabla.REGISTRO_DOCTOR_REMISION),
                 new Paciente(
                         record.getValue(tablapaciente.COD_PACIENTE),
                         record.getValue(tablapaciente.IDENTIFICACION),
@@ -153,7 +151,6 @@ public class ExamenDaoImpl implements IExamenDao {
         record.setDuracionLesionAnios(examen.getDuracionLesionAnios());
         record.setDatosImportantesLesion(examen.getDatosImportantesLesion());
         record.setDoctorExamen(examen.getDoctorExamen());
-        record.setTipoRemision(examen.getTipoRemision());
         record.setDoctorExamen(examen.getDoctorExamen());
         record.setDireccionDoctorRemision(examen.getDireccionDoctorRemision());
         record.setTelefonoDoctorRemision(examen.getTelefonoDoctorRemision());
@@ -162,7 +159,6 @@ public class ExamenDaoImpl implements IExamenDao {
         record.setNecesitaBiopsia(examen.isNecesitaBiopsia());
         record.setNecesitaFrote(examen.isNecesitaFrote());
         record.setDoctorRemision(examen.getDoctorRemision());
-        record.setRegistroDoctorRemision(examen.getRegistroDoctorRemision());
         examen.setFechaExamen(LocalDate.now());
         record.setFechaExamen(examen.getFechaExamen());
 
@@ -198,7 +194,6 @@ public class ExamenDaoImpl implements IExamenDao {
         record.setDuracionLesionAnios(examen.getDuracionLesionAnios());
         record.setDatosImportantesLesion(examen.getDatosImportantesLesion());
         record.setDoctorExamen(examen.getDoctorExamen());
-        record.setTipoRemision(examen.getTipoRemision());
         record.setDoctorExamen(examen.getDoctorExamen());
         record.setDireccionDoctorRemision(examen.getDireccionDoctorRemision());
         record.setTelefonoDoctorRemision(examen.getTelefonoDoctorRemision());
