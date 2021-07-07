@@ -237,21 +237,21 @@
             <table>
                 <tr>
 
-                    <td><label class="table-form-label" for="doctorRemision">Doctor Remision:</label></td>
+                    <td><label class="table-form-label" for="doctorRemision">Remitido por:</label></td>
                     <td><input type="text" id="doctorRemision" class="form-control" value="${examen.doctorRemision}"></td>
 
-                    <td><label class="table-form-label" for="direccionDoctorRemision">Direccion Doctor Remision:</label></td>
+                    <td><label class="table-form-label" for="direccionDoctorRemision">Direccion Doctor:</label></td>
                     <td colspan="2"><input type="text" id="direccionDoctorRemision" class="form-control" value="${examen.direccionDoctorRemision}"></td>
 
                 </tr>
                 <tr>
-                    <td><label class="table-form-label" for="telefonoDoctorRemision">Telefono Doctor Remision:</label></td>
+                    <td><label class="table-form-label" for="telefonoDoctorRemision">Telefono Doctor:</label></td>
                     <td><input type="text" id="telefonoDoctorRemision" class="form-control" value="${examen.telefonoDoctorRemision}"></td>
 
-                    <td><label class="table-form-label" for="emailDoctorRemision">Email Doctor Remision:</label></td>
+                    <td><label class="table-form-label" for="emailDoctorRemision">Email Doctor:</label></td>
                     <td><input type="text" id="emailDoctorRemision" class="form-control" value="${examen.emailDoctorRemision}"></td>
 
-                    <td><label class="table-form-label" for="dependenciaDoctorRemision">Dependencia Doctor Remision:</label></td>
+                    <td><label class="table-form-label" for="dependenciaDoctorRemision">Dependencia Doctor:</label></td>
                     <td><input type="text" id="dependenciaDoctorRemision" class="form-control" value="${examen.dependenciaDoctorRemision}"></td>
 
                 </tr>
