@@ -131,4 +131,15 @@ public class OpcionLesionDaoImpl implements IOpcionLesionDao{
     	return tipopcionlesionmodificado != null;    	
     }
     
+    @Override
+    public OpcionLesion getOpcionByTipoYValor(String tipOpcion, String valor){
+    	Record result = query
+                 .select(tabla.asterisk())
+                 .from(tabla)
+                 .where ( tabla.NOMBRE_TIPO_OPCION.eq(tipOpcion)
+                		 .and(tabla.VALOR_TIPO_OPCION.eq(valor)) )             
+                 .fetchOne();
+    	 return result != null ? parseItem(result): null;
+    }
+    
 }

@@ -2,24 +2,51 @@
 $(document).ready(function() {
 
     var opcionlesionTable = $('#opcionlesionTable').DataTable(window.coreTableConfig);
+
+
+	jQuery.validator.setDefaults({
+  		debug: true,
+  		success: "valid"
+	});
+
+	$.validator.addMethod("formatoSoloTexto", function(value, element) {
+                return this.optional(element) || /^[a-zA-ZÀ-ÿ\s]{1,20}$/i.test(value);
+	}, "Solo se permite ingresar letras.");
+	
+	
+	var validar_formulario = $("#CrearOpcionFormModal").validate({
+ 	rules :{
+                nombreOpcionLesion : { required : true, formatoSoloTexto: true,  minlength : 3, maxlength : 20  },
+				
+			
+            },
+            messages : {
+                nombreOpcionLesion : {
+                    required : "Debe ingresar el valor de la opción ",
+ 					minlength : "El nombre debe tener un mínimo de 3 caracteres",
+					maxlength : "El máximo deben ser 50 caracteres", 
+                },
+ 		errorElement: "em",
+       	errorPlacement: function (error, element) {
+          // Add the `help-block` class to the error element
+          error.addClass("help-block"); 
+       	},
+       	highlight: function ( element, errorClass, validClass ) {
+          $( element ).parents( ".col-sm-10" ).addClass( "has-error" ).removeClass( "has-success" );
+       	},
+       	unhighlight: function (element, errorClass, validClass) {
+          $( element ).parents( ".col-sm-10" ).addClass( "has-success" ).removeClass( "has-error" );  
+       	} 
+	}
+  	});
+	
     
     $('#btnAgregarOpcionLesion').click(function(e){
         var valoropcion = $('#nombreOpcionLesion').val().toUpperCase();
         var tipoOpcion = $('#TipoOpcionSearch').val();
 
- 		if ($('#nombreOpcionLesion').val().trim().length == 0) {
-			 toastr.error("Debe seleccionar un valor");
-			 e.preventDefault();
-		}
-		else 
-		{ // alert (tipoOpcion);
-			if (tipoOpcion == 0) {
-				toastr.error("Debe seleccionar una Opcion");
-				$('#nombreOpcionLesion').val("");
-			 	e.preventDefault();
-			}
-			else 
-			{
+	if (validar_formulario.form()) //asi se comprueba si el form esta validado o no
+    	{ 
         	$.ajax({
             	url: 'OpcionLesionServlet.do',
             	method: 'post',
@@ -32,15 +59,16 @@ $(document).ready(function() {
                 	$('#agregarOpcionLesionModal').modal('hide');
                 	$('#nombreOpcionLesion').val("");
 	                	if (data.success){
-                    	toastr.success("Se agrego el valor de la opcion");
+                    	toastr.success("Se agregó con éxito el valor de la opción");
                     	getListadoOpcionLesion()
                 	} else {
-                    	toastr.error("Error al agregar el valor de la opcion")
+                    	toastr.error(data.error)
                 	}
             	}
         	});
+		} else {
+			e.preventDefault();
 		}
-	  }
     });
 
 	/*  muestra el valor del estado */
@@ -125,17 +153,42 @@ $(document).ready(function() {
         $('#valorOpcionLesionMod').val($(this).data('nombre-opcion'))
     }
 
+
+
+	var validar_formularioMod = $("#ModifOpcionFormModal").validate({
+ 	rules :{
+                valorOpcionLesionMod : { required : true, formatoSoloTexto: true,  minlength : 3, maxlength : 20  },
+			
+            },
+            messages : {
+                valorOpcionLesionMod : {
+                    required : "Debe ingresar el valor de la opción ",
+ 					minlength : "El nombre debe tener un mínimo de 3 caracteres",
+					maxlength : "El máximo deben ser 20 caracteres", 
+                },
+ 		errorElement: "em",
+       	errorPlacement: function (error, element) {
+          // Add the `help-block` class to the error element
+          error.addClass("help-block"); 
+       	},
+       	highlight: function ( element, errorClass, validClass ) {
+          $( element ).parents( ".col-sm-10" ).addClass( "has-error" ).removeClass( "has-success" );
+       	},
+       	unhighlight: function (element, errorClass, validClass) {
+          $( element ).parents( ".col-sm-10" ).addClass( "has-success" ).removeClass( "has-error" );  
+       	} 
+	}
+  	});
+
+
+
     $('#btnModificarOpcionLesion').click(function(e){
         var codigoOpcion = $('#codigoOpcionLesionMod').val();
         var valorOpcion = $('#valorOpcionLesionMod').val().toUpperCase();
 		var nombreOpcion = $('#TipoOpcionSearch').val();
 		
- 		if ($('#valorOpcionLesionMod').val().trim().length == 0) {
-			 toastr.error("El valor de la opcion no puede ser nulo");
-			 e.preventDefault();
-		}
-		else 
-		{ 
+	if (validar_formularioMod.form()) //asi se comprueba si el form esta validado o no
+    	{  
         $.ajax({
             url: 'OpcionLesionServlet.do',
             method: 'post',
@@ -150,15 +203,19 @@ $(document).ready(function() {
                 $('#codigoOpcionLesionMod').val("")
                 $('#valorOpcionLesionMod').val("")
                 if (response.success){
-                    toastr.success("Se modifico el Valor de la Opcion");
+                    toastr.success("Se modifico con éxito el Valor de la Opcion");
                     getListadoOpcionLesion();
-                } else {
-                    toastr.error("Error al modificar el valor de la Opcion");
-                }
-            }
-        });
-	  }
+	                } else {
+	                    toastr.error(response.error);
+	                }
+            	}
+        	});
+		} else {
+			e.preventDefault();
+		}
     });
+
+
 
     $('#btnDarBajaOpcionLesion').click(function(){
         var codigoOpcion = $('#codigoOpcionLesionBaja').text();

@@ -71,20 +71,22 @@
                 </button>
             </div>
             <div class="modal-body">
-                <table>
+				<form role="form" id="CrearOpcionFormModal" name="CrearOpcionFormModal">                   
+                <table>              
                  <tr>
                         <td><label for="TipoOpcionAdd" class="col-sm-4 col-form-label">Tipo Opcion:</label></td>
                         <td>
-                            <input type="text" class="form-control" id="tipOpcionLesionvalue" disabled>
+                            <input type="text" class="form-control" id="tipOpcionLesionvalue" name="tipOpcionLesionvalue"  disabled>
                         </td>
                     </tr>
                     <tr>
                         <td><label for="valorOpcion" class="col-sm-4 col-form-label">Valor Opcion:</label></td>
                         <td>
-                            <input type="text" class="form-control" id="nombreOpcionLesion">
+                            <input type="text" class="form-control" id="nombreOpcionLesion" name="nombreOpcionLesion" required>
                         </td>
                     </tr>
                 </table>
+                </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
@@ -105,20 +107,22 @@
                 </button>
             </div>
             <div class="modal-body">
+				<form role="form" id="ModifOpcionFormModal" name="ModifOpcionFormModal">             
                 <table>
                     <tr>
                         <td><label for="codigoOpcionLesionMod" class="col-sm-4 col-form-label">Codigo Opcion:</label></td>
                         <td>
-                            <input type="text" class="form-control" id="codigoOpcionLesionMod" disabled>
+                            <input type="text" class="form-control" id="codigoOpcionLesionMod" name="codigoOpcionLesionMod" disabled>
                         </td>
                     </tr>
                     <tr>
                         <td><label for="valorOpcionLesionMod" class="col-sm-4 col-form-label">Valor Opcion:</label></td>
                         <td>
-                            <input type="text" class="form-control" id="valorOpcionLesionMod">
+                            <input type="text" class="form-control" id="valorOpcionLesionMod" name="valorOpcionLesionMod">
                         </td>
                     </tr>
                 </table>
+                </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>

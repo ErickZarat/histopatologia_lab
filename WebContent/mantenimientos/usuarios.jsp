@@ -63,50 +63,47 @@
                         <td>
                         	<div class="input-group has-validation">
                         		<label for="loginUsuario" class="col-sm-4 col-form-label">Login:</label>
-      							<div id="validationServerUsernameFeedback" class="invalid-feedback">
-        							Please choose a username.
-      							</div>
                         	</div>
                         </td>
                         <td>
-                            <input type="text" class="form-control" id="loginUsuario" style="width: 322px; "  placeholder="Login Usuario" required="required">
+                            <input type="text" class="form-control" id="loginUsuario"  name="loginUsuario" style="width: 322px; "  placeholder="Login Usuario" required="required">
 
                         </td>                        
                     </tr>
                     <tr>
                         <td><label for="nombreUsuario" class="col-sm-4 col-form-label">Nombres Usuario:</label></td>
                         <td>
-                            <input type="text" class="form-control" id="nombreUsuario"  placeholder="Nombres Doctor/Usuario"  style="width: 322px; " required>
+                            <input type="text" class="form-control" id="nombreUsuario" name="nombreUsuario" placeholder="Nombres Doctor/Usuario"  style="width: 322px; " required>
                         </td>                    
                     </tr>
                     <tr>
                         <td><label for="apellidosUsuario" class="col-sm-4 col-form-label">Apellidos Usuario:</label></td>
                         <td>
-                            <input type="text" class="form-control" id="apellidosUsuario" placeholder="Apellidos Doctor/Usuario" style="width: 322px; ">
+                            <input type="text" class="form-control" id="apellidosUsuario" name="apellidosUsuario"  placeholder="Apellidos Doctor/Usuario" style="width: 322px; ">
                         </td>
                     </tr>
                     <tr>
                         <td><label for="colegiadoDoctor" class="col-sm-4 col-form-label">Número Colegiado:</label></td>
                         <td>
-                            <input type="text" class="form-control" id="colegiadoDoctor" placeholder="Numero Colegiado" style="width: 322px; ">
+                            <input type="text" class="form-control" id="colegiadoDoctor" name="colegiadoDoctor" placeholder="Numero Colegiado" style="width: 322px; ">
                         </td>
                     </tr>
                     <tr>
                         <td><label for="emailDoctor" class="col-sm-4 col-form-label">Email:</label></td>
                         <td>
-                            <input type="text" class="form-control" id="emailDoctor" placeholder="Email Doctor/Usuario" style="width: 322px; ">
+                            <input type="text" class="form-control" id="emailDoctor" name="emailDoctor" placeholder="Email Doctor/Usuario" style="width: 322px; ">
                         </td>
                     </tr>
                     <tr>
                         <td><label for="pswUsuario" class="col-sm-4 col-form-label">Contraseña:</label></td>
                         <td>
-                            <input type="password" class="form-control validate" id="pswUsuario" autocomplete="off" style="width: 322px; ">
+                            <input type="password" class="form-control validate" id="pswUsuario"  name="pswUsuario" autocomplete="off" style="width: 322px; ">
                         </td>
                     </tr>
                     <tr>
                         <td><label for="pswConfirm" class="col-sm-4 col-form-label">Confirmar Contraseña:</label></td>
                         <td>
-                            <input type="password" class="form-control" id="pswConfirm" autocomplete="off" style="width: 322px; ">
+                            <input type="password" class="form-control" id="pswConfirm" name="pswConfirm" autocomplete="off" style="width: 322px; ">
                         </td>
                     </tr>        
                     <tr>
@@ -148,37 +145,37 @@
                     <tr>
                         <td><label for="codigoUsuarioMod" class="col-sm-4 col-form-label">Codigo:</label></td>
                         <td>
-                            <input type="text" class="form-control" id="codigoUsuarioMod" disabled style="width: 322px; ">
+                            <input type="text" class="form-control" id="codigoUsuarioMod" name="codigoUsuarioMod" disabled style="width: 322px; ">
                         </td>
                     </tr>
                     <tr>
                         <td><label for="loginUsuarioMod" class="col-sm-4 col-form-label">Usuario:</label></td>
                         <td>
-                            <input type="text" class="form-control" id="loginUsuarioMod" disabled style="width: 322px; ">
+                            <input type="text" class="form-control" id="loginUsuarioMod" name="loginUsuarioMod" disabled style="width: 322px; ">
                         </td>
                     </tr>
                     <tr>
                         <td><label for="nombresUsuarioMod" class="col-sm-4 col-form-label">Nombres Usuario:</label></td>
                         <td>
-                            <input type="text" class="form-control" id="nombresUsuarioMod"  placeholder="Nombres Doctor/Usuario" style="width: 322px; ">
+                            <input type="text" class="form-control" id="nombresUsuarioMod" name="nombresUsuarioMod"  placeholder="Nombres Doctor/Usuario" style="width: 322px; ">
                         </td>
                     </tr>
                     <tr>
                         <td><label for="apellidosUsuarioMod" class="col-sm-4 col-form-label">Apellidos Usuario:</label></td>
                         <td>
-                            <input type="text" class="form-control" id="apellidosUsuarioMod" placeholder="Apellidos Doctor/Usuario" style="width: 322px; ">
+                            <input type="text" class="form-control" id="apellidosUsuarioMod" name="apellidosUsuarioMod" placeholder="Apellidos Doctor/Usuario" style="width: 322px; ">
                         </td>
                     </tr>
                     <tr>
                         <td><label for="colegiadoUsuarioMod" class="col-sm-4 col-form-label">Numero Colegiado:</label></td>
                         <td>
-                            <input type="text" class="form-control" id="colegiadoUsuarioMod"  placeholder="Colegiado Doctor/Usuario" style="width: 322px; ">
+                            <input type="text" class="form-control" id="colegiadoUsuarioMod"  name="colegiadoUsuarioMod"  placeholder="Colegiado Doctor/Usuario" style="width: 322px; ">
                         </td>
                     </tr>
                     <tr>
                         <td><label for="emailUsuarioMod" class="col-sm-4 col-form-label">email Usuario: </label></td>
                         <td>
-                            <input type="text" class="form-control" id="emailUsuarioMod" placeholder="Email Doctor/Usuario" style="width: 322px; ">
+                            <input type="text" class="form-control" id="emailUsuarioMod" name="emailUsuarioMod" placeholder="Email Doctor/Usuario" style="width: 322px; ">
                         </td>
                     </tr>
                     <tr>

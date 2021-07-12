@@ -1,23 +1,55 @@
 
 $(document).ready(function() {
 
-    var enfermedadesTable = $('#enfermedadesTable').DataTable(window.coreTableConfig);
-
-		
+   		var enfermedadesTable = $('#enfermedadesTable').DataTable(window.coreTableConfig);
+	
         enfermedadesTable.rows().remove().draw(false);  
 		getListadoEnfermedades();
+
+
+	jQuery.validator.setDefaults({
+  		debug: true,
+  		success: "valid"
+	});
+	
+	$.validator.addMethod("formatoSoloTexto", function(value, element) {
+                return this.optional(element) || /^[a-zA-ZÀ-ÿ\s]{1,40}$/i.test(value);
+	}, "Solo se permite ingresar letras.");
+	
+	
+	var validar_formulario = $("#CrearFormEnfSistemicaModal").validate({
+ 	rules :{
+                nombreEnfermedad : { required : true, formatoSoloTexto: true,  minlength : 3, maxlength : 50  },
+			
+            },
+            messages : {
+                nombreEnfermedad : {
+                    required : "Debe ingresar el nombre de la enfermedad ",
+ 					minlength : "El nombre debe tener un mínimo de 3 caracteres",
+					maxlength : "El máximo deben ser 50 caracteres", 
+                },
+ 		errorElement: "em",
+       	errorPlacement: function (error, element) {
+          // Add the `help-block` class to the error element
+          error.addClass("help-block"); 
+       	},
+       	highlight: function ( element, errorClass, validClass ) {
+          $( element ).parents( ".col-sm-10" ).addClass( "has-error" ).removeClass( "has-success" );
+       	},
+       	unhighlight: function (element, errorClass, validClass) {
+          $( element ).parents( ".col-sm-10" ).addClass( "has-success" ).removeClass( "has-error" );  
+       	} 
+	}
+  	});
+
 		
 		 
 	/*  llama al servlet para agregar los datos de la enfermedad*/
     $('#btnAgregarEnfermedad').click(function(e){
         var nombre = $('#nombreEnfermedad').val().toUpperCase();
 
- 		if ($('#nombreEnfermedad').val().trim().length == 0) {
-			 toastr.error("El nombre de la enfermedad no puede ser nulo");
-			 e.preventDefault();
-		}
-		else 
-		{ 
+	if (validar_formulario.form()) //asi se comprueba si el form esta validado o no
+    	{       
         $.ajax({
             url: 'EnfSistemicaServlet.do',
             method: 'post',
@@ -35,10 +67,11 @@ $(document).ready(function() {
                 } else {
                     toastr.error(data.error)
                 }
-            }			
-        })
-	  }
-	//e.preventDefault();
+            	}			
+        	})
+		} else {
+			e.preventDefault();
+		}
     });
 
 
@@ -106,45 +139,88 @@ $(document).ready(function() {
     }
 
 
-/*  al cancelar, se manda a refrescar la tabla 	*/
-//    $('#btnCancelAgregarEnfermedad').click(function(){
- //        getListadoEnfermedades();
- //   });
+
+    $('#btnCancelAgregarEnfermedad').click(function(){
+         getListadoEnfermedades();
+ 		 $("#CrearFormEnfSistemicaModal")[0].reset();
+		$('#agregarEnfermedadModal label.error').hide();
+    });
 	
+	
+    $('#btnCancelModifEnfermedad').click(function(){
+ 		 $("#ModifFormEnfSistemicaModal")[0].reset();
+		$('#modificarEnfermedadModal label.error').hide();
+    });
+	
+		
+	// funcion al cerrar el modal de crear 
+	 $("#agregarEnfermedadModal").on('hidden.bs.modal', function () {
+		$('#agregarEnfermedadModal label.error').hide();
+    });
+	
+		// funcion al cerrar el modal de modificar 
+	 $("#modificarEnfermedadModal").on('hidden.bs.modal', function () {
+		$('#modificarEnfermedadModal label.error').hide();
+    });
+
+
+	var validar_formularioMod = $("#ModifFormEnfSistemicaModal").validate({
+ 	rules :{
+                nombreEnfermedadMod : { required : true, formatoSoloTexto: true,  minlength : 3, maxlength : 50  },
+			
+            },
+            messages : {
+                nombreEnfermedadMod : {
+                    required : "Debe ingresar el nombre de la enfermedad ",
+ 					minlength : "El nombre debe tener un mínimo de 3 caracteres",
+					maxlength : "El máximo deben ser 50 caracteres", 
+                },
+ 		errorElement: "em",
+       	errorPlacement: function (error, element) {
+          // Add the `help-block` class to the error element
+          error.addClass("help-block"); 
+       	},
+       	highlight: function ( element, errorClass, validClass ) {
+          $( element ).parents( ".col-sm-10" ).addClass( "has-error" ).removeClass( "has-success" );
+       	},
+       	unhighlight: function (element, errorClass, validClass) {
+          $( element ).parents( ".col-sm-10" ).addClass( "has-success" ).removeClass( "has-error" );  
+       	} 
+	}
+  	});
+
+
 
 /*  evento al presionar modificar el registro*/
     $('#btnModificarEnfermedad').click(function(e){
         var codigoEnfermedad = $('#codigoEnfermedadMod').val();
         var nombreEnfermedad = $('#nombreEnfermedadMod').val().toUpperCase();
 
- 		if ($('#nombreEnfermedadMod').val().trim().length == 0) {
-			 toastr.error("El nombre de la enfermedad no puede ser nulo");
-			 e.preventDefault();
+	if (validar_formularioMod.form()) //asi se comprueba si el form esta validado o no
+    	{      
+	        $.ajax({
+	            url: 'EnfSistemicaServlet.do',
+	            method: 'post',
+	            data: {
+	                accion: 'MODIFICAR',
+	                codigoEnfermedad: codigoEnfermedad,
+	                nombreEnfermedad: nombreEnfermedad,
+	            },
+	            success: function(response) {
+	                if (response.success){
+		                $('#modificarEnfermedadModal').modal('hide');
+		                $('#codigoEnfermedadMod').val("")
+		                $('#nombreEnfermedadMod').val("")	
+	                    toastr.success("Se modifico con exito la enfermedad");
+	                    getListadoEnfermedades();
+	                } else {
+	                    toastr.error(response.error);
+	                }
+	            }
+	        });
+		} else {
+			e.preventDefault();
 		}
-		else 
-		{
-        $.ajax({
-            url: 'EnfSistemicaServlet.do',
-            method: 'post',
-            data: {
-                accion: 'MODIFICAR',
-                codigoEnfermedad: codigoEnfermedad,
-                nombreEnfermedad: nombreEnfermedad,
-            },
-            success: function(response) {
-                if (response.success){
-	                $('#modificarEnfermedadModal').modal('hide');
-	                $('#codigoEnfermedadMod').val("")
-	                $('#nombreEnfermedadMod').val("")	
-                    toastr.success("Se modifico con exito la enfermedad");
-                    getListadoEnfermedades();
-                } else {
-                    toastr.error(response.error);
-                }
-            }
-        });
-	 }
-	e.preventDefault();
     });
 
 	

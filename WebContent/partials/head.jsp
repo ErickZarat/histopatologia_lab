@@ -15,6 +15,8 @@
     <link rel="stylesheet" href="assets/css/custom.css">
     <link rel="stylesheet" href="assets/css/cdnjs/bootstrap-datepicker3.min.css">
     <link rel="stylesheet" href="assets/css/messenger/messenger.css">
+	<link rel="stylesheet" href="assets/css/messenger/messenger-theme-air.css" >
+	<link rel="stylesheet" href="assets/css/messenger/messenger-theme-flat.css" >
 	<link rel="stylesheet" href="assets/css/messenger/messenger-theme-future.css" >
 	<link rel="stylesheet" href="assets/css/select2.min.css" >
 

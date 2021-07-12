@@ -153,7 +153,13 @@ jQuery.validator.setDefaults({
 
     $('#btnCancelAgregarPaciente').click(function(){
         $("#CreaPacienteFormModal")[0].reset();
+		$('#agregarPacienteModal label.error').hide();
     });
 
+
+	// funcion al cerrar el modal de crear 
+	 $("#agregarPacienteModal").on('hidden.bs.modal', function () {
+		$('#agregarPacienteModal label.error').hide();
+    });
 
 })

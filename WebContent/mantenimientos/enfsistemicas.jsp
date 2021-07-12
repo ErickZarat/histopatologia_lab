@@ -49,14 +49,16 @@
                 </button>
             </div>
             <div class="modal-body">
-                <table style="width: 716px; ">
-                    <tr>
-                        <td style="width: 132px; "><label for="nombreEnfermedad" class="col-sm-4 col-form-label">Nombre Enfermedad:</label></td>
-                        <td style="width: 350px; ">
-                            <input type="text" class="form-control" id="nombreEnfermedad" style="width: 320px;" placeholder="Nombre Enfermedad">
-                        </td>
-                    </tr>
-                </table>
+              <form role="form" id="CrearFormEnfSistemicaModal" name="CrearFormEnfSistemicaModal">  
+	                <table >
+	                    <tr>
+	                        <td style="width: 132px; "><label for="nombreEnfermedad" class="col-sm-4 col-form-label">Nombre Enfermedad:</label></td>
+	                        <td style="width: 350px; ">
+	                            <input type="text" class="form-control" id="nombreEnfermedad" name="nombreEnfermedad" style="width: 320px;" placeholder="Nombre Enfermedad">
+	                        </td>
+	                    </tr>
+	                </table>
+                </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" id="btnCancelAgregarEnfermedad" data-dismiss="modal">Cancelar</button>
@@ -77,6 +79,7 @@
                 </button>
             </div>
             <div class="modal-body">
+            <form role="form" id="ModifFormEnfSistemicaModal" name="ModifFormEnfSistemicaModal">              
                 <table>
                     <tr>
                         <td><label for="codigoEnfermedadMod" class="col-sm-4 col-form-label">Codigo:</label></td>
@@ -87,13 +90,14 @@
                     <tr>
                         <td style="width: 161px; "><label for="nombreEnfermedadMod" class="col-sm-4 col-form-label">Nombre Enfermedad:</label></td>
                         <td>
-                            <input type="text" class="form-control" id="nombreEnfermedadMod" placeholder="Nombre Enfermedad">
+                            <input type="text" class="form-control" name="nombreEnfermedadMod" id="nombreEnfermedadMod"  placeholder="Nombre Enfermedad">
                         </td>
                     </tr>
                 </table>
+              </form>  
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" id="btnCancelModifEnfermedad">Cancelar</button>
                 <button type="button" class="btn btn-primary" id="btnModificarEnfermedad">Modificar</button>
             </div>
         </div>

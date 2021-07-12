@@ -301,5 +301,5 @@
 
 
 <%@include file="../partials/footer.jsp"%>
-<script src="assets/js/mantenimientos/pacientes2.js"></script>
+<script src="assets/js/mantenimientos/pacientes.js"></script>
 

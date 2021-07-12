@@ -30,19 +30,19 @@
                     <tr>
                         <td ><label for="paswordAnterior" class="col-sm-4 col-form-label">Contraseña Anterior:</label></td>
                         <td >
-                            <input type="password" class="form-control validate" id="passwordAnterior" style="width: 320px;" placeholder="Contraseña Actual">
+                            <input type="password" class="form-control validate" id="passwordAnterior" name="passwordAnterior" style="width: 320px;" placeholder="Contraseña Actual" required>
                         </td>
                     </tr>
  					<tr>
                         <td ><label for="nuevoPassword" class="col-sm-4 col-form-label">Nueva Contraseña:</label></td>
                         <td >
-                            <input type="password" class="form-control validate" id="nuevoPassword" style="width: 320px;" placeholder="Nueva Contraseña">
+                            <input type="password" class="form-control validate" id="nuevoPassword" name="nuevoPassword" style="width: 320px;" placeholder="Nueva Contraseña" required>
                         </td>
                     </tr>                    
  					<tr>
                         <td ><label for="confirNuevoPassword" class="col-sm-4 col-form-label">Confirmar Contraseña:</label></td>
                         <td >
-                            <input type="password" class="form-control validate" id="confirNuevoPassword" style="width: 320px;" placeholder="Confirmar Nueva Contraseña">
+                            <input type="password" class="form-control validate" id="confirNuevoPassword" name="confirNuevoPassword" style="width: 320px;" placeholder="Confirmar Nueva Contraseña" required>
                         </td>
                     </tr>                    
                 </table>

@@ -5,6 +5,87 @@ $(document).ready(function(e) {
     pacientesTable.rows().remove().draw(false);  
 
 	getListadoPacientes(); 
+	
+	
+	jQuery.validator.setDefaults({
+  		debug: true,
+  		success: "valid"
+	});
+	
+	$.validator.addMethod("telefonoFormato", function(value, element) {
+                return this.optional(element) || /^\d{7,14}$/i.test(value);
+	}, "El telefono ingresado es inválido.");
+	
+	$.validator.addMethod("emailFormato", function(value, element) {
+                return this.optional(element) || /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/i.test(value);
+	}, "El correo es inválido.");
+	
+	$.validator.addMethod("formatoFecha", function(value, element) {
+                return this.optional(element) || /^(0[1-9]|1\d|2\d|3[01])\/(0[1-9]|1[0-2])\/(19|20)\d{2}$/i.test(value);
+	}, "La fecha es inválida.");
+	
+	var validar_formulario = $("#CreaPacienteFormModal").validate({
+ 	rules :{
+                nombresPaciente : { required : true, minlength : 3, maxlength : 50  },
+                apellidosPaciente : { required : true, minlength : 3, maxlength : 30 },
+				direccionPaciente: { required : true, minlength : 3, maxlength : 250 }, 
+				numIdPaciente:  { required : false},
+                telPaciente : { required : false, telefonoFormato :true, minlength : 7, maxlength : 14 },
+				emailPaciente : { required : false, emailFormato :true, minlength : 7, maxlength : 50 },
+                fecNacimientoPaciente : { required : true, formatoFecha :true },
+				numIdPaciente:  { required : false,  maxlength : 14 },
+				ocupacionPaciente:  { required : false,  maxlength : 50 },
+				numFichaPaciente : { required : true, minlength : 2, maxlength : 25 },							
+            },
+            messages : {
+                nombresPaciente : {
+                    required : "Debe ingresar al menos un nombre ",
+ 					minlength : "El nombre debe tener un mínimo de 3 caracteres",
+					maxlength : "El máximo deben ser 50 caracteres"
+                },
+                apellidosPaciente : {
+                    required : "Debe ingresar un apellido",
+                    minlength : "El apellido debe tener un mínimo de 3 caracteres",
+                    maxlength : "El máximo deben ser 30 caracteres"
+                },
+                direccionPaciente : {
+                    required : "Debe ingresar una dirección",
+                    minlength : "Debe ingresar un valor para la dirección"
+                },
+                telPaciente : {
+                    required : "Debe ingresar el teléfono",
+                    minlength : "EL telefono debe tener un mínimo de 7 dígitos"
+                },
+                emailPaciente : {
+                    required : "Debe ingresar el email",
+                    minlength : "El email es incorrecto"
+                },
+                fecNacimientoPaciente : {
+                    required : "Fecha de nacimiento requerida",
+                    minlength : "La fecha de nacimiento debe ser válida"
+                },
+                numIdPaciente : {
+                    required : "Debe ingresar el número de identificación",
+                    minlength : "El número de identificación es inválido"
+                },
+                numFichaPaciente : {
+                    required : "Debe ingresar si el paciente posee ficha",
+                    minlength : "Debe ingresar un valor"
+                },
+ 		errorElement: "em",
+       	errorPlacement: function (error, element) {
+          // Add the `help-block` class to the error element
+          error.addClass("help-block"); 
+       	},
+       	highlight: function ( element, errorClass, validClass ) {
+          $( element ).parents( ".col-sm-10" ).addClass( "has-error" ).removeClass( "has-success" );
+       	},
+       	unhighlight: function (element, errorClass, validClass) {
+          $( element ).parents( ".col-sm-10" ).addClass( "has-success" ).removeClass( "has-error" );  
+       	} 
+	}
+  	});
+	
 
     $('#btnAgregarPaciente').click(function(e){
         var idPaciente = $('#numIdPaciente').val().trim().toUpperCase();
@@ -19,59 +100,43 @@ $(document).ready(function(e) {
 		var emailPaciente = $('#emailPaciente').val().trim();
 		var estCivilPaciente = $('#estadoCivilPacienteSearch').val();
 		var numficha		= $('#numFichaPaciente').val().trim();
-				
 
-		if ($('#nombresPaciente').val().trim() == "" || $('#apellidosPaciente').val().trim() == "") {
-			 toastr.error("Debe ingresar por lo menos un nombre y un apellido del paciente");
-			 e.preventDefault(); 
+ 		if (validar_formulario.form()) //asi se comprueba si el form esta validado o no
+    	{       
+			 $.ajax({
+            url: 'PacienteServlet.do',
+            method: 'post',
+            data: {
+                accion: 'CREAR',
+                identificacionPaciente: idPaciente,
+				nomPaciente: nomPaciente,
+				apellidosPaciente: apellidosPaciente,
+				dirPaciente: dirPaciente,
+				telPaciente: telPaciente,
+				fecNacimiento: fecNacimiento,
+				generoPaciente: generoPaciente,	
+				ocupacionPaciente: ocupacionPaciente,	
+				tipoIdPaciente: tipoIdPaciente,	
+				emailPaciente: emailPaciente,		
+				estadoCivilPaciente: estCivilPaciente,		
+				numficha : numficha,				
+            },
+            success: function(data) {
+
+                if (data.success){
+	                $('#agregarPacienteModal').modal('hide');
+					$("#CreaPacienteFormModal")[0].reset();				
+                    toastr.success("Se agregó con éxito el paciente");
+                    getListadoPacientes();
+                } else {
+                    toastr.error(data.error);
+					e.preventDefault();
+                }
+            }
+        })
 		} else {
-			if ($('#direccionPaciente').val().trim().length == 0) {
-				toastr.error("Debe ingresar una dirección para el paciente");
-			 	e.preventDefault(); 
-			} else {
-				if ($('#fecNacimientoPaciente').val().trim().length == 0) {
-					toastr.error("Debe ingresar una fecha de nacimiento para el paciente");
-			 		e.preventDefault(); 	
-				} else {
-					if   ( ($('#emailPaciente').val().trim().length != 0) == (!(validarEmail(emailPaciente))))  {
-						toastr.error("El formato del correo del paciente no es correcto");
-				 		e.preventDefault(); 						
-					} else {	
-							 $.ajax({
-				            url: 'PacienteServlet.do',
-				            method: 'post',
-				            data: {
-				                accion: 'CREAR',
-				                identificacionPaciente: idPaciente,
-								nomPaciente: nomPaciente,
-								apellidosPaciente: apellidosPaciente,
-								dirPaciente: dirPaciente,
-								telPaciente: telPaciente,
-								fecNacimiento: fecNacimiento,
-								generoPaciente: generoPaciente,	
-								ocupacionPaciente: ocupacionPaciente,	
-								tipoIdPaciente: tipoIdPaciente,	
-								emailPaciente: emailPaciente,		
-								estadoCivilPaciente: estCivilPaciente,		
-								numficha : numficha,				
-				            },
-				            success: function(data) {
-	
-				                if (data.success){
-					                $('#agregarPacienteModal').modal('hide');
-		 							$("#CreaPacienteFormModal")[0].reset();				
-				                    toastr.success("Se agregó con exito el paciente");
-				                    getListadoPacientes()
-				                } else {
-				                    toastr.error(data.error)
-				                }
-				            }
-				        })
-					}
-				}
-			}
-	  	}
-	e.preventDefault();
+			e.preventDefault();
+		}
     });
 
 
@@ -150,43 +215,38 @@ $(document).ready(function(e) {
 		return StrFecha;
 	} 
 	
-	function validarEmail(email) { 
-		    var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-		    return re.test(email);
-		} 
-
 
    function setPacienteDataModificar(){	
 	 var codPaciente =  $(this).data('codigo-paciente'); 
-               var datos = {
-					"accion": 'BUSCAR',
-					"codPaciente": codPaciente
-				};
-				$.post('PacienteServlet.do', datos, callback2, 'json');
+       var datos = {
+			"accion": 'BUSCAR',
+			"codPaciente": codPaciente
+		};
+		$.post('PacienteServlet.do', datos, callback2, 'json');
 
 
-				function callback2(respuesta) {
-				if(respuesta.data)
-					{   //console.log(respuesta.data); // codigoPacienteMod
-						$('#codigoPacienteMod').val(codPaciente);
-						$('#nombresPacienteMod').val(respuesta.data.nombrePaciente);	
-						$('#apellidosPacienteMod').val(respuesta.data.apellidosPaciente);	
-						$('#direccionPacienteMod').val(respuesta.data.direccionPaciente); 
-						$('#telefonoPacienteMod').val(respuesta.data.telefonoPaciente);
-						$('#fecNacimientoPacienteMod').val(convertirfecha(respuesta.data.fecNacimientoPaciente));
-        				$('#generoPacienteMod').val( respuesta.data.generoPaciente);
-        				$('#ocupacionPacienteMod').val(respuesta.data.ocupacionPaciente);
-						$('#tipoIdPacienteMod').val(respuesta.data.tipoidPaciente);
-						$('#numIdPacienteMod').val(respuesta.data.identificacionPaciente);
-						$('#emailPacienteMod').val(respuesta.data.emailPaciente);
-						$('#estCivilPacienteMod').val(respuesta.data.estCivilPaciente);	
-						$('#numFichaPacienteMod').val(respuesta.data.num_ficha);
-															
-			    	}
-			 	else 
-					{
-					 toastr.error(respuesta.error);
-					}
+		function callback2(respuesta) {
+		if(respuesta.data)
+			{   
+				$('#codigoPacienteMod').val(codPaciente);
+				$('#nombresPacienteMod').val(respuesta.data.nombrePaciente);	
+				$('#apellidosPacienteMod').val(respuesta.data.apellidosPaciente);	
+				$('#direccionPacienteMod').val(respuesta.data.direccionPaciente); 
+				$('#telefonoPacienteMod').val(respuesta.data.telefonoPaciente);
+				$('#fecNacimientoPacienteMod').val(convertirfecha(respuesta.data.fecNacimientoPaciente));
+				$('#generoPacienteMod').val( respuesta.data.generoPaciente);
+				$('#ocupacionPacienteMod').val(respuesta.data.ocupacionPaciente);
+				$('#tipoIdPacienteMod').val(respuesta.data.tipoidPaciente);
+				$('#numIdPacienteMod').val(respuesta.data.identificacionPaciente);
+				$('#emailPacienteMod').val(respuesta.data.emailPaciente);
+				$('#estCivilPacienteMod').val(respuesta.data.estCivilPaciente);	
+				$('#numFichaPacienteMod').val(respuesta.data.num_ficha);
+													
+	    	}
+	 	else 
+			{
+			 toastr.error(respuesta.error);
+			}
          
     }
    }
@@ -195,13 +255,91 @@ $(document).ready(function(e) {
     $('#btnCancelAgregarPaciente').click(function(){
          getListadoPacientes();
  		 $("#CreaPacienteFormModal")[0].reset();
+		 $('#agregarPacienteModal label.error').hide();
     });
 	
 	
     $('#btnCancelModifPaciente').click(function(){
- 		 $("#ModFormPacienteModal")[0].reset();
+ 		$("#ModFormPacienteModal")[0].reset();
+		$('#modificarPacienteModal label.error').hide();
     });
 	
+		
+	// funcion al cerrar el modal de crear 
+	 $("#agregarPacienteModal").on('hidden.bs.modal', function () {
+		$('#agregarPacienteModal label.error').hide();
+    });
+	
+		// funcion al cerrar el modal de modificar 
+	 $("#modificarPacienteModal").on('hidden.bs.modal', function () {
+		$('#modificarPacienteModal label.error').hide();
+    });
+	
+
+	var validar_formularioMod = $("#ModFormPacienteModal").validate({
+ 	rules :{
+                nombresPacienteMod : { required : true, minlength : 3, maxlength : 50  },
+                apellidosPacienteMod : { required : true, minlength : 3, maxlength : 30 },
+				direccionPacienteMod: { required : true, minlength : 3, maxlength : 250 }, 
+				numIdPacienteMod:  { required : false},
+                telefonoPacienteMod : { required : false, telefonoFormato :true, minlength : 7, maxlength : 14 },
+				emailPacienteMod : { required : false, emailFormato :true, minlength : 7, maxlength : 50 },
+                fecNacimientoPacienteMod : { required : true, formatoFecha :true },
+				numIdPaciente:  { required : false,  maxlength : 14 },
+				ocupacionPacienteMod:  { required : false,  maxlength : 50 },
+				numFichaPacienteMod : { required : true, minlength : 2, maxlength : 25 },							
+            },
+            messages : {
+                nombresPacienteMod : {
+                    required : "Debe ingresar al menos un nombre ",
+ 					minlength : "El nombre debe tener un mínimo de 3 caracteres",
+					maxlength : "El máximo deben ser 50 caracteres"
+                },
+                apellidosPacienteMod : {
+                    required : "Debe ingresar un apellido",
+                    minlength : "El apellido debe tener un mínimo de 3 caracteres",
+                    maxlength : "El máximo deben ser 30 caracteres"
+                },
+                direccionPacienteMod : {
+                    required : "Debe ingresar una dirección",
+                    minlength : "Debe ingresar un valor para la dirección"
+                },
+                telefonoPacienteMod : {
+                    required : "Debe ingresar el teléfono",
+                    minlength : "EL telefono debe tener un mínimo de 7 dígitos"
+                },
+                emailPacienteMod : {
+                    required : "Debe ingresar el email",
+                    minlength : "El email es incorrecto"
+                },
+                fecNacimientoPacienteMod : {
+                    required : "Fecha de nacimiento requerida",
+                    minlength : "La fecha de nacimiento debe ser válida"
+                },
+                numIdPacienteMod : {
+                    required : "Debe ingresar el número de identificación",
+                    minlength : "El número de identificación es inválido"
+                },
+                numFichaPacienteMod : {
+                    required : "Debe ingresar si el paciente posee ficha",
+                    minlength : "Debe ingresar un valor"
+                },
+ 		errorElement: "em",
+       	errorPlacement: function (error, element) {
+          // Add the `help-block` class to the error element
+          error.addClass("help-block"); 
+       	},
+       	highlight: function ( element, errorClass, validClass ) {
+          $( element ).parents( ".col-sm-10" ).addClass( "has-error" ).removeClass( "has-success" );
+       	},
+       	unhighlight: function (element, errorClass, validClass) {
+          $( element ).parents( ".col-sm-10" ).addClass( "has-success" ).removeClass( "has-error" );  
+       	} 
+	}
+  	});
+	
+
+
 
     $('#btnModificarPaciente').click(function(e){
         var codPaciente = $('#codigoPacienteMod').val();
@@ -217,75 +355,45 @@ $(document).ready(function(e) {
 		var estCivilPaciente = $('#estCivilPacienteMod').val();
 		var numIdPaciente =  $('#numIdPacienteMod').val();
 		var numficha		= $('#numFichaPacienteMod').val().trim();
-		alert(numficha); 
-		
 
-
-		if ($('#nombresPacienteMod').val().trim() == "" || $('#apellidosPacienteMod').val().trim() == "") {
-			 toastr.error("Debe ingresar por lo menos un nombre y un apellido del paciente");
-			 e.preventDefault(); 
+	if (validar_formularioMod.form()) //asi se comprueba si el form esta validado o no
+    	{       
+	        $.ajax({
+	            url: 'PacienteServlet.do',
+	            method: 'post',
+	            data: {
+	                accion: 'MODIFICAR',
+	                codPaciente: codPaciente,
+	                nomPaciente: nomPaciente,
+					apellidosPaciente: apellidosPaciente,
+					dirPaciente: dirPaciente,
+					tipIdPaciente: tipoIdPaciente,
+					numIdPaciente: numIdPaciente, 
+					telPaciente: telPaciente,
+					ocupacionPaciente: ocupacionPaciente,
+					emailPaciente: emailPaciente,
+					generoPaciente: generoPaciente,
+					estCivilPaciente: estCivilPaciente,
+					fecNacimiento: fecNacimiento,
+					numficha: numficha,
+	            },
+	            success: function(respuesta) {
+	                if (respuesta.success){
+		               	$('#modificarPacienteModal').modal('hide');
+						$("#ModFormPacienteModal")[0].reset();				
+                    	toastr.success("Se modificó con éxito el Paciente");
+                    	getListadoPacientes();			
+	                } else {
+						
+	                    toastr.error(respuesta.error);
+	                }
+	            }
+	        });
 		} else {
-			if ($('#direccionPacienteMod').val().trim().length == 0) {
-				toastr.error("Debe ingresar una dirección para el paciente");
-			 	e.preventDefault(); 
-			} else {
-				if ($('#fecNacimientoPacienteMod').val().trim().length == 0) {
-					toastr.error("Debe ingresar una fecha de nacimiento para el paciente");
-			 		e.preventDefault(); 	
-				} else {
-					if ( ($('#emailPacienteMod').val().trim().length != 0) == (!(validarEmail(emailPaciente))))  {
-						toastr.error("El formato del correo del paciente no es correcto");
-				 		e.preventDefault(); 						
-					} else {	
-
-				        $.ajax({
-				            url: 'PacienteServlet.do',
-				            method: 'post',
-				            data: {
-				                accion: 'MODIFICAR',
-				                codPaciente: codPaciente,
-				                nomPaciente: nomPaciente,
-								apellidosPaciente: apellidosPaciente,
-								dirPaciente: dirPaciente,
-								tipIdPaciente: tipoIdPaciente,
-								numIdPaciente: numIdPaciente, 
-								telPaciente: telPaciente,
-								ocupacionPaciente: ocupacionPaciente,
-								emailPaciente: emailPaciente,
-								generoPaciente: generoPaciente,
-								estCivilPaciente: estCivilPaciente,
-								fecNacimiento: fecNacimiento,
-								numficha: numficha,
-				            },
-				            success: function(respuesta) {
-				                $('#modificarPacienteModal').modal('hide');
-				 				$('#nombresPacienteMod').val("");
-								$('#apellidosPacienteMod').val("");
-								$('#direccionPacienteMod').val("");
-								$('#telefonoPacienteMod').val("");
-								$('#fecNacimientoPacienteMod').val("");
-								$('#generoPacienteMod').val("");
-								$('#ocupacionPacienteMod').val("");
-								$('#tipoIdPacienteMod').val("");
-								$('#numIdPacienteMod').val("");
-								$('#emailPacienteMod').val("");
-								$('#estCivilPacienteMod').val("");
-								$('#numFichaPacienteMod').val("");
-				                if (respuesta.success){
-				                    toastr.success("Se modificó con éxito el Paciente");
-				                    getListadoPacientes();
-				                } else {
-									
-				                    toastr.error(respuesta.error);
-				                }
-				            }
-				        });
-					}
-				}
-			}
-	  	}
-	e.preventDefault();
+			e.preventDefault();
+		}
     });
+
 
     $('#btnDarBajaPaciente').click(function(){
         var codigoUsuario = $('#codigoUsuarioBaja').text();

@@ -2,6 +2,7 @@ package histopatologialab.tipopcionlesion.controller;
 
 import histopatologialab.core.Estado;
 import histopatologialab.core.JsonResponse;
+import histopatologialab.enfsistemica.dto.EnfSistemica;
 import histopatologialab.tipopcionlesion.dao.IOpcionLesionDao;
 import histopatologialab.tipopcionlesion.dto.OpcionLesion;
 
@@ -21,10 +22,18 @@ public class OpcionLesionControllerImpl implements IOpcionLesionController {
 	
     @Override
     public JsonResponse<OpcionLesion> crearOpcionLesion(String nombre, String valor, String usuario) {
-    	  try {
+    	  try {    		  
+    		  OpcionLesion tipOpcionLesionExiste = opcionLesionDao.getOpcionByTipoYValor(nombre, valor); 
+    		  
+    		if (!(tipOpcionLesionExiste == null)) {  
+    			System.out.println ("repetido " + valor );
+          		return new JsonResponse<>( false, null, "El valor del tipo de opción ingresado, ya existe");
+          		}
+  	        else {    		  
     		  OpcionLesion tipopcionlesion = new OpcionLesion(0, nombre, valor,  Estado.HABILITADO.getSlug(), usuario, LocalDate.now(), null, null);
     		  tipopcionlesion = opcionLesionDao.guardarOpcionLesion(tipopcionlesion);
     		  return new JsonResponse<>(tipopcionlesion != null, tipopcionlesion);
+  	        	}
           } catch (Exception e) {
         	  return new JsonResponse<>(false, null, e.getMessage());
           }
@@ -33,13 +42,24 @@ public class OpcionLesionControllerImpl implements IOpcionLesionController {
     @Override
     public JsonResponse<OpcionLesion> modificarOpcionLesion(int codigo, String nombre, String valor, String usuario) {
     	try {
-    		OpcionLesion tipopcionlesion = opcionLesionDao.getOpcion(codigo);
-    		tipopcionlesion.setNombreOpcion(nombre);
-    		tipopcionlesion.setValor(valor);
-    		tipopcionlesion.setModificadoPor(usuario);
-    		tipopcionlesion.setFechaModificacion(LocalDate.now());
-    		tipopcionlesion = opcionLesionDao.modificarOpcionLesion(tipopcionlesion);
-            return new JsonResponse<>(tipopcionlesion != null, tipopcionlesion);
+    		
+    		OpcionLesion tipOpcionLesionExiste = opcionLesionDao.getOpcionByTipoYValor(nombre, valor); 
+   		  
+     		if (tipOpcionLesionExiste == null) {
+	     		OpcionLesion tipopcionlesion = opcionLesionDao.getOpcion(codigo);
+	    		tipopcionlesion.setNombreOpcion(nombre);
+	    		tipopcionlesion.setValor(valor);
+	    		tipopcionlesion.setModificadoPor(usuario);
+	    		tipopcionlesion.setFechaModificacion(LocalDate.now());
+	    		tipopcionlesion = opcionLesionDao.modificarOpcionLesion(tipopcionlesion);
+	            return new JsonResponse<>(tipopcionlesion != null, tipopcionlesion);
+     		} else  { // si existe, se valida que sea el mismo codigo        		
+        		if (codigo != tipOpcionLesionExiste.getCodigoOpcion())
+        		{	return new JsonResponse<OpcionLesion>(false, null, "El valor para el tipo de opción ingresado, ya existe");
+        		} else {
+        			return new JsonResponse<>( false, null, "No ha realizado cambios al valor");
+        		}  
+     		}     		
         } catch (Exception e) {
         	return new JsonResponse<>(false, null, e.getMessage());
         }

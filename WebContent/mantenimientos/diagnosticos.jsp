@@ -49,14 +49,16 @@
                 </button>
             </div>
             <div class="modal-body">
-                <table style="width: 716px; ">
+            <form role="form" id="CrearFormDiagnosticoModal" name="CrearFormDiagnosticoModal">            
+                <table >
                     <tr>
                         <td style="width: 132px; "><label for="nombreDiagnostico" class="col-sm-4 col-form-label">Nombre Diagnostico:</label></td>
                         <td style="width: 350px; ">
-                            <input type="text" class="form-control" id="nombreDiagnostico" style="width: 320px; " placeholder="Nombre Diagnostico">
+                            <input type="text" class="form-control" id="nombreDiagnostico" name="nombreDiagnostico" style="width: 320px; " placeholder="Nombre Diagnostico">
                         </td>
                     </tr>
                 </table>
+               </form> 
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" id="btnCancelAgregarDiagnostico" data-dismiss="modal">Cancelar</button>
@@ -77,6 +79,7 @@
                 </button>
             </div>
             <div class="modal-body">
+ 				<form role="form" id="ModifFormDiagnosticoModal" name="ModifFormDiagnosticoModal">              
                 <table>
                     <tr>
                         <td><label for="codigoDiagnosticoMod" class="col-sm-4 col-form-label">Codigo:</label></td>
@@ -87,13 +90,14 @@
                     <tr>
                         <td style="width: 161px; "><label for="nombreDiagnosticoMod" class="col-sm-7 col-form-label">Nombre Diagnostico:</label></td>
                         <td>
-                            <input type="text" class="form-control" id="nombreDiagnosticoMod" placeholder="Nombre Diagnostico">
+                            <input type="text" class="form-control" id="nombreDiagnosticoMod" name="nombreDiagnosticoMod" placeholder="Nombre Diagnostico">
                         </td>
                     </tr>
                 </table>
+                </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-secondary" id="btnCancelModifDiagnostico" data-dismiss="modal">Cancelar</button>
                 <button type="button" class="btn btn-primary" id="btnModificarDiagnostico">Modificar</button>
             </div>
         </div>
