@@ -33,9 +33,7 @@
 
         <div class="action-container left-padding-align">
             <!-- Button trigger modal -->
-            <c:if test="!roleHandler.isNormal()">
                 <button type="button" class="btn btn-light" data-toggle="modal" data-target="#agregarMedicamentoModal" id="agregarMedicamentoModalBtn" disabled>Agregar <i class="fas fa-plus"></i></button>
-            </c:if>
         </div>
 
         <table class="table table-striped w-50 left-margin-align" id="medicamentosTable">
@@ -97,6 +95,7 @@
                 </button>
             </div>
             <div class="modal-body">
+  			<form role="form" id="CrearFormPresentacionModal" name="CrearFormPresentacionModal">               
                 <input type="hidden" class="form-control" id="codigoMedicamentoPresentacion"  name="codigoMedicamentoPresentacion">
                 <table>
                     <tr>
@@ -113,9 +112,10 @@
                     </tr>
 
                 </table>
+                </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-secondary"  id="cancelAddPresentacionBtn" data-dismiss="modal">Cancelar</button>
                 <button type="button" class="btn btn-primary" id="agregarPresentacionBtn">Agregar</button>
             </div>
         </div>
@@ -134,6 +134,7 @@
                 </button>
             </div>
             <div class="modal-body">
+  			<form role="form" id="ModifFormPresentacionModal" name="ModifFormPresentacionModal">                 
                 <table>
                     <tr>
                         <td><label for="codigoMedicamentoPresentacion" class="col-sm-4 col-form-label">Codigo medicamento:</label></td>
@@ -144,20 +145,21 @@
                     <tr>
                         <td><label for="tipoPresentacion" class="col-sm-4 col-form-label">Tipo presentacion:</label></td>
                         <td>
-                            <input type="text" class="form-control" id="tipoPresentacionCurrentMod"  name="tipoPresentacionCurrent" disabled>
+                            <input type="text" class="form-control" id="tipoPresentacionCurrentMod"  name="tipoPresentacionCurrentMod" disabled>
                         </td>
                     </tr>
                     <tr>
                         <td><label for="tipoPresentacion" class="col-sm-4 col-form-label">Tipo presentacion:</label></td>
                         <td>
-                            <input type="text" class="form-control" id="tipoPresentacionMod"  name="tipoPresentacion">
+                            <input type="text" class="form-control" id="tipoPresentacionMod"  name="tipoPresentacionMod">
                         </td>
                     </tr>
 
                 </table>
+                </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-secondary" id="cancelModPresentacionBtn" data-dismiss="modal">Cancelar</button>
                 <button type="button" class="btn btn-primary" id="modificarPresentacionBtn">Modificar</button>
             </div>
         </div>
@@ -175,17 +177,19 @@
                 </button>
             </div>
             <div class="modal-body">
+				<form role="form" id="AddMedicamentoFormModal" name="AddMedicamentoFormModal">              
                 <table>
                     <tr>
                         <td><label for="nombreMedicamento" class="col-sm-4 col-form-label">Nombre Medicamento:</label></td>
                         <td>
-                            <input type="text" class="form-control" id="nombreMedicamento">
+                            <input type="text" class="form-control" id="nombreMedicamento" name="nombreMedicamento">
                         </td>
                     </tr>
                 </table>
+                </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-secondary" id="btnCancelAddMedicamento" data-dismiss="modal">Cancelar</button>
                 <button type="button" class="btn btn-primary" id="btnAgregarMedicamento">Agregar</button>
             </div>
         </div>
@@ -203,23 +207,25 @@
                 </button>
             </div>
             <div class="modal-body">
+				<form role="form" id="ModMedicamentoFormModal" name="ModMedicamentoFormModal">               
                 <table>
                     <tr>
                         <td><label for="codigoMedicamentoMod" class="col-sm-4 col-form-label">Codigo:</label></td>
                         <td>
-                            <input type="text" class="form-control" id="codigoMedicamentoMod" disabled>
+                            <input type="text" class="form-control" id="codigoMedicamentoMod"  name="codigoMedicamentoMod" disabled>
                         </td>
                     </tr>
                     <tr>
                         <td><label for="nombreMedicamentoMod" class="col-sm-4 col-form-label">Nombre Medicamento:</label></td>
                         <td>
-                            <input type="text" class="form-control" id="nombreMedicamentoMod">
+                            <input type="text" class="form-control" id="nombreMedicamentoMod" name="nombreMedicamentoMod" >
                         </td>
                     </tr>
                 </table>
+                </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-secondary" id="btnCancelModMedicamento" data-dismiss="modal">Cancelar</button>
                 <button type="button" class="btn btn-primary" id="btnModificarMedicamento">Modificar</button>
             </div>
         </div>

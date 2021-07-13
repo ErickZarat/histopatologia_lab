@@ -163,7 +163,7 @@ $(document).ready(function() {
 	
 		// funcion al cerrar el modal de modificar 
 	 $("#modificarDiagnosticoModal").on('hidden.bs.modal', function () {
-		$("#modificarDiagnosticoModal")[0].reset();
+		$("#ModifFormDiagnosticoModal")[0].reset();
 		$('#modificarDiagnosticoModal label.error').hide();
     });
 

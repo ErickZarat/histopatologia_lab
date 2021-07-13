@@ -89,7 +89,7 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-secondary" id="btnCancelAddOpcionLesion" data-dismiss="modal">Cancelar</button>
                 <button type="button" class="btn btn-primary" id="btnAgregarOpcionLesion">Agregar</button>
             </div>
         </div>
@@ -125,7 +125,7 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-secondary" id="btnCancelModifOpcionLesion" data-dismiss="modal">Cancelar</button>
                 <button type="button" class="btn btn-primary" id="btnModificarOpcionLesion">Modificar</button>
             </div>
         </div>

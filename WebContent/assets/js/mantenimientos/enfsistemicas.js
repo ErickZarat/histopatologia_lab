@@ -34,10 +34,10 @@ $(document).ready(function() {
           error.addClass("help-block"); 
        	},
        	highlight: function ( element, errorClass, validClass ) {
-          $( element ).parents( ".col-sm-10" ).addClass( "has-error" ).removeClass( "has-success" );
+          $( element ).parents("form-control").addClass( "has-error" ).removeClass( "has-success" );
        	},
        	unhighlight: function (element, errorClass, validClass) {
-          $( element ).parents( ".col-sm-10" ).addClass( "has-success" ).removeClass( "has-error" );  
+          $( element ).parents("form-control").addClass( "has-success" ).removeClass( "has-error" );  
        	} 
 	}
   	});
@@ -141,14 +141,18 @@ $(document).ready(function() {
 
 
     $('#btnCancelAgregarEnfermedad').click(function(){
-         getListadoEnfermedades();
- 		 $("#CrearFormEnfSistemicaModal")[0].reset();
+        getListadoEnfermedades();
+ 		$("#CrearFormEnfSistemicaModal")[0].reset();
+		$("#nombreEnfermedad").removeClass('has-error');
+		//$("#CrearFormEnfSistemicaModal")[0].removeClass('has-error');
 		$('#agregarEnfermedadModal label.error').hide();
     });
 	
 	
     $('#btnCancelModifEnfermedad').click(function(){
- 		 $("#ModifFormEnfSistemicaModal")[0].reset();
+ 		$("#ModifFormEnfSistemicaModal")[0].reset();
+		//$("#ModifFormEnfSistemicaModal")[0].removeClass('has-error');
+		$("#nombreEnfermedadMod").removeClass('has-error');
 		$('#modificarEnfermedadModal label.error').hide();
     });
 	
@@ -156,6 +160,9 @@ $(document).ready(function() {
 	// funcion al cerrar el modal de crear 
 	 $("#agregarEnfermedadModal").on('hidden.bs.modal', function () {
 		$('#agregarEnfermedadModal label.error').hide();
+		$("#nombreEnfermedad").removeClass('has-error');
+		
+	//	$(element).closest('.form-group').removeClass('has-error')
     });
 	
 		// funcion al cerrar el modal de modificar 

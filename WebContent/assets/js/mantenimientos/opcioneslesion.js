@@ -155,6 +155,31 @@ $(document).ready(function() {
 
 
 
+    $('#btnCancelAddOpcionLesion').click(function(){
+         getListadoOpcionLesion();
+		 $('#nombreOpcionLesion').val("")
+		 $('#agregarOpcionLesionModal label.error').hide();
+    });
+
+	// funcion al cerrar el modal de crear 
+	 $("#agregarOpcionLesionModal").on('hidden.bs.modal', function () {
+		$('#agregarOpcionLesionModal label.error').hide();
+    });
+	
+	
+    $('#btnCancelModifOpcionLesion').click(function(){
+		$('#valorOpcionLesionMod').val("")
+		$('#modificarOpcionModal label.error').hide();
+    });
+	
+	// funcion al cerrar el modal de modificar 
+	 $("#modificarOpcionModal").on('hidden.bs.modal', function () {
+		$('#modificarOpcionModal label.error').hide();
+    });
+	
+
+
+
 	var validar_formularioMod = $("#ModifOpcionFormModal").validate({
  	rules :{
                 valorOpcionLesionMod : { required : true, formatoSoloTexto: true,  minlength : 3, maxlength : 20  },
@@ -203,7 +228,7 @@ $(document).ready(function() {
                 $('#codigoOpcionLesionMod').val("")
                 $('#valorOpcionLesionMod').val("")
                 if (response.success){
-                    toastr.success("Se modifico con éxito el Valor de la Opcion");
+                    toastr.success("Se modificó con éxito el Valor de la Opción");
                     getListadoOpcionLesion();
 	                } else {
 	                    toastr.error(response.error);
