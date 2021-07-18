@@ -284,9 +284,6 @@
             <li class="nav-item">
                 <a class="nav-link" data-toggle="tab" href="#tabs-3" role="tab">Receta</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#tabs-4" role="tab">Informe</a>
-            </li>
         </ul><!-- Tab panes -->
         <div class="tab-content">
             <div class="tab-pane active" id="tabs-1" role="tabpanel">
@@ -296,9 +293,6 @@
 
             </div>
             <div class="tab-pane" id="tabs-3" role="tabpanel">
-
-            </div>
-            <div class="tab-pane" id="tabs-4" role="tabpanel">
 
             </div>
         </div>
