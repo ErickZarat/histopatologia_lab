@@ -9,7 +9,10 @@ public enum TipOpcion {
   CONSISTENCIA("CONSISTENCIA","Consistencia de la Lesion"),
   INTRA("INTRAOSEO","Es Intraoseo"),
   PIEZA("PIEZA","Asociado a pieza dental"),
-  PROCEDIMIENTO("PROCEDIMIENTO","Procedimiento Biopsia");
+  PROCEDIMIENTO("PROCEDIMIENTO","Procedimiento Biopsia"),
+  TIPOCIRUGIA("TIPOCIRUGIA","Tipo Cirugia Biopsia"),
+  INSTRUMENTO("INSTRUMENTO", "Instrumento Cirugia");
+  
   
 	private final String codigo;
 	private final String nombre;
