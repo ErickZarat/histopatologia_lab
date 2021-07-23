@@ -6,6 +6,8 @@ import histopatologialab.diagnostico.dao.DiagnosticoDaoImpl;
 import histopatologialab.diagnostico.dao.IDiagnosticoDao;
 import histopatologialab.enfsistemica.dao.EnfSistemicaDaoImpl;
 import histopatologialab.enfsistemica.dao.IEnfSistemicaDao;
+import histopatologialab.biopsia.dao.BiopsiaDaoImpl;
+import histopatologialab.biopsia.dao.IBiopsiaDao;
 import histopatologialab.medicamentos.dao.IMedicamentosDao;
 import histopatologialab.medicamentos.dao.IPresentacionMedicamentosDao;
 import histopatologialab.medicamentos.dao.MedicamentosDaoImpl;
@@ -27,5 +29,5 @@ public class Daos {
     public static IUsuarioDao usuarioDao = new UsuarioDaoImpl();
     public static IDiagnosticoDao diagnosticoDao = new DiagnosticoDaoImpl();
     public static IExamenDao examenDao = new ExamenDaoImpl();
-
+    public static IBiopsiaDao biopsiaDao = new BiopsiaDaoImpl();
 }

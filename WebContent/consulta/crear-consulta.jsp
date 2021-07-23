@@ -9,7 +9,7 @@
 
     <label class="accordion-label" for="paciente-accordion">
         <div class="accordion-title-container">
-                <h1 class="main-tittle">Paciente</h1>
+            <h1 class="main-tittle">Paciente</h1>
         </div>
     </label>
     <input type="checkbox" checked class="accordion" id="paciente-accordion">
@@ -43,6 +43,9 @@
                     <c:if test="${action=='CREAR'}">
                         <td><button id="resetUserForm" class="btn btn-light">X</button></td>
                     </c:if>
+                    <td><label class="table-form-label" for="registroRemision">Remision:</label></td>
+                    <%--                    ${paciente.registroRemision}--%>
+                    <td><input type="text" id="registroRemision" class="form-control" readonly value=""></td>
                 </tr>
             </table>
         </form>
@@ -58,210 +61,210 @@
     <div class="lesion-container container-fluid">
         <form class="align-middle" action="ConsultaServlet.do" method="post">
             <c:if test="${action=='VER'}">
-                <fieldset disabled="disabled">
-            </c:if>
-            <table id="lesion-section">
-                <tr>
-                    <td><label for="numeroExamen">Numero examen:</label></td>
-                    <td><input id="numeroExamen" class="form-control" readonly value="${examen.numExamen}"></td>
-                    <td><label for="fechaExamen">Fecha examen:</label></td>
-                    <td><input id="fechaExamen" class="form-control" readonly value="${fechaExamen}"></td>
-                    <td><label for="estado">Estado:</label></td>
-                    <td><input id="estado" class="form-control" readonly value="${examen.estado}"></td>
-                </tr>
-                <tr>
-                    <td><label class="table-form-label" for="tamano">Tamaño:</label></td>
-                    <td><input type="number" id="tamano" class="form-control" value="${examen.tamanoLesion}"></td>
-                    <td><label class="table-form-label">Cm</label></td>
-                    <td><label class="table-form-label" for="duracionDias">Duracion:</label></td>
+            <fieldset disabled="disabled">
+                </c:if>
+                <table id="lesion-section">
+                    <tr>
+                        <td><label for="numeroExamen">Numero examen:</label></td>
+                        <td><input id="numeroExamen" class="form-control" readonly value="${examen.numExamen}"></td>
+                        <td><label for="fechaExamen">Fecha examen:</label></td>
+                        <td><input id="fechaExamen" class="form-control" readonly value="${fechaExamen}"></td>
+                        <td><label for="estado">Estado:</label></td>
+                        <td><input id="estado" class="form-control" readonly value="${examen.estado}"></td>
+                    </tr>
+                    <tr>
+                        <td><label class="table-form-label" for="tamano">Tamaño:</label></td>
+                        <td><input type="number" id="tamano" class="form-control" value="${examen.tamanoLesion}"></td>
+                        <td><label class="table-form-label">Cm</label></td>
+                        <td><label class="table-form-label" for="duracionDias">Duracion:</label></td>
 
-                    <td colspan="4">
-                        <table>
-                            <tr>
-                                <td><label>Dias: </label></td>
-                                <td><input type="number" id="duracionDias" class="form-control" value="${examen.duracionLesionDias}"></td>
+                        <td colspan="4">
+                            <table>
+                                <tr>
+                                    <td><label>Dias: </label></td>
+                                    <td><input type="number" id="duracionDias" class="form-control" value="${examen.duracionLesionDias}"></td>
 
-                                <td><label class="table-form-label" for="duracionMeses">Meses: </label></td>
-                                <td><input type="number" id="duracionMeses" class="form-control" value="${examen.duracionLesionMeses}"></td>
+                                    <td><label class="table-form-label" for="duracionMeses">Meses: </label></td>
+                                    <td><input type="number" id="duracionMeses" class="form-control" value="${examen.duracionLesionMeses}"></td>
 
-                                <td><label class="table-form-label" for="duracionAnios">Años: </label></td>
-                                <td><input type="number" id="duracionAnios" class="form-control" value="${examen.duracionLesionAnios}"></td>
-                            </tr>
-                        </table>
-                    </td>
-                </tr>
-                <tr>
-                    <td><label class="table-form-label" for="colorLesionSelect">Color:</label></td>
-                    <td>
-                        <select  class="form-control" name="colorLesionSelect" id="colorLesionSelect">
-                            <option value="">Selecciona una opcion</option>
-                            <c:forEach items="${tipoOpcion.COLOR}" var="tipo">
-                                <option value="${tipo.codigoOpcion}" <c:if test='${fn:contains(examen.caracteristicas, tipo.codigoOpcion)}'>selected</c:if>>${tipo.valor}</option>
-                            </c:forEach>
-                        </select>
-                    </td>
-                    <td><label class="table-form-label" for="naturalezaLesionSelect">Naturaleza:</label></td>
-                    <td>
-                        <select  class="form-control" name="naturalezaLesionSelect" id="naturalezaLesionSelect">
-                            <option value="">Selecciona una opcion</option>
-                            <c:forEach items="${tipoOpcion.NATURALEZA}" var="tipo">
-                                <option value="${tipo.codigoOpcion}" <c:if test='${fn:contains(examen.caracteristicas, tipo.codigoOpcion)}'>selected</c:if>>${tipo.valor}</option>
-                            </c:forEach>
-                        </select>
-                    </td>
-                    <td><label class="table-form-label" for="sintomaLesionSelect">Sintomas:</label></td>
-                    <td>
-                        <select  class="form-control" name="sintomaLesionSelect" id="sintomaLesionSelect">
-                            <option value="">Selecciona una opcion</option>
-                            <c:forEach items="${tipoOpcion.SINTOMA}" var="tipo">
-                                <option value="${tipo.codigoOpcion}" <c:if test='${fn:contains(examen.caracteristicas, tipo.codigoOpcion)}'>selected</c:if>>${tipo.valor}</option>
-                            </c:forEach>
-                        </select>
-                    </td>
-                    <td><label class="table-form-label" for="formaLesionSelect">Forma:</label></td>
-                    <td>
-                        <select  class="form-control" name="formaLesionSelect" id="formaLesionSelect">
-                            <option value="">Selecciona una opcion</option>
-                            <c:forEach items="${tipoOpcion.FORMA}" var="tipo">
-                                <option value="${tipo.codigoOpcion}" <c:if test='${fn:contains(examen.caracteristicas, tipo.codigoOpcion)}'>selected</c:if>>${tipo.valor}</option>
-                            </c:forEach>
-                        </select>
-                    </td>
-                </tr>
-                <tr>
-                    <td><label class="table-form-label" for="superficieLesionSelect">Superficie:</label></td>
-                    <td>
-                        <select  class="form-control" name="superficieLesionSelect" id="superficieLesionSelect">
-                            <option value="">Selecciona una opcion</option>
-                            <c:forEach items="${tipoOpcion.SUPERFICIE}" var="tipo">
-                                <option value="${tipo.codigoOpcion}" <c:if test='${fn:contains(examen.caracteristicas, tipo.codigoOpcion)}'>selected</c:if>>${tipo.valor}</option>
-                            </c:forEach>
-                        </select>
-                    </td>
-                    <td><label class="table-form-label" for="consistenciaLesionSelect">Consistencia:</label></td>
-                    <td>
-                        <select  class="form-control" name="consistenciaLesionSelect" id="consistenciaLesionSelect">
-                            <option value="">Selecciona una opcion</option>
-                            <c:forEach items="${tipoOpcion.CONSISTENCIA}" var="tipo">
-                                <option value="${tipo.codigoOpcion}" <c:if test='${fn:contains(examen.caracteristicas, tipo.codigoOpcion)}'>selected</c:if>>${tipo.valor}</option>
-                            </c:forEach>
-                        </select>
-                    </td>
-                    <td><label class="table-form-label" for="esIntaoseoLesionSelect">Intraoseo:</label></td>
-                    <td>
-                        <select  class="form-control" name="esIntaoseoLesionSelect" id="esIntaoseoLesionSelect">
-                            <option value="">Selecciona una opcion</option>
-                            <c:forEach items="${tipoOpcion.INTRAOSEO}" var="tipo">
-                                <option value="${tipo.codigoOpcion}" <c:if test='${fn:contains(examen.caracteristicas, tipo.codigoOpcion)}'>selected</c:if>>${tipo.valor}</option>
-                            </c:forEach>
-                        </select>
-                    </td>
-                </tr>
-                <tr>
-                    <td><label class="table-form-label" for="piezaLesionSelect">Asocia Pieza:</label></td>
-                    <td>
-                        <select  class="form-control" name="piezaLesionSelect" id="piezaLesionSelect">
-                            <option value="">Selecciona una opcion</option>
-                            <c:forEach items="${tipoOpcion.PIEZA}" var="tipo">
-                                <option value="${tipo.codigoOpcion}" <c:if test='${fn:contains(examen.caracteristicas, tipo.codigoOpcion)}'>selected</c:if>>${tipo.valor}</option>
-                            </c:forEach>
-                        </select>
-                    </td>
-                </tr>
-            </table>
+                                    <td><label class="table-form-label" for="duracionAnios">Años: </label></td>
+                                    <td><input type="number" id="duracionAnios" class="form-control" value="${examen.duracionLesionAnios}"></td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label class="table-form-label" for="colorLesionSelect">Color:</label></td>
+                        <td>
+                            <select  class="form-control" name="colorLesionSelect" id="colorLesionSelect">
+                                <option value="">Selecciona una opcion</option>
+                                <c:forEach items="${tipoOpcion.COLOR}" var="tipo">
+                                    <option value="${tipo.codigoOpcion}" <c:if test='${fn:contains(examen.caracteristicas, tipo.codigoOpcion)}'>selected</c:if>>${tipo.valor}</option>
+                                </c:forEach>
+                            </select>
+                        </td>
+                        <td><label class="table-form-label" for="naturalezaLesionSelect">Naturaleza:</label></td>
+                        <td>
+                            <select  class="form-control" name="naturalezaLesionSelect" id="naturalezaLesionSelect">
+                                <option value="">Selecciona una opcion</option>
+                                <c:forEach items="${tipoOpcion.NATURALEZA}" var="tipo">
+                                    <option value="${tipo.codigoOpcion}" <c:if test='${fn:contains(examen.caracteristicas, tipo.codigoOpcion)}'>selected</c:if>>${tipo.valor}</option>
+                                </c:forEach>
+                            </select>
+                        </td>
+                        <td><label class="table-form-label" for="sintomaLesionSelect">Sintomas:</label></td>
+                        <td>
+                            <select  class="form-control" name="sintomaLesionSelect" id="sintomaLesionSelect">
+                                <option value="">Selecciona una opcion</option>
+                                <c:forEach items="${tipoOpcion.SINTOMA}" var="tipo">
+                                    <option value="${tipo.codigoOpcion}" <c:if test='${fn:contains(examen.caracteristicas, tipo.codigoOpcion)}'>selected</c:if>>${tipo.valor}</option>
+                                </c:forEach>
+                            </select>
+                        </td>
+                        <td><label class="table-form-label" for="formaLesionSelect">Forma:</label></td>
+                        <td>
+                            <select  class="form-control" name="formaLesionSelect" id="formaLesionSelect">
+                                <option value="">Selecciona una opcion</option>
+                                <c:forEach items="${tipoOpcion.FORMA}" var="tipo">
+                                    <option value="${tipo.codigoOpcion}" <c:if test='${fn:contains(examen.caracteristicas, tipo.codigoOpcion)}'>selected</c:if>>${tipo.valor}</option>
+                                </c:forEach>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label class="table-form-label" for="superficieLesionSelect">Superficie:</label></td>
+                        <td>
+                            <select  class="form-control" name="superficieLesionSelect" id="superficieLesionSelect">
+                                <option value="">Selecciona una opcion</option>
+                                <c:forEach items="${tipoOpcion.SUPERFICIE}" var="tipo">
+                                    <option value="${tipo.codigoOpcion}" <c:if test='${fn:contains(examen.caracteristicas, tipo.codigoOpcion)}'>selected</c:if>>${tipo.valor}</option>
+                                </c:forEach>
+                            </select>
+                        </td>
+                        <td><label class="table-form-label" for="consistenciaLesionSelect">Consistencia:</label></td>
+                        <td>
+                            <select  class="form-control" name="consistenciaLesionSelect" id="consistenciaLesionSelect">
+                                <option value="">Selecciona una opcion</option>
+                                <c:forEach items="${tipoOpcion.CONSISTENCIA}" var="tipo">
+                                    <option value="${tipo.codigoOpcion}" <c:if test='${fn:contains(examen.caracteristicas, tipo.codigoOpcion)}'>selected</c:if>>${tipo.valor}</option>
+                                </c:forEach>
+                            </select>
+                        </td>
+                        <td><label class="table-form-label" for="esIntaoseoLesionSelect">Intraoseo:</label></td>
+                        <td>
+                            <select  class="form-control" name="esIntaoseoLesionSelect" id="esIntaoseoLesionSelect">
+                                <option value="">Selecciona una opcion</option>
+                                <c:forEach items="${tipoOpcion.INTRAOSEO}" var="tipo">
+                                    <option value="${tipo.codigoOpcion}" <c:if test='${fn:contains(examen.caracteristicas, tipo.codigoOpcion)}'>selected</c:if>>${tipo.valor}</option>
+                                </c:forEach>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label class="table-form-label" for="piezaLesionSelect">Asocia Pieza:</label></td>
+                        <td>
+                            <select  class="form-control" name="piezaLesionSelect" id="piezaLesionSelect">
+                                <option value="">Selecciona una opcion</option>
+                                <c:forEach items="${tipoOpcion.PIEZA}" var="tipo">
+                                    <option value="${tipo.codigoOpcion}" <c:if test='${fn:contains(examen.caracteristicas, tipo.codigoOpcion)}'>selected</c:if>>${tipo.valor}</option>
+                                </c:forEach>
+                            </select>
+                        </td>
+                    </tr>
+                </table>
 
-            <hr>
+                <hr>
 
-            <table>
-                <tr>
-                    <td>
-                        <label class="table-form-label" for="datosImportantes">Datos Importantes:</label>
-                    </td>
-                    <td>
-                        <textarea name="datosImportantes" class="form-control" id="datosImportantes" cols="150" rows="5">${examen.datosImportantesLesion}</textarea>
-                    </td>
-                    <td colspan="2">
-                        <ul id="imageContainer">
-                        <c:forEach items="${examen.imagenes}" var="img" varStatus="loop">
-                            <li><a href="${img}" target="_blank">image-${loop.index}</a></li>
-                        </c:forEach>
-                        </ul>
-                        <form id="upload-img-form" action="UploadServlet.do" method="post" enctype="multipart/form-data">
-                            <input type="file" id="file" name="file1" />
-                            <input class="btn" type="submit" id="upload-button" value="Subir imagenes" />
-                        </form>
-                    </td>
-                    <td style="width: 10%;"></td>
-                </tr>
-                <tr>
-                    <td>
-                        <input type="checkbox" id="necesitaBiopsia" <c:if test="${examen.necesitaBiopsia}">checked</c:if> ><label for="necesitaBiopsia"> Necesita biopsia</label>
-                    </td>
-                    <td>
-                        <input type="checkbox" id="necesitaFrote" <c:if test="${examen.necesitaFrote}">checked</c:if> ><label for="necesitaFrote"> Necesita frote</label>
-                    </td>
-                </tr>
-            </table>
+                <table>
+                    <tr>
+                        <td>
+                            <label class="table-form-label" for="datosImportantes">Datos Importantes:</label>
+                        </td>
+                        <td>
+                            <textarea name="datosImportantes" class="form-control" id="datosImportantes" cols="150" rows="5">${examen.datosImportantesLesion}</textarea>
+                        </td>
+                        <td colspan="2">
+                            <ul id="imageContainer">
+                                <c:forEach items="${examen.imagenes}" var="img" varStatus="loop">
+                                    <li><a href="${img}" target="_blank">image-${loop.index}</a></li>
+                                </c:forEach>
+                            </ul>
+                            <form id="upload-img-form" action="UploadServlet.do" method="post" enctype="multipart/form-data">
+                                <input type="file" id="file" name="file1" multiple />
+                                <input class="btn" type="submit" id="upload-button" value="Subir imagenes" />
+                            </form>
+                        </td>
+                        <td style="width: 10%;"></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="checkbox" id="necesitaBiopsia" <c:if test="${examen.necesitaBiopsia}">checked</c:if> ><label for="necesitaBiopsia"> Necesita biopsia</label>
+                        </td>
+                        <td>
+                            <input type="checkbox" id="necesitaFrote" <c:if test="${examen.necesitaFrote}">checked</c:if> ><label for="necesitaFrote"> Necesita biopsia</label>
+                        </td>
+                    </tr>
+                </table>
 
-            <hr>
+                <hr>
 
-            <table>
-                <tr>
-                    <td>
-                        <label class="table-form-label" for="enfermedadSistemica">Enfermedad Sistemica:</label>
-                    </td>
-                    <td>
-                        <select multiple class="form-control select2" name="enfermedadSistemica" id="enfermedadSistemica">
-                            <option value="">Selecciona una opcion</option>
-                            <c:forEach items="${enfermedades}" var="enfermedad">
-                                <option value="${enfermedad.codigoEnfermedad}" <c:if test='${fn:contains(examen.enfermedades, enfermedad.codigoEnfermedad)}'>selected</c:if>>${enfermedad.nombreEnfermedad}</option>
-                            </c:forEach>
-                        </select>
-                    </td>
-                    <td>
-                        <label class="table-form-label" for="diagnosticoInicial">Diagnostico inicial:</label>
-                    </td>
-                    <td colspan="2">
-                        <select multiple class="form-control select2" name="diagnosticoInicial" id="diagnosticoInicial">
-                            <option value="">Selecciona una opcion</option>
-                            <c:forEach items="${diagnosticos}" var="diagnostico">
-                                <option value="${diagnostico.codigoDiagnostico}" <c:if test='${fn:contains(examen.diagnosticos, diagnostico.codigoDiagnostico)}'>selected</c:if>>${diagnostico.nombreDiagnostico}</option>
-                            </c:forEach>
-                        </select>
-                    </td>
-                </tr>
-            </table>
+                <table>
+                    <tr>
+                        <td>
+                            <label class="table-form-label" for="enfermedadSistemica">Enfermedad Sistemica:</label>
+                        </td>
+                        <td>
+                            <select multiple class="form-control select2" name="enfermedadSistemica" id="enfermedadSistemica">
+                                <option value="">Selecciona una opcion</option>
+                                <c:forEach items="${enfermedades}" var="enfermedad">
+                                    <option value="${enfermedad.codigoEnfermedad}" <c:if test='${fn:contains(examen.enfermedades, enfermedad.codigoEnfermedad)}'>selected</c:if>>${enfermedad.nombreEnfermedad}</option>
+                                </c:forEach>
+                            </select>
+                        </td>
+                        <td>
+                            <label class="table-form-label" for="diagnosticoInicial">Diagnostico inicial:</label>
+                        </td>
+                        <td colspan="2">
+                            <select multiple class="form-control select2" name="diagnosticoInicial" id="diagnosticoInicial">
+                                <option value="">Selecciona una opcion</option>
+                                <c:forEach items="${diagnosticos}" var="diagnostico">
+                                    <option value="${diagnostico.codigoDiagnostico}" <c:if test='${fn:contains(examen.diagnosticos, diagnostico.codigoDiagnostico)}'>selected</c:if>>${diagnostico.nombreDiagnostico}</option>
+                                </c:forEach>
+                            </select>
+                        </td>
+                    </tr>
+                </table>
 
-            <hr>
+                <hr>
 
-            <table>
-                <tr>
+                <table>
+                    <tr>
 
-                    <td><label class="table-form-label" for="doctorRemision">Remitido por:</label></td>
-                    <td><input type="text" id="doctorRemision" class="form-control" value="${examen.doctorRemision}"></td>
+                        <td><label class="table-form-label" for="doctorRemision">Remitido por:</label></td>
+                        <td><input type="text" id="doctorRemision" class="form-control" value="${examen.doctorRemision}"></td>
 
-                    <td><label class="table-form-label" for="direccionDoctorRemision">Direccion Doctor:</label></td>
-                    <td colspan="2"><input type="text" id="direccionDoctorRemision" class="form-control" value="${examen.direccionDoctorRemision}"></td>
+                        <td><label class="table-form-label" for="direccionDoctorRemision">Direccion Doctor:</label></td>
+                        <td colspan="2"><input type="text" id="direccionDoctorRemision" class="form-control" value="${examen.direccionDoctorRemision}"></td>
 
-                </tr>
-                <tr>
-                    <td><label class="table-form-label" for="telefonoDoctorRemision">Telefono Doctor:</label></td>
-                    <td><input type="text" id="telefonoDoctorRemision" class="form-control" value="${examen.telefonoDoctorRemision}"></td>
+                    </tr>
+                    <tr>
+                        <td><label class="table-form-label" for="telefonoDoctorRemision">Telefono Doctor:</label></td>
+                        <td><input type="text" id="telefonoDoctorRemision" class="form-control" value="${examen.telefonoDoctorRemision}"></td>
 
-                    <td><label class="table-form-label" for="emailDoctorRemision">Email Doctor:</label></td>
-                    <td><input type="text" id="emailDoctorRemision" class="form-control" value="${examen.emailDoctorRemision}"></td>
+                        <td><label class="table-form-label" for="emailDoctorRemision">Email Doctor:</label></td>
+                        <td><input type="text" id="emailDoctorRemision" class="form-control" value="${examen.emailDoctorRemision}"></td>
 
-                    <td><label class="table-form-label" for="dependenciaDoctorRemision">Dependencia Doctor:</label></td>
-                    <td><input type="text" id="dependenciaDoctorRemision" class="form-control" value="${examen.dependenciaDoctorRemision}"></td>
+                        <td><label class="table-form-label" for="dependenciaDoctorRemision">Dependencia Doctor:</label></td>
+                        <td><input type="text" id="dependenciaDoctorRemision" class="form-control" value="${examen.dependenciaDoctorRemision}"></td>
 
-                </tr>
-            </table>
+                    </tr>
+                </table>
 
-            <hr>
+                <hr>
 
-            <button id="guardarExamen" class="btn btn-light">Guardar</button>
-            <c:if test="${action=='VER'}">
-                </fieldset>
+                <button id="guardarExamen" class="btn btn-light">Guardar</button>
+                <c:if test="${action=='VER'}">
+            </fieldset>
             </c:if>
         </form>
     </div>
@@ -290,6 +293,67 @@
 
             </div>
             <div class="tab-pane" id="tabs-2" role="tabpanel">
+
+
+                <form>
+                    <fieldset id="biopsia-recibo">
+                        <table>
+                            <tr>
+                                <td><label class="table-form-label" for="numRecibo">Numero Recibo:</label></td>
+                                <td><input type="text" id="numRecibo" class="form-control"></td>
+                            </tr>
+                            <tr>
+                                <td><label class="table-form-label" for="serieRecibo">Serie Recibo:</label></td>
+                                <td><input type="text" id="serieRecibo" class="form-control"></td>
+                            </tr>
+                            <tr>
+                                <td><label class="table-form-label" for="montoRecibo">Monto Recibo:</label></td>
+                                <td><input type="text" id="montoRecibo" class="form-control"></td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <button class="btn btn-light">Validar Recibo</button>
+                                </td>
+                            </tr>
+                        </table>
+                    </fieldset>
+
+                    <fieldset id="biopsia-datos" disabled="disabled">
+                        <table>
+                            <tr>
+                                <td><label class="table-form-label" for="muestraEstudio">Muestra o Estudio:</label></td>
+                                <td><input type="text" id="muestraEstudio" class="form-control"></td>
+                            </tr>
+
+                            <tr>
+                                <td><label class="table-form-label" for="observaciones">Observaciones:</label></td>
+                                <td><input type="text" id="observaciones" class="form-control"></td>
+                            </tr>
+
+                            <tr>
+                                <td colspan="2">
+                                    <ul id="froteImageContainer">
+                                        <c:forEach items="${examen.imagenes}" var="img" varStatus="loop">
+                                            <%--                                        <li><a href="${img}" target="_blank">image-${loop.index}</a></li>--%>
+                                        </c:forEach>
+                                    </ul>
+                                    <form id="upload-img-form-biopsia" action="UploadServlet.do" method="post" enctype="multipart/form-data">
+                                        <input type="file" id="file-biopsia" name="file1" multiple />
+                                        <input class="btn btn-light" type="submit" id="upload-button-fote" value="Subir imagenes" />
+                                    </form>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <button class="btn btn-light">Guardar</button>
+                                </td>
+                            </tr>
+                        </table>
+                    </fieldset>
+                </form>
+
 
             </div>
             <div class="tab-pane" id="tabs-3" role="tabpanel">

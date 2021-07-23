@@ -1,10 +1,13 @@
 package histopatologialab.core;
 
 import histopatologialab.consultas.controller.ConsultaControllerImpl;
+import histopatologialab.consultas.controller.IConsultaController;
 import histopatologialab.diagnostico.controller.DiagnosticoControllerImpl;
 import histopatologialab.diagnostico.controller.IDiagnosticoController;
 import histopatologialab.enfsistemica.controller.EnfSistemicaControllerImpl;
 import histopatologialab.enfsistemica.controller.IEnfSistemicaController;
+import histopatologialab.biopsia.controller.BiopsiaControllerImpl;
+import histopatologialab.biopsia.controller.IBiopsiaController;
 import histopatologialab.medicamentos.controller.IMedicamentosController;
 import histopatologialab.medicamentos.controller.MedicamentosControllerImpl;
 import histopatologialab.pacientes.controller.IPacienteController;
@@ -24,6 +27,7 @@ public class Controllers {
     public static IPacienteController pacienteController = new PacienteControllerImpl(pacienteDao);
     public static IUsuarioController usuarioController =  new UsuarioControllerImpl(usuarioDao);
     public static IDiagnosticoController diagnosticoController = new DiagnosticoControllerImpl(diagnosticoDao);
-    public static ConsultaControllerImpl consultaController = new ConsultaControllerImpl(opcionlesionDao);
+    public static IConsultaController consultaController = new ConsultaControllerImpl(opcionlesionDao);
+    public static IBiopsiaController biopsiaController = new BiopsiaControllerImpl(biopsiaDao);
 
 }
