@@ -39,7 +39,7 @@
                     <td><label class="table-form-label" for="emailUsuario">Email:</label></td>
                     <td><input type="email" id="emailUsuario" class="form-control" readonly value="${paciente.emailPaciente}"></td>
                     <td><label class="table-form-label" for="telefonoUsuario">Telefono:</label></td>
-                    <td><input type="number" id="telefonoUsuario" class="form-control" readonly value="${paciente.telefonoPaciente}"></td>
+                    <td><input type="text" id="telefonoUsuario" class="form-control" readonly value="${paciente.telefonoPaciente}"></td>
                     <c:if test="${action=='CREAR'}">
                         <td><button id="resetUserForm" class="btn btn-light">X</button></td>
                     </c:if>
