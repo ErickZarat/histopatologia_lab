@@ -14,9 +14,10 @@ import java.util.List;
 
 import org.jooq.Field;
 import org.jooq.ForeignKey;
+import org.jooq.Identity;
 import org.jooq.Name;
 import org.jooq.Record;
-import org.jooq.Row8;
+import org.jooq.Row11;
 import org.jooq.Schema;
 import org.jooq.Table;
 import org.jooq.TableField;
@@ -49,6 +50,11 @@ public class LabExamenFrote extends TableImpl<LabExamenFroteRecord> {
     }
 
     /**
+     * The column <code>public.lab_examen_frote.cod_frote</code>.
+     */
+    public final TableField<LabExamenFroteRecord, Integer> COD_FROTE = createField(DSL.name("cod_frote"), SQLDataType.INTEGER.nullable(false).identity(true), this, "");
+
+    /**
      * The column <code>public.lab_examen_frote.cod_examen</code>.
      */
     public final TableField<LabExamenFroteRecord, Integer> COD_EXAMEN = createField(DSL.name("cod_examen"), SQLDataType.INTEGER, this, "");
@@ -59,9 +65,19 @@ public class LabExamenFrote extends TableImpl<LabExamenFroteRecord> {
     public final TableField<LabExamenFroteRecord, String> NUM_FROTE = createField(DSL.name("num_frote"), SQLDataType.VARCHAR(20).nullable(false), this, "");
 
     /**
-     * The column <code>public.lab_examen_frote.num_biopsia</code>.
+     * The column <code>public.lab_examen_frote.num_recibo</code>.
      */
-    public final TableField<LabExamenFroteRecord, Integer> NUM_BIOPSIA = createField(DSL.name("num_biopsia"), SQLDataType.INTEGER, this, "");
+    public final TableField<LabExamenFroteRecord, String> NUM_RECIBO = createField(DSL.name("num_recibo"), SQLDataType.VARCHAR(20), this, "");
+
+    /**
+     * The column <code>public.lab_examen_frote.serie_recibo</code>.
+     */
+    public final TableField<LabExamenFroteRecord, String> SERIE_RECIBO = createField(DSL.name("serie_recibo"), SQLDataType.VARCHAR(20), this, "");
+
+    /**
+     * The column <code>public.lab_examen_frote.monto_recibo</code>.
+     */
+    public final TableField<LabExamenFroteRecord, String> MONTO_RECIBO = createField(DSL.name("monto_recibo"), SQLDataType.VARCHAR(20), this, "");
 
     /**
      * The column <code>public.lab_examen_frote.cod_tincion</code>.
@@ -127,13 +143,18 @@ public class LabExamenFrote extends TableImpl<LabExamenFroteRecord> {
     }
 
     @Override
+    public Identity<LabExamenFroteRecord, Integer> getIdentity() {
+        return (Identity<LabExamenFroteRecord, Integer>) super.getIdentity();
+    }
+
+    @Override
     public UniqueKey<LabExamenFroteRecord> getPrimaryKey() {
         return Keys.LAB_EXAMEN_FROTE_PKEY;
     }
 
     @Override
     public List<UniqueKey<LabExamenFroteRecord>> getKeys() {
-        return Arrays.<UniqueKey<LabExamenFroteRecord>>asList(Keys.LAB_EXAMEN_FROTE_PKEY);
+        return Arrays.<UniqueKey<LabExamenFroteRecord>>asList(Keys.LAB_EXAMEN_FROTE_PKEY, Keys.NUM_FROTE_UQ);
     }
 
     @Override
@@ -193,11 +214,11 @@ public class LabExamenFrote extends TableImpl<LabExamenFroteRecord> {
     }
 
     // -------------------------------------------------------------------------
-    // Row8 type methods
+    // Row11 type methods
     // -------------------------------------------------------------------------
 
     @Override
-    public Row8<Integer, String, Integer, Integer, String, Integer, String, LocalDate> fieldsRow() {
-        return (Row8) super.fieldsRow();
+    public Row11<Integer, Integer, String, String, String, String, Integer, String, Integer, String, LocalDate> fieldsRow() {
+        return (Row11) super.fieldsRow();
     }
 }

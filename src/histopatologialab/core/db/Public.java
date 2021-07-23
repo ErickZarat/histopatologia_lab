@@ -150,6 +150,7 @@ public class Public extends SchemaImpl {
             Sequences.LAB_EXAMEN_COD_EXAMEN_SEQ,
             Sequences.LAB_EXAMEN_COD_EXAMEN_SEQ1,
             Sequences.LAB_EXAMEN_COD_EXAMEN_SEQ2,
+            Sequences.LAB_EXAMEN_FROTE_COD_FROTE_SEQ,
             Sequences.LAB_MEDICAMENTO_SEQ,
             Sequences.LAB_PACIENTE_SEQ,
             Sequences.LAB_TINCION_SEQ,

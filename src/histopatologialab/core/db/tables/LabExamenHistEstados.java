@@ -53,14 +53,14 @@ public class LabExamenHistEstados extends TableImpl<LabExamenHistEstadosRecord> 
     public final TableField<LabExamenHistEstadosRecord, Integer> COD_EXAMEN = createField(DSL.name("cod_examen"), SQLDataType.INTEGER, this, "");
 
     /**
-     * The column <code>public.lab_examen_hist_estados.num_frote</code>.
+     * The column <code>public.lab_examen_hist_estados.cod_frote</code>.
      */
-    public final TableField<LabExamenHistEstadosRecord, String> NUM_FROTE = createField(DSL.name("num_frote"), SQLDataType.VARCHAR(20), this, "");
+    public final TableField<LabExamenHistEstadosRecord, Integer> COD_FROTE = createField(DSL.name("cod_frote"), SQLDataType.INTEGER, this, "");
 
     /**
-     * The column <code>public.lab_examen_hist_estados.num_biopsia</code>.
+     * The column <code>public.lab_examen_hist_estados.cod_biopsia</code>.
      */
-    public final TableField<LabExamenHistEstadosRecord, String> NUM_BIOPSIA = createField(DSL.name("num_biopsia"), SQLDataType.VARCHAR(20), this, "");
+    public final TableField<LabExamenHistEstadosRecord, Integer> COD_BIOPSIA = createField(DSL.name("cod_biopsia"), SQLDataType.INTEGER, this, "");
 
     /**
      * The column <code>public.lab_examen_hist_estados.estado</code>.
@@ -186,7 +186,7 @@ public class LabExamenHistEstados extends TableImpl<LabExamenHistEstadosRecord> 
     // -------------------------------------------------------------------------
 
     @Override
-    public Row8<Integer, String, String, String, LocalDate, String, String, LocalDate> fieldsRow() {
+    public Row8<Integer, Integer, Integer, String, LocalDate, String, String, LocalDate> fieldsRow() {
         return (Row8) super.fieldsRow();
     }
 }

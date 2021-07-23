@@ -71,6 +71,11 @@ public class Sequences {
     public static final Sequence<Integer> LAB_EXAMEN_COD_EXAMEN_SEQ2 = Internal.createSequence("lab_examen_cod_examen_seq2", Public.PUBLIC, SQLDataType.INTEGER.nullable(false), null, null, null, null, false, null);
 
     /**
+     * The sequence <code>public.lab_examen_frote_cod_frote_seq</code>
+     */
+    public static final Sequence<Integer> LAB_EXAMEN_FROTE_COD_FROTE_SEQ = Internal.createSequence("lab_examen_frote_cod_frote_seq", Public.PUBLIC, SQLDataType.INTEGER.nullable(false), null, null, null, null, false, null);
+
+    /**
      * The sequence <code>public.lab_medicamento_seq</code>
      */
     public static final Sequence<Long> LAB_MEDICAMENTO_SEQ = Internal.createSequence("lab_medicamento_seq", Public.PUBLIC, SQLDataType.BIGINT.nullable(false), null, null, null, null, false, null);

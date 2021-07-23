@@ -137,11 +137,10 @@ public class LabExamenImagen extends TableImpl<LabExamenImagenRecord> {
 
     @Override
     public List<ForeignKey<LabExamenImagenRecord, ?>> getReferences() {
-        return Arrays.<ForeignKey<LabExamenImagenRecord, ?>>asList(Keys.LAB_EXAMEN_IMAGEN__IMAGEN_EXAMEN_FK, Keys.LAB_EXAMEN_IMAGEN__IMAGEN_FROTE_FK, Keys.LAB_EXAMEN_IMAGEN__IMAGEN_BIOPSIA_FK);
+        return Arrays.<ForeignKey<LabExamenImagenRecord, ?>>asList(Keys.LAB_EXAMEN_IMAGEN__IMAGEN_EXAMEN_FK, Keys.LAB_EXAMEN_IMAGEN__IMAGEN_BIOPSIA_FK);
     }
 
     private transient LabExamen _labExamen;
-    private transient LabExamenFrote _labExamenFrote;
     private transient LabExamenBiopsia _labExamenBiopsia;
 
     public LabExamen labExamen() {
@@ -149,13 +148,6 @@ public class LabExamenImagen extends TableImpl<LabExamenImagenRecord> {
             _labExamen = new LabExamen(this, Keys.LAB_EXAMEN_IMAGEN__IMAGEN_EXAMEN_FK);
 
         return _labExamen;
-    }
-
-    public LabExamenFrote labExamenFrote() {
-        if (_labExamenFrote == null)
-            _labExamenFrote = new LabExamenFrote(this, Keys.LAB_EXAMEN_IMAGEN__IMAGEN_FROTE_FK);
-
-        return _labExamenFrote;
     }
 
     public LabExamenBiopsia labExamenBiopsia() {
