@@ -4,6 +4,7 @@ import histopatologialab.core.Role;
 import histopatologialab.password.PasswordUtils;
 import histopatologialab.usuario.controller.IUsuarioController;
 import histopatologialab.usuario.dto.Usuario;
+import org.tinylog.Logger;
 
 import javax.servlet.http.HttpSession;
 
@@ -62,7 +63,11 @@ public class LoginController {
     }
 
     public void cerrarSesion(HttpSession session) {
-        if (session == null) return;
-        session.invalidate();
+        try {
+            if (session == null) return;
+            session.invalidate();
+        } catch (IllegalStateException exception){
+            Logger.warn("session already invalidated");
+        }
     }
 }

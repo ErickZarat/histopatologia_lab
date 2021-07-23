@@ -1,5 +1,7 @@
 package histopatologialab.core;
 
+import org.tinylog.Logger;
+
 import javax.servlet.http.HttpSession;
 
 public class RoleHandler {
@@ -19,7 +21,14 @@ public class RoleHandler {
     }
 
     private Role getRole() {
-        String roleSlug = (String) this.session.getAttribute(ROLE_KEY);
+        String roleSlug;
+        try {
+            roleSlug = (String) this.session.getAttribute(ROLE_KEY);
+        } catch (IllegalStateException exception){
+            roleSlug = "";
+            Logger.warn("session already invalidated");
+        }
+
         return Role.findBySlug(roleSlug);
     }
 
