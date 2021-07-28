@@ -7,6 +7,12 @@
 
 <div class="container-fluid">
 
+    <input type="hidden" id="codExamen" value="${codExamen}">
+    <input type="hidden" id="codBiopsia" value="${codBiopsia}">
+    <input type="hidden" id="codInformeBiopsia" value="${codInformeBiopsia}">
+    <input type="hidden" id="codFrote" value="${codFrote}">
+    <input type="hidden" id="codInformeFrote" value="${codInformeFrote}">
+
     <label class="accordion-label" for="paciente-accordion">
         <div class="accordion-title-container">
             <h1 class="main-tittle">Paciente</h1>
@@ -23,7 +29,7 @@
                         <input type="text" id="codigoUsuario" class="form-control" value="${paciente.codigoPaciente}" autocomplete="off" <c:if test="${action=='VER'}">readonly</c:if>>
                         <ul class="results" >
                         </ul>
-                    </td>
+                     </td>
                     <td><label class="table-form-label" for="nombreUsuario">Nombre:</label></td>
                     <td colspan="3"><input type="text" id="nombreUsuario" class="form-control" readonly value="${paciente.nombrePaciente} ${paciente.apellidosPaciente}"></td>
                 </tr>
@@ -40,12 +46,11 @@
                     <td><input type="email" id="emailUsuario" class="form-control" readonly value="${paciente.emailPaciente}"></td>
                     <td><label class="table-form-label" for="telefonoUsuario">Telefono:</label></td>
                     <td><input type="text" id="telefonoUsuario" class="form-control" readonly value="${paciente.telefonoPaciente}"></td>
+                    <td><label class="table-form-label" for="numeroFicha">Numero Ficha:</label></td>
+                    <td><input type="text" id="numeroFicha" class="form-control" value=""></td>
                     <c:if test="${action=='CREAR'}">
                         <td><button id="resetUserForm" class="btn btn-light">X</button></td>
                     </c:if>
-                    <td><label class="table-form-label" for="registroRemision">Remision:</label></td>
-                    <%--                    ${paciente.registroRemision}--%>
-                    <td><input type="text" id="registroRemision" class="form-control" readonly value=""></td>
                 </tr>
             </table>
         </form>
@@ -201,7 +206,7 @@
                             <input type="checkbox" id="necesitaBiopsia" <c:if test="${examen.necesitaBiopsia}">checked</c:if> ><label for="necesitaBiopsia"> Necesita biopsia</label>
                         </td>
                         <td>
-                            <input type="checkbox" id="necesitaFrote" <c:if test="${examen.necesitaFrote}">checked</c:if> ><label for="necesitaFrote"> Necesita biopsia</label>
+                            <input type="checkbox" id="necesitaFrote" <c:if test="${examen.necesitaFrote}">checked</c:if> ><label for="necesitaFrote"> Necesita frote</label>
                         </td>
                     </tr>
                 </table>
@@ -241,10 +246,10 @@
                     <tr>
 
                         <td><label class="table-form-label" for="doctorRemision">Remitido por:</label></td>
-                        <td><input type="text" id="doctorRemision" class="form-control" value="${examen.doctorRemision}"></td>
-
+                        <td colspan="2"><input type="text" id="doctorRemision" class="form-control" value="${examen.doctorRemision}"></td>
+                        <td></td>
                         <td><label class="table-form-label" for="direccionDoctorRemision">Direccion Doctor:</label></td>
-                        <td colspan="2"><input type="text" id="direccionDoctorRemision" class="form-control" value="${examen.direccionDoctorRemision}"></td>
+                        <td colspan="2"><input style="width:200%" type="text" id="direccionDoctorRemision" class="form-control" value="${examen.direccionDoctorRemision}"></td>
 
                     </tr>
                     <tr>
@@ -255,7 +260,7 @@
                         <td><input type="text" id="emailDoctorRemision" class="form-control" value="${examen.emailDoctorRemision}"></td>
 
                         <td><label class="table-form-label" for="dependenciaDoctorRemision">Dependencia Doctor:</label></td>
-                        <td><input type="text" id="dependenciaDoctorRemision" class="form-control" value="${examen.dependenciaDoctorRemision}"></td>
+                        <td><input style="width:200%" type="text" id="dependenciaDoctorRemision" class="form-control" value="${examen.dependenciaDoctorRemision}"></td>
 
                     </tr>
                 </table>
@@ -290,71 +295,10 @@
         </ul><!-- Tab panes -->
         <div class="tab-content">
             <div class="tab-pane active" id="tabs-1" role="tabpanel">
-
+                <%@ include file="biopsia/form.jsp"%>
             </div>
             <div class="tab-pane" id="tabs-2" role="tabpanel">
-
-
-                <form>
-                    <fieldset id="biopsia-recibo">
-                        <table>
-                            <tr>
-                                <td><label class="table-form-label" for="numRecibo">Numero Recibo:</label></td>
-                                <td><input type="text" id="numRecibo" class="form-control"></td>
-                            </tr>
-                            <tr>
-                                <td><label class="table-form-label" for="serieRecibo">Serie Recibo:</label></td>
-                                <td><input type="text" id="serieRecibo" class="form-control"></td>
-                            </tr>
-                            <tr>
-                                <td><label class="table-form-label" for="montoRecibo">Monto Recibo:</label></td>
-                                <td><input type="text" id="montoRecibo" class="form-control"></td>
-                            </tr>
-
-                            <tr>
-                                <td>
-                                    <button class="btn btn-light">Validar Recibo</button>
-                                </td>
-                            </tr>
-                        </table>
-                    </fieldset>
-
-                    <fieldset id="biopsia-datos" disabled="disabled">
-                        <table>
-                            <tr>
-                                <td><label class="table-form-label" for="muestraEstudio">Muestra o Estudio:</label></td>
-                                <td><input type="text" id="muestraEstudio" class="form-control"></td>
-                            </tr>
-
-                            <tr>
-                                <td><label class="table-form-label" for="observaciones">Observaciones:</label></td>
-                                <td><input type="text" id="observaciones" class="form-control"></td>
-                            </tr>
-
-                            <tr>
-                                <td colspan="2">
-                                    <ul id="froteImageContainer">
-                                        <c:forEach items="${examen.imagenes}" var="img" varStatus="loop">
-                                            <%--                                        <li><a href="${img}" target="_blank">image-${loop.index}</a></li>--%>
-                                        </c:forEach>
-                                    </ul>
-                                    <form id="upload-img-form-biopsia" action="UploadServlet.do" method="post" enctype="multipart/form-data">
-                                        <input type="file" id="file-biopsia" name="file1" multiple />
-                                        <input class="btn btn-light" type="submit" id="upload-button-fote" value="Subir imagenes" />
-                                    </form>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>
-                                    <button class="btn btn-light">Guardar</button>
-                                </td>
-                            </tr>
-                        </table>
-                    </fieldset>
-                </form>
-
-
+                <%@ include file="frote/form.jsp"%>
             </div>
             <div class="tab-pane" id="tabs-3" role="tabpanel">
 
@@ -369,4 +313,5 @@
 <%@include file="../partials/footer.jsp"%>
 <%@ include file="../mantenimientos/agregar-paciente.jsp"%>
 <script src="assets/js/consulta/crear-consulta.js"></script>
+<script src="assets/js/consulta/biopsia.js"></script>
 

@@ -8,10 +8,16 @@ import histopatologialab.enfsistemica.controller.EnfSistemicaControllerImpl;
 import histopatologialab.enfsistemica.controller.IEnfSistemicaController;
 import histopatologialab.biopsia.controller.BiopsiaControllerImpl;
 import histopatologialab.biopsia.controller.IBiopsiaController;
+import histopatologialab.frote.controller.FroteControllerImpl;
+import histopatologialab.frote.controller.IFroteController;
+import histopatologialab.informe.controller.IInformeController;
+import histopatologialab.informe.controller.InformeControllerImpl;
 import histopatologialab.medicamentos.controller.IMedicamentosController;
 import histopatologialab.medicamentos.controller.MedicamentosControllerImpl;
 import histopatologialab.pacientes.controller.IPacienteController;
 import histopatologialab.pacientes.controller.PacienteControllerImpl;
+import histopatologialab.tincion.controller.ITincionController;
+import histopatologialab.tincion.controller.TincionControllerImpl;
 import histopatologialab.tipopcionlesion.controller.IOpcionLesionController;
 import histopatologialab.tipopcionlesion.controller.OpcionLesionControllerImpl;
 import histopatologialab.usuario.controller.IUsuarioController;
@@ -29,5 +35,8 @@ public class Controllers {
     public static IDiagnosticoController diagnosticoController = new DiagnosticoControllerImpl(diagnosticoDao);
     public static IConsultaController consultaController = new ConsultaControllerImpl(opcionlesionDao);
     public static IBiopsiaController biopsiaController = new BiopsiaControllerImpl(biopsiaDao);
+    public static IFroteController froteController = new FroteControllerImpl(froteDao);
+    public static ITincionController tincionController = new TincionControllerImpl(tincionDao);
+    public static IInformeController informeController = new InformeControllerImpl(informeDao);
 
 }

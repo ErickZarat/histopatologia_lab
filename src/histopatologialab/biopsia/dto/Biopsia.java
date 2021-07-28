@@ -1,5 +1,6 @@
 package histopatologialab.biopsia.dto;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 public class Biopsia {
@@ -8,28 +9,47 @@ public class Biopsia {
     String numBiopsia;
     String numRecibo;
     String serieRecibo;
-    String montoRecibo;
-    Integer codTincion;
+    BigDecimal montoRecibo;
     String estadoBiopsia;
     Integer usuarioBiopsia;
     String modificadoPor;
     LocalDate fechaModificacion;
+    LocalDate fecha;
+    String muestraEstudio;
+    String observaciones;
+    Integer instrumento;
+    Integer tipoCirugia;
+    Integer procedimiento;
+
 
     public Biopsia() {
     }
 
-    public Biopsia(Integer codBiopsia, Integer codExamen, String numBiopsia, String numRecibo, String serieRecibo, String montoRecibo, Integer codTincion, String estadoBiopsia, Integer usuarioBiopsia, String modificadoPor, LocalDate fechaModificacion) {
+    public Biopsia(Integer codBiopsia, Integer codExamen, String numBiopsia, String numRecibo, String serieRecibo, BigDecimal montoRecibo, String estadoBiopsia, Integer usuarioBiopsia, String modificadoPor, LocalDate fechaModificacion, LocalDate fecha, String muestraEstudio, String observaciones, Integer instrumento, Integer tipoCirugia, Integer procedimiento) {
         this.codBiopsia = codBiopsia;
         this.codExamen = codExamen;
         this.numBiopsia = numBiopsia;
         this.numRecibo = numRecibo;
         this.serieRecibo = serieRecibo;
         this.montoRecibo = montoRecibo;
-        this.codTincion = codTincion;
         this.estadoBiopsia = estadoBiopsia;
         this.usuarioBiopsia = usuarioBiopsia;
         this.modificadoPor = modificadoPor;
         this.fechaModificacion = fechaModificacion;
+        this.fecha = fecha;
+        this.muestraEstudio = muestraEstudio;
+        this.observaciones = observaciones;
+        this.instrumento = instrumento;
+        this.tipoCirugia = tipoCirugia;
+        this.procedimiento = procedimiento;
+    }
+
+    public LocalDate getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(LocalDate fecha) {
+        this.fecha = fecha;
     }
 
     public Integer getCodBiopsia() {
@@ -72,20 +92,12 @@ public class Biopsia {
         this.serieRecibo = serieRecibo;
     }
 
-    public String getMontoRecibo() {
+    public BigDecimal getMontoRecibo() {
         return montoRecibo;
     }
 
-    public void setMontoRecibo(String montoRecibo) {
+    public void setMontoRecibo(BigDecimal montoRecibo) {
         this.montoRecibo = montoRecibo;
-    }
-
-    public Integer getCodTincion() {
-        return codTincion;
-    }
-
-    public void setCodTincion(Integer codTincion) {
-        this.codTincion = codTincion;
     }
 
     public String getEstadoBiopsia() {
@@ -118,5 +130,45 @@ public class Biopsia {
 
     public void setFechaModificacion(LocalDate fechaModificacion) {
         this.fechaModificacion = fechaModificacion;
+    }
+
+    public String getMuestraEstudio() {
+        return muestraEstudio;
+    }
+
+    public void setMuestraEstudio(String muestraEstudio) {
+        this.muestraEstudio = muestraEstudio;
+    }
+
+    public String getObservaciones() {
+        return observaciones;
+    }
+
+    public void setObservaciones(String observaciones) {
+        this.observaciones = observaciones;
+    }
+
+    public Integer getInstrumento() {
+        return instrumento;
+    }
+
+    public void setInstrumento(Integer instrumento) {
+        this.instrumento = instrumento;
+    }
+
+    public Integer getTipoCirugia() {
+        return tipoCirugia;
+    }
+
+    public void setTipoCirugia(Integer tipoCirugia) {
+        this.tipoCirugia = tipoCirugia;
+    }
+
+    public Integer getProcedimiento() {
+        return procedimiento;
+    }
+
+    public void setProcedimiento(Integer procedimiento) {
+        this.procedimiento = procedimiento;
     }
 }

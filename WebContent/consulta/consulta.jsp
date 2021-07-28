@@ -39,8 +39,7 @@
         </div>
 
         <div class="action-container left-padding-align">
-            <!-- Button trigger modal -->
-            <button type="button" class="btn btn-light" data-toggle="modal" data-target="#nuevaConsultaModal" id="nuevaConsultaModalBtn">Nuevo <i class="fas fa-plus"></i></button>
+            <a href="ConsultaServlet.do?accion=CREAR" class="btn btn-light">Nueva <i class="fas fa-plus"></i></a>
         </div>
 
         <table class="table table-striped w-50 left-margin-align" id="consultasTable">

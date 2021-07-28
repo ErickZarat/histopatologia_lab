@@ -177,14 +177,19 @@ create table lab_examen_biopsia
     usuario_biopsia    integer
         constraint usuario_biopsia_fk
             references lab_usuario,
-    fecha_planificada  date,
+    fecha              date,
     tipo_biopsia       varchar(20),
     num_recibo         varchar(10),
     serie_recibo       varchar(10),
     monto_recibo       numeric,
-    estado_enfermedad  varchar(20),
+    estado_biopsia     varchar(30),
     modificado_por     varchar(30),
-    fecha_modificacion date
+    fecha_modificacion date,
+    procedimiento      integer,
+    tipo_cirugia       integer,
+    instrumento        integer,
+    muestra_estudio    varchar,
+    observaciones      varchar
 );
 
 alter table lab_examen_biopsia
@@ -302,16 +307,18 @@ create table lab_examen_frote
             unique,
     num_recibo         varchar(20),
     serie_recibo       varchar(20),
-    monto_recibo       varchar(20),
+    monto_recibo       numeric,
     cod_tincion        integer
         constraint cod_tincion_fk
             references lab_tincion,
-    estado_frote       varchar(20),
+    estado_frote       varchar(30),
     usuario_frote      integer
         constraint frote_usuario_fk
             references lab_usuario,
     modificado_por     varchar(20),
-    fecha_modificacion date
+    fecha_modificacion date,
+    fecha              date,
+    muestra_estudio    varchar
 );
 
 alter table lab_examen_frote
@@ -336,5 +343,32 @@ create table lab_examen_hist_estados
 );
 
 alter table lab_examen_hist_estados
+    owner to postgres;
+
+create table lab_informe
+(
+    cod_informe     serial not null
+        constraint lab_informe_pkey
+            primary key,
+    fecha_informe   date,
+    clinica         varchar,
+    direccion       varchar,
+    solicitante     varchar,
+    datos_clinicos  varchar,
+    desc_macros     varchar,
+    desc_mirco      varchar,
+    diagnostico     varchar,
+    usuario_informe integer
+        constraint usuario_informe_fk
+            references lab_usuario,
+    cod_frote       integer
+        constraint frote_informe_fk
+            references lab_examen_frote,
+    cod_biopsia     integer
+        constraint biopsia_informe_fk
+            references lab_examen_biopsia
+);
+
+alter table lab_informe
     owner to postgres;
 

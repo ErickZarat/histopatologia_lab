@@ -2,9 +2,12 @@ package histopatologialab.consultas.dto;
 
 import histopatologialab.pacientes.dto.Paciente;
 import histopatologialab.usuario.dto.Usuario;
+import org.tinylog.Logger;
 
 import java.time.LocalDate;
 import java.util.List;
+
+import static histopatologialab.core.DateUtils.formatDate;
 
 public class Examen {
     int codExamen;
@@ -38,12 +41,16 @@ public class Examen {
 
     boolean necesitaBiopsia;
     boolean necesitaFrote;
+    String fechaFormateada;
 
     public Examen(int codExamen, Long codPaciente, String numExamen, LocalDate fechaExamen, String estado, String historiaExamenLesion, String tamanoLesion, String dimensionalLesion, int duracionLesionDias, int duracionLesionMeses, int duracionLesionAnios, String datosImportantesLesion, Long doctorExamen, String doctorRemision, String direccionDoctorRemision, String telefonoDoctorRemision, String emailDoctorRemision, String dependenciaDoctorRemision, Paciente paciente, Usuario doctor, List<Integer> caracteristicas, boolean necesitaBiopsia, boolean necesitaFrote) {
         this.codExamen = codExamen;
         this.codPaciente = codPaciente;
         this.numExamen = numExamen;
         this.fechaExamen = fechaExamen;
+        Logger.info("fecha examen " + fechaExamen);
+        this.fechaFormateada = formatDate(fechaExamen);
+        Logger.info("fecha formateada " + fechaFormateada);
         this.estado = estado;
         this.historiaExamenLesion = historiaExamenLesion;
         this.tamanoLesion = tamanoLesion;
@@ -99,6 +106,7 @@ public class Examen {
 
     public void setFechaExamen(LocalDate fechaExamen) {
         this.fechaExamen = fechaExamen;
+        this.fechaFormateada = formatDate(fechaExamen);
     }
 
     public String getEstado() {
@@ -221,13 +229,6 @@ public class Examen {
         this.caracteristicas = caracteristicas;
     }
 
-    public String genNumeroExamen(int nextInt) {
-        int day = this.fechaExamen.getDayOfMonth();
-        int month = this.fechaExamen.getMonthValue();
-
-        return day + "-" + month + "-" + nextInt;
-    }
-
     public boolean isNecesitaBiopsia() {
         return necesitaBiopsia;
     }
@@ -282,5 +283,13 @@ public class Examen {
 
     public void setImagenes(List<String> imagenes) {
         this.imagenes = imagenes;
+    }
+
+    public String getFechaFormateada() {
+        return fechaFormateada;
+    }
+
+    public void setFechaFormateada(String fechaFormateada) {
+        this.fechaFormateada = fechaFormateada;
     }
 }

@@ -20,11 +20,20 @@ public class ConsultaControllerImpl implements IConsultaController {
     }
 
     @Override
-    public JsonResponse<Map<String, List<OpcionLesion>>> getOpciones(){
-        Map<String, List<OpcionLesion>> opciones = tipoOpcionLesionDao.getOpciones()
+    public JsonResponse<Map<String, List<OpcionLesion>>> getOpciones(Boolean loadDisabled){
+        List<OpcionLesion> opciones;
+
+        if (loadDisabled) {
+            opciones = tipoOpcionLesionDao.getOpciones();
+        } else {
+            opciones = tipoOpcionLesionDao.getOpcionesByEstado();
+        }
+
+
+        Map<String, List<OpcionLesion>> opcionesMap = opciones
                 .stream()
                 .collect(groupingBy(OpcionLesion::getNombreOpcion));
-        return new JsonResponse<>(opciones != null, opciones);
+        return new JsonResponse<>(opcionesMap != null, opcionesMap);
     }
 
 

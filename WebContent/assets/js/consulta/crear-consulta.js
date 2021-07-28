@@ -98,6 +98,7 @@ function extractExamen(){
 
     if (examen.caracteristicas.length !== 8){
         toastr.error("no se seleccionaron todas las caracteristicas")
+        $('#guardarExamen').prop('disabled', false);
         return undefined;
     }
 
@@ -130,6 +131,7 @@ $('#guardarExamen').click(function(e){
                 $('#numeroExamen').val(response.data.numExamen)
                 $('#fechaExamen').val(response.data.fechaExamen)
                 $('#estado').val(response.data.estado)
+                window.examen = response.data.codExamen;
             } else {
                 toastr.error("No se pudo agregar el examen, " + response.error);
             }

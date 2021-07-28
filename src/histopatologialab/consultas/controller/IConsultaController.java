@@ -9,7 +9,7 @@ import java.util.Map;
 
 public interface IConsultaController {
 
-    JsonResponse<Map<String, List<OpcionLesion>>> getOpciones();
+    JsonResponse<Map<String, List<OpcionLesion>>> getOpciones(Boolean loadDisabled);
 
     JsonResponse<Examen> getExamen(int codExamen);
 

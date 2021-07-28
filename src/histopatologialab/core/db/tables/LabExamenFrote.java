@@ -8,6 +8,7 @@ import histopatologialab.core.db.Keys;
 import histopatologialab.core.db.Public;
 import histopatologialab.core.db.tables.records.LabExamenFroteRecord;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
@@ -17,7 +18,7 @@ import org.jooq.ForeignKey;
 import org.jooq.Identity;
 import org.jooq.Name;
 import org.jooq.Record;
-import org.jooq.Row11;
+import org.jooq.Row13;
 import org.jooq.Schema;
 import org.jooq.Table;
 import org.jooq.TableField;
@@ -77,7 +78,7 @@ public class LabExamenFrote extends TableImpl<LabExamenFroteRecord> {
     /**
      * The column <code>public.lab_examen_frote.monto_recibo</code>.
      */
-    public final TableField<LabExamenFroteRecord, String> MONTO_RECIBO = createField(DSL.name("monto_recibo"), SQLDataType.VARCHAR(20), this, "");
+    public final TableField<LabExamenFroteRecord, BigDecimal> MONTO_RECIBO = createField(DSL.name("monto_recibo"), SQLDataType.NUMERIC, this, "");
 
     /**
      * The column <code>public.lab_examen_frote.cod_tincion</code>.
@@ -103,6 +104,16 @@ public class LabExamenFrote extends TableImpl<LabExamenFroteRecord> {
      * The column <code>public.lab_examen_frote.fecha_modificacion</code>.
      */
     public final TableField<LabExamenFroteRecord, LocalDate> FECHA_MODIFICACION = createField(DSL.name("fecha_modificacion"), SQLDataType.LOCALDATE, this, "");
+
+    /**
+     * The column <code>public.lab_examen_frote.fecha</code>.
+     */
+    public final TableField<LabExamenFroteRecord, LocalDate> FECHA = createField(DSL.name("fecha"), SQLDataType.LOCALDATE, this, "");
+
+    /**
+     * The column <code>public.lab_examen_frote.muestra_estudio</code>.
+     */
+    public final TableField<LabExamenFroteRecord, String> MUESTRA_ESTUDIO = createField(DSL.name("muestra_estudio"), SQLDataType.VARCHAR, this, "");
 
     private LabExamenFrote(Name alias, Table<LabExamenFroteRecord> aliased) {
         this(alias, aliased, null);
@@ -214,11 +225,11 @@ public class LabExamenFrote extends TableImpl<LabExamenFroteRecord> {
     }
 
     // -------------------------------------------------------------------------
-    // Row11 type methods
+    // Row13 type methods
     // -------------------------------------------------------------------------
 
     @Override
-    public Row11<Integer, Integer, String, String, String, String, Integer, String, Integer, String, LocalDate> fieldsRow() {
-        return (Row11) super.fieldsRow();
+    public Row13<Integer, Integer, String, String, String, BigDecimal, Integer, String, Integer, String, LocalDate, LocalDate, String> fieldsRow() {
+        return (Row13) super.fieldsRow();
     }
 }

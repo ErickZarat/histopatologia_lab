@@ -17,7 +17,7 @@ import org.jooq.Field;
 import org.jooq.ForeignKey;
 import org.jooq.Name;
 import org.jooq.Record;
-import org.jooq.Row12;
+import org.jooq.Row17;
 import org.jooq.Schema;
 import org.jooq.Table;
 import org.jooq.TableField;
@@ -70,9 +70,9 @@ public class LabExamenBiopsia extends TableImpl<LabExamenBiopsiaRecord> {
     public final TableField<LabExamenBiopsiaRecord, Integer> USUARIO_BIOPSIA = createField(DSL.name("usuario_biopsia"), SQLDataType.INTEGER, this, "");
 
     /**
-     * The column <code>public.lab_examen_biopsia.fecha_planificada</code>.
+     * The column <code>public.lab_examen_biopsia.fecha</code>.
      */
-    public final TableField<LabExamenBiopsiaRecord, LocalDate> FECHA_PLANIFICADA = createField(DSL.name("fecha_planificada"), SQLDataType.LOCALDATE, this, "");
+    public final TableField<LabExamenBiopsiaRecord, LocalDate> FECHA = createField(DSL.name("fecha"), SQLDataType.LOCALDATE, this, "");
 
     /**
      * The column <code>public.lab_examen_biopsia.tipo_biopsia</code>.
@@ -95,9 +95,9 @@ public class LabExamenBiopsia extends TableImpl<LabExamenBiopsiaRecord> {
     public final TableField<LabExamenBiopsiaRecord, BigDecimal> MONTO_RECIBO = createField(DSL.name("monto_recibo"), SQLDataType.NUMERIC, this, "");
 
     /**
-     * The column <code>public.lab_examen_biopsia.estado_enfermedad</code>.
+     * The column <code>public.lab_examen_biopsia.estado_biopsia</code>.
      */
-    public final TableField<LabExamenBiopsiaRecord, String> ESTADO_ENFERMEDAD = createField(DSL.name("estado_enfermedad"), SQLDataType.VARCHAR(20), this, "");
+    public final TableField<LabExamenBiopsiaRecord, String> ESTADO_BIOPSIA = createField(DSL.name("estado_biopsia"), SQLDataType.VARCHAR(20), this, "");
 
     /**
      * The column <code>public.lab_examen_biopsia.modificado_por</code>.
@@ -108,6 +108,31 @@ public class LabExamenBiopsia extends TableImpl<LabExamenBiopsiaRecord> {
      * The column <code>public.lab_examen_biopsia.fecha_modificacion</code>.
      */
     public final TableField<LabExamenBiopsiaRecord, LocalDate> FECHA_MODIFICACION = createField(DSL.name("fecha_modificacion"), SQLDataType.LOCALDATE, this, "");
+
+    /**
+     * The column <code>public.lab_examen_biopsia.procedimiento</code>.
+     */
+    public final TableField<LabExamenBiopsiaRecord, Integer> PROCEDIMIENTO = createField(DSL.name("procedimiento"), SQLDataType.INTEGER, this, "");
+
+    /**
+     * The column <code>public.lab_examen_biopsia.tipo_cirugia</code>.
+     */
+    public final TableField<LabExamenBiopsiaRecord, Integer> TIPO_CIRUGIA = createField(DSL.name("tipo_cirugia"), SQLDataType.INTEGER, this, "");
+
+    /**
+     * The column <code>public.lab_examen_biopsia.instrumento</code>.
+     */
+    public final TableField<LabExamenBiopsiaRecord, Integer> INSTRUMENTO = createField(DSL.name("instrumento"), SQLDataType.INTEGER, this, "");
+
+    /**
+     * The column <code>public.lab_examen_biopsia.muestra_estudio</code>.
+     */
+    public final TableField<LabExamenBiopsiaRecord, String> MUESTRA_ESTUDIO = createField(DSL.name("muestra_estudio"), SQLDataType.VARCHAR, this, "");
+
+    /**
+     * The column <code>public.lab_examen_biopsia.observaciones</code>.
+     */
+    public final TableField<LabExamenBiopsiaRecord, String> OBSERVACIONES = createField(DSL.name("observaciones"), SQLDataType.VARCHAR, this, "");
 
     private LabExamenBiopsia(Name alias, Table<LabExamenBiopsiaRecord> aliased) {
         this(alias, aliased, null);
@@ -206,11 +231,11 @@ public class LabExamenBiopsia extends TableImpl<LabExamenBiopsiaRecord> {
     }
 
     // -------------------------------------------------------------------------
-    // Row12 type methods
+    // Row17 type methods
     // -------------------------------------------------------------------------
 
     @Override
-    public Row12<Integer, Integer, String, Integer, LocalDate, String, String, String, BigDecimal, String, String, LocalDate> fieldsRow() {
-        return (Row12) super.fieldsRow();
+    public Row17<Integer, Integer, String, Integer, LocalDate, String, String, String, BigDecimal, String, String, LocalDate, Integer, Integer, Integer, String, String> fieldsRow() {
+        return (Row17) super.fieldsRow();
     }
 }

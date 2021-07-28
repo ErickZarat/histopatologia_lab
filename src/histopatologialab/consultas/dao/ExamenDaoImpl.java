@@ -208,7 +208,7 @@ public class ExamenDaoImpl implements IExamenDao {
 
     @Override
     public String getNextExamenNumber(LocalDate date) {
-        date.withDayOfMonth(1);
+        date = date.withDayOfMonth(1);
         int newNumber = query
                 .fetchCount(tabla, tabla.FECHA_EXAMEN.greaterOrEqual(date));
 

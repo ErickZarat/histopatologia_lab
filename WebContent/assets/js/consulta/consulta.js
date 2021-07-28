@@ -16,9 +16,10 @@ $(document).ready(function() {
                 if(response.success) {
                     response.data.forEach(function (element) {
                         var data = ' data-codigo-consulta="' + element.codExamen +'"';
+                        console.log(element)
                         var row = [
                             '<label>' + element.numExamen + '</label>',
-                            '<label>' + element.fechaExamen + '</label>',
+                            '<label>' + element.fechaFormateada + '</label>',
                             '<label class="text-capitalize">' + element.estado + '</label>',
                             '<label class="text-capitalize">' + element.doctor.nombresDoctor + ' ' + element.doctor.apellidosDoctor + '</label>',
                             '<label class="text-capitalize">' + element.paciente.nombrePaciente + ' ' + element.paciente.apellidosPaciente + '</label>',

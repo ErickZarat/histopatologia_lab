@@ -14,6 +14,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.ZoneOffset;
+import java.time.temporal.TemporalField;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -38,7 +41,7 @@ public class UploadServlet extends HttpServlet {
                     FileItem file = (FileItem) item;
                     if (!file.isFormField()) {
                         try {
-                            String itemName = file.getName();
+                            String itemName = file.getName() + "-" + LocalDate.now().atStartOfDay().toEpochSecond(ZoneOffset.UTC);
                             File fileToSave = new File("/Users/erickzarat/code/me/astrid/histopatologia_lab/WebContent/assets/img/uploads/"+itemName);
                             file.write(fileToSave);
 

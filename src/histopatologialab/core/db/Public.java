@@ -14,6 +14,7 @@ import histopatologialab.core.db.tables.LabExamenEnfermedadSistemica;
 import histopatologialab.core.db.tables.LabExamenFrote;
 import histopatologialab.core.db.tables.LabExamenHistEstados;
 import histopatologialab.core.db.tables.LabExamenImagen;
+import histopatologialab.core.db.tables.LabInforme;
 import histopatologialab.core.db.tables.LabMedicamento;
 import histopatologialab.core.db.tables.LabPaciente;
 import histopatologialab.core.db.tables.LabPresentacionMedicamento;
@@ -94,6 +95,11 @@ public class Public extends SchemaImpl {
     public final LabExamenImagen LAB_EXAMEN_IMAGEN = LabExamenImagen.LAB_EXAMEN_IMAGEN;
 
     /**
+     * The table <code>public.lab_informe</code>.
+     */
+    public final LabInforme LAB_INFORME = LabInforme.LAB_INFORME;
+
+    /**
      * The table <code>public.lab_medicamento</code>.
      */
     public final LabMedicamento LAB_MEDICAMENTO = LabMedicamento.LAB_MEDICAMENTO;
@@ -151,6 +157,7 @@ public class Public extends SchemaImpl {
             Sequences.LAB_EXAMEN_COD_EXAMEN_SEQ1,
             Sequences.LAB_EXAMEN_COD_EXAMEN_SEQ2,
             Sequences.LAB_EXAMEN_FROTE_COD_FROTE_SEQ,
+            Sequences.LAB_INFORME_COD_INFORME_SEQ,
             Sequences.LAB_MEDICAMENTO_SEQ,
             Sequences.LAB_PACIENTE_SEQ,
             Sequences.LAB_TINCION_SEQ,
@@ -171,6 +178,7 @@ public class Public extends SchemaImpl {
             LabExamenFrote.LAB_EXAMEN_FROTE,
             LabExamenHistEstados.LAB_EXAMEN_HIST_ESTADOS,
             LabExamenImagen.LAB_EXAMEN_IMAGEN,
+            LabInforme.LAB_INFORME,
             LabMedicamento.LAB_MEDICAMENTO,
             LabPaciente.LAB_PACIENTE,
             LabPresentacionMedicamento.LAB_PRESENTACION_MEDICAMENTO,

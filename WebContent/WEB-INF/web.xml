@@ -107,6 +107,24 @@
     </servlet-mapping>
 
     <servlet>
+        <servlet-name>FroteServlet</servlet-name>
+        <servlet-class>histopatologialab.frote.FroteServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>FroteServlet</servlet-name>
+        <url-pattern>/FroteServlet.do</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>BiopsiaServlet</servlet-name>
+        <servlet-class>histopatologialab.biopsia.BiopsiaServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>BiopsiaServlet</servlet-name>
+        <url-pattern>/BiopsiaServlet.do</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>UploadServlet</servlet-name>
         <servlet-class>histopatologialab.upload.UploadServlet</servlet-class>
     </servlet>

@@ -14,6 +14,7 @@ import histopatologialab.core.db.tables.LabExamenEnfermedadSistemica;
 import histopatologialab.core.db.tables.LabExamenFrote;
 import histopatologialab.core.db.tables.LabExamenHistEstados;
 import histopatologialab.core.db.tables.LabExamenImagen;
+import histopatologialab.core.db.tables.LabInforme;
 import histopatologialab.core.db.tables.LabMedicamento;
 import histopatologialab.core.db.tables.LabPaciente;
 import histopatologialab.core.db.tables.LabPresentacionMedicamento;
@@ -77,6 +78,11 @@ public class Tables {
      * The table <code>public.lab_examen_imagen</code>.
      */
     public static final LabExamenImagen LAB_EXAMEN_IMAGEN = LabExamenImagen.LAB_EXAMEN_IMAGEN;
+
+    /**
+     * The table <code>public.lab_informe</code>.
+     */
+    public static final LabInforme LAB_INFORME = LabInforme.LAB_INFORME;
 
     /**
      * The table <code>public.lab_medicamento</code>.

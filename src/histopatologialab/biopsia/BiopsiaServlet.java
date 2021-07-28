@@ -1,9 +1,12 @@
 package histopatologialab.biopsia;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import histopatologialab.biopsia.dto.Biopsia;
 import histopatologialab.core.JsonResponse;
 import histopatologialab.core.RequestAction;
 import histopatologialab.biopsia.controller.IBiopsiaController;
+import histopatologialab.informe.controller.IInformeController;
+import histopatologialab.informe.dto.Informe;
 import org.tinylog.Logger;
 
 import javax.servlet.ServletException;
@@ -19,6 +22,7 @@ import static histopatologialab.core.ServletHelper.*;
 @WebServlet(name = "BiopsiaServlet")
 public class BiopsiaServlet extends HttpServlet {
     private final IBiopsiaController controller = biopsiaController;
+    private final IInformeController infController = informeController;
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         checkSession(request, response);
@@ -29,7 +33,30 @@ public class BiopsiaServlet extends HttpServlet {
             handlePostCreateBiopsia(request, response);
         } else if (action == RequestAction.MODIFICAR) {
             handlePostModificarBiopsia(request, response);
+        } else if (action == RequestAction.GUARDAR_INFORME) {
+            handlePostGuardarInformeBiopsia(request, response);
         }
+    }
+
+    private void handlePostGuardarInformeBiopsia(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        String informeJson = request.getParameter("informe");
+        Logger.info("inf request " + informeJson);
+        Informe informe = jackson.readValue(informeJson, Informe.class);
+        if (informe == null) {
+            Logger.info("error parsing biopsia request");
+        }
+        try {
+            Logger.info("poniendo user ");
+            informe.setUsuarioInforme(Math.toIntExact(getIdUsuarioFromSession(request)));
+            Logger.info("poniendo user listo");
+        } catch (Exception e){
+            Logger.info("cannot cast user id");
+        }
+
+        Logger.info("guardando");
+        JsonResponse<Informe> guardado =  infController.crearInforme(informe);
+        Logger.info("guardando listo ");
+        returnJson(response, guardado);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
