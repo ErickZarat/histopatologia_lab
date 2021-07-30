@@ -91,6 +91,7 @@ public class ConsultaServlet extends HttpServlet {
                         Informe infBiopsia = informeController.getInformeByBiopsia(biopsia.getCodBiopsia()).getData();
                         if (infBiopsia != null) {
                             request.setAttribute("informeBiopsia", infBiopsia);
+                            request.setAttribute("diagnosticoBiopsia", infBiopsia.getDiagnostico() != null ? infBiopsia.getDiagnostico().split(","): "");
                         }
                     }
                 } else if (tipo.equals("frote")) {

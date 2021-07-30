@@ -39,7 +39,7 @@
                     <option value="">Selecciona una opcion</option>
                     <c:forEach items="${diagnosticos}" var="diagnostico">
                         <option value="${diagnostico.codigoDiagnostico}"
-<%--                                <c:if test='${fn:contains(biopsiaDiagnosticos, diagnostico.codigoDiagnostico)}'>selected</c:if>--%>
+                                <c:if test='${fn:contains(diagnosticoBiopsia, diagnostico.codigoDiagnostico)}'>selected</c:if>
                         >${diagnostico.nombreDiagnostico}</option>
                     </c:forEach>
                 </select>

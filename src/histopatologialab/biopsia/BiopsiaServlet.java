@@ -2,6 +2,7 @@ package histopatologialab.biopsia;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import histopatologialab.biopsia.dto.Biopsia;
+import histopatologialab.consultas.dto.EstadoExamen;
 import histopatologialab.core.JsonResponse;
 import histopatologialab.core.RequestAction;
 import histopatologialab.biopsia.controller.IBiopsiaController;
@@ -56,6 +57,7 @@ public class BiopsiaServlet extends HttpServlet {
         try {
             String usuario = getUsuarioFromSession(request);
             Biopsia biopsia = biopsiaController.getBiopsia(informe.getCodBiopsia()).getData();
+            biopsia.setEstadoBiopsia(EstadoExamen.INFORME_FROTE.getSlug());
             biopsiaController.modificarBiopsia(biopsia, usuario);
         } catch (Exception e) {
             Logger.info("error cambiando estado");
