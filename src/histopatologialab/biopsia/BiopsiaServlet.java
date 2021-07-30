@@ -45,12 +45,20 @@ public class BiopsiaServlet extends HttpServlet {
         if (informe == null) {
             Logger.info("error parsing biopsia request");
         }
+
         try {
-            Logger.info("poniendo user ");
-            informe.setUsuarioInforme(Math.toIntExact(getIdUsuarioFromSession(request)));
-            Logger.info("poniendo user listo");
+            int usuarioId = Math.toIntExact(getIdUsuarioFromSession(request));
+            informe.setUsuarioInforme(usuarioId);
         } catch (Exception e){
             Logger.info("cannot cast user id");
+        }
+
+        try {
+            String usuario = getUsuarioFromSession(request);
+            Biopsia biopsia = biopsiaController.getBiopsia(informe.getCodBiopsia()).getData();
+            biopsiaController.modificarBiopsia(biopsia, usuario);
+        } catch (Exception e) {
+            Logger.info("error cambiando estado");
         }
 
         Logger.info("guardando");

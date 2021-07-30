@@ -42,7 +42,7 @@
             <a href="ConsultaServlet.do?accion=CREAR" class="btn btn-light">Nueva <i class="fas fa-plus"></i></a>
         </div>
 
-        <table class="table table-striped w-50 left-margin-align" id="consultasTable">
+        <table class="table table-striped w-80 left-margin-align" id="consultasTable">
             <thead class="table thead-light">
                 <tr style="font-weight: bold;">
                     <td>Numero Consulta</td>
@@ -55,8 +55,6 @@
             </thead>
             <tbody></tbody>
         </table>
-
-
     </div>
 </div>
 

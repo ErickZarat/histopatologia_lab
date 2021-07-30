@@ -100,7 +100,7 @@ public class PacienteDaoImpl implements IPacienteDao {
 	        	registro2.setEstadocivil(paciente.getEstCivilPaciente());
 	        	registro2.setFechacreacion(LocalDate.now());      	
 	        	registro2.setCreadopor(paciente.getCreadoPor());
-	        	registro2.setNumFicha(paciente.getNum_ficha());
+	        	registro2.setNumFicha(paciente.getNumFicha());
 	        	registro2.store();
 	        
 	        return getPaciente(registro2.getCodPaciente());	 
@@ -120,7 +120,7 @@ public class PacienteDaoImpl implements IPacienteDao {
             .set(tablapaciente.FECHANACIMIENTO, paciente.getFecNacimientoPaciente())
             .set(tablapaciente.FECHAMODIFICACION, LocalDate.now())
             .set(tablapaciente.MODIFICADOPOR, paciente.getModificadoPor())
-            .set(tablapaciente.NUM_FICHA, paciente.getNum_ficha())
+            .set(tablapaciente.NUM_FICHA, paciente.getNumFicha())
             .where(tablapaciente.COD_PACIENTE.eq(paciente.getCodigoPaciente()))
             .execute();
 	        return getPaciente(paciente.getCodigoPaciente());

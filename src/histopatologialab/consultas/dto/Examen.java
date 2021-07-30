@@ -48,9 +48,7 @@ public class Examen {
         this.codPaciente = codPaciente;
         this.numExamen = numExamen;
         this.fechaExamen = fechaExamen;
-        Logger.info("fecha examen " + fechaExamen);
         this.fechaFormateada = formatDate(fechaExamen);
-        Logger.info("fecha formateada " + fechaFormateada);
         this.estado = estado;
         this.historiaExamenLesion = historiaExamenLesion;
         this.tamanoLesion = tamanoLesion;

@@ -23,6 +23,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
 
 import static histopatologialab.core.Controllers.*;
 import static histopatologialab.core.DateUtils.formatDate;
@@ -58,9 +59,65 @@ public class ConsultaServlet extends HttpServlet {
             handleGetCreateWithPaciente(request, response, action);
         } else if (action == RequestAction.LISTAR_JSON) {
             handleGetConsultas(request, response);
+        } else if (action == RequestAction.DESCARGAR_INFORME){
+            handleDescargarInforme(request, response);
         } else {
             getDefaultPage(request, response);
         }
+    }
+
+    private void handleDescargarInforme(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String codExamen = request.getParameter("codExamen");
+        String codPaciente = request.getParameter("codPaciente");
+        String tipo = request.getParameter("tipo");
+
+        Examen examen = consultaController.getExamen(Integer.parseInt(codExamen)).getData();
+        Paciente paciente = pacienteController.getPacienteByCodigo(Long.parseLong(codPaciente)).getData();
+
+        request.setAttribute("paciente", paciente);
+        request.setAttribute("examen", examen);
+        request.setAttribute("fechaExamen", formatDate(examen.getFechaExamen()));
+
+        if (examen != null) {
+            try {
+                request.setAttribute("tipoOpcion", controller.getOpciones(false).getData());
+
+                if (tipo.equals("biopsia")) {
+                    List<Biopsia> biopsias = biopsiaController.getBiopsiasByExamen(examen.getCodExamen()).getData();
+                    Biopsia biopsia = null;
+                    if (biopsias != null && biopsias.size() >= 1) biopsia = biopsias.get(0);
+                    if (biopsia != null) {
+                        request.setAttribute("biopsia", biopsia);
+                        Informe infBiopsia = informeController.getInformeByBiopsia(biopsia.getCodBiopsia()).getData();
+                        if (infBiopsia != null) {
+                            request.setAttribute("informeBiopsia", infBiopsia);
+                        }
+                    }
+                } else if (tipo.equals("frote")) {
+                    List<Frote> frotes = froteController.getFrotesByExamen(examen.getCodExamen()).getData();
+                    Frote frote = null;
+                    if (frotes != null && frotes.size() >= 1) frote = frotes.get(0);
+                    if (frote != null) {
+                        request.setAttribute("frote", frote);
+                        Informe infFrote = informeController.getInformeByFrote(frote.getCodFrote()).getData();
+                        if (infFrote != null) {
+                            request.setAttribute("informeFrote", infFrote);
+                        }
+                    }
+                } else if (tipo.equals("receta")) {
+
+                }
+            } catch (Exception e) {
+                Logger.info("error getting examen childs");
+                e.printStackTrace();
+            }
+        } else
+            request.setAttribute("tipoOpcion", controller.getOpciones(true).getData());
+
+        request.setAttribute("enfermedades", enfSistemicaController.getEnfermedadesSistemicas().getData());
+        request.setAttribute("diagnosticos", diagnosticoController.getDiagnosticos().getData());
+        RequestDispatcher despachador = request.getRequestDispatcher("consulta/biopsia/informe-pdf.jsp");
+        despachador.forward(request, response);
     }
 
     private void handleGetConsultas(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -79,7 +136,6 @@ public class ConsultaServlet extends HttpServlet {
         examen.setDoctorExamen(getIdUsuarioFromSession(request));
 
         JsonResponse<Examen> examenGuardado =  controller.guardarExamen(examen);
-        Logger.info(jackson.writeValueAsString(examenGuardado));
         returnJson(response, examenGuardado);
     }
 
@@ -116,24 +172,35 @@ public class ConsultaServlet extends HttpServlet {
             try {
                 request.setAttribute("tipoOpcion", controller.getOpciones(false).getData());
                 request.setAttribute("codExamen", examen.getCodExamen());
-                Biopsia biopsia = biopsiaController.getBiopsiasByExamen(examen.getCodExamen()).getData().get(0);
+                List<Biopsia> biopsias = biopsiaController.getBiopsiasByExamen(examen.getCodExamen()).getData();
+                Biopsia biopsia = null;
+                if (biopsias != null && biopsias.size() >= 1) biopsia = biopsias.get(0);
                 if (biopsia != null) {
                     request.setAttribute("biopsia", biopsia);
                     request.setAttribute("codBiopsia", biopsia.getCodBiopsia());
                     Informe infBiopsia = informeController.getInformeByBiopsia(biopsia.getCodBiopsia()).getData();
-                    request.setAttribute("informeBiopsia", infBiopsia);
-                    request.setAttribute("codInformeBiopsia", infBiopsia.getCodInforme());
+                    if (infBiopsia != null) {
+                        request.setAttribute("informeBiopsia", infBiopsia);
+                        request.setAttribute("codInformeBiopsia", infBiopsia.getCodInforme());
+                    }
                 }
-                Frote frote = froteController.getFrotesByExamen(examen.getCodExamen()).getData().get(0);
+
+                List<Frote> frotes = froteController.getFrotesByExamen(examen.getCodExamen()).getData();
+                Frote frote = null;
+                if (frotes != null && frotes.size() >= 1) frote = frotes.get(0);
+
                 if (frote != null) {
                     request.setAttribute("frote", frote);
                     request.setAttribute("codFrote", frote.getCodFrote());
                     Informe infFrote = informeController.getInformeByFrote(frote.getCodFrote()).getData();
-                    request.setAttribute("codInformeFrote", infFrote.getCodInforme());
-                    request.setAttribute("informeFrote", infFrote);
+                    if(infFrote != null) {
+                        request.setAttribute("codInformeFrote", infFrote.getCodInforme());
+                        request.setAttribute("informeFrote", infFrote);
+                    }
                 }
             } catch (Exception e) {
                 Logger.info("error getting examen childs");
+                e.printStackTrace();
             }
         } else
             request.setAttribute("tipoOpcion", controller.getOpciones(true).getData());

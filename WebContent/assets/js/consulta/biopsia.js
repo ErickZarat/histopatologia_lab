@@ -51,7 +51,7 @@ $('#validarReciboBiopsia').click(function(e){
 function extractDatosBiopsia(){
     var datosBiopsia = {
         'codBiopsia': window.biopsia,
-        'tipoProcedimiento': $('#tipoProcedimientoSelect').val(),
+        'procedimiento': $('#tipoProcedimientoSelect').val(),
         'tipoCirugia': $('#tipoCirugiaSelect').val(),
         'instrumento': $('#instrumentoSelect').val(),
         'muestraEstudio': $('#muestraEstudio').val(),

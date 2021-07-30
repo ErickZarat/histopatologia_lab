@@ -3,6 +3,8 @@ package histopatologialab.biopsia.dto;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
+import static histopatologialab.core.DateUtils.formatDate;
+
 public class Biopsia {
     Integer codBiopsia;
     Integer codExamen;
@@ -20,6 +22,7 @@ public class Biopsia {
     Integer instrumento;
     Integer tipoCirugia;
     Integer procedimiento;
+    String fechaFormateada;
 
 
     public Biopsia() {
@@ -37,6 +40,7 @@ public class Biopsia {
         this.modificadoPor = modificadoPor;
         this.fechaModificacion = fechaModificacion;
         this.fecha = fecha;
+        this.fechaFormateada = formatDate(this.fecha);
         this.muestraEstudio = muestraEstudio;
         this.observaciones = observaciones;
         this.instrumento = instrumento;
@@ -50,6 +54,7 @@ public class Biopsia {
 
     public void setFecha(LocalDate fecha) {
         this.fecha = fecha;
+        this.fechaFormateada = formatDate(this.fecha);
     }
 
     public Integer getCodBiopsia() {
@@ -170,5 +175,13 @@ public class Biopsia {
 
     public void setProcedimiento(Integer procedimiento) {
         this.procedimiento = procedimiento;
+    }
+
+    public String getFechaFormateada() {
+        return fechaFormateada;
+    }
+
+    public void setFechaFormateada(String fechaFormateada) {
+        this.fechaFormateada = fechaFormateada;
     }
 }

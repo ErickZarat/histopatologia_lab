@@ -22,7 +22,7 @@ public class Paciente {
 	private String modificadoPor;
 	private LocalDate fechaModificacion;
 	private int edad;
-	private String num_ficha; 
+	private String numFicha;
 	
    public Paciente () {	   
    }
@@ -48,7 +48,7 @@ public class Paciente {
         this.fechaCreacion = fechaCreacion;
         this.modificadoPor = modificadoPor;
         this.fechaModificacion = fechaModificacion;
-        this.num_ficha = numficha;
+        this.numFicha = numficha;
 
         calculateAge();
         
@@ -234,12 +234,12 @@ public class Paciente {
 	}
 
 
-	public String getNum_ficha() {
-		return num_ficha;
+	public String getNumFicha() {
+		return numFicha;
 	}
 
 
-	public void setNum_ficha(String num_ficha) {
-		this.num_ficha = num_ficha;
+	public void setNumFicha(String numFicha) {
+		this.numFicha = numFicha;
 	}
 }

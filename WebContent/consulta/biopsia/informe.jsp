@@ -1,28 +1,34 @@
-<fieldset id="biopsia-informe" disabled>
+<fieldset id="biopsia-informe" <c:if test='${biopsia.estadoBiopsia != "Pendiente Informe Biopsa"}'>disabled</c:if>>
+    <hr>
     <table>
         <tr>
+            <td>
+                <h4>Informe</h4>
+            </td>
+        </tr>
+        <tr>
             <td><label class="table-form-label" for="clinicaBiopsia">Clinica:</label></td>
-            <td><input type="text" id="clinicaBiopsia" class="form-control"></td>
+            <td><input type="text" id="clinicaBiopsia" class="form-control" value="${informeBiopsia.clinica}"></td>
         </tr>
         <tr>
             <td><label class="table-form-label" for="direccionBiopsia">Direccion:</label></td>
-            <td><input type="text" id="direccionBiopsia" class="form-control"></td>
+            <td><input type="text" id="direccionBiopsia" class="form-control" value="${informeBiopsia.direccion}"></td>
         </tr>
         <tr>
             <td><label class="table-form-label" for="solicitanteBiopsia">Solicitante:</label></td>
-            <td><input type="text" id="solicitanteBiopsia" class="form-control"></td>
+            <td><input type="text" id="solicitanteBiopsia" class="form-control" value="${informeBiopsia.solicitante}"></td>
         </tr>
         <tr>
             <td><label class="table-form-label" for="datosClinicosBiopsia">Datos clinicos:</label></td>
-            <td><textArea id="datosClinicosBiopsia" class="form-control" cols="56" rows="5"></textArea></td>
+            <td><textArea id="datosClinicosBiopsia" class="form-control" cols="80" rows="5">${informeBiopsia.datosClinicos}</textArea></td>
         </tr>
         <tr>
-            <td><label class="table-form-label" for="descMicroBiopsia">Descripcion micoscopica:</label></td>
-            <td><textArea id="descMicroBiopsia" class="form-control" cols="56" rows="5"></textArea></td>
+            <td><label class="table-form-label" for="descMicroBiopsia">Descripcion microscopica:</label></td>
+            <td><textArea id="descMicroBiopsia" class="form-control" cols="80" rows="5">${informeBiopsia.descMirco}</textArea></td>
         </tr>
         <tr>
             <td><label class="table-form-label" for="descMacroBiopsia">Descripcion macroscopica:</label></td>
-            <td><textArea id="descMacroBiopsia" class="form-control" cols="56" rows="5"></textArea></td>
+            <td><textArea id="descMacroBiopsia" class="form-control" cols="80" rows="5">${informeBiopsia.descMacros}</textArea></td>
         </tr>
         <tr>
             <td>

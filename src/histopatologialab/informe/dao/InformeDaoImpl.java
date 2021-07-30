@@ -69,7 +69,7 @@ public class InformeDaoImpl implements IInformeDao{
                 .from(tabla)
                 .where(tabla.COD_BIOPSIA.eq(codBiopsia))
                 .fetchOne();
-        return parseItem(result);
+        return result != null ? parseItem(result) : null;
     }
 
     @Override
@@ -78,6 +78,6 @@ public class InformeDaoImpl implements IInformeDao{
                 .from(tabla)
                 .where(tabla.COD_FROTE.eq(codFrote))
                 .fetchOne();
-        return parseItem(result);
+        return result != null ? parseItem(result) : null;
     }
 }

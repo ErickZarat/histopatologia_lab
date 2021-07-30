@@ -283,7 +283,6 @@ public class ExamenDaoImpl implements IExamenDao {
         }
 
         for(Integer diagnostico: diagnosticos) {
-            Logger.info("guardando diagnostico");
             LabExamenDiagnosticoRecord record = query.newRecord(tablaDiagnostico);
             record.setCodExamen(examen.getCodExamen());
             record.setCodDiagnostico(diagnostico);

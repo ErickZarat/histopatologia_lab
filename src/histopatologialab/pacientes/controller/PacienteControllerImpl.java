@@ -22,7 +22,7 @@ public class PacienteControllerImpl implements IPacienteController{
 	{
 		  try { Paciente pacienteExiste = pacientesDao.getPacienteByID(tipoidPaciente, identificacionPaciente);
 			  if (!(pacienteExiste == null) && (!(identificacionPaciente.equalsIgnoreCase("")))) {
-				  return new JsonResponse<>( false, null, "Ya existe un paciente con ese documento de identificación");
+				  return new JsonResponse<>( false, null, "Ya existe un paciente con ese documento de identificaciï¿½n");
 			  } else {
 				  	Long id = null;
 			        Paciente paciente = new Paciente(id, identificacionPaciente,  nombrePaciente, apellidosPaciente, 
@@ -46,7 +46,7 @@ public class PacienteControllerImpl implements IPacienteController{
      		Paciente pacienteExiste = pacientesDao.getPacienteByID(tipoidPaciente, identificacionPaciente);
 			  if (!(pacienteExiste == null) && (!(pacienteExiste.getCodigoPaciente()==codPaciente))) {
 				  System.out.println("error ya existe ");
-				  return new JsonResponse<>( false, null, "Ya existe un paciente con ese documento de identificación");
+				  return new JsonResponse<>( false, null, "Ya existe un paciente con ese documento de identificaciï¿½n");
 			  } else {   
 		    		 Paciente paciente =   pacientesDao.getPaciente(codPaciente) ;
 		    		 paciente.setNombrePaciente(nombrePaciente);
@@ -62,7 +62,7 @@ public class PacienteControllerImpl implements IPacienteController{
 		    		 paciente.setFecNacimientoPaciente(fecnacimiento);
 		    		 paciente.setModificadoPor(usuario);
 		    		 paciente.setFechaModificacion(LocalDate.now());
-		    		 paciente.setNum_ficha(numficha);
+		    		 paciente.setNumFicha(numficha);
 		    		 paciente = pacientesDao.modificarPaciente(paciente);
 		    		 return new JsonResponse<>(paciente != null, paciente);
 			  }	 

@@ -104,7 +104,7 @@ public class BiopsiaDaoImpl implements IBiopsiaDao {
 //        record.setSerieRecibo(biopsia.getSerieRecibo());
         record.setEstadoBiopsia(biopsia.getEstadoBiopsia());
         record.setUsuarioBiopsia(biopsia.getUsuarioBiopsia());
-        record.setModificadoPor("");
+        record.setModificadoPor(usuario);
         record.setFechaModificacion(LocalDate.now());
         record.setObservaciones(biopsia.getObservaciones());
         record.setMuestraEstudio(biopsia.getMuestraEstudio());

@@ -47,7 +47,7 @@
                     <td><label class="table-form-label" for="telefonoUsuario">Telefono:</label></td>
                     <td><input type="text" id="telefonoUsuario" class="form-control" readonly value="${paciente.telefonoPaciente}"></td>
                     <td><label class="table-form-label" for="numeroFicha">Numero Ficha:</label></td>
-                    <td><input type="text" id="numeroFicha" class="form-control" value=""></td>
+                    <td><input type="text" id="numeroFicha" class="form-control" readonly value="${paciente.numFicha}"></td>
                     <c:if test="${action=='CREAR'}">
                         <td><button id="resetUserForm" class="btn btn-light">X</button></td>
                     </c:if>
