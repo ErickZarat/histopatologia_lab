@@ -68,10 +68,10 @@ public class ConsultaServlet extends HttpServlet {
 
     private void handleDescargarInforme(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String codExamen = request.getParameter("codExamen");
-        String codPaciente = request.getParameter("codPaciente");
         String tipo = request.getParameter("tipo");
 
         Examen examen = consultaController.getExamen(Integer.parseInt(codExamen)).getData();
+        String codPaciente = String.valueOf(examen.getCodPaciente());
         Paciente paciente = pacienteController.getPacienteByCodigo(Long.parseLong(codPaciente)).getData();
 
         request.setAttribute("paciente", paciente);

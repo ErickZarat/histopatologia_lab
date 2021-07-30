@@ -2,6 +2,8 @@ package histopatologialab.informe.dto;
 
 import java.time.LocalDate;
 
+import static histopatologialab.core.DateUtils.formatDate;
+
 public class Informe{
     private Integer codInforme;
     private LocalDate fechaInforme;
@@ -15,6 +17,7 @@ public class Informe{
     private Integer usuarioInforme;
     private Integer codFrote;
     private Integer codBiopsia;
+    private String fechaFormateada;
 
     public Informe() {
     }
@@ -22,6 +25,7 @@ public class Informe{
     public Informe(Integer codInforme, LocalDate fechaInforme, String clinica, String direccion, String solicitante, String datosClinicos, String descMacros, String descMirco, String diagnostico, Integer usuarioInforme, Integer codFrote, Integer codBiopsia) {
         this.codInforme = codInforme;
         this.fechaInforme = fechaInforme;
+        this.fechaFormateada = formatDate(this.fechaInforme);
         this.clinica = clinica;
         this.direccion = direccion;
         this.solicitante = solicitante;
@@ -48,6 +52,7 @@ public class Informe{
 
     public void setFechaInforme(LocalDate fechaInforme) {
         this.fechaInforme = fechaInforme;
+        this.fechaFormateada = formatDate(this.fechaInforme);
     }
 
     public String getClinica() {
@@ -128,5 +133,17 @@ public class Informe{
 
     public void setCodBiopsia(Integer codBiopsia) {
         this.codBiopsia = codBiopsia;
+    }
+
+    public void setUsuarioInforme(Integer usuarioInforme) {
+        this.usuarioInforme = usuarioInforme;
+    }
+
+    public String getFechaFormateada() {
+        return fechaFormateada;
+    }
+
+    public void setFechaFormateada(String fechaFormateada) {
+        this.fechaFormateada = fechaFormateada;
     }
 }
