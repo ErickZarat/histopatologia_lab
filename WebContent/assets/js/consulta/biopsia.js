@@ -125,10 +125,19 @@ $('#guardarInformeBiopsia').click(function(e){
             if(response.success) {
                 console.log(response.data)
                 toastr.success('se guardo el informe');
+                var url = "ConsultaServlet.do?accion=DESCARGAR_INFORME&tipo=biopsia&codExamen=" + window.examen;
+                $('a#descargarInformeBiopsia').attr("href", url);
             } else {
                 $('#biopsia-informe').prop('disabled', false);
                 toastr.error('error al guardar el informe');
             }
         }
     });
+});
+
+$('a#descargarInformeBiopsia').click(function(e) {
+    e.preventDefault();
+    var width = window.innerWidth * 0.8 ;
+    var height = width * window.innerHeight / window.innerWidth ;
+    window.open(this.href , 'newwindow', 'width=' + width + ', height=' + height + ', top=' + ((window.innerHeight - height) / 2) + ', left=' + ((window.innerWidth - width) / 2));
 });

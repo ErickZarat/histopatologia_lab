@@ -9,6 +9,7 @@ public interface IUsuarioDao {
  
 	 List<Usuario> getUsuarios(); 
 	 List<Usuario> getUsuariosAlta();
+	 Usuario getUsuario(Long codUsuario);
 	 Usuario getUsuario(String loginUsuario);
 	 Usuario guardarUsuario(Usuario usuario);
 	 Usuario modificarUsuario(Usuario usuario);

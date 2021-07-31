@@ -3,6 +3,8 @@ package histopatologialab.frote.dto;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
+import static histopatologialab.core.DateUtils.formatDate;
+
 public class Frote {
     Integer codFrote;
     Integer codExamen;
@@ -16,11 +18,14 @@ public class Frote {
     String modificadoPor;
     LocalDate fechaModificacion;
     LocalDate fecha;
+    String muestraEstudio;
+    String fechaFormateada;
+
 
     public Frote() {
     }
 
-    public Frote(Integer codFrote, Integer codExamen, String numFrote, String numRecibo, String serieRecibo, BigDecimal montoRecibo, Integer codTincion, String estadoFrote, Integer usuarioFrote, String modificadoPor, LocalDate fechaModificacion, LocalDate fecha) {
+    public Frote(Integer codFrote, Integer codExamen, String numFrote, String numRecibo, String serieRecibo, BigDecimal montoRecibo, Integer codTincion, String estadoFrote, Integer usuarioFrote, String modificadoPor, LocalDate fechaModificacion, LocalDate fecha, String muestraEstudio) {
         this.codFrote = codFrote;
         this.codExamen = codExamen;
         this.numFrote = numFrote;
@@ -33,8 +38,9 @@ public class Frote {
         this.modificadoPor = modificadoPor;
         this.fechaModificacion = fechaModificacion;
         this.fecha = fecha;
+        this.fechaFormateada = formatDate(this.fecha);
+        this.muestraEstudio = muestraEstudio;
     }
-
 
     public LocalDate getFecha() {
         return fecha;
@@ -42,6 +48,7 @@ public class Frote {
 
     public void setFecha(LocalDate fecha) {
         this.fecha = fecha;
+        this.fechaFormateada = formatDate(this.fecha);
     }
 
     public Integer getCodFrote() {
@@ -130,5 +137,21 @@ public class Frote {
 
     public void setFechaModificacion(LocalDate fechaModificacion) {
         this.fechaModificacion = fechaModificacion;
+    }
+
+    public String getMuestraEstudio() {
+        return muestraEstudio;
+    }
+
+    public void setMuestraEstudio(String muestraEstudio) {
+        this.muestraEstudio = muestraEstudio;
+    }
+
+    public String getFechaFormateada() {
+        return fechaFormateada;
+    }
+
+    public void setFechaFormateada(String fechaFormateada) {
+        this.fechaFormateada = fechaFormateada;
     }
 }

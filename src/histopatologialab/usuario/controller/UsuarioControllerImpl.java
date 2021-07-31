@@ -80,15 +80,21 @@ public class UsuarioControllerImpl implements IUsuarioController{
 		Usuario usuarios = usuariosDao.getUsuario(loginUsuario);
 		return new JsonResponse<>(usuarios != null, usuarios);
 	}
-	
-	
+
+	@Override
+	public JsonResponse<Usuario> getUsuario(Long codUsuario) {
+		Usuario usuarios = usuariosDao.getUsuario(codUsuario);
+		return new JsonResponse<>(usuarios != null, usuarios);
+	}
+
+
 	@Override 
 	public JsonResponse<Usuario> reinicioPswUsuario(String loginUsuario, String usuarioMod)
 	{try {// buscar el usuario con esos datos en la base de datos
 		Usuario usuario = usuariosDao.getUsuario(loginUsuario); 
     	if (usuario == null)
     	{	System.out.println("no existe el usuario");
-    		return new JsonResponse<>(false, null, "No se pudo obtener la información del usuario");
+    		return new JsonResponse<>(false, null, "No se pudo obtener la informaciï¿½n del usuario");
     	}
     	else
     	{ System.out.println("si existe el usuario");
@@ -111,22 +117,22 @@ public class UsuarioControllerImpl implements IUsuarioController{
 		Usuario usuario = usuariosDao.getUsuario(loginUsuario); 
     	if (usuario == null)
     	{	System.out.println("no existe el usuario");
-    		return new JsonResponse<>(false, null, "No se pudo obtener la información del usuario");
+    		return new JsonResponse<>(false, null, "No se pudo obtener la informaciï¿½n del usuario");
     	}
     	else
     	{ System.out.println("si existe el usuario");
-  			//validación del psw anterior
+  			//validaciï¿½n del psw anterior
     		String genPswAnterior = PasswordUtils.generateSecurePassword(pswAnterior);
     		// comparar los dos psw     		
     		if (!( usuario.getPasswordUsuario().equals(genPswAnterior)))
-    		{	System.out.println("contraseña actual no es la correcta");
-    			return new JsonResponse<>(false, null, "La contraseña actual no es la correcta");
+    		{	System.out.println("contraseï¿½a actual no es la correcta");
+    			return new JsonResponse<>(false, null, "La contraseï¿½a actual no es la correcta");
     		} else {    			
     			// si se cambia el psw 	    	
 		  		 String passwordSegura = PasswordUtils.generateSecurePassword(pswActual);
 		  		 if (( usuario.getPasswordUsuario().equals(passwordSegura)))
-		  		 {  System.out.println("nueva y la contraseña actual iguales");
-		  			 return new JsonResponse<>(false, null, "La contraseña nueva y la contraseña actual no pueden ser iguales");		 
+		  		 {  System.out.println("nueva y la contraseï¿½a actual iguales");
+		  			 return new JsonResponse<>(false, null, "La contraseï¿½a nueva y la contraseï¿½a actual no pueden ser iguales");		 
 		  		 } else {  // si se actualiza el psw
 		  			System.out.println("si se cambio de psw");
 			  		 usuario.setPasswordUsuario(passwordSegura);

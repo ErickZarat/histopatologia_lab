@@ -11,7 +11,9 @@ public interface IUsuarioController {
 	JsonResponse<Boolean> darBajaUsuario(String loginUsuario, String usuarioMod);
 	JsonResponse<List<Usuario>> getUsuarios();
 	JsonResponse<Usuario> buscarUsuario(String loginUsuario);
+	JsonResponse<Usuario> getUsuario(Long codUsuario);
 	JsonResponse<Usuario> reinicioPswUsuario(String loginUsuario, String usuarioMod);
 	JsonResponse<Usuario> cambioPswUsuario(String loginUsuario, String pswAnterior, String pswActual);
-	JsonResponse<Boolean> cambiaEstadoUsuario(String loginUsuario, String estado, String usuariomod);	
+	JsonResponse<Boolean> cambiaEstadoUsuario(String loginUsuario, String estado, String usuariomod);
+
 }

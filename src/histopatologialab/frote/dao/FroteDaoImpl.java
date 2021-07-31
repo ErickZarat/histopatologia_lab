@@ -30,7 +30,8 @@ public class FroteDaoImpl implements IFroteDao {
                 record.getValue(tabla.USUARIO_FROTE),
                 record.getValue(tabla.MODIFICADO_POR),
                 record.getValue(tabla.FECHA_MODIFICACION),
-                record.getValue(tabla.FECHA)
+                record.getValue(tabla.FECHA),
+                record.getValue(tabla.MUESTRA_ESTUDIO)
         );
     }
 

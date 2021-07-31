@@ -57,8 +57,18 @@ public class UsuarioDaoImpl implements IUsuarioDao{
                 .fetch();
         return results.stream().map(this::parseItem).collect(Collectors.toList()); 
 	 }
-	 
-    @Override
+
+	@Override
+	public Usuario getUsuario(Long codUsuario) {
+		Record results = query
+				.select(tabla.asterisk())
+				.from(tabla)
+				.where(tabla.COD_USUARIO.eq(codUsuario))
+				.fetchOne();
+		return results != null ? parseItem(results) : null;
+	}
+
+	@Override
      public Usuario getUsuario(String loginUsuario) {
         Record result = query
                 .select(tabla.asterisk())
