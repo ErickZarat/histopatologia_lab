@@ -15,4 +15,5 @@ public interface IDiagnosticoController {
 	JsonResponse<Boolean> darBajaDiagnostico(Long codigoDiagnostico, String usuario);
     JsonResponse<Boolean> cambiaEstadoDiagnostico(Long codigoDiagnostico, String estadoNuevo, String usuario);
 	JsonResponse<List<Diagnostico>> getDiagnosticos();
+	JsonResponse<List<Diagnostico>> getDiagnosticosHabilitados();
 }

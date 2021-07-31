@@ -1,5 +1,8 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix = "fn" uri = "http://java.sun.com/jsp/jstl/functions" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
 <html>
-<meta charset="UTF-8">
 <body onload="window.print()" style="line-height: 1.8">
 <div style="text-align: center; height: 120px;">
     <div style="vertical-align: middle; display: inline-block;text-align: center; height: 100%; font-weight: 800;">
@@ -83,7 +86,13 @@
     <h3>Descripcion Microscopica:</h3>
     <p>${informeBiopsia.descMirco}</p>
 
-    <h3>Diagnostico: </h3>
+    <h3>Diagnostico:
+        <c:forEach items="${diagnosticos}" var="diagnostico">
+            <c:if test='${fn:contains(diagnosticoBiopsia, diagnostico.codigoDiagnostico)}'>
+                ${diagnostico.nombreDiagnostico}
+            </c:if>
+        </c:forEach>
+    </h3>
 </div>
 </body>
 

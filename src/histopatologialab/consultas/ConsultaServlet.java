@@ -210,7 +210,7 @@ public class ConsultaServlet extends HttpServlet {
 
     private void getCreateConsultaPage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setAttribute("enfermedades", enfSistemicaController.getEnfermedadesSistemicas().getData());
-        request.setAttribute("diagnosticos", diagnosticoController.getDiagnosticos().getData());
+        request.setAttribute("diagnosticos", diagnosticoController.getDiagnosticosHabilitados().getData());
         RequestDispatcher despachador = request.getRequestDispatcher("consulta/crear-consulta.jsp");
         despachador.forward(request, response);
     }

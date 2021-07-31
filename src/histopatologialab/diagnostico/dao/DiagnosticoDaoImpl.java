@@ -44,6 +44,17 @@ public class DiagnosticoDaoImpl implements IDiagnosticoDao {
     	.fetch();
 		return results.stream().map(this::parseItem).collect(Collectors.toList());
 	}
+
+	@Override
+	public List <Diagnostico> getDiagnosticosHabilitados()
+	// buscar todos los diagnosticos
+	{ 	List<Record> results = query
+			.select(tabla.asterisk())
+			.from(tabla)
+			.where(tabla.ESTADO_DIAGNOSTICO.eq(Estado.HABILITADO.getSlug()))
+			.fetch();
+		return results.stream().map(this::parseItem).collect(Collectors.toList());
+	}
 	
 	
 	@Override

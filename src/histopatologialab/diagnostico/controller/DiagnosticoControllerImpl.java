@@ -22,7 +22,7 @@ public class DiagnosticoControllerImpl implements IDiagnosticoController {
         try {
         	Diagnostico diagnosticoExiste = diagnosticosDao.getDiagnosticoByNombre(nombreDiagnostico);
         	if (!(diagnosticoExiste == null)) {  
-        		return new JsonResponse<>( false, null, "El nombre del diagnóstico ingresado, ya existe");
+        		return new JsonResponse<>( false, null, "El nombre del diagnostico ingresado, ya existe");
         	} else {        	
         		Diagnostico diagnostico = new Diagnostico(null, nombreDiagnostico, Estado.HABILITADO.getSlug(), LocalDate.now(), usuario, null, null);
         		diagnostico = diagnosticosDao.guardarDiagnostico(diagnostico);
@@ -48,9 +48,9 @@ public class DiagnosticoControllerImpl implements IDiagnosticoController {
 	            return new JsonResponse<Diagnostico>(diagnostico != null, diagnostico);        		
         	} else {  // si existe, se valida que sea el mismo codigo  
         		if ( codigoDiagnostico !=  diagnosticoExiste.getCodigoDiagnostico()) 
-        		{ return new JsonResponse<>(false, null, "Hubo un error al modificar el diagnóstico"); 
+        		{ return new JsonResponse<>(false, null, "Hubo un error al modificar el diagnostico");
         		} else {
-        			return new JsonResponse<>(false, null, "Hubo un error al modificar el diagnóstico");  
+        			return new JsonResponse<>(false, null, "Hubo un error al modificar el diagnostico");
         		}        			
         	}
         } catch (Exception e) {
@@ -73,6 +73,12 @@ public class DiagnosticoControllerImpl implements IDiagnosticoController {
     @Override
     public JsonResponse<List<Diagnostico>> getDiagnosticos() {
         List<Diagnostico> diagnosticos = diagnosticosDao.getDiagnosticos();
+        return new JsonResponse<List<Diagnostico>>(diagnosticos != null, diagnosticos);
+    }
+
+    @Override
+    public JsonResponse<List<Diagnostico>> getDiagnosticosHabilitados() {
+        List<Diagnostico> diagnosticos = diagnosticosDao.getDiagnosticosHabilitados();
         return new JsonResponse<List<Diagnostico>>(diagnosticos != null, diagnosticos);
     }
 
