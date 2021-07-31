@@ -186,7 +186,7 @@ public class ConsultaServlet extends HttpServlet {
                     if (infBiopsia != null) {
                         request.setAttribute("informeBiopsia", infBiopsia);
                         request.setAttribute("codInformeBiopsia", infBiopsia.getCodInforme());
-                        request.setAttribute("doc", usuarioController.getUsuario((long) infBiopsia.getUsuarioInforme()).getData());
+                        request.setAttribute("diagnosticoBiopsia", infBiopsia.getDiagnostico() != null ? infBiopsia.getDiagnostico().split(","): "");
                     }
                 }
 
@@ -201,7 +201,7 @@ public class ConsultaServlet extends HttpServlet {
                     if(infFrote != null) {
                         request.setAttribute("codInformeFrote", infFrote.getCodInforme());
                         request.setAttribute("informeFrote", infFrote);
-                        request.setAttribute("doc", usuarioController.getUsuario((long) infFrote.getUsuarioInforme()).getData());
+                        request.setAttribute("diagnosticoBiopsia", infFrote.getDiagnostico() != null ? infFrote.getDiagnostico().split(","): "");
                     }
                 }
             } catch (Exception e) {
