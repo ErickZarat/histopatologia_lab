@@ -20,12 +20,13 @@ public class Frote {
     LocalDate fecha;
     String muestraEstudio;
     String fechaFormateada;
+    String observaciones;
 
 
     public Frote() {
     }
 
-    public Frote(Integer codFrote, Integer codExamen, String numFrote, String numRecibo, String serieRecibo, BigDecimal montoRecibo, Integer codTincion, String estadoFrote, Integer usuarioFrote, String modificadoPor, LocalDate fechaModificacion, LocalDate fecha, String muestraEstudio) {
+    public Frote(Integer codFrote, Integer codExamen, String numFrote, String numRecibo, String serieRecibo, BigDecimal montoRecibo, Integer codTincion, String estadoFrote, Integer usuarioFrote, String modificadoPor, LocalDate fechaModificacion, LocalDate fecha, String muestraEstudio, String observaciones) {
         this.codFrote = codFrote;
         this.codExamen = codExamen;
         this.numFrote = numFrote;
@@ -38,8 +39,9 @@ public class Frote {
         this.modificadoPor = modificadoPor;
         this.fechaModificacion = fechaModificacion;
         this.fecha = fecha;
-        this.fechaFormateada = formatDate(this.fecha);
         this.muestraEstudio = muestraEstudio;
+        this.fechaFormateada = formatDate(this.fecha);
+        this.observaciones = observaciones;
     }
 
     public LocalDate getFecha() {
@@ -153,5 +155,13 @@ public class Frote {
 
     public void setFechaFormateada(String fechaFormateada) {
         this.fechaFormateada = fechaFormateada;
+    }
+
+    public String getObservaciones() {
+        return observaciones;
+    }
+
+    public void setObservaciones(String observaciones) {
+        this.observaciones = observaciones;
     }
 }

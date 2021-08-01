@@ -97,7 +97,7 @@ public class LabExamenBiopsia extends TableImpl<LabExamenBiopsiaRecord> {
     /**
      * The column <code>public.lab_examen_biopsia.estado_biopsia</code>.
      */
-    public final TableField<LabExamenBiopsiaRecord, String> ESTADO_BIOPSIA = createField(DSL.name("estado_biopsia"), SQLDataType.VARCHAR(20), this, "");
+    public final TableField<LabExamenBiopsiaRecord, String> ESTADO_BIOPSIA = createField(DSL.name("estado_biopsia"), SQLDataType.VARCHAR(30), this, "");
 
     /**
      * The column <code>public.lab_examen_biopsia.modificado_por</code>.

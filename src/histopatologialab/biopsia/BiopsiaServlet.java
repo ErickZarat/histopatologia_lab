@@ -1,11 +1,11 @@
 package histopatologialab.biopsia;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import histopatologialab.biopsia.controller.IBiopsiaController;
 import histopatologialab.biopsia.dto.Biopsia;
 import histopatologialab.consultas.dto.EstadoExamen;
 import histopatologialab.core.JsonResponse;
 import histopatologialab.core.RequestAction;
-import histopatologialab.biopsia.controller.IBiopsiaController;
 import histopatologialab.informe.controller.IInformeController;
 import histopatologialab.informe.dto.Informe;
 import org.tinylog.Logger;
@@ -17,13 +17,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-import static histopatologialab.core.Controllers.*;
+import static histopatologialab.core.Controllers.biopsiaController;
+import static histopatologialab.core.Controllers.informeController;
 import static histopatologialab.core.ServletHelper.*;
 
 @WebServlet(name = "BiopsiaServlet")
 public class BiopsiaServlet extends HttpServlet {
     private final IBiopsiaController controller = biopsiaController;
     private final IInformeController infController = informeController;
+    private final ObjectMapper jackson = getJackson();
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         checkSession(request, response);

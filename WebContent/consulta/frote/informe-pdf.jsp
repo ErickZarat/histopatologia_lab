@@ -20,7 +20,7 @@
             <table  style="line-height: 1.8">
                 <tr>
                     <td style="font-weight: 800;">Estudio: </td>
-                    <td style="width: 80%; border-bottom: 2px solid;">${biopsia.muestraEstudio}</td>
+                    <td style="width: 80%; border-bottom: 2px solid;">${frote.muestraEstudio}</td>
                 </tr>
 
                 <tr>
@@ -40,7 +40,7 @@
 
                 <tr>
                     <td style="font-weight: 800;">Direccion: </td>
-                    <td style="width: 80%; border-bottom: 2px solid;">${informeBiopsia.direccion}</td>
+                    <td style="width: 80%; border-bottom: 2px solid;">${informeFrote.direccion}</td>
                 </tr>
 
             </table>
@@ -51,7 +51,7 @@
             <table  style="line-height: 1.8">
                 <tr>
                     <td style="font-weight: 800;">Fecha: </td>
-                    <td style="width: 80%; border-bottom: 2px solid;">${biopsia.fechaFormateada}</td>
+                    <td style="width: 80%; border-bottom: 2px solid;">${frote.fechaFormateada}</td>
                 </tr>
 
                 <tr>
@@ -65,12 +65,12 @@
 
                 <tr>
                     <td style="font-weight: 800;">Clinica: </td>
-                    <td style="width: 80%; border-bottom: 2px solid;">${informeBiopsia.clinica}</td>
+                    <td style="width: 80%; border-bottom: 2px solid;">${informeFrote.clinica}</td>
                 </tr>
 
                 <tr>
                     <td style="font-weight: 800;">Solicitante: </td>
-                    <td style="width: 80%; border-bottom: 2px solid;">${informeBiopsia.solicitante}</td>
+                    <td style="width: 80%; border-bottom: 2px solid;">${informeFrote.solicitante}</td>
                 </tr>
 
             </table>
@@ -79,17 +79,17 @@
 
         <div style="border: 1px solid; padding:15px; margin-top: 25px">
             <h3>Datos Clinicos:</h3>
-            <p>${informeBiopsia.datosClinicos}</p>
+            <p>${informeFrote.datosClinicos}</p>
 
             <h3>Descripcion Microscopica:</h3>
-            <p>${informeBiopsia.descMirco}</p>
+            <p>${informeFrote.descMirco}</p>
 
             <h3>Descripcion Macroscopica:</h3>
-            <p>${informeBiopsia.descMacros}</p>
+            <p>${informeFrote.descMacros}</p>
 
             <h3>Diagnostico:
                 <c:forEach items="${diagnosticos}" var="diagnostico">
-                    <c:if test='${fn:contains(diagnosticoBiopsia, diagnostico.codigoDiagnostico)}'>
+                    <c:if test='${fn:contains(diagnosticoFrote, diagnostico.codigoDiagnostico)}'>
                         ${diagnostico.nombreDiagnostico}
                     </c:if>
                 </c:forEach>

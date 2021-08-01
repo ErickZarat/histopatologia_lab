@@ -18,7 +18,7 @@ import org.jooq.ForeignKey;
 import org.jooq.Identity;
 import org.jooq.Name;
 import org.jooq.Record;
-import org.jooq.Row13;
+import org.jooq.Row14;
 import org.jooq.Schema;
 import org.jooq.Table;
 import org.jooq.TableField;
@@ -88,7 +88,7 @@ public class LabExamenFrote extends TableImpl<LabExamenFroteRecord> {
     /**
      * The column <code>public.lab_examen_frote.estado_frote</code>.
      */
-    public final TableField<LabExamenFroteRecord, String> ESTADO_FROTE = createField(DSL.name("estado_frote"), SQLDataType.VARCHAR(20), this, "");
+    public final TableField<LabExamenFroteRecord, String> ESTADO_FROTE = createField(DSL.name("estado_frote"), SQLDataType.VARCHAR(30), this, "");
 
     /**
      * The column <code>public.lab_examen_frote.usuario_frote</code>.
@@ -114,6 +114,11 @@ public class LabExamenFrote extends TableImpl<LabExamenFroteRecord> {
      * The column <code>public.lab_examen_frote.muestra_estudio</code>.
      */
     public final TableField<LabExamenFroteRecord, String> MUESTRA_ESTUDIO = createField(DSL.name("muestra_estudio"), SQLDataType.VARCHAR, this, "");
+
+    /**
+     * The column <code>public.lab_examen_frote.observaciones</code>.
+     */
+    public final TableField<LabExamenFroteRecord, String> OBSERVACIONES = createField(DSL.name("observaciones"), SQLDataType.VARCHAR, this, "");
 
     private LabExamenFrote(Name alias, Table<LabExamenFroteRecord> aliased) {
         this(alias, aliased, null);
@@ -225,11 +230,11 @@ public class LabExamenFrote extends TableImpl<LabExamenFroteRecord> {
     }
 
     // -------------------------------------------------------------------------
-    // Row13 type methods
+    // Row14 type methods
     // -------------------------------------------------------------------------
 
     @Override
-    public Row13<Integer, Integer, String, String, String, BigDecimal, Integer, String, Integer, String, LocalDate, LocalDate, String> fieldsRow() {
-        return (Row13) super.fieldsRow();
+    public Row14<Integer, Integer, String, String, String, BigDecimal, Integer, String, Integer, String, LocalDate, LocalDate, String, String> fieldsRow() {
+        return (Row14) super.fieldsRow();
     }
 }

@@ -314,4 +314,5 @@
 <%@ include file="../mantenimientos/agregar-paciente.jsp"%>
 <script src="assets/js/consulta/crear-consulta.js"></script>
 <script src="assets/js/consulta/biopsia.js"></script>
+<script src="assets/js/consulta/frote.js"></script>
 

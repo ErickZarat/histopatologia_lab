@@ -31,7 +31,8 @@ public class FroteDaoImpl implements IFroteDao {
                 record.getValue(tabla.MODIFICADO_POR),
                 record.getValue(tabla.FECHA_MODIFICACION),
                 record.getValue(tabla.FECHA),
-                record.getValue(tabla.MUESTRA_ESTUDIO)
+                record.getValue(tabla.MUESTRA_ESTUDIO),
+                record.getValue(tabla.OBSERVACIONES)
         );
     }
 
@@ -62,19 +63,29 @@ public class FroteDaoImpl implements IFroteDao {
         return result.stream().map(this::parseItem).collect(Collectors.toList());
     }
 
+    private String getNextNumber(LocalDate date) {
+        if(date == null) date = LocalDate.now();
+        date = date.withDayOfMonth(1);
+        int newNumber = query
+                .fetchCount(tabla, tabla.FECHA.greaterOrEqual(date));
+
+        return (newNumber + 1) + "-" + date.getMonthValue() + "-" + date.getYear();
+    }
+
     @Override
     public Frote guardarFrote(Frote frote) {
         LabExamenFroteRecord record = query.newRecord(tabla);
 
         record.setCodExamen(frote.getCodExamen());
-        record.setCodTincion(frote.getCodTincion());
-        record.setNumFrote(frote.getNumFrote());
+
+        record.setNumFrote(getNextNumber(frote.getFecha()));
+
         record.setNumRecibo(frote.getNumRecibo());
         record.setMontoRecibo(frote.getMontoRecibo());
         record.setSerieRecibo(frote.getSerieRecibo());
         record.setEstadoFrote(frote.getEstadoFrote());
         record.setUsuarioFrote(frote.getUsuarioFrote());
-        record.setModificadoPor("");
+        record.setFecha(LocalDate.now());
         record.setFechaModificacion(LocalDate.now());
 
         record.store();
@@ -85,16 +96,14 @@ public class FroteDaoImpl implements IFroteDao {
     public Frote modificarFrote(Frote frote, String usuario) {
         LabExamenFroteRecord record = query.newRecord(tabla);
         record.setCodFrote(frote.getCodFrote());
-        record.setCodExamen(frote.getCodExamen());
+
         record.setCodTincion(frote.getCodTincion());
-        record.setNumFrote(frote.getNumFrote());
-        record.setNumRecibo(frote.getNumRecibo());
-        record.setMontoRecibo(frote.getMontoRecibo());
-        record.setSerieRecibo(frote.getSerieRecibo());
         record.setEstadoFrote(frote.getEstadoFrote());
         record.setUsuarioFrote(frote.getUsuarioFrote());
-        record.setModificadoPor("");
+        record.setModificadoPor(usuario);
         record.setFechaModificacion(LocalDate.now());
+        record.setMuestraEstudio(frote.getMuestraEstudio());
+        record.setObservaciones(frote.getObservaciones());
 
         record.update();
         return getByCod(record.getCodFrote());

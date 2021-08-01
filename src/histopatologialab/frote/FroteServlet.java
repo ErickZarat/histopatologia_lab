@@ -1,32 +1,28 @@
 package histopatologialab.frote;
 
-import histopatologialab.consultas.controller.IConsultaController;
-import histopatologialab.consultas.dto.Examen;
-import histopatologialab.core.Controllers;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import histopatologialab.consultas.dto.EstadoExamen;
 import histopatologialab.core.JsonResponse;
 import histopatologialab.core.RequestAction;
-import histopatologialab.diagnostico.controller.IDiagnosticoController;
-import histopatologialab.enfsistemica.controller.IEnfSistemicaController;
 import histopatologialab.frote.controller.IFroteController;
 import histopatologialab.frote.dto.Frote;
-import histopatologialab.pacientes.dto.Paciente;
 import org.tinylog.Logger;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.time.LocalDate;
 
-import static histopatologialab.core.Controllers.*;
-import static histopatologialab.core.DateUtils.formatDate;
+import static histopatologialab.core.Controllers.froteController;
 import static histopatologialab.core.ServletHelper.*;
 
 @WebServlet(name = "FroteServlet")
 public class FroteServlet extends HttpServlet {
     private final IFroteController controller = froteController;
+    private final ObjectMapper jackson = getJackson();
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         checkSession(request, response);
@@ -73,13 +69,14 @@ public class FroteServlet extends HttpServlet {
     }
 
     private void handlePostCreateFrote(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        String examenJson = request.getParameter("frote");
-        Frote frote = jackson.readValue(examenJson, Frote.class);
+        String json = request.getParameter("frote");
+        Frote frote = jackson.readValue(json, Frote.class);
         if (frote == null) {
             Logger.error("error parsing frote request");
         }
         try {
             frote.setUsuarioFrote(Math.toIntExact(getIdUsuarioFromSession(request)));
+            frote.setEstadoFrote(EstadoExamen.PENDIENTE_FROTE.getSlug());
         } catch (Exception e){
             Logger.error("cannot cast user id");
         }

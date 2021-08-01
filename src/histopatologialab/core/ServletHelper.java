@@ -89,6 +89,7 @@ public class ServletHelper {
             jackson.registerModule(new JSR310Module());
             jackson.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
             jackson.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+            jackson.configure(DeserializationFeature.FAIL_ON_IGNORED_PROPERTIES, false);
         }
         return jackson;
     }
