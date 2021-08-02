@@ -51,7 +51,7 @@ $('#validarReciboFrote').click(function(e){
 function extractDatosFrote(){
     var datosFrote = {
         'codFrote': window.frote,
-        'codTincion': $('#tipoProcedimientoSelect').val(),
+        'codTincion': $('#tincionSelect').val(),
         'muestraEstudio': $('#muestraEstudio').val(),
         'observaciones': $('#observacionesFrote').val(),
         'imgs': []

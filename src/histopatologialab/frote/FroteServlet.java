@@ -1,11 +1,13 @@
 package histopatologialab.frote;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import histopatologialab.biopsia.dto.Biopsia;
 import histopatologialab.consultas.dto.EstadoExamen;
 import histopatologialab.core.JsonResponse;
 import histopatologialab.core.RequestAction;
 import histopatologialab.frote.controller.IFroteController;
 import histopatologialab.frote.dto.Frote;
+import histopatologialab.informe.dto.Informe;
 import org.tinylog.Logger;
 
 import javax.servlet.ServletException;
@@ -16,7 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.time.LocalDate;
 
-import static histopatologialab.core.Controllers.froteController;
+import static histopatologialab.core.Controllers.*;
 import static histopatologialab.core.ServletHelper.*;
 
 @WebServlet(name = "FroteServlet")
@@ -33,7 +35,37 @@ public class FroteServlet extends HttpServlet {
             handlePostCreateFrote(request, response);
         } else if (action == RequestAction.MODIFICAR) {
             handlePostModificarFrote(request, response);
+        } else if (action == RequestAction.GUARDAR_INFORME) {
+            handlePostGuardarInformeFrote(request, response);
         }
+    }
+
+    private void handlePostGuardarInformeFrote(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        String informeJson = request.getParameter("informe");
+        Logger.info("inf request " + informeJson);
+        Informe informe = jackson.readValue(informeJson, Informe.class);
+        if (informe == null) {
+            Logger.info("error parsing biopsia request");
+        }
+
+        try {
+            int usuarioId = Math.toIntExact(getIdUsuarioFromSession(request));
+            informe.setUsuarioInforme(usuarioId);
+        } catch (Exception e){
+            Logger.info("cannot cast user id");
+        }
+
+        try {
+            String usuario = getUsuarioFromSession(request);
+            Frote frote = froteController.getFrote(informe.getCodFrote()).getData();
+            frote.setEstadoFrote(EstadoExamen.INFORME_FROTE.getSlug());
+            froteController.modificarFrote(frote, usuario);
+        } catch (Exception e) {
+            Logger.info("error cambiando estado");
+        }
+
+        JsonResponse<Informe> guardado =  informeController.crearInforme(informe);
+        returnJson(response, guardado);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

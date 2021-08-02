@@ -1,4 +1,4 @@
-<fieldset id="frote-informe" <c:if test='${frote.estadoFrote != "Pendiente Informe Biopsa"}'>disabled</c:if>>
+<fieldset id="frote-informe" <c:if test='${frote.estadoFrote != "Pendiente Informe Frote"}'>disabled</c:if>>
     <hr>
     <table>
         <tr>

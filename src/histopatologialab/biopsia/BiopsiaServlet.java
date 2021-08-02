@@ -65,9 +65,7 @@ public class BiopsiaServlet extends HttpServlet {
             Logger.info("error cambiando estado");
         }
 
-        Logger.info("guardando");
         JsonResponse<Informe> guardado =  infController.crearInforme(informe);
-        Logger.info("guardando listo ");
         returnJson(response, guardado);
     }
 

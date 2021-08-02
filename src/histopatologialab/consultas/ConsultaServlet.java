@@ -78,11 +78,14 @@ public class ConsultaServlet extends HttpServlet {
         request.setAttribute("examen", examen);
         request.setAttribute("fechaExamen", formatDate(examen.getFechaExamen()));
 
+        RequestDispatcher despachador = null;
+
         if (examen != null) {
             try {
                 request.setAttribute("tipoOpcion", controller.getOpciones(false).getData());
 
                 if (tipo.equals("biopsia")) {
+                    despachador = request.getRequestDispatcher("consulta/biopsia/informe-pdf.jsp");
                     List<Biopsia> biopsias = biopsiaController.getBiopsiasByExamen(examen.getCodExamen()).getData();
                     Biopsia biopsia = null;
                     if (biopsias != null && biopsias.size() >= 1) biopsia = biopsias.get(0);
@@ -96,6 +99,7 @@ public class ConsultaServlet extends HttpServlet {
                         }
                     }
                 } else if (tipo.equals("frote")) {
+                    despachador = request.getRequestDispatcher("consulta/frote/informe-pdf.jsp");
                     List<Frote> frotes = froteController.getFrotesByExamen(examen.getCodExamen()).getData();
                     Frote frote = null;
                     if (frotes != null && frotes.size() >= 1) frote = frotes.get(0);
@@ -109,6 +113,7 @@ public class ConsultaServlet extends HttpServlet {
                         }
                     }
                 } else if (tipo.equals("receta")) {
+                    despachador = request.getRequestDispatcher("consulta/frote/informe-pdf.jsp");
 
                 }
             } catch (Exception e) {
@@ -120,8 +125,9 @@ public class ConsultaServlet extends HttpServlet {
 
         request.setAttribute("enfermedades", enfSistemicaController.getEnfermedadesSistemicas().getData());
         request.setAttribute("diagnosticos", diagnosticoController.getDiagnosticos().getData());
-        RequestDispatcher despachador = request.getRequestDispatcher("consulta/biopsia/informe-pdf.jsp");
-        despachador.forward(request, response);
+
+        if (despachador != null)
+            despachador.forward(request, response);
     }
 
     private void handleGetConsultas(HttpServletRequest request, HttpServletResponse response) throws IOException {
