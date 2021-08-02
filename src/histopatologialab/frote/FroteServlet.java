@@ -95,6 +95,7 @@ public class FroteServlet extends HttpServlet {
         try {
             frote.setModificadoPor(modificadoPor);
             frote.setUsuarioFrote(Math.toIntExact(getIdUsuarioFromSession(request)));
+            frote.setEstadoFrote(EstadoExamen.PENDIENTE_INFORME_FROTE.getSlug());
         } catch (Exception e){
             Logger.error("cannot cast user id");
         }
