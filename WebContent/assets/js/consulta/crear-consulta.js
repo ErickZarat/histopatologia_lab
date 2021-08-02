@@ -57,6 +57,7 @@ function selectPaciente(paciente) {
     $('#edadUsuario').val(paciente.edad);
     $('#emailUsuario').val(paciente.emailPaciente);
     $('#telefonoUsuario').val(paciente.telefonoPaciente);
+    $('#numeroFicha').val(paciente.numFicha);
 
     $('#lesion-accordion').prop("checked", true)
 }

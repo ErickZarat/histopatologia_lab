@@ -20,13 +20,13 @@ public class ConsultaControllerImpl implements IConsultaController {
     }
 
     @Override
-    public JsonResponse<Map<String, List<OpcionLesion>>> getOpciones(Boolean loadDisabled){
+    public JsonResponse<Map<String, List<OpcionLesion>>> getOpciones(Boolean loadEnabled){
         List<OpcionLesion> opciones;
 
-        if (loadDisabled) {
-            opciones = tipoOpcionLesionDao.getOpciones();
-        } else {
+        if (loadEnabled) {
             opciones = tipoOpcionLesionDao.getOpcionesByEstado();
+        } else {
+            opciones = tipoOpcionLesionDao.getOpciones();
         }
 
 
