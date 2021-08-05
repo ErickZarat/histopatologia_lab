@@ -35,11 +35,11 @@
                 <label class="table-form-label" for="diagnosticoFrote">Diagnostico:</label>
             </td>
             <td colspan="2">
-                <select multiple class="form-control select2" name="diagnosticoFrote" id="diagnosticoFrote">
+                <select class="form-control select2" name="diagnosticoFrote" id="diagnosticoFrote">
                     <option value="">Selecciona una opcion</option>
                     <c:forEach items="${diagnosticos}" var="diagnostico">
                         <option value="${diagnostico.codigoDiagnostico}"
-                                <c:if test='${fn:contains(diagnosticoFrote, diagnostico.codigoDiagnostico)}'>selected</c:if>
+                                <c:if test='${diagnosticoFrote == diagnostico.codigoDiagnostico}'>selected</c:if>
                         >${diagnostico.nombreDiagnostico}</option>
                     </c:forEach>
                 </select>

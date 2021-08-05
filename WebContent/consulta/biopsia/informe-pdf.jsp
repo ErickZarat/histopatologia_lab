@@ -89,7 +89,7 @@
 
             <h3>Diagnostico:
                 <c:forEach items="${diagnosticos}" var="diagnostico">
-                    <c:if test='${fn:contains(diagnosticoBiopsia, diagnostico.codigoDiagnostico)}'>
+                    <c:if test='${diagnosticoBiopsia == diagnostico.codigoDiagnostico}'>
                         ${diagnostico.nombreDiagnostico}
                     </c:if>
                 </c:forEach>
