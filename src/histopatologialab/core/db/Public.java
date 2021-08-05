@@ -14,6 +14,7 @@ import histopatologialab.core.db.tables.LabExamenEnfermedadSistemica;
 import histopatologialab.core.db.tables.LabExamenFrote;
 import histopatologialab.core.db.tables.LabExamenHistEstados;
 import histopatologialab.core.db.tables.LabExamenImagen;
+import histopatologialab.core.db.tables.LabExamenReceta;
 import histopatologialab.core.db.tables.LabInforme;
 import histopatologialab.core.db.tables.LabMedicamento;
 import histopatologialab.core.db.tables.LabPaciente;
@@ -93,6 +94,11 @@ public class Public extends SchemaImpl {
      * The table <code>public.lab_examen_imagen</code>.
      */
     public final LabExamenImagen LAB_EXAMEN_IMAGEN = LabExamenImagen.LAB_EXAMEN_IMAGEN;
+
+    /**
+     * The table <code>public.lab_examen_receta</code>.
+     */
+    public final LabExamenReceta LAB_EXAMEN_RECETA = LabExamenReceta.LAB_EXAMEN_RECETA;
 
     /**
      * The table <code>public.lab_informe</code>.
@@ -178,6 +184,7 @@ public class Public extends SchemaImpl {
             LabExamenFrote.LAB_EXAMEN_FROTE,
             LabExamenHistEstados.LAB_EXAMEN_HIST_ESTADOS,
             LabExamenImagen.LAB_EXAMEN_IMAGEN,
+            LabExamenReceta.LAB_EXAMEN_RECETA,
             LabInforme.LAB_INFORME,
             LabMedicamento.LAB_MEDICAMENTO,
             LabPaciente.LAB_PACIENTE,

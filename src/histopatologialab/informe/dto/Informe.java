@@ -13,7 +13,7 @@ public class Informe{
     private String datosClinicos;
     private String descMacros;
     private String descMirco;
-    private String diagnostico;
+    private Integer diagnostico;
     private Integer usuarioInforme;
     private Integer codFrote;
     private Integer codBiopsia;
@@ -22,7 +22,7 @@ public class Informe{
     public Informe() {
     }
 
-    public Informe(Integer codInforme, LocalDate fechaInforme, String clinica, String direccion, String solicitante, String datosClinicos, String descMacros, String descMirco, String diagnostico, Integer usuarioInforme, Integer codFrote, Integer codBiopsia) {
+    public Informe(Integer codInforme, LocalDate fechaInforme, String clinica, String direccion, String solicitante, String datosClinicos, String descMacros, String descMirco, Integer diagnostico, Integer usuarioInforme, Integer codFrote, Integer codBiopsia) {
         this.codInforme = codInforme;
         this.fechaInforme = fechaInforme;
         this.fechaFormateada = formatDate(this.fechaInforme);
@@ -103,11 +103,11 @@ public class Informe{
         this.descMirco = descMirco;
     }
 
-    public String getDiagnostico() {
+    public Integer getDiagnostico() {
         return diagnostico;
     }
 
-    public void setDiagnostico(String diagnostico) {
+    public void setDiagnostico(Integer diagnostico) {
         this.diagnostico = diagnostico;
     }
 

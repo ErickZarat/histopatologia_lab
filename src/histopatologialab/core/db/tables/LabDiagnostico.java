@@ -57,7 +57,7 @@ public class LabDiagnostico extends TableImpl<LabDiagnosticoRecord> {
     /**
      * The column <code>public.lab_diagnostico.nombre_diagnostico</code>.
      */
-    public final TableField<LabDiagnosticoRecord, String> NOMBRE_DIAGNOSTICO = createField(DSL.name("nombre_diagnostico"), SQLDataType.VARCHAR(35).nullable(false), this, "");
+    public final TableField<LabDiagnosticoRecord, String> NOMBRE_DIAGNOSTICO = createField(DSL.name("nombre_diagnostico"), SQLDataType.VARCHAR(100).nullable(false), this, "");
 
     /**
      * The column <code>public.lab_diagnostico.estado_diagnostico</code>.

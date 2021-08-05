@@ -92,7 +92,7 @@ public class LabInforme extends TableImpl<LabInformeRecord> {
     /**
      * The column <code>public.lab_informe.diagnostico</code>.
      */
-    public final TableField<LabInformeRecord, String> DIAGNOSTICO = createField(DSL.name("diagnostico"), SQLDataType.VARCHAR, this, "");
+    public final TableField<LabInformeRecord, Integer> DIAGNOSTICO = createField(DSL.name("diagnostico"), SQLDataType.INTEGER, this, "");
 
     /**
      * The column <code>public.lab_informe.usuario_informe</code>.
@@ -223,7 +223,7 @@ public class LabInforme extends TableImpl<LabInformeRecord> {
     // -------------------------------------------------------------------------
 
     @Override
-    public Row12<Integer, LocalDate, String, String, String, String, String, String, String, Integer, Integer, Integer> fieldsRow() {
+    public Row12<Integer, LocalDate, String, String, String, String, String, String, Integer, Integer, Integer, Integer> fieldsRow() {
         return (Row12) super.fieldsRow();
     }
 }

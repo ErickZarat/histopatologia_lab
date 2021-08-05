@@ -36,11 +36,6 @@ public class ConsultaControllerImpl implements IConsultaController {
         return new JsonResponse<>(opcionesMap != null, opcionesMap);
     }
 
-
-    private void genConsultaNumber() {
-
-    }
-
     @Override
     public JsonResponse<Examen> getExamen(int codExamen) {
         Examen examen = examenDao.getExamen(codExamen);

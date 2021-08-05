@@ -16,7 +16,7 @@ import org.jooq.Field;
 import org.jooq.ForeignKey;
 import org.jooq.Name;
 import org.jooq.Record;
-import org.jooq.Row7;
+import org.jooq.Row8;
 import org.jooq.Schema;
 import org.jooq.Table;
 import org.jooq.TableField;
@@ -47,6 +47,11 @@ public class LabPresentacionMedicamento extends TableImpl<LabPresentacionMedicam
     public Class<LabPresentacionMedicamentoRecord> getRecordType() {
         return LabPresentacionMedicamentoRecord.class;
     }
+
+    /**
+     * The column <code>public.lab_presentacion_medicamento.cod_presentacion</code>.
+     */
+    public final TableField<LabPresentacionMedicamentoRecord, Integer> COD_PRESENTACION = createField(DSL.name("cod_presentacion"), SQLDataType.INTEGER.nullable(false), this, "");
 
     /**
      * The column <code>public.lab_presentacion_medicamento.cod_medicamento</code>.
@@ -128,7 +133,7 @@ public class LabPresentacionMedicamento extends TableImpl<LabPresentacionMedicam
 
     @Override
     public List<UniqueKey<LabPresentacionMedicamentoRecord>> getKeys() {
-        return Arrays.<UniqueKey<LabPresentacionMedicamentoRecord>>asList(Keys.LAB_PRESENTACION_MEDICAMENTO_PK);
+        return Arrays.<UniqueKey<LabPresentacionMedicamentoRecord>>asList(Keys.LAB_PRESENTACION_MEDICAMENTO_PK, Keys.LAB_PRESENTACION_UQ);
     }
 
     @Override
@@ -172,11 +177,11 @@ public class LabPresentacionMedicamento extends TableImpl<LabPresentacionMedicam
     }
 
     // -------------------------------------------------------------------------
-    // Row7 type methods
+    // Row8 type methods
     // -------------------------------------------------------------------------
 
     @Override
-    public Row7<Integer, String, String, LocalDate, String, LocalDate, String> fieldsRow() {
-        return (Row7) super.fieldsRow();
+    public Row8<Integer, Integer, String, String, LocalDate, String, LocalDate, String> fieldsRow() {
+        return (Row8) super.fieldsRow();
     }
 }

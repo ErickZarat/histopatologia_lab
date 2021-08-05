@@ -3,7 +3,7 @@ create table lab_diagnostico
     cod_diagnostico    bigint default nextval('lab_diagnostico_seq'::regclass) not null
         constraint lab_diagnostico_pk
             primary key,
-    nombre_diagnostico varchar(35)                                             not null,
+    nombre_diagnostico varchar(100)                                            not null,
     estado_diagnostico varchar(20)                                             not null,
     fecha_creacion     date,
     creado_por         varchar(35),
@@ -255,45 +255,6 @@ create table lab_examen_enfermedad_sistemica
 alter table lab_examen_enfermedad_sistemica
     owner to postgres;
 
-create table lab_examen_imagen
-(
-    cod_examen         integer
-        constraint imagen_examen_fk
-            references lab_examen,
-    num_frote          varchar(20),
-    num_biopsia        varchar(20)
-        constraint imagen_biopsia_fk
-            references lab_examen_biopsia (num_biopsia),
-    num_imagen         integer,
-    ruta_imagen        varchar,
-    nombre_imagen      varchar,
-    fecha_creacion     date,
-    creado_por         varchar,
-    modificado_por     varchar,
-    fecha_modificacion date
-);
-
-alter table lab_examen_imagen
-    owner to postgres;
-
-create table lab_presentacion_medicamento
-(
-    cod_medicamento    integer     not null
-        constraint lab_medicamento_fk_cod_medicamento
-            references lab_medicamento,
-    tipo_presentacion  varchar(30) not null,
-    estado_medicamento varchar(20) not null,
-    fecha_creacion     date,
-    creado_por         varchar(35),
-    fecha_modificacion date,
-    modificado_por     varchar(35),
-    constraint lab_presentacion_medicamento_pk
-        primary key (cod_medicamento, tipo_presentacion)
-);
-
-alter table lab_presentacion_medicamento
-    owner to postgres;
-
 create table lab_examen_frote
 (
     cod_frote          serial      not null
@@ -318,10 +279,34 @@ create table lab_examen_frote
     modificado_por     varchar(20),
     fecha_modificacion date,
     fecha              date,
-    muestra_estudio    varchar
+    muestra_estudio    varchar,
+    observaciones      varchar
 );
 
 alter table lab_examen_frote
+    owner to postgres;
+
+create table lab_examen_imagen
+(
+    cod_examen         integer
+        constraint imagen_examen_fk
+            references lab_examen,
+    cod_frote          integer
+        constraint lab_examen_imagen_lab_examen_frote_cod_frote_fk
+            references lab_examen_frote,
+    cod_biopsia        integer
+        constraint lab_examen_imagen_lab_examen_biopsia_cod_biopsia_fk
+            references lab_examen_biopsia,
+    num_imagen         integer,
+    ruta_imagen        varchar,
+    nombre_imagen      varchar,
+    fecha_creacion     date,
+    creado_por         varchar,
+    modificado_por     varchar,
+    fecha_modificacion date
+);
+
+alter table lab_examen_imagen
     owner to postgres;
 
 create table lab_examen_hist_estados
@@ -357,7 +342,7 @@ create table lab_informe
     datos_clinicos  varchar,
     desc_macros     varchar,
     desc_mirco      varchar,
-    diagnostico     varchar,
+    diagnostico     integer,
     usuario_informe integer
         constraint usuario_informe_fk
             references lab_usuario,
@@ -370,5 +355,48 @@ create table lab_informe
 );
 
 alter table lab_informe
+    owner to postgres;
+
+create table lab_presentacion_medicamento
+(
+    cod_presentacion   integer     not null
+        constraint lab_presentacion_medicamento_pk
+            primary key,
+    cod_medicamento    integer     not null
+        constraint lab_medicamento_fk_cod_medicamento
+            references lab_medicamento,
+    tipo_presentacion  varchar(30) not null,
+    estado_medicamento varchar(20) not null,
+    fecha_creacion     date,
+    creado_por         varchar(35),
+    fecha_modificacion date,
+    modificado_por     varchar(35),
+    constraint lab_presentacion_uq
+        unique (cod_medicamento, tipo_presentacion)
+);
+
+alter table lab_presentacion_medicamento
+    owner to postgres;
+
+create table lab_examen_receta
+(
+    cod_receta                   integer not null
+        constraint lab_examen_receta_pk
+            primary key,
+    cod_examen                   integer
+        constraint lab_examen_receta_lab_examen_cod_examen_fk
+            references lab_examen,
+    cod_presentacion_medicamento integer
+        constraint lab_examen_receta_tipo_presentacion_fk
+            references lab_presentacion_medicamento,
+    num_receta                   integer,
+    notas                        varchar,
+    creado_por                   bigint,
+    fecha_creacion               date,
+    modificado_por               bigint,
+    fecha_modificacion           date
+);
+
+alter table lab_examen_receta
     owner to postgres;
 
