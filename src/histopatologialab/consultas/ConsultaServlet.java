@@ -14,6 +14,7 @@ import histopatologialab.frote.dto.Frote;
 import histopatologialab.informe.controller.IInformeController;
 import histopatologialab.informe.dto.Informe;
 import histopatologialab.pacientes.dto.Paciente;
+import histopatologialab.receta.dto.Receta;
 import org.tinylog.Logger;
 
 import javax.servlet.RequestDispatcher;
@@ -113,8 +114,11 @@ public class ConsultaServlet extends HttpServlet {
                         }
                     }
                 } else if (tipo.equals("receta")) {
-                    despachador = request.getRequestDispatcher("consulta/frote/informe-pdf.jsp");
-
+                    despachador = request.getRequestDispatcher("consulta/receta/informe-pdf.jsp");
+                    JsonResponse<List<Receta>> recetas = recetaController.getRecetaByExamen(examen.getCodExamen());
+                    request.setAttribute("recetas", recetas.getData());
+                    Long userId = recetas.getData().get(0).getCreadoPor();
+                    request.setAttribute("doc", usuarioController.getUsuario(userId));
                 }
             } catch (Exception e) {
                 Logger.info("error getting examen childs");

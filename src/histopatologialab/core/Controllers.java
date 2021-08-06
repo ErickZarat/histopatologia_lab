@@ -16,6 +16,8 @@ import histopatologialab.medicamentos.controller.IMedicamentosController;
 import histopatologialab.medicamentos.controller.MedicamentosControllerImpl;
 import histopatologialab.pacientes.controller.IPacienteController;
 import histopatologialab.pacientes.controller.PacienteControllerImpl;
+import histopatologialab.receta.controller.IRecetaController;
+import histopatologialab.receta.controller.RecetaControllerImpl;
 import histopatologialab.tincion.controller.ITincionController;
 import histopatologialab.tincion.controller.TincionControllerImpl;
 import histopatologialab.tipopcionlesion.controller.IOpcionLesionController;
@@ -38,5 +40,6 @@ public class Controllers {
     public static IFroteController froteController = new FroteControllerImpl(froteDao);
     public static ITincionController tincionController = new TincionControllerImpl(tincionDao);
     public static IInformeController informeController = new InformeControllerImpl(informeDao);
+    public static IRecetaController recetaController = new RecetaControllerImpl(recetaDao);
 
 }

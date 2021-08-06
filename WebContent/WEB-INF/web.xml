@@ -125,6 +125,15 @@
     </servlet-mapping>
 
     <servlet>
+        <servlet-name>RecetaServlet</servlet-name>
+        <servlet-class>histopatologialab.receta.RecetaServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>RecetaServlet</servlet-name>
+        <url-pattern>/RecetaServlet.do</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>UploadServlet</servlet-name>
         <servlet-class>histopatologialab.upload.UploadServlet</servlet-class>
     </servlet>
