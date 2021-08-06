@@ -14,6 +14,7 @@ import java.util.List;
 
 import org.jooq.Field;
 import org.jooq.ForeignKey;
+import org.jooq.Identity;
 import org.jooq.Name;
 import org.jooq.Record;
 import org.jooq.Row8;
@@ -51,7 +52,7 @@ public class LabPresentacionMedicamento extends TableImpl<LabPresentacionMedicam
     /**
      * The column <code>public.lab_presentacion_medicamento.cod_presentacion</code>.
      */
-    public final TableField<LabPresentacionMedicamentoRecord, Integer> COD_PRESENTACION = createField(DSL.name("cod_presentacion"), SQLDataType.INTEGER.nullable(false), this, "");
+    public final TableField<LabPresentacionMedicamentoRecord, Integer> COD_PRESENTACION = createField(DSL.name("cod_presentacion"), SQLDataType.INTEGER.nullable(false).identity(true), this, "");
 
     /**
      * The column <code>public.lab_presentacion_medicamento.cod_medicamento</code>.
@@ -124,6 +125,11 @@ public class LabPresentacionMedicamento extends TableImpl<LabPresentacionMedicam
     @Override
     public Schema getSchema() {
         return Public.PUBLIC;
+    }
+
+    @Override
+    public Identity<LabPresentacionMedicamentoRecord, Integer> getIdentity() {
+        return (Identity<LabPresentacionMedicamentoRecord, Integer>) super.getIdentity();
     }
 
     @Override

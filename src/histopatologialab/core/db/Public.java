@@ -166,6 +166,7 @@ public class Public extends SchemaImpl {
             Sequences.LAB_INFORME_COD_INFORME_SEQ,
             Sequences.LAB_MEDICAMENTO_SEQ,
             Sequences.LAB_PACIENTE_SEQ,
+            Sequences.LAB_PRESENTACION_MEDICAMENTO_COD_PRESENTACION_SEQ,
             Sequences.LAB_TINCION_SEQ,
             Sequences.LAB_TIPO_OPCION_LESION_SEQ,
             Sequences.LAB_USUARIO_SEQ);

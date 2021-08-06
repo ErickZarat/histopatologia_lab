@@ -50,6 +50,7 @@ public class PresentacionMedicamentosServlet extends HttpServlet {
     //int codMedicamento, int tipoPresentacion, String creadoPor, LocalDate fechaCreacion, String modificatoPor)
     private void crearPresentacion(HttpServletRequest request, HttpServletResponse response) throws IOException {
         PresentacionMedicamento presentacionMedicamento = new PresentacionMedicamento(
+                null,
                 Integer.parseInt(request.getParameter("codigoMedicamento")),
                 request.getParameter("tipoPresentacion"),
                 getUsuarioFromSession(request),
@@ -66,6 +67,7 @@ public class PresentacionMedicamentosServlet extends HttpServlet {
     private void modificarPresentacion(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String tipoPresentacion = request.getParameter("tipoPresentacionCurrent");
         PresentacionMedicamento presentacionMedicamento = new PresentacionMedicamento(
+                null,
                 Integer.parseInt(request.getParameter("codigoMedicamento")),
                 request.getParameter("tipoPresentacion"),
                 getUsuarioFromSession(request),

@@ -20,6 +20,7 @@ public class PresentacionMedicamentosDaoImpl implements IPresentacionMedicamento
 
     public PresentacionMedicamento parseItem(Record record) {
         return new PresentacionMedicamento (
+                record.getValue(tabla.COD_PRESENTACION),
                 record.getValue(tabla.COD_MEDICAMENTO),
                 record.getValue(tabla.TIPO_PRESENTACION),
                 record.getValue(tabla.CREADO_POR),

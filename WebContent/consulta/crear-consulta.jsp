@@ -301,7 +301,7 @@
                 <%@ include file="frote/form.jsp"%>
             </div>
             <div class="tab-pane" id="tabs-3" role="tabpanel">
-
+                <%@ include file="receta/receta.jsp"%>
             </div>
         </div>
     </div>

@@ -359,7 +359,7 @@ alter table lab_informe
 
 create table lab_presentacion_medicamento
 (
-    cod_presentacion   integer     not null
+    cod_presentacion   serial     not null
         constraint lab_presentacion_medicamento_pk
             primary key,
     cod_medicamento    integer     not null

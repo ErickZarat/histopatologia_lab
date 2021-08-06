@@ -3,7 +3,8 @@ package histopatologialab.medicamentos.dto;
 import java.time.LocalDate;
 
 public class PresentacionMedicamento {
-    private int codMedicamento;
+    private Integer codPresentacion;
+    private Integer codMedicamento;
     private String tipoPresentacion;
     private String creadoPor;
     private LocalDate fechaCreacion;
@@ -13,7 +14,8 @@ public class PresentacionMedicamento {
 
     public PresentacionMedicamento() { }
 
-    public PresentacionMedicamento(int codMedicamento, String tipoPresentacion, String creadoPor, LocalDate fechaCreacion, String modificatoPor, LocalDate fechaModificacion, String estadoMedicamento) {
+    public PresentacionMedicamento(Integer codPresentacion, Integer codMedicamento, String tipoPresentacion, String creadoPor, LocalDate fechaCreacion, String modificatoPor, LocalDate fechaModificacion, String estadoMedicamento) {
+        this.codPresentacion = codPresentacion;
         this.codMedicamento = codMedicamento;
         this.tipoPresentacion = tipoPresentacion;
         this.creadoPor = creadoPor;
@@ -23,12 +25,20 @@ public class PresentacionMedicamento {
         this.estadoMedicamento = estadoMedicamento;
     }
 
-    public int getCodMedicamento() {
-        return codMedicamento;
+    public Integer getCodPresentacion() {
+        return codPresentacion;
     }
 
-    public void setCodMedicamento(int codMedicamento) {
+    public void setCodPresentacion(Integer codPresentacion) {
+        this.codPresentacion = codPresentacion;
+    }
+
+    public void setCodMedicamento(Integer codMedicamento) {
         this.codMedicamento = codMedicamento;
+    }
+
+    public Integer getCodMedicamento() {
+        return codMedicamento;
     }
 
     public String getTipoPresentacion() {

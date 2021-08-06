@@ -59,7 +59,7 @@ public class BiopsiaServlet extends HttpServlet {
         try {
             String usuario = getUsuarioFromSession(request);
             Biopsia biopsia = biopsiaController.getBiopsia(informe.getCodBiopsia()).getData();
-            biopsia.setEstadoBiopsia(EstadoExamen.INFORME_FROTE.getSlug());
+            biopsia.setEstadoBiopsia(EstadoExamen.INFORME_BIOPSIA.getSlug());
             biopsiaController.modificarBiopsia(biopsia, usuario);
         } catch (Exception e) {
             Logger.info("error cambiando estado");
@@ -126,6 +126,7 @@ public class BiopsiaServlet extends HttpServlet {
         String modificadoPor = getUsuarioFromSession(request);
         try {
             biopsia.setModificadoPor(modificadoPor);
+            biopsia.setEstadoBiopsia(EstadoExamen.PENDIENTE_INFORME_BIOPSIA.getSlug());
             biopsia.setUsuarioBiopsia(Math.toIntExact(getIdUsuarioFromSession(request)));
         } catch (Exception e){
             Logger.error("cannot cast user id");
