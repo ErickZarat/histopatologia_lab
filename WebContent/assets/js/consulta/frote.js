@@ -99,7 +99,7 @@ function extractInformeFrote(){
         'datosClinicos': $('#datosClinicosFrote').val(),
         'descMacros': $('#descMacroFrote').val(),
         'descMirco': $('#descMicroFrote').val(),
-        'diagnostico': $('#diagnosticoFrote').val().join(),
+        'diagnostico': $('#diagnosticoFrote').val(),
         // 'codFrote': $('#').val(),
         'codFrote': window.frote
     }

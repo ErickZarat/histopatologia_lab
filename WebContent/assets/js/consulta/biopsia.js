@@ -101,7 +101,7 @@ function extractInformeBiopsia(){
         'datosClinicos': $('#datosClinicosBiopsia').val(),
         'descMacros': $('#descMacroBiopsia').val(),
         'descMirco': $('#descMicroBiopsia').val(),
-        'diagnostico': $('#diagnosticoBiopsia').val().join(),
+        'diagnostico': $('#diagnosticoBiopsia').val(),
         // 'codFrote': $('#').val(),
         'codBiopsia': window.biopsia
     }
