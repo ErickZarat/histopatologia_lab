@@ -48,8 +48,8 @@
         <tr>
             <td>
                 <button id="guardarInformeBiopsia" class="btn btn-light">Guardar</button>
-                <a id="descargarInformeBiopsia" href="ConsultaServlet.do?accion=DESCARGAR_INFORME&tipo=biopsia&codExamen=${codExamen}" class="btn btn-light">Descargar</a>
             </td>
         </tr>
     </table>
 </fieldset>
+<a id="descargarInformeBiopsia" href="ConsultaServlet.do?accion=DESCARGAR_INFORME&tipo=biopsia&codExamen=${codExamen}" class="btn btn-light">Descargar</a>

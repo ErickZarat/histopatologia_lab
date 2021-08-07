@@ -13,6 +13,7 @@ import histopatologialab.frote.controller.IFroteController;
 import histopatologialab.frote.dto.Frote;
 import histopatologialab.informe.controller.IInformeController;
 import histopatologialab.informe.dto.Informe;
+import histopatologialab.medicamentos.dto.TipoMedicamento;
 import histopatologialab.pacientes.dto.Paciente;
 import histopatologialab.receta.dto.Receta;
 import org.tinylog.Logger;
@@ -114,11 +115,11 @@ public class ConsultaServlet extends HttpServlet {
                         }
                     }
                 } else if (tipo.equals("receta")) {
-                    despachador = request.getRequestDispatcher("consulta/receta/informe-pdf.jsp");
+                    despachador = request.getRequestDispatcher("consulta/receta/receta-pdf.jsp");
                     JsonResponse<List<Receta>> recetas = recetaController.getRecetaByExamen(examen.getCodExamen());
                     request.setAttribute("recetas", recetas.getData());
                     Long userId = recetas.getData().get(0).getCreadoPor();
-                    request.setAttribute("doc", usuarioController.getUsuario(userId));
+                    request.setAttribute("doc", usuarioController.getUsuario(userId).getData());
                 }
             } catch (Exception e) {
                 Logger.info("error getting examen childs");
@@ -181,6 +182,7 @@ public class ConsultaServlet extends HttpServlet {
         request.setAttribute("examen", examen != null? examen: new Examen());
         request.setAttribute("fechaExamen", examen != null? formatDate(examen.getFechaExamen()): "");
         request.setAttribute("action", requestAction.name());
+        request.setAttribute("tiposMedicamento", TipoMedicamento.values());
 
         if (examen != null) {
             try {
@@ -214,6 +216,9 @@ public class ConsultaServlet extends HttpServlet {
                         request.setAttribute("diagnosticoFrote", infFrote.getDiagnostico());
                     }
                 }
+
+                JsonResponse<List<Receta>> recetas = recetaController.getRecetaByExamen(examen.getCodExamen());
+                request.setAttribute("recetas", recetas.getData());
             } catch (Exception e) {
                 Logger.info("error getting examen childs");
                 e.printStackTrace();

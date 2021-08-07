@@ -1,7 +1,6 @@
 package histopatologialab.receta.dao;
 
 import histopatologialab.core.DB;
-import histopatologialab.core.db.tables.LabExamen;
 import histopatologialab.core.db.tables.LabExamenReceta;
 import histopatologialab.core.db.tables.LabMedicamento;
 import histopatologialab.core.db.tables.LabPresentacionMedicamento;
@@ -40,7 +39,7 @@ public class RecetaDaoImpl implements IRecetaDao {
     @Override
     public List<Receta> getRecetaByExamen(Integer codExamen) {
         List<Record> result = query
-                .select(tabla.asterisk())
+                .select(tabla.asterisk(), tablaMed.NOMBRE_MEDICAMENTO, tablaPre.TIPO_PRESENTACION)
                 .from(tabla)
                 .leftJoin(tablaPre).on(tablaPre.COD_PRESENTACION.eq(tabla.COD_PRESENTACION_MEDICAMENTO))
                 .leftJoin(tablaMed).on(tablaMed.COD_MEDICAMENTO.eq(tablaPre.COD_MEDICAMENTO))

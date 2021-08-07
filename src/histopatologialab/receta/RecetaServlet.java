@@ -1,11 +1,9 @@
 package histopatologialab.receta;
 
 import com.fasterxml.jackson.core.type.TypeReference;
-import histopatologialab.consultas.controller.IConsultaController;
-import histopatologialab.consultas.dto.Examen;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import histopatologialab.core.JsonResponse;
 import histopatologialab.core.RequestAction;
-import histopatologialab.receta.controller.IRecetaController;
 import histopatologialab.receta.dto.Receta;
 import org.tinylog.Logger;
 
@@ -23,6 +21,8 @@ import static histopatologialab.core.ServletHelper.*;
 
 @WebServlet(name = "RecetaServlet")
 public class RecetaServlet extends HttpServlet {
+
+    private ObjectMapper jackson = getJackson();
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         checkSession(request, response);

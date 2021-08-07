@@ -315,4 +315,5 @@
 <script src="assets/js/consulta/crear-consulta.js"></script>
 <script src="assets/js/consulta/biopsia.js"></script>
 <script src="assets/js/consulta/frote.js"></script>
+<script src="assets/js/consulta/receta.js"></script>
 

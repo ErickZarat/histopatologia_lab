@@ -48,8 +48,8 @@
         <tr>
             <td>
                 <button id="guardarInformeFrote" class="btn btn-light">Guardar</button>
-                <a id="descargarInformeFrote" href="ConsultaServlet.do?accion=DESCARGAR_INFORME&tipo=frote&codExamen=${codExamen}" class="btn btn-light">Descargar</a>
             </td>
         </tr>
     </table>
 </fieldset>
+<a id="descargarInformeFrote" href="ConsultaServlet.do?accion=DESCARGAR_INFORME&tipo=frote&codExamen=${codExamen}" class="btn btn-light">Descargar</a>

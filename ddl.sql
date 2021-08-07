@@ -380,7 +380,7 @@ alter table lab_presentacion_medicamento
 
 create table lab_examen_receta
 (
-    cod_receta                   integer not null
+    cod_receta                   serial not null
         constraint lab_examen_receta_pk
             primary key,
     cod_examen                   integer
