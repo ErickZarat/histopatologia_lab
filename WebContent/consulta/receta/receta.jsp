@@ -1,5 +1,5 @@
 <div>
-    <table class="table table-striped w-50 left-margin-align" id="medicamentosTable">
+    <table class="table table-striped w-50 left-margin-align" id="recetasTable">
         <thead class="table thead-light">
         <tr style="font-weight: bold;">
             <td>Nombre Medicamento</td>
@@ -14,6 +14,7 @@
                 <td><label class="text-capitalize">${receta.nombreMedicamento}</label></td>
                 <td><label class="text-capitalize">${receta.presentacion}</label></td>
                 <td><label class="text-capitalize">${receta.notas}</label></td>
+                <td></td>
             </tr>
         </c:forEach>
         </tbody>

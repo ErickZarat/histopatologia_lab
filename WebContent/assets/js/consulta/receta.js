@@ -3,6 +3,9 @@ $(document).ready(function() {
 
     window.recetas = [];
 
+    var currentMedicamentos = [];
+    var currentPresentaciones = [];
+
     var recetasTable = $('#recetasTable').DataTable(window.coreTableConfig);
     $('#tipoMedicamentoSearch').change(getListadoMedicamentos);
     $('#medicamentoSelect').change(getListadoPresentaciones);
@@ -12,21 +15,30 @@ $(document).ready(function() {
             'codExamen': window.examen,
             'codPresentacionMedicamento':  $('#presentacionSelect').val(),
             'numReceta': 0,
-            'notas': $('#notasReceta').val()
+            'notas': $('#notasReceta').val(),
+            'nombreMedicamento': $( "#medicamentoSelect option:selected" ).text(),
+            'presentacion': $( "#presentacionSelect option:selected" ).text(),
         };
     }
 
     function redrawRecetasTable(){
-        window.recetas.forEach(function(element){
-            recetasTable.rows().remove().draw(false);
+        recetasTable.rows().remove().draw(false);
+        window.recetas.forEach(function(element, idx){
             var row = [
                 '<label class="text-capitalize">' + element.nombreMedicamento + '</label>' ,
                 '<label class="text-capitalize">' + element.presentacion + '</label>' ,
                 '<label class="text-capitalize">' + element.notas + '</label>' ,
+                '<button type="button" class="btn btn-light delete" data-idx="'+idx+'"><i class="fas fa-trash"></i></button>'
             ];
             recetasTable.row.add(row).draw(false);
         });
     }
+
+    $(document).on('click', 'button[data-idx]', function (){
+        var idx = $(this).data('idx')
+        window.recetas.splice(idx, 1);
+        redrawRecetasTable()
+    })
 
     function getListadoMedicamentos() {
         $('#medicamentoSelect').empty();
