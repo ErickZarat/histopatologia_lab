@@ -3,7 +3,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <html>
-<body onload="window.print()" style="line-height: 1.8">
+<body onload="window.print()" style="line-height: 1.2">
     <div>
         <div style="text-align: center; height: 120px;">
             <div style="vertical-align: middle; display: inline-block;text-align: center; height: 100%; font-weight: 800;">
@@ -17,7 +17,7 @@
         <hr style="height:4px;border-width:0;color:#9b98ee;background-color:#9b98ee">
 
         <div style="display: inline-block; width: 45%">
-            <table  style="line-height: 1.8">
+            <table  style="line-height: 1.2">
                 <tr>
                     <td style="font-weight: 800;">Estudio: </td>
                     <td style="width: 80%; border-bottom: 2px solid;">${biopsia.muestraEstudio}</td>
@@ -48,7 +48,7 @@
         </div>
 
         <div style="display: inline-block; width: 45%">
-            <table  style="line-height: 1.8">
+            <table  style="line-height: 1.2">
                 <tr>
                     <td style="font-weight: 800;">Fecha: </td>
                     <td style="width: 80%; border-bottom: 2px solid;">${biopsia.fechaFormateada}</td>

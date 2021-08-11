@@ -116,10 +116,13 @@ $(document).ready(function() {
                 }
             }
         });
-    })
+    });
 
-
-
-
+    $('a#descargarReceta').click(function(e) {
+        e.preventDefault();
+        var width = window.innerWidth * 0.8 ;
+        var height = width * window.innerHeight / window.innerWidth ;
+        window.open(this.href , 'newwindow', 'width=' + width + ', height=' + height + ', top=' + ((window.innerHeight - height) / 2) + ', left=' + ((window.innerWidth - width) / 2));
+    });
 
 });

@@ -14,8 +14,7 @@
                 <a class="dropdown-item" href="MedicamentosServlet.do">Medicamentos</a>
                 <a class="dropdown-item" href="EnfSistemicaServlet.do">Enfermedades Sistemicas</a>
                 <a class="dropdown-item" href="OpcionLesionServlet.do">Tipos de Opcion Lesion</a>
-                <a class="dropdown-item" href="UsuarioServlet.do">Usuarios</a>
-                <c:if test="roleHandler.isAdmin()">
+                <c:if test="${roleHandler.isAdmin()}">
                 	<a class="dropdown-item" href="UsuarioServlet.do">Usuarios</a>
                 </c:if>
                 <a class="dropdown-item" href="PacienteServlet.do">Pacientes</a>
@@ -64,4 +63,10 @@
 
 
 <img src="assets/img/logo.png" class="fondo-logo" >
+
+
+<%--<form action="LoginServlet.do?action=SALIR" method="get">--%>
+<%--    <p>Desea Salir</p>--%>
+<%--    <input type="submit" value="salir">--%>
+<%--</form>--%>
 

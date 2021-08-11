@@ -17,7 +17,7 @@
         <hr style="height:4px;border-width:0;color:#9b98ee;background-color:#9b98ee">
 
         <div style="display: inline-block; width: 45%">
-            <table  style="line-height: 1.8">
+            <table  style="line-height: 1.2">
                 <tr>
                     <td style="font-weight: 800;">Paciente: </td>
                     <td style="width: 80%; border-bottom: 2px solid;">${paciente.nombrePaciente} ${paciente.apellidosPaciente}</td>
@@ -36,12 +36,11 @@
         <div id="items" style="border: 1px solid; padding:15px; margin-top: 25px">
             <c:forEach items="${recetas}" var="receta">
                 <div>
-                    <h3>Farmaco:</h3>
-                    <p>${receta.nombreMedicamento} - ${receta.presentacion}</p>
+                    <label><strong>Farmaco:</strong></label>
+                    ${receta.nombreMedicamento} - ${receta.presentacion}
 
-                    <h3>Indicaciones:</h3>
-                    <p>${receta.notas}</p>
-
+                    <label><strong>Indicaciones:</strong></label>
+                    ${receta.notas}
                     <hr>
                 </div>
             </c:forEach>

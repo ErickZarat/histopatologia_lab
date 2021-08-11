@@ -1,5 +1,7 @@
 package histopatologialab.login;
 
+import histopatologialab.core.RequestAction;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,8 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import java.io.IOException;
 
-import static histopatologialab.core.ServletHelper.checkSession;
-import static histopatologialab.core.ServletHelper.isValidSession;
+import static histopatologialab.core.ServletHelper.*;
 
 @WebServlet(name = "LoginServlet")
 public class LoginServlet extends HttpServlet {
@@ -40,7 +41,13 @@ public class LoginServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         checkSession(request, response);
         RequestDispatcher despachador;
-        if (isValidSession(request)) {
+
+        RequestAction action = getRequestAction(request);
+
+        if (action == RequestAction.SALIR) {
+            loginController.cerrarSesion(request.getSession(true));
+            despachador = request.getRequestDispatcher("index.jsp");
+        } else if (isValidSession(request)) {
             despachador = request.getRequestDispatcher("principal.jsp");
         } else {
             despachador = request.getRequestDispatcher("index.jsp");
