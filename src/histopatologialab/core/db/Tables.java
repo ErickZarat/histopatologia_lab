@@ -6,6 +6,7 @@ package histopatologialab.core.db;
 
 import histopatologialab.core.db.tables.LabDiagnostico;
 import histopatologialab.core.db.tables.LabEnfermedadSistemica;
+import histopatologialab.core.db.tables.LabEnfsistemicaListar;
 import histopatologialab.core.db.tables.LabExamen;
 import histopatologialab.core.db.tables.LabExamenBiopsia;
 import histopatologialab.core.db.tables.LabExamenCaracteristica;
@@ -15,13 +16,26 @@ import histopatologialab.core.db.tables.LabExamenFrote;
 import histopatologialab.core.db.tables.LabExamenHistEstados;
 import histopatologialab.core.db.tables.LabExamenImagen;
 import histopatologialab.core.db.tables.LabExamenReceta;
+import histopatologialab.core.db.tables.LabExamenSeguimiento;
 import histopatologialab.core.db.tables.LabInforme;
 import histopatologialab.core.db.tables.LabMedicamento;
 import histopatologialab.core.db.tables.LabPaciente;
 import histopatologialab.core.db.tables.LabPresentacionMedicamento;
+import histopatologialab.core.db.tables.LabRepcitasxfecha;
+import histopatologialab.core.db.tables.LabReporteExamenVw;
+import histopatologialab.core.db.tables.LabReportecitasporfecha;
 import histopatologialab.core.db.tables.LabTincion;
 import histopatologialab.core.db.tables.LabTipoOpcionLesion;
 import histopatologialab.core.db.tables.LabUsuario;
+import histopatologialab.core.db.tables.records.LabEnfsistemicaListarRecord;
+import histopatologialab.core.db.tables.records.LabRepcitasxfechaRecord;
+import histopatologialab.core.db.tables.records.LabReportecitasporfechaRecord;
+
+import java.time.LocalDate;
+
+import org.jooq.Configuration;
+import org.jooq.Field;
+import org.jooq.Result;
 
 
 /**
@@ -39,6 +53,29 @@ public class Tables {
      * The table <code>public.lab_enfermedad_sistemica</code>.
      */
     public static final LabEnfermedadSistemica LAB_ENFERMEDAD_SISTEMICA = LabEnfermedadSistemica.LAB_ENFERMEDAD_SISTEMICA;
+
+    /**
+     * The table <code>public.lab_enfsistemica_listar</code>.
+     */
+    public static final LabEnfsistemicaListar LAB_ENFSISTEMICA_LISTAR = LabEnfsistemicaListar.LAB_ENFSISTEMICA_LISTAR;
+
+    /**
+     * Call <code>public.lab_enfsistemica_listar</code>.
+     */
+    public static Result<LabEnfsistemicaListarRecord> LAB_ENFSISTEMICA_LISTAR(
+          Configuration configuration
+    ) {
+        return configuration.dsl().selectFrom(histopatologialab.core.db.tables.LabEnfsistemicaListar.LAB_ENFSISTEMICA_LISTAR.call(
+        )).fetch();
+    }
+
+    /**
+     * Get <code>public.lab_enfsistemica_listar</code> as a table.
+     */
+    public static LabEnfsistemicaListar LAB_ENFSISTEMICA_LISTAR() {
+        return histopatologialab.core.db.tables.LabEnfsistemicaListar.LAB_ENFSISTEMICA_LISTAR.call(
+        );
+    }
 
     /**
      * The table <code>public.lab_examen</code>.
@@ -86,6 +123,11 @@ public class Tables {
     public static final LabExamenReceta LAB_EXAMEN_RECETA = LabExamenReceta.LAB_EXAMEN_RECETA;
 
     /**
+     * The table <code>public.lab_examen_seguimiento</code>.
+     */
+    public static final LabExamenSeguimiento LAB_EXAMEN_SEGUIMIENTO = LabExamenSeguimiento.LAB_EXAMEN_SEGUIMIENTO;
+
+    /**
      * The table <code>public.lab_informe</code>.
      */
     public static final LabInforme LAB_INFORME = LabInforme.LAB_INFORME;
@@ -104,6 +146,79 @@ public class Tables {
      * The table <code>public.lab_presentacion_medicamento</code>.
      */
     public static final LabPresentacionMedicamento LAB_PRESENTACION_MEDICAMENTO = LabPresentacionMedicamento.LAB_PRESENTACION_MEDICAMENTO;
+
+    /**
+     * The table <code>public.lab_repcitasxfecha</code>.
+     */
+    public static final LabRepcitasxfecha LAB_REPCITASXFECHA = LabRepcitasxfecha.LAB_REPCITASXFECHA;
+
+    /**
+     * Call <code>public.lab_repcitasxfecha</code>.
+     */
+    public static Result<LabRepcitasxfechaRecord> LAB_REPCITASXFECHA(
+          Configuration configuration
+        , LocalDate fechainicio
+        , LocalDate fechafin
+    ) {
+        return configuration.dsl().selectFrom(histopatologialab.core.db.tables.LabRepcitasxfecha.LAB_REPCITASXFECHA.call(
+              fechainicio
+            , fechafin
+        )).fetch();
+    }
+
+    /**
+     * Get <code>public.lab_repcitasxfecha</code> as a table.
+     */
+    public static LabRepcitasxfecha LAB_REPCITASXFECHA(
+          LocalDate fechainicio
+        , LocalDate fechafin
+    ) {
+        return histopatologialab.core.db.tables.LabRepcitasxfecha.LAB_REPCITASXFECHA.call(
+              fechainicio
+            , fechafin
+        );
+    }
+
+    /**
+     * Get <code>public.lab_repcitasxfecha</code> as a table.
+     */
+    public static LabRepcitasxfecha LAB_REPCITASXFECHA(
+          Field<LocalDate> fechainicio
+        , Field<LocalDate> fechafin
+    ) {
+        return histopatologialab.core.db.tables.LabRepcitasxfecha.LAB_REPCITASXFECHA.call(
+              fechainicio
+            , fechafin
+        );
+    }
+
+    /**
+     * The table <code>public.lab_reporte_examen_vw</code>.
+     */
+    public static final LabReporteExamenVw LAB_REPORTE_EXAMEN_VW = LabReporteExamenVw.LAB_REPORTE_EXAMEN_VW;
+
+    /**
+     * The table <code>public.lab_reportecitasporfecha</code>.
+     */
+    public static final LabReportecitasporfecha LAB_REPORTECITASPORFECHA = LabReportecitasporfecha.LAB_REPORTECITASPORFECHA;
+
+    /**
+     * Call <code>public.lab_reportecitasporfecha</code>.
+     */
+    public static Result<LabReportecitasporfechaRecord> LAB_REPORTECITASPORFECHA(
+          Configuration configuration
+    ) {
+        return configuration.dsl().selectFrom(histopatologialab.core.db.tables.LabReportecitasporfecha.LAB_REPORTECITASPORFECHA.call(
+        )).fetch();
+    }
+
+    /**
+     * Get <code>public.lab_reportecitasporfecha</code> as a table.
+     */
+    public static LabReportecitasporfecha LAB_REPORTECITASPORFECHA() {
+        return histopatologialab.core.db.tables.LabReportecitasporfecha.LAB_REPORTECITASPORFECHA.call(
+        );
+    }
 
     /**
      * The table <code>public.lab_tincion</code>.

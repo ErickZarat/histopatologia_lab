@@ -38,7 +38,7 @@
                 <div>
                     <label><strong>Farmaco:</strong></label>
                     ${receta.nombreMedicamento} - ${receta.presentacion}
-                    <br>
+                    <div></div>
 
                     <label><strong>Indicaciones:</strong></label>
                     ${receta.notas}

@@ -14,6 +14,7 @@ import java.util.List;
 
 import org.jooq.Field;
 import org.jooq.ForeignKey;
+import org.jooq.Identity;
 import org.jooq.Name;
 import org.jooq.Record;
 import org.jooq.Row9;
@@ -51,7 +52,7 @@ public class LabExamenReceta extends TableImpl<LabExamenRecetaRecord> {
     /**
      * The column <code>public.lab_examen_receta.cod_receta</code>.
      */
-    public final TableField<LabExamenRecetaRecord, Integer> COD_RECETA = createField(DSL.name("cod_receta"), SQLDataType.INTEGER.nullable(false), this, "");
+    public final TableField<LabExamenRecetaRecord, Integer> COD_RECETA = createField(DSL.name("cod_receta"), SQLDataType.INTEGER.nullable(false).identity(true), this, "");
 
     /**
      * The column <code>public.lab_examen_receta.cod_examen</code>.
@@ -129,6 +130,11 @@ public class LabExamenReceta extends TableImpl<LabExamenRecetaRecord> {
     @Override
     public Schema getSchema() {
         return Public.PUBLIC;
+    }
+
+    @Override
+    public Identity<LabExamenRecetaRecord, Integer> getIdentity() {
+        return (Identity<LabExamenRecetaRecord, Integer>) super.getIdentity();
     }
 
     @Override

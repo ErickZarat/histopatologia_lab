@@ -128,8 +128,9 @@ $(document).ready(function() {
     });
 
 
- $('#btnCerrarSesion').click(function(e){
-        var loginUser = $('#loginUsuario').val();	
+/* $('#btnCerrarSesion').click(function(e){
+		//$('#logoutUsuarioModal').modal('hide');
+         var loginUser = $('#loginUsuario').val();	
 		        $.ajax({
 	            url: 'UsuarioServlet.do',
 	            method: 'post',
@@ -139,13 +140,13 @@ $(document).ready(function() {
 	            },
 	            success: function(response) {
 	                if (response.success){
-		                $('#cambioPswUsuarioModal').modal('hide');
+
 						$("#CambioPswFormModal")[0].reset();									
 	                    toastr.success("Se cambio con éxito la contraseña");
 	                } else {
 	                    toastr.error(response.error);
 	                }
 	            }
-	        });	
-    });
+	        });
+    });*/
 });

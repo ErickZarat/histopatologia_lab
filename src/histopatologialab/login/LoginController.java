@@ -64,6 +64,7 @@ public class LoginController {
 
     public void cerrarSesion(HttpSession session) {
         try {
+        	System.out.println("Cerrando sesion"); 
             if (session == null) return;
             session.invalidate();
         } catch (IllegalStateException exception){

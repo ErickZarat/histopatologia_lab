@@ -5,13 +5,13 @@
 <html>
 <body onload="window.print()" style="line-height: 1.2">
     <div>
-        <div style="text-align: center; height: 120px;">
+        <div style="text-align: center; height: 100px;">
             <div style="vertical-align: middle; display: inline-block;text-align: center; height: 100%; font-weight: 800;">
                 <div>Laboratorio de Histopatolog&iacute;a Multidisciplinario, USAC, Guatemala</div>
                 <div>Dr. C&eacute;sar L&oacute;pez Acevedo</div>
             </div>
             <div style="display: inline-block">
-                <img src="assets/img/logo.png" style="width: 120px; height:auto;">
+                <img src="assets/img/logo.png" style="width: 100px; height:auto;">
             </div>
         </div>
         <hr style="height:4px;border-width:0;color:#9b98ee;background-color:#9b98ee">

@@ -43,8 +43,11 @@ public class LoginServlet extends HttpServlet {
         RequestDispatcher despachador;
 
         RequestAction action = getRequestAction(request);
-
+    	System.out.println("SERVLET LOGIN");
+    	System.out.println(action);
+        
         if (action == RequestAction.SALIR) {
+        	System.out.println("opcion de salir de login servlet");
             loginController.cerrarSesion(request.getSession(true));
             despachador = request.getRequestDispatcher("index.jsp");
         } else if (isValidSession(request)) {

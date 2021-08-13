@@ -53,14 +53,14 @@ public class LabExamenImagen extends TableImpl<LabExamenImagenRecord> {
     public final TableField<LabExamenImagenRecord, Integer> COD_EXAMEN = createField(DSL.name("cod_examen"), SQLDataType.INTEGER, this, "");
 
     /**
-     * The column <code>public.lab_examen_imagen.cod_frote</code>.
+     * The column <code>public.lab_examen_imagen.num_frote</code>.
      */
-    public final TableField<LabExamenImagenRecord, Integer> COD_FROTE = createField(DSL.name("cod_frote"), SQLDataType.INTEGER, this, "");
+    public final TableField<LabExamenImagenRecord, String> NUM_FROTE = createField(DSL.name("num_frote"), SQLDataType.VARCHAR(20), this, "");
 
     /**
-     * The column <code>public.lab_examen_imagen.cod_biopsia</code>.
+     * The column <code>public.lab_examen_imagen.num_biopsia</code>.
      */
-    public final TableField<LabExamenImagenRecord, Integer> COD_BIOPSIA = createField(DSL.name("cod_biopsia"), SQLDataType.INTEGER, this, "");
+    public final TableField<LabExamenImagenRecord, String> NUM_BIOPSIA = createField(DSL.name("num_biopsia"), SQLDataType.VARCHAR(20), this, "");
 
     /**
      * The column <code>public.lab_examen_imagen.num_imagen</code>.
@@ -137,32 +137,16 @@ public class LabExamenImagen extends TableImpl<LabExamenImagenRecord> {
 
     @Override
     public List<ForeignKey<LabExamenImagenRecord, ?>> getReferences() {
-        return Arrays.<ForeignKey<LabExamenImagenRecord, ?>>asList(Keys.LAB_EXAMEN_IMAGEN__IMAGEN_EXAMEN_FK, Keys.LAB_EXAMEN_IMAGEN__LAB_EXAMEN_IMAGEN_LAB_EXAMEN_FROTE_COD_FROTE_FK, Keys.LAB_EXAMEN_IMAGEN__LAB_EXAMEN_IMAGEN_LAB_EXAMEN_BIOPSIA_COD_BIOPSIA_FK);
+        return Arrays.<ForeignKey<LabExamenImagenRecord, ?>>asList(Keys.LAB_EXAMEN_IMAGEN__IMAGEN_EXAMEN_FK);
     }
 
     private transient LabExamen _labExamen;
-    private transient LabExamenFrote _labExamenFrote;
-    private transient LabExamenBiopsia _labExamenBiopsia;
 
     public LabExamen labExamen() {
         if (_labExamen == null)
             _labExamen = new LabExamen(this, Keys.LAB_EXAMEN_IMAGEN__IMAGEN_EXAMEN_FK);
 
         return _labExamen;
-    }
-
-    public LabExamenFrote labExamenFrote() {
-        if (_labExamenFrote == null)
-            _labExamenFrote = new LabExamenFrote(this, Keys.LAB_EXAMEN_IMAGEN__LAB_EXAMEN_IMAGEN_LAB_EXAMEN_FROTE_COD_FROTE_FK);
-
-        return _labExamenFrote;
-    }
-
-    public LabExamenBiopsia labExamenBiopsia() {
-        if (_labExamenBiopsia == null)
-            _labExamenBiopsia = new LabExamenBiopsia(this, Keys.LAB_EXAMEN_IMAGEN__LAB_EXAMEN_IMAGEN_LAB_EXAMEN_BIOPSIA_COD_BIOPSIA_FK);
-
-        return _labExamenBiopsia;
     }
 
     @Override
@@ -196,7 +180,7 @@ public class LabExamenImagen extends TableImpl<LabExamenImagenRecord> {
     // -------------------------------------------------------------------------
 
     @Override
-    public Row10<Integer, Integer, Integer, Integer, String, String, LocalDate, String, String, LocalDate> fieldsRow() {
+    public Row10<Integer, String, String, Integer, String, String, LocalDate, String, String, LocalDate> fieldsRow() {
         return (Row10) super.fieldsRow();
     }
 }

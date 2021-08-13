@@ -292,6 +292,9 @@
             <li class="nav-item">
                 <a class="nav-link" data-toggle="tab" href="#tabs-3" role="tab">Receta</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#tabs-4" role="tab">Seguimientos</a>
+            </li>            
         </ul><!-- Tab panes -->
         <div class="tab-content">
             <div class="tab-pane active" id="tabs-1" role="tabpanel">
@@ -303,6 +306,9 @@
             <div class="tab-pane" id="tabs-3" role="tabpanel">
                 <%@ include file="receta/receta.jsp"%>
             </div>
+            <div class="tab-pane" id="tabs-4" role="tabpanel">
+                <%@ include file="seguimiento/seguimiento.jsp"%>
+            </div>            
         </div>
     </div>
 
@@ -316,4 +322,5 @@
 <script src="assets/js/consulta/biopsia.js"></script>
 <script src="assets/js/consulta/frote.js"></script>
 <script src="assets/js/consulta/receta.js"></script>
+<script src="assets/js/consulta/seguimiento.js"></script>
 

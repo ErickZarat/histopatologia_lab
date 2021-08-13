@@ -400,3 +400,22 @@ create table lab_examen_receta
 alter table lab_examen_receta
     owner to postgres;
 
+    
+    -- Drop table
+
+-- DROP TABLE public.lab_examen_seguimiento;
+
+CREATE TABLE public.lab_examen_seguimiento (
+	cod_seguimiento serial NOT NULL,
+	cod_examen int4 NULL,
+	fecha_seguimiento date NULL,
+	observaciones varchar NULL,
+	observaciones_adicional varchar NULL,
+	usuario_seguimiento int8 NULL,
+	modificado_por int8 NULL,
+	fecha_modificacion date NULL,
+	CONSTRAINT lab_examen_seguimiento_pkey PRIMARY KEY (cod_seguimiento),
+	CONSTRAINT lab_examen_seguimiento_fk FOREIGN KEY (cod_examen) REFERENCES lab_examen(cod_examen),
+	CONSTRAINT usuario_seguimiento_fk FOREIGN KEY (usuario_seguimiento) REFERENCES lab_usuario(cod_usuario)
+);
+

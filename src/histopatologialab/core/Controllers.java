@@ -24,6 +24,8 @@ import histopatologialab.tipopcionlesion.controller.IOpcionLesionController;
 import histopatologialab.tipopcionlesion.controller.OpcionLesionControllerImpl;
 import histopatologialab.usuario.controller.IUsuarioController;
 import histopatologialab.usuario.controller.UsuarioControllerImpl;
+import histopatologialab.seguimiento.controller.ISeguimientoController;
+import histopatologialab.seguimiento.controller.SeguimientoControllerImpl;
 
 import static histopatologialab.core.Daos.*;
 
@@ -41,5 +43,6 @@ public class Controllers {
     public static ITincionController tincionController = new TincionControllerImpl(tincionDao);
     public static IInformeController informeController = new InformeControllerImpl(informeDao);
     public static IRecetaController recetaController = new RecetaControllerImpl(recetaDao);
+    public static ISeguimientoController seguimientoController = new SeguimientoControllerImpl(seguimientoDao);
 
 }

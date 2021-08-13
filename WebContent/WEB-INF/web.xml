@@ -141,5 +141,13 @@
         <servlet-name>UploadServlet</servlet-name>
         <url-pattern>/UploadServlet.do</url-pattern>
     </servlet-mapping>
+   <servlet>
+        <servlet-name>SeguimientoServlet</servlet-name>
+        <servlet-class>histopatologialab.seguimiento.SeguimientoServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SeguimientoServlet</servlet-name>
+        <url-pattern>/SeguimientoServlet.do</url-pattern>
+    </servlet-mapping>    
 
 </web-app>
