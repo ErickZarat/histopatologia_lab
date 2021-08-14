@@ -4,6 +4,90 @@ window.informeBiopsia = $('#codInformeBiopsia').val();
 window.frote = $('#codFrote').val();
 window.informeFrote = $('#codInformeFrote').val();
 
+
+	jQuery.validator.setDefaults({
+	debug: true,
+	success: "valid"
+	});
+	
+	$.validator.addMethod("formatoTexto", function(value, element) {
+                return this.optional(element) || /^[a-zA-ZÀ-ÿ 0-9\. \- s()-*,]{1,200}$/i.test(value);
+	}, "Solo se permite ingresar letras.");
+
+
+
+	var validarDatosBiopsia = $("#biopsia-form").validate({
+ 	rules :{
+                muestraEstudio : { required : true, formatoTexto: true},
+				tipoCirugiaSelect : { required : true},
+				tipoProcedimientoSelect : { required : true},
+				instrumentoSelect  : { required : true },
+            },
+            messages : {
+                muestraEstudio : {
+                    required : "Debe ingresar el número de la muestra ",
+ 					minlength : "El nombre debe tener un mínimo de 3 caracteres",
+                },
+ 				tipoCirugiaSelect : {
+                    required : "El valor no puede ser nulo",
+                },
+                tipoProcedimientoSelect : {
+                    required : "El valor no puede ser nulo",
+                },
+                instrumentoSelect : {
+                    required : "El valor no puede ser nulo",
+                },
+ 		errorElement: "em",
+       	errorPlacement: function (error, element) {
+          // Add the `help-block` class to the error element
+          error.addClass("help-block"); 
+       	},
+       	highlight: function ( element, errorClass, validClass ) {
+          $( element ).parents("form-control").addClass( "has-error" ).removeClass( "has-success" );
+       	},
+       	unhighlight: function (element, errorClass, validClass) {
+          $( element ).parents("form-control").addClass( "has-success" ).removeClass( "has-error" );  
+       	} 
+	}
+  	});
+
+
+	var validarDatosRecibo = $("#biopsia-form").validate({
+	 	rules :{
+	                numReciboBiopsia : { required : true, formatoTexto: true, minlength : 3 },
+					serieReciboBiopsia : { required : true, formatoTexto: true, minlength : 3 },
+					montoReciboBiopsia : { required : true, minlength : 3 },
+	            },
+	            messages : {
+	                numReciboBiopsia : {
+	                    required : "Debe ingresar el numero de recibo ",
+	 					minlength : "El nombre debe tener un mínimo de 3 caracteres",
+	                },
+	 				serieReciboBiopsia : {
+	                    required : "Debe ingresar la serie del recibo",
+	                    minlength : "El apellido debe tener un mínimo de 3 caracteres",
+	                    maxlength : "El máximo deben ser 30 caracteres"
+	                },
+	                montoReciboBiopsia : {
+	                    required : "Debe ingresar el monto del recibo",
+	                    minlength : "Debe ingresar un valor para la dirección"
+	                },
+	 		errorElement: "em",
+	       	errorPlacement: function (error, element) {
+	          // Add the `help-block` class to the error element
+	          error.addClass("help-block"); 
+	       	},
+	       	highlight: function ( element, errorClass, validClass ) {
+	          $( element ).parents("form-control").addClass( "has-error" ).removeClass( "has-success" );
+	       	},
+	       	unhighlight: function (element, errorClass, validClass) {
+	          $( element ).parents("form-control").addClass( "has-success" ).removeClass( "has-error" );  
+	       	} 
+		}
+	  	});
+
+
+
 function extractReciboBiopsia(){
     var recibo = {
         'codExamen': window.examen,
@@ -16,36 +100,45 @@ function extractReciboBiopsia(){
 
 $('#validarReciboBiopsia').click(function(e){
     e.preventDefault();
-    recibo = extractReciboBiopsia()
 
-    if (recibo.codExamen == null) {
-        toastr.error('codigo de examen invalido');
-        return;
-    }
-    $('#biopsia-recibo').prop('disabled', true);
+	if (validarDatosRecibo.form()) //asi se comprueba si el form esta validado o no
+    {      
+	    recibo = extractReciboBiopsia()
+	
+	    if (recibo.codExamen == null) {
+	        toastr.error('codigo de examen invalido');
+	        return;
+	    }
+	    $('#biopsia-recibo').prop('disabled', true);
+	
+	    $.ajax({
+	        url: 'BiopsiaServlet.do',
+	        method: 'post',
+	        data: {
+	            accion: 'CREAR',
+	            biopsia: JSON.stringify(recibo)
+	        },
+	        success: function (response) {
+	            if(response.success) {
+	                console.log(response.data)
+	                $('#biopsia-datos').prop('disabled', false);
+	                window.biopsia = response.data.codBiopsia;
+	                toastr.success('se guardo el recibo');
+	                $('#numeroBiopsia').val(response.data.numBiopsia);
+	                $('#fechaBiopsia').val(response.data.fecha);
+	                $('#estadoBiopsia').val(response.data.estadoBiopsia);
+	            } else {
+	                $('#biopsia-recibo').prop('disabled', false);
+	                toastr.error('error al registrar el recibo');
+	            }
+	        }
+	    });
 
-    $.ajax({
-        url: 'BiopsiaServlet.do',
-        method: 'post',
-        data: {
-            accion: 'CREAR',
-            biopsia: JSON.stringify(recibo)
-        },
-        success: function (response) {
-            if(response.success) {
-                console.log(response.data)
-                $('#biopsia-datos').prop('disabled', false);
-                window.biopsia = response.data.codBiopsia;
-                toastr.success('se guardo el recibo');
-                $('#numeroBiopsia').val(response.data.numBiopsia);
-                $('#fechaBiopsia').val(response.data.fecha);
-                $('#estadoBiopsia').val(response.data.estadoBiopsia);
-            } else {
-                $('#biopsia-recibo').prop('disabled', false);
-                toastr.error('error al registrar el recibo');
-            }
-        }
-    });
+		} else {
+			e.preventDefault();
+		}
+
+
 });
 
 function extractDatosBiopsia(){
@@ -63,34 +156,43 @@ function extractDatosBiopsia(){
 
 $('#guardarDatosBiopsia').click(function(e){
     e.preventDefault();
-    var datos = extractDatosBiopsia();
 
-    if (datos.codBiopsia == null) {
-        toastr.error('codigo de biopsia invalido');
-        return;
-    }
+	if (validarDatosBiopsia.form()) //asi se comprueba si el form esta validado o no
+    {      
+	    var datos = extractDatosBiopsia();
+	
+	    if (datos.codBiopsia == null) {
+	        toastr.error('codigo de biopsia invalido');
+	        return;
+	    }
+	
+	    $('#biopsia-datos').prop('disabled', true);
+	
+	    $.ajax({
+	        url: 'BiopsiaServlet.do',
+	        method: 'post',
+	        data: {
+	            accion: 'MODIFICAR',
+	            biopsia: JSON.stringify(datos)
+	        },
+	        success: function (response) {
+	            if(response.success) {
+	                console.log(response.data)
+	                toastr.success('se guardo la biopsia');
+	                $('#biopsia-informe').prop('disabled', false);
+	                $('#estadoBiopsia').val(response.data.estadoBiopsia);
+	            } else {
+	                $('#biopsia-datos').prop('disabled', false);
+	                toastr.error('error al guardar la biopsia');
+	            }
+	        }
+	    });
 
-    $('#biopsia-datos').prop('disabled', true);
+		} else {
+			e.preventDefault();
+		}
 
-    $.ajax({
-        url: 'BiopsiaServlet.do',
-        method: 'post',
-        data: {
-            accion: 'MODIFICAR',
-            biopsia: JSON.stringify(datos)
-        },
-        success: function (response) {
-            if(response.success) {
-                console.log(response.data)
-                toastr.success('se guardo la biopsia');
-                $('#biopsia-informe').prop('disabled', false);
-                $('#estadoBiopsia').val(response.data.estadoBiopsia);
-            } else {
-                $('#biopsia-datos').prop('disabled', false);
-                toastr.error('error al guardar la biopsia');
-            }
-        }
-    });
+
 });
 
 function extractInformeBiopsia(){

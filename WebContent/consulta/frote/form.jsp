@@ -45,7 +45,7 @@
         <table>
             <tr>
                 <td><label class="table-form-label" for="muestraEstudio">Muestra o Estudio:</label></td>
-                <td><input type="text" id="muestraEstudio" class="form-control" value="${frote.muestraEstudio}"></td>
+                <td><input type="text" id="muestraEstudioFrote" class="form-control" value="${frote.muestraEstudio}"></td>
             </tr>
 
             <tr>

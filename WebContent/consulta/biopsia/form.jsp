@@ -2,26 +2,26 @@
 <%@ taglib prefix = "fn" uri = "http://java.sun.com/jsp/jstl/functions" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-<form>
+<form id="biopsia-form">
     <fieldset id="biopsia-recibo" <c:if test='${not empty codBiopsia}'>disabled</c:if>>
         <table>
             <tr>
                 <td><label for="numeroBiopsia">Numero Biopsia:</label></td>
-                <td><input id="numeroBiopsia" class="form-control" readonly value="${biopsia.numBiopsia}"></td>
+                <td><input id="numeroBiopsia" name="numeroBiopsia" class="form-control" readonly value="${biopsia.numBiopsia}"></td>
                 <td><label for="fechaBiopsia">Fecha Biopsia:</label></td>
-                <td><input id="fechaBiopsia" class="form-control" readonly value="${biopsia.fechaFormateada}"></td>
+                <td><input id="fechaBiopsia" name="fechaBiopsia" class="form-control" readonly value="${biopsia.fechaFormateada}"></td>
                 <td><label for="estadoBiopsia">Estado:</label></td>
-                <td><input id="estadoBiopsia" class="form-control" readonly value="${biopsia.estadoBiopsia}"></td>
+                <td><input id="estadoBiopsia"  name="estadoBiopsia" class="form-control" readonly value="${biopsia.estadoBiopsia}"></td>
             </tr>
             <tr>
                 <td><label class="table-form-label" for="numReciboBiopsia">Numero Recibo:</label></td>
-                <td><input type="text" id="numReciboBiopsia" class="form-control" value="${biopsia.numRecibo}"></td>
+                <td><input type="text" id="numReciboBiopsia" name="numReciboBiopsia" class="form-control" value="${biopsia.numRecibo}"></td>
 
                 <td><label class="table-form-label" for="serieReciboBiopsia">Serie Recibo:</label></td>
-                <td><input type="text" id="serieReciboBiopsia" class="form-control" value="${biopsia.serieRecibo}"></td>
+                <td><input type="text" id="serieReciboBiopsia" name="serieReciboBiopsia" class="form-control" value="${biopsia.serieRecibo}"></td>
 
                 <td><label class="table-form-label" for="montoReciboBiopsia">Monto Recibo:</label></td>
-                <td><input type="text" id="montoReciboBiopsia" class="form-control" value="${biopsia.montoRecibo}"></td>
+                <td><input type="text" id="montoReciboBiopsia" name="montoReciboBiopsia" class="form-control" value="${biopsia.montoRecibo}"></td>
                 <td>
                     <button id="validarReciboBiopsia" class="btn btn-light">Validar Recibo</button>
                 </td>
@@ -63,12 +63,12 @@
         <table>
             <tr>
                 <td><label class="table-form-label" for="muestraEstudio">Muestra o Estudio:</label></td>
-                <td><input type="text" id="muestraEstudio" class="form-control" value="${biopsia.muestraEstudio}"></td>
+                <td><input type="text" id="muestraEstudio" name="muestraEstudio" class="form-control" value="${biopsia.muestraEstudio}"></td>
             </tr>
 
             <tr>
                 <td><label class="table-form-label" for="observacionesBiopsia">Observaciones:</label></td>
-                <td><textArea id="observacionesBiopsia" class="form-control" cols="56" rows="5">${biopsia.observaciones}</textArea></td>
+                <td><textArea id="observacionesBiopsia" name="observacionesBiopsia" class="form-control" cols="56" rows="5">${biopsia.observaciones}</textArea></td>
                 <td colspan="2">
                     <ul id="froteImageContainer">
                         <c:forEach items="${examen.imagenes}" var="img" varStatus="loop">

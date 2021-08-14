@@ -1,11 +1,10 @@
 <div>
-    <table class="table table-striped w-75 left-margin-align" id="seguimientosTable">
+    <table class="table table-striped w-50 left-margin-align" id="seguimientosTable">
         <thead class="table thead-light">
         <tr style="font-weight: bold;">
-            <td>Fecha</td>
-            <td>Observaciones</td>
-            <td>Notas</td>
-            <td></td>
+            <td style="width: 40px;">Fecha</td>
+            <td style="width: 300px;">Observaciones</td>
+            <td style="width: 200px;">Notas</td>
         </tr>
         </thead>
         <tbody>
@@ -27,19 +26,12 @@
                 <table>                   
                     <tr>
                         <td><label class="table-form-label" for="observacionesSeguimiento">Observaciones:</label></td>
-                        <td><textArea id="observacionesSeguimiento" class="form-control" cols="80" rows="5"></textArea></td>
+                        <td><textArea id="observacionesSeguimiento"   name="observacionesSeguimiento" class="form-control" cols="80" rows="5"></textArea></td>
                     </tr>                    
 
                     <tr>
                         <td><label class="table-form-label" for="adicionelesSeguimiento">Notas Adicionales:</label></td>
-                        <td><textArea id="adicionelesSeguimiento" class="form-control" cols="80" rows="5"></textArea></td>
-                    </tr>
-
-                    <tr>
-                        <td></td>
-                        <td style="float: right">
-                            <button id="agregarSeguimiento" class="btn btn-light">Agregar</button>
-                        </td>
+                        <td><textArea id="adicionelesSeguimiento" name="adicionelesSeguimiento" class="form-control" cols="80" rows="5"></textArea></td>
                     </tr>
                     <tr>
                         <br>

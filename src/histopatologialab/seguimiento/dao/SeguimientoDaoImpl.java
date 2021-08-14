@@ -39,6 +39,7 @@ public class SeguimientoDaoImpl  implements ISeguimientoDao {
          .select(tabla.asterisk())
          .from(tabla)
          .where(tabla.COD_EXAMEN.eq(codExamen))
+         .orderBy(tabla.FECHA_SEGUIMIENTO)
          .fetch();    	    	
     	return result.stream().map(this::parseItem).collect(Collectors.toList());
     }
@@ -49,9 +50,6 @@ public class SeguimientoDaoImpl  implements ISeguimientoDao {
     {	if (seguimientos == null && seguimientos.isEmpty())
         return null;
     	Integer codExamen = seguimientos.get(0).getCodExamen();
-        System.out.println("despues de buscar el codigo de examen");
-        System.out.println(seguimientos.get(0).getObservacionesAdicionales());
-        System.out.println(seguimientos.get(0).getCreadoPor());
     	 for (Seguimiento seguimientoInsert : seguimientos) {
              LabExamenSeguimientoRecord record = query.newRecord(tabla);
              record.setCodExamen(seguimientoInsert.getCodExamen());;

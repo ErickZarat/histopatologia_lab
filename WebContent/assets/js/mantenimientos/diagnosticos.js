@@ -14,7 +14,7 @@ $(document).ready(function() {
 	});
 	
 	$.validator.addMethod("formatoSoloTexto", function(value, element) {
-                return this.optional(element) || /^[a-zA-ZÀ-ÿ\s]{1,40}$/i.test(value);
+                return this.optional(element) || /^[a-zA-ZÀ-ÿ\s()-*,]{1,200}$/i.test(value);
 	}, "Solo se permite ingresar letras.");
 	
 	

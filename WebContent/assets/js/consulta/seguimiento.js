@@ -33,11 +33,44 @@ $.fn.dataTable.render.moment = function ( from, to, locale ) {
 
     var seguimientosTable = $('#seguimientosTable').DataTable(window.coreTableConfig);
 
-
-
-
- 	seguimientosTable.rows().remove().draw(false);  
+	seguimientosTable.rows().remove().draw(false);  
 	getSeguimientosTable();
+
+
+
+	jQuery.validator.setDefaults({
+	debug: true,
+	success: "valid"
+	});
+	
+	$.validator.addMethod("formatoSoloTexto", function(value, element) {
+                return this.optional(element) || /^[a-zA-ZÀ-ÿ\. s()-*,]{1,200}$/i.test(value);
+	}, "Solo se permite ingresar letras.");
+
+
+
+	var validar_formulario = $("#seguimientos-form").validate({
+ 	rules :{
+                observacionesSeguimiento : { required : true, formatoSoloTexto: true,  minlength : 3 },			
+            },
+            messages : {
+                observacionesSeguimiento : {
+                    required : "Debe ingresar las notas u observaciones del seguimiento ",
+ 					minlength : "El nombre debe tener un mínimo de 3 caracteres",
+                },
+ 		errorElement: "em",
+       	errorPlacement: function (error, element) {
+          // Add the `help-block` class to the error element
+          error.addClass("help-block"); 
+       	},
+       	highlight: function ( element, errorClass, validClass ) {
+          $( element ).parents("form-control").addClass( "has-error" ).removeClass( "has-success" );
+       	},
+       	unhighlight: function (element, errorClass, validClass) {
+          $( element ).parents("form-control").addClass( "has-success" ).removeClass( "has-error" );  
+       	} 
+	}
+  	});
 
 
     function extractSeguimiento() {
@@ -75,11 +108,12 @@ $.fn.dataTable.render.moment = function ( from, to, locale ) {
 				 if(response.success) {
                     response.data.forEach(function (element) {
 						 //var txtfecha = Convert.ToDateTime(row["element.fechaCreacion"]).ToString("dd/MM/yyyy");
+							// var txtFecha= new Date(element.fechaCreacion).toString().format('DD/MM/YYYY');
 				            var row = [
 				                '<label class="text-capitalize">' + element.fechaCreacion + '</label>' ,
 				                '<label class="text-capitalize">' + element.observaciones + '</label>' ,
-				                '<label class="text-capitalize">' + element.observacionesAdicionales + '</label>' ,
-								'<button type="button" class="btn btn-light delete" ><i class="fas fa-trash"></i></button>'
+				                '<label class="text-capitalize">' + element.observacionesAdicionales + '</label>' 
+								//, '<button type="button" class="btn btn-light delete" ><i class="fas fa-trash"></i></button>'
 				                //'<button type="button" class="btn btn-light delete" data-idx="'+idx+'"><i class="fas fa-trash"></i></button>'
 				            ];
 				            seguimientosTable.row.add(row).draw(false);
@@ -98,6 +132,7 @@ $.fn.dataTable.render.moment = function ( from, to, locale ) {
     })
 
 
+
     $('#agregarSeguimiento').click(function(e){
         e.preventDefault();
         var seguimiento = extractSeguimiento();
@@ -107,29 +142,37 @@ $.fn.dataTable.render.moment = function ( from, to, locale ) {
         redrawSeguimientosTable();
     });
 //TODO: handle guardar button on load
+
+
     $('#guardarSeguimiento').click(function(e){
-		 var seguimiento = extractSeguimiento();
-		window.seguimientos.push(seguimiento);
-        e.preventDefault();
-        $('#seguimientos-form').prop('disabled', true);
-        $('#guardarSeguimiento').prop('disabled', true);
-        $.ajax({
-            url: 'SeguimientoServlet.do',
-            method: 'post',
-            data: {
-                accion: 'CREAR',
-				//seguimientos: JSON.stringify(seguimiento)
-                seguimientos: JSON.stringify(window.seguimientos)
-            },
-            success: function (response) {
-                if(response.success) {
-                    toastr.success("se guardo con exito el seguiemiento");
-					getSeguimientosTable();
-                } else {
-                    toastr.error("No se pudo guardar el seguimiento");
-                }
-            }
-        });
+		if (validar_formulario.form()) //asi se comprueba si el form esta validado o no
+    	{       
+			var seguimiento = extractSeguimiento();
+			window.seguimientos.push(seguimiento);
+	        e.preventDefault();
+	        $('#seguimientos-form').prop('disabled', true);
+	 		$('#seguimientos-form').trigger("reset");
+	        $('#guardarSeguimiento').prop('disabled', true);
+	        $.ajax({
+	            url: 'SeguimientoServlet.do',
+	            method: 'post',
+	            data: {
+	                accion: 'CREAR',
+					//seguimientos: JSON.stringify(seguimiento)
+	                seguimientos: JSON.stringify(window.seguimientos)
+	            },
+	            success: function (response) {
+	                if(response.success) {
+	                    toastr.success("se guardo con exito el seguiemiento");
+						getSeguimientosTable();
+	                } else {
+	                    toastr.error("No se pudo guardar el seguimiento");
+	                }
+	            }
+	        });
+		} else {
+			e.preventDefault();
+		}
     });
 
     $('a#descargarReceta').click(function(e) {
