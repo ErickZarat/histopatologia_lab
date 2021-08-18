@@ -67,6 +67,8 @@ public class LoginController {
         	System.out.println("Cerrando sesion"); 
             if (session == null) return;
             session.invalidate();
+
+
         } catch (IllegalStateException exception){
             Logger.warn("session already invalidated");
         }

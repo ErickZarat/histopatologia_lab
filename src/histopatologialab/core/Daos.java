@@ -21,6 +21,7 @@ import histopatologialab.pacientes.dao.IPacienteDao;
 import histopatologialab.pacientes.dao.PacienteDaoImpl;
 import histopatologialab.receta.dao.IRecetaDao;
 import histopatologialab.receta.dao.RecetaDaoImpl;
+import histopatologialab.reporte.dao.ReporteDao;
 import histopatologialab.tincion.dao.ITincionDao;
 import histopatologialab.tincion.dao.TincionDaoImpl;
 import histopatologialab.tipopcionlesion.dao.IOpcionLesionDao;
@@ -46,4 +47,5 @@ public class Daos {
     public static IInformeDao informeDao = new InformeDaoImpl();
     public static IRecetaDao recetaDao = new RecetaDaoImpl();
     public static ISeguimientoDao seguimientoDao = new SeguimientoDaoImpl();
+    public static ReporteDao reporteDao = new ReporteDao();
 }

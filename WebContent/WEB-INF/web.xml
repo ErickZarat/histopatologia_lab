@@ -134,6 +134,15 @@
     </servlet-mapping>
 
     <servlet>
+        <servlet-name>ReporteServlet</servlet-name>
+        <servlet-class>histopatologialab.reporte.ReporteServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ReporteServlet</servlet-name>
+        <url-pattern>/ReporteServlet.do</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>UploadServlet</servlet-name>
         <servlet-class>histopatologialab.upload.UploadServlet</servlet-class>
     </servlet>

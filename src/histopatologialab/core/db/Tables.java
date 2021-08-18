@@ -24,6 +24,9 @@ import histopatologialab.core.db.tables.LabPresentacionMedicamento;
 import histopatologialab.core.db.tables.LabRepcitasxfecha;
 import histopatologialab.core.db.tables.LabReporteExamenVw;
 import histopatologialab.core.db.tables.LabReportecitasporfecha;
+import histopatologialab.core.db.tables.LabReporteBiopsiaVw;
+import histopatologialab.core.db.tables.LabReporteExamenVw;
+import histopatologialab.core.db.tables.LabReporteFroteVw;
 import histopatologialab.core.db.tables.LabTincion;
 import histopatologialab.core.db.tables.LabTipoOpcionLesion;
 import histopatologialab.core.db.tables.LabUsuario;
@@ -191,6 +194,9 @@ public class Tables {
             , fechafin
         );
     }
+     * The table <code>public.lab_reporte_biopsia_vw</code>.
+     */
+    public static final LabReporteBiopsiaVw LAB_REPORTE_BIOPSIA_VW = LabReporteBiopsiaVw.LAB_REPORTE_BIOPSIA_VW;
 
     /**
      * The table <code>public.lab_reporte_examen_vw</code>.
@@ -219,6 +225,9 @@ public class Tables {
         return histopatologialab.core.db.tables.LabReportecitasporfecha.LAB_REPORTECITASPORFECHA.call(
         );
     }
+     * The table <code>public.lab_reporte_frote_vw</code>.
+     */
+    public static final LabReporteFroteVw LAB_REPORTE_FROTE_VW = LabReporteFroteVw.LAB_REPORTE_FROTE_VW;
 
     /**
      * The table <code>public.lab_tincion</code>.
