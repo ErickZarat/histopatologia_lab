@@ -30,7 +30,7 @@
                 <a class="dropdown-item" href="ConsultaServlet.do?accion=CREAR">Ingreso de Consulta</a>
                 <a class="dropdown-item" href="ConsultaServlet.do">Busqueda de Consultas</a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">Reportes</a>
+                <a class="dropdown-item" href="ReporteServlet.do">Reportes</a>
             </div>
         </li>
 
