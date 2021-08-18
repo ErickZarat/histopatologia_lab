@@ -14,10 +14,9 @@ import java.util.List;
 
 import org.jooq.Field;
 import org.jooq.ForeignKey;
-import org.jooq.Identity;
 import org.jooq.Name;
 import org.jooq.Record;
-import org.jooq.Row21;
+import org.jooq.Row20;
 import org.jooq.Schema;
 import org.jooq.Table;
 import org.jooq.TableField;
@@ -52,7 +51,7 @@ public class LabExamen extends TableImpl<LabExamenRecord> {
     /**
      * The column <code>public.lab_examen.cod_examen</code>.
      */
-    public final TableField<LabExamenRecord, Integer> COD_EXAMEN = createField(DSL.name("cod_examen"), SQLDataType.INTEGER.nullable(false).identity(true), this, "");
+    public final TableField<LabExamenRecord, Integer> COD_EXAMEN = createField(DSL.name("cod_examen"), SQLDataType.INTEGER.nullable(false).defaultValue(DSL.field("nextval('lab_examen_cod_examen_seq2'::regclass)", SQLDataType.INTEGER)), this, "");
 
     /**
      * The column <code>public.lab_examen.cod_paciente</code>.
@@ -140,11 +139,6 @@ public class LabExamen extends TableImpl<LabExamenRecord> {
     public final TableField<LabExamenRecord, String> DEPENDENCIA_DOCTOR_REMISION = createField(DSL.name("dependencia_doctor_remision"), SQLDataType.VARCHAR(50), this, "");
 
     /**
-     * The column <code>public.lab_examen.registro_doctor_remision</code>.
-     */
-    public final TableField<LabExamenRecord, String> REGISTRO_DOCTOR_REMISION = createField(DSL.name("registro_doctor_remision"), SQLDataType.VARCHAR(50), this, "");
-
-    /**
      * The column <code>public.lab_examen.necesita_biopsia</code>.
      */
     public final TableField<LabExamenRecord, Boolean> NECESITA_BIOPSIA = createField(DSL.name("necesita_biopsia"), SQLDataType.BOOLEAN, this, "");
@@ -190,11 +184,6 @@ public class LabExamen extends TableImpl<LabExamenRecord> {
     @Override
     public Schema getSchema() {
         return Public.PUBLIC;
-    }
-
-    @Override
-    public Identity<LabExamenRecord, Integer> getIdentity() {
-        return (Identity<LabExamenRecord, Integer>) super.getIdentity();
     }
 
     @Override
@@ -256,11 +245,11 @@ public class LabExamen extends TableImpl<LabExamenRecord> {
     }
 
     // -------------------------------------------------------------------------
-    // Row21 type methods
+    // Row20 type methods
     // -------------------------------------------------------------------------
 
     @Override
-    public Row21<Integer, Long, String, LocalDate, String, String, String, String, Integer, Integer, Integer, String, Long, String, String, String, String, String, String, Boolean, Boolean> fieldsRow() {
-        return (Row21) super.fieldsRow();
+    public Row20<Integer, Long, String, LocalDate, String, String, String, String, Integer, Integer, Integer, String, Long, String, String, String, String, String, Boolean, Boolean> fieldsRow() {
+        return (Row20) super.fieldsRow();
     }
 }
