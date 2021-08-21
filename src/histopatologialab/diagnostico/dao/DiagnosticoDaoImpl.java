@@ -41,6 +41,7 @@ public class DiagnosticoDaoImpl implements IDiagnosticoDao {
 	{ 	List<Record> results = query
     	.select(tabla.asterisk())
     	.from(tabla)
+    	.orderBy(tabla.COD_DIAGNOSTICO)
     	.fetch();
 		return results.stream().map(this::parseItem).collect(Collectors.toList());
 	}
@@ -52,6 +53,7 @@ public class DiagnosticoDaoImpl implements IDiagnosticoDao {
 			.select(tabla.asterisk())
 			.from(tabla)
 			.where(tabla.ESTADO_DIAGNOSTICO.eq(Estado.HABILITADO.getSlug()))
+			.orderBy(tabla.COD_DIAGNOSTICO)
 			.fetch();
 		return results.stream().map(this::parseItem).collect(Collectors.toList());
 	}

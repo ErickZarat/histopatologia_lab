@@ -14,6 +14,12 @@ public class DB {
     private final String jdbcUrl = "jdbc:postgresql://localhost:5432/postgres";
     private final String username = "postgres";
     private final String password = "docker";
+    
+//	private final String jdbcUrl = "jdbc:postgresql://database-lab.ct8k21fpxreo.us-east-2.rds.amazonaws.com:5432/postgres";
+//	private final String username = "postgres";
+//	private final String password = "Admin123";
+
+    
     private final int minimumIdle = 1;
     private final int maximumPoolSize = 5;
     private final long leakDetectionThreshold = 60000;

@@ -6,6 +6,7 @@ import org.apache.commons.fileupload.FileItemFactory;
 import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
+import org.apache.commons.io.FilenameUtils;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -41,11 +42,15 @@ public class UploadServlet extends HttpServlet {
                     FileItem file = (FileItem) item;
                     if (!file.isFormField()) {
                         try {
-                            String itemName = file.getName() + "-" + LocalDate.now().atStartOfDay().toEpochSecond(ZoneOffset.UTC);
-                            File fileToSave = new File("/Users/erickzarat/code/me/astrid/histopatologia_lab/WebContent/assets/img/uploads/"+itemName);
-                            file.write(fileToSave);
-
-                            addedImages.add("assets/img/uploads/"+itemName);
+                        	String ext = FilenameUtils.getExtension(file.getName());  // agregado 
+                    		String nameWithoutExt = FilenameUtils.getBaseName(file.getName());    // agregado 
+                    		String itemName = nameWithoutExt+ "-" + LocalDate.now().atStartOfDay().toEpochSecond(ZoneOffset.UTC)+"." + ext;    // agregado
+                    		// String itemName = file.getName() + "-" + LocalDate.now().atStartOfDay().toEpochSecond(ZoneOffset.UTC);                        	 
+                    		//File fileToSave = new File("/Users/erickzarat/code/me/astrid/histopatologia_lab/WebContent/assets/img/uploads/"+itemName);
+                    		File fileToSave = new File("/opt/tomcat/latest/webapps/histopatologia_lab/assets/img/uploads/"+itemName);
+                    		file.write(fileToSave);
+                    		
+                    		addedImages.add("assets/img/uploads/"+itemName);
                         } catch (Exception e) {
                             e.printStackTrace();
                         }

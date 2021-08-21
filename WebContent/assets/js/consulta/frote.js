@@ -101,7 +101,8 @@ function extractInformeFrote(){
         'descMirco': $('#descMicroFrote').val(),
         'diagnostico': $('#diagnosticoFrote').val(),
         // 'codFrote': $('#').val(),
-        'codFrote': window.frote
+        'codFrote': window.frote,
+		'observaciones': $('#obsInformeFrote').val()
     }
     return informe;
 }

@@ -7,7 +7,7 @@
 <div class="container-fluid">
 
     <div>
-        <h1 class="main-tittle">Reporte</h1>
+        <h1 class="main-tittle">Reportes</h1>
 
 
         <div class="search-container">
@@ -18,23 +18,23 @@
                         <td><label for="tipo" class="col-sm-4 col-form-label">Tipo Reporte:</label></td>
                         <td>
                             <select  class="form-control" name="tipo" id="tipo">
-                                <option value="0">Selecciona una opcion</option>
-                                <option value="examen">examen</option>
-                                <option value="biopsia">biopsia</option>
-                                <option value="frote">frote</option>
+                                <option value="0">Selecciona una Opci&oacute;n</option>
+                                <option value="examen"">Reporte Detallado de Ex&aacute;menes</option>
+                                <option value="biopsia">Reporte Detallado de Biopsias</option>
+                                <option value="frote">Reporte Detallado de Frotes</option>
 
                             </select>
                         </td>
                     </tr>
 
                     <tr>
-                        <td><label for="from" class="col-sm-4 col-form-label">Desde:</label></td>
+                        <td><label for="from" class="col-sm-4 col-form-label"> Fecha Desde:</label></td>
                         <td>
                             <input class="form-control" type="date" name="from" id="from">
                         </td>
                     </tr>
                     <tr>
-                        <td><label for="to" class="col-sm-4 col-form-label">Hasta:</label></td>
+                        <td><label for="to" class="col-sm-4 col-form-label">Fecha Hasta:</label></td>
                         <td>
                             <input class="form-control" type="date" name="to" id="to">
                         </td>

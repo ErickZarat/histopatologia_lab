@@ -40,12 +40,14 @@ public class LoginServlet extends HttpServlet {
     
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         checkSession(request, response);
-        RequestDispatcher despachador;
-
-        RequestAction action = getRequestAction(request);
-    	System.out.println("SERVLET LOGIN");
-    	System.out.println(action);
         
+        RequestAction action = getRequestAction(request);
+    	System.out.println(action);
+    	String accion = request.getParameter("parametro");
+    	
+    	System.out.println(accion);
+        
+    	RequestDispatcher despachador;
         if (action == RequestAction.SALIR) {
         	System.out.println("opcion de salir de login servlet");
             loginController.cerrarSesion(request.getSession(true));

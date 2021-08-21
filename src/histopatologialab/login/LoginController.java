@@ -17,22 +17,24 @@ import javax.servlet.http.HttpSession;
 
 public class LoginController {
 
-    private final String ROLE_KEY = "user_role";
+private final String ROLE_KEY = "user_role";
 
     public Boolean iniciarSession(String usuario, String password) {
+//    	return iniciarFallback(usuario, session);
 
-    	IUsuarioController controller = usuarioController; 
+    	IUsuarioController controller = usuarioController;
 	    try {// validar que no exista un usuario con ese login
-	        Usuario usuarioBD = controller.buscarUsuario(usuario);
+	        Usuario usuarioBD = controller.buscarUsuario(usuario).getData();
 	    	if (!(usuarioBD == null))
 	    	{	// usuario existe, validando password
 	        	 boolean passwordMatch = PasswordUtils.verifyUserPassword(password, usuarioBD.getPasswordUsuario());
-	            if(passwordMatch) 
+	            if(passwordMatch)
 	            { System.out.println("El password ingresado es correcto.");
 
-                    Role role = Role.NORMAL; //TODO: cambiar esto por el rol de la base de datos
-                    crearSesion(session, usuario, role);
-		    		return true; 
+			    	Role role = Role.findBySlug(usuarioBD.getTipoUsuario());
+			    	int codigoUsuario = usuarioBD.getCodUsuario().intValue();
+			        crearSesion(session, usuario, codigoUsuario, role);
+		    		return true;
 	            } else {
 	                System.out.println("El password ingresado no es correcto");
 		    		return false;
@@ -55,7 +57,13 @@ public class LoginController {
     }
 
     public void cerrarSesion(HttpSession session) {
-        if (session == null) return;
-        session.invalidate();
+        try {
+        	System.out.println("Cerrando sesion"); 
+            if (session == null) return;
+            session.invalidate();
+
+        } catch (IllegalStateException exception){
+            Logger.warn("session already invalidated");
+        }
     }
 }

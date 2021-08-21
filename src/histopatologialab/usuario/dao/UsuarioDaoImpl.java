@@ -43,6 +43,7 @@ public class UsuarioDaoImpl implements IUsuarioDao{
     	List<Record> results = query
                 .select(tabla.asterisk())
                 .from(tabla)
+                .orderBy(tabla.COD_USUARIO)
                 .fetch();
         return results.stream().map(this::parseItem).collect(Collectors.toList());
 		 

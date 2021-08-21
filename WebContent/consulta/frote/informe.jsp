@@ -2,41 +2,46 @@
     <hr>
     <table>
         <tr>
-            <td>
-                <h4>Informe</h4>
+            <td colspan = "2">
+                <h5 class="main-tittle">Informe Histopatol&oacute;gico</h5>
             </td>
         </tr>
         <tr>
-            <td><label class="table-form-label" for="clinicaFrote">Clinica:</label></td>
-            <td><input type="text" id="clinicaFrote" class="form-control" value="${informeFrote.clinica}"></td>
+            <td><label class="table-form-label" for="clinicaFrote">Cl&iacute;nica:</label></td>
+            <td><input type="text" id="clinicaFrote" name="clinicaFrote" class="form-control" value="${informeFrote.clinica}"></td>
         </tr>
         <tr>
-            <td><label class="table-form-label" for="direccionFrote">Direccion:</label></td>
-            <td><input type="text" id="direccionFrote" class="form-control" value="${informeFrote.direccion}"></td>
+            <td><label class="table-form-label" for="direccionFrote">Direcci&oacute;n:</label></td>
+            <td><input type="text" id="direccionFrote" name="direccionFrote" class="form-control" value="${informeFrote.direccion}"></td>
         </tr>
         <tr>
             <td><label class="table-form-label" for="solicitanteFrote">Solicitante:</label></td>
-            <td><input type="text" id="solicitanteFrote" class="form-control" value="${informeFrote.solicitante}"></td>
+            <td><input type="text" id="solicitanteFrote" name="solicitanteFrote" class="form-control" value="${informeFrote.solicitante}"></td>
         </tr>
         <tr>
-            <td><label class="table-form-label" for="datosClinicosFrote">Datos clinicos:</label></td>
-            <td><textArea id="datosClinicosFrote" class="form-control" cols="80" rows="5">${informeFrote.datosClinicos}</textArea></td>
+            <td><label class="table-form-label" for="datosClinicosFrote">Datos Cl&iacute;nicos:</label></td>
+            <td><textArea id="datosClinicosFrote" name="datosClinicosFrote" class="form-control" cols="80" rows="5">${informeFrote.datosClinicos}</textArea></td>
         </tr>
         <tr>
-            <td><label class="table-form-label" for="descMicroFrote">Descripcion microscopica:</label></td>
-            <td><textArea id="descMicroFrote" class="form-control" cols="80" rows="5">${informeFrote.descMirco}</textArea></td>
+            <td><label class="table-form-label" for="descMicroFrote">Descripci&oacute;n Microsc&oacute;pica:</label></td>
+            <td><textArea id="descMicroFrote" name="descMicroFrote" class="form-control" cols="80" rows="5">${informeFrote.descMirco}</textArea></td>
         </tr>
         <tr>
-            <td><label class="table-form-label" for="descMacroFrote">Descripcion macroscopica:</label></td>
-            <td><textArea id="descMacroFrote" class="form-control" cols="80" rows="5">${informeFrote.descMacros}</textArea></td>
+            <td><label class="table-form-label" for="descMacroFrote">Descripci&oacute;n Macrosc&oacute;pica:</label></td>
+            <td><textArea id="descMacroFrote" name="descMacroFrote" class="form-control" cols="80" rows="5">${informeFrote.descMacros}</textArea></td>
         </tr>
+ 		<tr>
+            <td><label class="table-form-label" for="obsInformeBiopsia">Observaciones Adicionales:</label></td>
+            <td><textArea id="obsInformeFrote" name ="obsInformeFrote" class="form-control" cols="80" rows="5" style="height: 81px; ">${informeFrote.observaciones}</textArea></td>
+        </tr>               
+        
         <tr>
             <td>
-                <label class="table-form-label" for="diagnosticoFrote">Diagnostico:</label>
+                <label class="table-form-label" for="diagnosticoFrote">Diagn&oacute;stico:</label>
             </td>
             <td colspan="2">
                 <select class="form-control select2" name="diagnosticoFrote" id="diagnosticoFrote">
-                    <option value="">Selecciona una opcion</option>
+                    <option value="">Selecciona una opción</option>
                     <c:forEach items="${diagnosticos}" var="diagnostico">
                         <option value="${diagnostico.codigoDiagnostico}"
                                 <c:if test='${diagnosticoFrote == diagnostico.codigoDiagnostico}'>selected</c:if>
@@ -52,4 +57,4 @@
         </tr>
     </table>
 </fieldset>
-<a id="descargarInformeFrote" href="ConsultaServlet.do?accion=DESCARGAR_INFORME&tipo=frote&codExamen=${codExamen}" class="btn btn-light">Descargar</a>
+<a id="descargarInformeFrote" href="ConsultaServlet.do?accion=DESCARGAR_INFORME&tipo=frote&codExamen=${codExamen}" class="btn btn-light">Descargar Informe</a>

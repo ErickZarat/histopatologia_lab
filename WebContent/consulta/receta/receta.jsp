@@ -70,7 +70,7 @@
 
                     <tr>
                         <td><label class="table-form-label" for="notasReceta">Notas:</label></td>
-                        <td><textArea id="notasReceta" class="form-control" cols="80" rows="5"></textArea></td>
+                        <td><textArea id="notasReceta" name="notasReceta" class="form-control" cols="80" rows="5"></textArea></td>
                     </tr>
 
                     <tr>

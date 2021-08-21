@@ -18,11 +18,12 @@ public class Informe{
     private Integer codFrote;
     private Integer codBiopsia;
     private String fechaFormateada;
+    private String observaciones;
 
     public Informe() {
     }
 
-    public Informe(Integer codInforme, LocalDate fechaInforme, String clinica, String direccion, String solicitante, String datosClinicos, String descMacros, String descMirco, Integer diagnostico, Integer usuarioInforme, Integer codFrote, Integer codBiopsia) {
+    public Informe(Integer codInforme, LocalDate fechaInforme, String clinica, String direccion, String solicitante, String datosClinicos, String descMacros, String descMirco, Integer diagnostico, Integer usuarioInforme, Integer codFrote, Integer codBiopsia, String observacionesInforme) {
         this.codInforme = codInforme;
         this.fechaInforme = fechaInforme;
         this.fechaFormateada = formatDate(this.fechaInforme);
@@ -36,6 +37,7 @@ public class Informe{
         this.usuarioInforme = usuarioInforme;
         this.codFrote = codFrote;
         this.codBiopsia = codBiopsia;
+        this.observaciones = observacionesInforme;
     }
 
     public Integer getCodInforme() {
@@ -146,4 +148,14 @@ public class Informe{
     public void setFechaFormateada(String fechaFormateada) {
         this.fechaFormateada = fechaFormateada;
     }
+
+	public String getObservaciones() {
+		return observaciones;
+	}
+
+	public void setObservaciones(String observacionesInforme) {
+		observaciones = observacionesInforme;
+	}
+    
+    
 }

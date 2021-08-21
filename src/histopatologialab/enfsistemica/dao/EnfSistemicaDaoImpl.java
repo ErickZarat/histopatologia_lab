@@ -37,6 +37,7 @@ public class EnfSistemicaDaoImpl implements IEnfSistemicaDao{
         List<Record> results = query
                 .select(tabla.asterisk())
                 .from(tabla)
+                .orderBy(tabla.COD_ENFERMEDAD_SISTEMICA)
                 .fetch();
         return results.stream().map(this::parseItem).collect(Collectors.toList());
     }

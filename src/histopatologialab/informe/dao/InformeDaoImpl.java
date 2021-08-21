@@ -28,7 +28,8 @@ public class InformeDaoImpl implements IInformeDao{
                 record.getValue(tabla.DIAGNOSTICO),
                 record.getValue(tabla.USUARIO_INFORME),
                 record.getValue(tabla.COD_FROTE),
-                record.getValue(tabla.COD_BIOPSIA)
+                record.getValue(tabla.COD_BIOPSIA),
+                record.getValue(tabla.OBSERVACIONES)
         );
     }
 
@@ -44,6 +45,7 @@ public class InformeDaoImpl implements IInformeDao{
         record.setDatosClinicos(informe.getDatosClinicos());
         record.setDiagnostico(informe.getDiagnostico());
         record.setUsuarioInforme(informe.getUsuarioInforme());
+        record.setObservaciones(informe.getObservaciones()); // observaciones adicionales informe
 
         if (informe.getCodBiopsia() != null && informe.getCodBiopsia() > 0)
             record.setCodBiopsia(informe.getCodBiopsia());

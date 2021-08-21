@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
+<link rel="shortcut icon" href="favicon.ico"/>
 
 <body>
 
@@ -53,6 +54,7 @@
                 <c:if test="roleHandler.isAdmin()">
                     <a class="dropdown-item"href="MenuServlet.do?accion=CAMBIO">Cambiar Contraseña</a>
                 </c:if>
+                <div class="dropdown-divider"></div>
                 <a class="dropdown-item"href="MenuServlet.do?accion=SALIR">Log Out</a>
             </div>
         </li>

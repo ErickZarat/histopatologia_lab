@@ -44,6 +44,7 @@ public class PacienteDaoImpl implements IPacienteDao {
 		 List<Record> results = query
 				 			.select(tablapaciente.asterisk())
 				 	.from (tablapaciente)
+				 	.orderBy(tablapaciente.COD_PACIENTE)
          			.fetch();
 	        return results.stream().map(this::parseItem).collect(Collectors.toList());
 	 }

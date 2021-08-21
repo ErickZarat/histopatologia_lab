@@ -128,6 +128,10 @@ $(document).ready(function() {
     });
 
 
+
+
+
+
 /* $('#btnCerrarSesion').click(function(e){
 		//$('#logoutUsuarioModal').modal('hide');
          var loginUser = $('#loginUsuario').val();	

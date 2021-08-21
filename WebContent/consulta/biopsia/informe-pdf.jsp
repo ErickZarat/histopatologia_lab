@@ -34,12 +34,12 @@
                 </tr>
 
                 <tr>
-                    <td style="font-weight: 800;">Telefono: </td>
+                    <td style="font-weight: 800;">Tel&eacute;fono: </td>
                     <td style="width: 80%; border-bottom: 2px solid;">${paciente.telefonoPaciente}</td>
                 </tr>
 
                 <tr>
-                    <td style="font-weight: 800;">Direccion: </td>
+                    <td style="font-weight: 800;">Direcci&oacute;n: </td>
                     <td style="width: 80%; border-bottom: 2px solid;">${informeBiopsia.direccion}</td>
                 </tr>
 
@@ -60,11 +60,11 @@
                 </tr>
 
                 <tr>
-                    <td></td>
+                     <td></td>
                 </tr>
 
                 <tr>
-                    <td style="font-weight: 800;">Clinica: </td>
+                    <td style="font-weight: 800;">Cl&iacute;nica: </td>
                     <td style="width: 80%; border-bottom: 2px solid;">${informeBiopsia.clinica}</td>
                 </tr>
 
@@ -77,26 +77,29 @@
 
         </div>
 
-        <div style="border: 1px solid; padding:15px; margin-top: 25px">
-            <h3>Datos Clinicos:</h3>
+        <div style="border: 1px solid; padding:5px; margin-top: 5px">
+            <h4>DATOS CL&Iacute;NICOS:</h4>
             <p>${informeBiopsia.datosClinicos}</p>
 
-            <h3>Descripcion Microscopica:</h3>
+            <h4>DESCRIPCI&Oacute;N MICROSC&Oacute;PICA:</h4>
             <p>${informeBiopsia.descMirco}</p>
 
-            <h3>Descripcion Macroscopica:</h3>
+            <h4>DESCRIPCI&Oacute;N MACROSC&Oacute;PICA:</h4>
             <p>${informeBiopsia.descMacros}</p>
 
-            <h3>Diagnostico:
+            <h4>OBSERVACIONES ADICIONALES:</h4>
+            <p>${informeBiopsia.observaciones}</p>
+            
+            <h4>DIAGN&Oacute;STICO:
                 <c:forEach items="${diagnosticos}" var="diagnostico">
                     <c:if test='${diagnosticoBiopsia == diagnostico.codigoDiagnostico}'>
                         ${diagnostico.nombreDiagnostico}
                     </c:if>
                 </c:forEach>
-            </h3>
+            </h4>
         </div>
         <div style="text-align: center;">
-            <div style="height: 125px; width: 1px;"></div>
+            <div style="height: 100px; width: 1px;"></div>
             <div style="vertical-align: bottom; display: inline-block;text-align: center; font-weight: 800;">
                 <div>Dr. ${doc.nombresDoctor} ${doc.apellidosDoctor}</div>
                 <div>Colegiado. ${doc.numColegiado}</div>

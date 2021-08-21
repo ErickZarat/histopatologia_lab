@@ -26,12 +26,12 @@
                 <table>                   
                     <tr>
                         <td><label class="table-form-label" for="observacionesSeguimiento">Observaciones:</label></td>
-                        <td><textArea id="observacionesSeguimiento"   name="observacionesSeguimiento" class="form-control" cols="80" rows="5"></textArea></td>
+                        <td><textArea id="observacionesSeguimiento"   name="observacionesSeguimiento" class="form-control" cols="80" rows="5" style="height: 114px; "></textArea></td>
                     </tr>                    
 
                     <tr>
                         <td><label class="table-form-label" for="adicionelesSeguimiento">Notas Adicionales:</label></td>
-                        <td><textArea id="adicionelesSeguimiento" name="adicionelesSeguimiento" class="form-control" cols="80" rows="5"></textArea></td>
+                        <td><textArea id="adicionelesSeguimiento" name="adicionelesSeguimiento" class="form-control" cols="80" rows="5" style="height: 84px; "></textArea></td>
                     </tr>
                     <tr>
                         <br>

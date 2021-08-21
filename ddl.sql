@@ -351,8 +351,12 @@ create table lab_informe
             references lab_examen_frote,
     cod_biopsia     integer
         constraint biopsia_informe_fk
-            references lab_examen_biopsia
+            references lab_examen_biopsia,
+	observaciones varchar NULL
 );
+
+
+
 
 alter table lab_informe
     owner to postgres;

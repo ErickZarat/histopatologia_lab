@@ -15,8 +15,7 @@ window.informeFrote = $('#codInformeFrote').val();
 	}, "Solo se permite ingresar letras.");
 
 
-
-	var validarDatosBiopsia = $("#biopsia-form").validate({
+	var addValidarDatosBiopsia = {  //$("#biopsia-form").validate({
  	rules :{
                 muestraEstudio : { required : true, formatoTexto: true},
 				tipoCirugiaSelect : { required : true},
@@ -49,28 +48,35 @@ window.informeFrote = $('#codInformeFrote').val();
           $( element ).parents("form-control").addClass( "has-success" ).removeClass( "has-error" );  
        	} 
 	}
-  	});
+}
 
 
-	var validarDatosRecibo = $("#biopsia-form").validate({
+	function addRules(rulesObj){
+	    for (var item in rulesObj){
+	       $("#biopsia-form").rules('add',rulesObj[item]);   //agregando las reglas de los ultimos campos 
+	    } 
+	}
+
+	
+	var validarDatosBiopsia = $("#biopsia-form").validate({
 	 	rules :{
 	                numReciboBiopsia : { required : true, formatoTexto: true, minlength : 3 },
 					serieReciboBiopsia : { required : true, formatoTexto: true, minlength : 3 },
-					montoReciboBiopsia : { required : true, minlength : 3 },
+					montoReciboBiopsia : { required : true, minlength : 2 },
 	            },
 	            messages : {
 	                numReciboBiopsia : {
-	                    required : "Debe ingresar el numero de recibo ",
-	 					minlength : "El nombre debe tener un mínimo de 3 caracteres",
+	                    required : "Numero de recibo obligatorio",
+	 					minlength : "Debe ingresar el numero",
 	                },
 	 				serieReciboBiopsia : {
-	                    required : "Debe ingresar la serie del recibo",
-	                    minlength : "El apellido debe tener un mínimo de 3 caracteres",
-	                    maxlength : "El máximo deben ser 30 caracteres"
+	                    required : "Serie de recibo obligatorio",
+	                    minlength : "La serie es obligatoria",
+	                    maxlength : "Debe ingresar la serie"
 	                },
 	                montoReciboBiopsia : {
-	                    required : "Debe ingresar el monto del recibo",
-	                    minlength : "Debe ingresar un valor para la dirección"
+	                    required : "Monto recibo obligatorio",
+	                    minlength : "Debe ingresar un monto"
 	                },
 	 		errorElement: "em",
 	       	errorPlacement: function (error, element) {
@@ -101,12 +107,12 @@ function extractReciboBiopsia(){
 $('#validarReciboBiopsia').click(function(e){
     e.preventDefault();
 
-	if (validarDatosRecibo.form()) //asi se comprueba si el form esta validado o no
+	if (validarDatosBiopsia.form()) //asi se comprueba si el form esta validado o no
     {      
 	    recibo = extractReciboBiopsia()
 	
 	    if (recibo.codExamen == null) {
-	        toastr.error('codigo de examen invalido');
+	        toastr.error('codigo de examen inválido');
 	        return;
 	    }
 	    $('#biopsia-recibo').prop('disabled', true);
@@ -137,8 +143,6 @@ $('#validarReciboBiopsia').click(function(e){
 		} else {
 			e.preventDefault();
 		}
-
-
 });
 
 function extractDatosBiopsia(){
@@ -156,6 +160,11 @@ function extractDatosBiopsia(){
 
 $('#guardarDatosBiopsia').click(function(e){
     e.preventDefault();
+
+	//addRules(addValidarDatosBiopsia);    //agregar las ultimas reglas
+	//validation.settings.rules = addValidarDatosBiopsia;
+	$("#biopsia-form").rules('add',addValidarDatosBiopsia)
+	
 
 	if (validarDatosBiopsia.form()) //asi se comprueba si el form esta validado o no
     {      
@@ -205,7 +214,8 @@ function extractInformeBiopsia(){
         'descMirco': $('#descMicroBiopsia').val(),
         'diagnostico': $('#diagnosticoBiopsia').val(),
         // 'codFrote': $('#').val(),
-        'codBiopsia': window.biopsia
+        'codBiopsia': window.biopsia, 
+		'observaciones': $('#obsInformeBiopsia').val()
     }
     return informe;
 }
