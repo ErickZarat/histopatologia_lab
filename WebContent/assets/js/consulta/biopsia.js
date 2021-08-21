@@ -18,14 +18,14 @@ window.informeFrote = $('#codInformeFrote').val();
 	var addValidarDatosBiopsia = {  //$("#biopsia-form").validate({
  	rules :{
                 muestraEstudio : { required : true, formatoTexto: true},
-				tipoCirugiaSelect : { required : true},
-				tipoProcedimientoSelect : { required : true},
-				instrumentoSelect  : { required : true },
+				tipoCirugiaSelect : { required : true  },
+				tipoProcedimientoSelect : { required : true  },
+				instrumentoSelect  :{ required : true  },
             },
             messages : {
                 muestraEstudio : {
                     required : "Debe ingresar el número de la muestra ",
- 					minlength : "El nombre debe tener un mínimo de 3 caracteres",
+ 					minlength : "El número de muestra es obligatorio",
                 },
  				tipoCirugiaSelect : {
                     required : "El valor no puede ser nulo",
@@ -50,13 +50,6 @@ window.informeFrote = $('#codInformeFrote').val();
 	}
 }
 
-
-	function addRules(rulesObj){
-	    for (var item in rulesObj){
-	       $("#biopsia-form").rules('add',rulesObj[item]);   //agregando las reglas de los ultimos campos 
-	    } 
-	}
-
 	
 	var validarDatosBiopsia = $("#biopsia-form").validate({
 	 	rules :{
@@ -66,7 +59,7 @@ window.informeFrote = $('#codInformeFrote').val();
 	            },
 	            messages : {
 	                numReciboBiopsia : {
-	                    required : "Numero de recibo obligatorio",
+	                    required : "Número de recibo obligatorio",
 	 					minlength : "Debe ingresar el numero",
 	                },
 	 				serieReciboBiopsia : {
@@ -129,20 +122,20 @@ $('#validarReciboBiopsia').click(function(e){
 	                console.log(response.data)
 	                $('#biopsia-datos').prop('disabled', false);
 	                window.biopsia = response.data.codBiopsia;
-	                toastr.success('se guardo el recibo');
+	                toastr.success('Se guardó con éxito el recibo');
 	                $('#numeroBiopsia').val(response.data.numBiopsia);
 	                $('#fechaBiopsia').val(response.data.fecha);
 	                $('#estadoBiopsia').val(response.data.estadoBiopsia);
 	            } else {
 	                $('#biopsia-recibo').prop('disabled', false);
-	                toastr.error('error al registrar el recibo');
+	                toastr.error('Error al registrar el recibo');
 	            }
 	        }
 	    });
 
-		} else {
-			e.preventDefault();
-		}
+	} else {
+		e.preventDefault();
+	}
 });
 
 function extractDatosBiopsia(){
@@ -161,17 +154,18 @@ function extractDatosBiopsia(){
 $('#guardarDatosBiopsia').click(function(e){
     e.preventDefault();
 
-	//addRules(addValidarDatosBiopsia);    //agregar las ultimas reglas
-	//validation.settings.rules = addValidarDatosBiopsia;
-	$("#biopsia-form").rules('add',addValidarDatosBiopsia)
-	
+  var originalSettings = $.extend(true, {}, $("#biopsia-form").validate().settings);
 
-	if (validarDatosBiopsia.form()) //asi se comprueba si el form esta validado o no
-    {      
+  var settings = $("#biopsia-form").validate().settings;
+  $.extend(settings, addValidarDatosBiopsia);
+
+  if ($("#biopsia-form").valid()) 
+
+    {  
 	    var datos = extractDatosBiopsia();
 	
 	    if (datos.codBiopsia == null) {
-	        toastr.error('codigo de biopsia invalido');
+	        toastr.error('Código de biopsia inválido');
 	        return;
 	    }
 	
@@ -187,22 +181,79 @@ $('#guardarDatosBiopsia').click(function(e){
 	        success: function (response) {
 	            if(response.success) {
 	                console.log(response.data)
-	                toastr.success('se guardo la biopsia');
+	                toastr.success('Se guardó con éxito la biopsia');
 	                $('#biopsia-informe').prop('disabled', false);
 	                $('#estadoBiopsia').val(response.data.estadoBiopsia);
 	            } else {
 	                $('#biopsia-datos').prop('disabled', false);
-	                toastr.error('error al guardar la biopsia');
+	                toastr.error('Error al guardar la biopsia');
 	            }
 	        }
 	    });
+		$.extend(settings, originalSettings);  //devolver las reglas originales de validacion
 
-		} else {
-			e.preventDefault();
+	} else {
+		e.preventDefault();
+	}
+	});
+
+
+//*** Funciones para el Informe de Biopsia */
+
+
+	var validarInformeBiopsia = $("#informeBiopsia-form").validate({
+	 	rules :{
+	                clinicaBiopsia : { required : true, formatoTexto: true, minlength : 3 },
+					direccionBiopsia : { required : true, formatoTexto: true, minlength : 5 },
+					solicitanteBiopsia : { required : true, formatoTexto: true,minlength : 3 },
+					datosClinicosBiopsia : { required : true, minlength : 2 },
+					descMicroBiopsia : { required : true, minlength : 30 },
+					descMacroBiopsia : { required : true, minlength : 30 },
+					diagnosticoBiopsia : { required : true },
+	            },
+	            messages : {
+	                clinicaBiopsia : {
+	                    required : "Clínica es obligatoria",
+	 					minlength : "Debe ingresar la Clinica",
+	                },
+	 				direccionBiopsia : {
+	                    required : "Dirección obligatoria",
+	                    minlength : "Valor incorrecto",
+	                },
+	                solicitanteBiopsia : {
+	                    required : "Debe ingresar Solicitante",
+	                    minlength : "Valor incorrecto"
+	                },
+					datosClinicosBiopsia : {
+	                    required : "Debe ingresar los datos clínicos",
+	                    minlength : "Valor incorrecto "
+	                },
+					descMicroBiopsia : {
+	                    required : "Descripción microscópica obligatoria",
+	                    minlength : "Valor incorrecto"
+	                },
+					descMacroBiopsia : {
+	                    required : "Descripción macroscópica obligatoria",
+	                    minlength : "Valor incorrecto"
+	                },
+					diagnosticoBiopsia : {
+	                    required : "Valor obligatorio",
+	                },
+	 		errorElement: "em",
+	       	errorPlacement: function (error, element) {
+	          // Add the `help-block` class to the error element
+	          error.addClass("help-block"); 
+	       	},
+	       	highlight: function ( element, errorClass, validClass ) {
+	          $( element ).parents("form-control").addClass( "has-error" ).removeClass( "has-success" );
+	       	},
+	       	unhighlight: function (element, errorClass, validClass) {
+	          $( element ).parents("form-control").addClass( "has-success" ).removeClass( "has-error" );  
+	       	} 
 		}
+	  	});
 
 
-});
 
 function extractInformeBiopsia(){
     var informe = {
@@ -222,29 +273,35 @@ function extractInformeBiopsia(){
 
 $('#guardarInformeBiopsia').click(function(e){
     e.preventDefault();
-    var informe = extractInformeBiopsia();
 
-    $('#biopsia-informe').prop('disabled', true);
-
-    $.ajax({
-        url: 'BiopsiaServlet.do',
-        method: 'post',
-        data: {
-            accion: 'GUARDAR_INFORME',
-            informe: JSON.stringify(informe)
-        },
-        success: function (response) {
-            if(response.success) {
-                console.log(response.data)
-                toastr.success('se guardo el informe');
-                var url = "ConsultaServlet.do?accion=DESCARGAR_INFORME&tipo=biopsia&codExamen=" + window.examen;
-                $('a#descargarInformeBiopsia').attr("href", url);
-            } else {
-                $('#biopsia-informe').prop('disabled', false);
-                toastr.error('error al guardar el informe');
-            }
-        }
-    });
+	if (validarInformeBiopsia.form()) //asi se comprueba si el form esta validado o no
+    {  
+	    var informe = extractInformeBiopsia();
+	
+	    $('#biopsia-informe').prop('disabled', true);
+	
+	    $.ajax({
+	        url: 'BiopsiaServlet.do',
+	        method: 'post',
+	        data: {
+	            accion: 'GUARDAR_INFORME',
+	            informe: JSON.stringify(informe)
+	        },
+	        success: function (response) {
+	            if(response.success) {
+	                console.log(response.data)
+	                toastr.success('se guardo el informe');
+	                var url = "ConsultaServlet.do?accion=DESCARGAR_INFORME&tipo=biopsia&codExamen=" + window.examen;
+	                $('a#descargarInformeBiopsia').attr("href", url);
+	            } else {
+	                $('#biopsia-informe').prop('disabled', false);
+	                toastr.error('Error al guardar el informe de la Biopsia');
+	            }
+	        }
+	    });
+	} else {
+		e.preventDefault();
+	}
 });
 
 $('a#descargarInformeBiopsia').click(function(e) {

@@ -1,4 +1,5 @@
 <fieldset id="biopsia-informe" <c:if test='${biopsia.estadoBiopsia != "Pendiente Informe Biopsa"}'>disabled</c:if>>
+ <form id="informeBiopsia-form">
     <hr>
     <table>
         <tr>
@@ -56,5 +57,6 @@
             </td>
         </tr>
     </table>
+    </form>
 </fieldset>
 <a id="descargarInformeBiopsia" href="ConsultaServlet.do?accion=DESCARGAR_INFORME&tipo=biopsia&codExamen=${codExamen}" class="btn btn-light">Descargar Informe</a>

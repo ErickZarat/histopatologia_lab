@@ -77,7 +77,7 @@
 
         </div>
 
-        <div style="border: 1px solid; padding:5px; margin-top: 5px">
+        <div style="border: 1px solid; padding:5px; margin-top: 10px">
             <h4>DATOS CL&Iacute;NICOS:</h4>
             <p>${informeBiopsia.datosClinicos}</p>
 

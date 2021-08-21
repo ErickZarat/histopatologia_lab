@@ -2,7 +2,7 @@
     <table class="table table-striped w-50 left-margin-align" id="recetasTable">
         <thead class="table thead-light">
         <tr style="font-weight: bold;">
-            <td>Nombre Medicamento</td>
+            <td>Medicamento</td>
             <td>Presentacion</td>
             <td>Notas</td>
             <td></td>
@@ -69,7 +69,7 @@
                     </tr>
 
                     <tr>
-                        <td><label class="table-form-label" for="notasReceta">Notas:</label></td>
+                        <td><label class="table-form-label" for="notasReceta">Indicaciones:</label></td>
                         <td><textArea id="notasReceta" name="notasReceta" class="form-control" cols="80" rows="5"></textArea></td>
                     </tr>
 

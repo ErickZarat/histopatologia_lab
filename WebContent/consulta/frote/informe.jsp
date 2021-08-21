@@ -1,4 +1,5 @@
 <fieldset id="frote-informe" <c:if test='${frote.estadoFrote != "Pendiente Informe Frote"}'>disabled</c:if>>
+ <form id="informeFrote-form">
     <hr>
     <table>
         <tr>
@@ -56,5 +57,6 @@
             </td>
         </tr>
     </table>
+</form>    
 </fieldset>
 <a id="descargarInformeFrote" href="ConsultaServlet.do?accion=DESCARGAR_INFORME&tipo=frote&codExamen=${codExamen}" class="btn btn-light">Descargar Informe</a>

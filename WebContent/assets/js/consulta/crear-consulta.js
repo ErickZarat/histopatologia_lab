@@ -98,7 +98,7 @@ function extractExamen(){
     }
 
     if (examen.caracteristicas.length !== 8){
-        toastr.error("no se seleccionaron todas las caracteristicas")
+        toastr.error("No se seleccionaron todas las características")
         $('#guardarExamen').prop('disabled', false);
         return undefined;
     }
@@ -128,7 +128,7 @@ $('#guardarExamen').click(function(e){
         },
         success: function (response) {
             if(response.success) {
-                toastr.success("se guardo el examen");
+                toastr.success("Se guardó con éxito el examen");
                 $('#numeroExamen').val(response.data.numExamen)
                 $('#fechaExamen').val(response.data.fechaExamen)
                 $('#estado').val(response.data.estado)

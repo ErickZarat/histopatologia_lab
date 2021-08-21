@@ -28,9 +28,6 @@ $.fn.dataTable.render.moment = function ( from, to, locale ) {
 };
 
 
-   // var currentMedicamentos = [];
-   // var currentPresentaciones = [];
-
     var seguimientosTable = $('#seguimientosTable').DataTable(window.coreTableConfig);
 
 	seguimientosTable.rows().remove().draw(false);  
@@ -55,8 +52,8 @@ $.fn.dataTable.render.moment = function ( from, to, locale ) {
             },
             messages : {
                 observacionesSeguimiento : {
-                    required : "Debe ingresar las notas u observaciones del seguimiento ",
- 					minlength : "El nombre debe tener un mínimo de 3 caracteres",
+                    required : "Las notas son obligatorias ",
+ 					minlength : "Valor obligatorio",
                 },
  		errorElement: "em",
        	errorPlacement: function (error, element) {
@@ -119,7 +116,7 @@ $.fn.dataTable.render.moment = function ( from, to, locale ) {
 				            seguimientosTable.row.add(row).draw(false);
 				        });
                 } else {
-                    toastr.error("No se pudo obtener el listado de Enfermedades");
+                    toastr.error("No se pudo obtener el listado de seguimientos");
                 }
             }
         });
@@ -141,7 +138,8 @@ $.fn.dataTable.render.moment = function ( from, to, locale ) {
         $('#seguimientos-form').trigger("reset");
         redrawSeguimientosTable();
     });
-//TODO: handle guardar button on load
+
+
 
 
     $('#guardarSeguimiento').click(function(e){
@@ -163,7 +161,7 @@ $.fn.dataTable.render.moment = function ( from, to, locale ) {
 	            },
 	            success: function (response) {
 	                if(response.success) {
-	                    toastr.success("se guardo con exito el seguiemiento");
+	                    toastr.success("Se guardó con éxito el seguimiento");
 						getSeguimientosTable();
 	                } else {
 	                    toastr.error("No se pudo guardar el seguimiento");

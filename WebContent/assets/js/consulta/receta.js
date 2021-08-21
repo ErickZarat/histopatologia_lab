@@ -6,6 +6,55 @@ $(document).ready(function() {
     var currentMedicamentos = [];
     var currentPresentaciones = [];
 
+
+	jQuery.validator.setDefaults({
+		debug: true,
+		success: "valid"
+	});
+	
+	$.validator.addMethod("valueNotEquals", function(value, element, arg){
+ 	 			return arg !== value;
+ 	}, "Debe seleccionar el tipo de usuario");
+
+	var validarDatosReceta = $("#recetas-form").validate({
+	 	rules :{
+	                tipoMedicamentoSelect : { required : true ,valueNotEquals: "0" },
+					medicamentoSelect : { required : true },
+					presentacionSelect : { required : true},
+					notasReceta : { required : true,  minlength : 3 },					
+	            },
+	            messages : {
+	                tipoMedicamentoSelect : {
+	                    required : "Valor obligatorio",
+	                },
+	 				medicamentoSelect : {
+	                    required : "Medicamento obligatorio",
+	                },
+	                presentacionSelect : {
+	                    required : "Valor obligatorio",
+	                    minlength : "Presentación obligatoria"
+	                },
+	                notasReceta : {
+	                    required : "Debe ingresar las Indicaciones",
+	                    minlength : "Indicaciones obligatorias"
+	                },
+	 		errorElement: "em",
+	       	errorPlacement: function (error, element) {
+	          // Add the `help-block` class to the error element
+	          error.addClass("help-block"); 
+	       	},
+	       	highlight: function ( element, errorClass, validClass ) {
+	          $( element ).parents("form-control").addClass( "has-error" ).removeClass( "has-success" );
+	       	},
+	       	unhighlight: function (element, errorClass, validClass) {
+	          $( element ).parents("form-control").addClass( "has-success" ).removeClass( "has-error" );  
+	       	} 
+		}
+	  	});
+
+
+
+
     var recetasTable = $('#recetasTable').DataTable(window.coreTableConfig);
     $('#tipoMedicamentoSearch').change(getListadoMedicamentos);
     $('#medicamentoSelect').change(getListadoPresentaciones);
@@ -88,14 +137,25 @@ $(document).ready(function() {
         });
     }
 
+
+
     $('#agregarReceta').click(function(e){
         e.preventDefault();
-        var receta = extractReceta();
-        receta.numReceta = window.recetas.length + 1
-        window.recetas.push(receta);
-        $('#recetas-form').trigger("reset");
-        redrawRecetasTable();
+
+	if (validarDatosReceta.form()) //asi se comprueba si el form esta validado o no
+    {   
+	        var receta = extractReceta();
+	        receta.numReceta = window.recetas.length + 1
+	        window.recetas.push(receta);
+	        $('#recetas-form').trigger("reset");
+	        redrawRecetasTable();
+	} else {
+		e.preventDefault();
+	}
     });
+
+
+
 //TODO: handle guardar button on load
     $('#guardarReceta').click(function(e){
         e.preventDefault();
