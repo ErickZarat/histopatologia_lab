@@ -87,7 +87,7 @@ $('#recetasTable').on( 'column-sizing.dt', function ( e, settings ) {
             var row = [
                 '<label class="text-capitalize">' + element.nombreMedicamento + '</label>' ,
                 '<label class="text-capitalize">' + element.presentacion + '</label>' ,
-                '<label class="text-capitalize">' + element.notas + '</label>' ,
+                '<label class="text">' + element.notas + '</label>' ,
                 '<button type="button" class="btn btn-light delete" data-idx="'+idx+'"><i class="fas fa-trash"></i></button>'
             ];
             recetasTable.row.add(row).draw(false);

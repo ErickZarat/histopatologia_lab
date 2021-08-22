@@ -109,10 +109,10 @@ $.fn.dataTable.render.moment = function ( from, to, locale ) {
 						 //var txtfecha = Convert.ToDateTime(row["element.fechaCreacion"]).ToString("dd/MM/yyyy");
 							// var txtFecha= new Date(element.fechaCreacion).toString().format('DD/MM/YYYY');
 				            var row = [
-				                '<label class="text-capitalize">' + element.fechaCreacion + '</label>' ,
-				                '<label class="text-capitalize">' + element.observaciones + '</label>' ,
-				                '<label class="text-capitalize">' + element.observacionesAdicionales + '</label>' ,
-								'<label class="text-capitalize">' + element.doctorSeguimiento + '</label>' 
+				                '<label class="text">' + element.fechaCreacion + '</label>' ,
+				                '<label class="text">' + element.observaciones + '</label>' ,
+				                '<label class="text">' + element.observacionesAdicionales + '</label>' ,
+								'<label class="text">' + element.doctorSeguimiento + '</label>' 
 								//, '<button type="button" class="btn btn-light delete" ><i class="fas fa-trash"></i></button>'
 				                //'<button type="button" class="btn btn-light delete" data-idx="'+idx+'"><i class="fas fa-trash"></i></button>'
 				            ];

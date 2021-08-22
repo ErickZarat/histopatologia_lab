@@ -7,7 +7,6 @@ import histopatologialab.core.db.tables.LabExamenSeguimiento;
 import histopatologialab.core.db.tables.records.LabExamenSeguimientoRecord;
 import histopatologialab.seguimiento.dto.Seguimiento;
 import histopatologialab.core.db.tables.LabUsuario;
-import histopatologialab.core.db.tables.records.LabUsuarioRecord;
 
 import org.jooq.DSLContext;
 import org.jooq.Record;
@@ -74,14 +73,12 @@ public class SeguimientoDaoImpl  implements ISeguimientoDao {
     @Override
     public String getDoctorSeguimiento(Long codusuario)
     {
-    	//tablaUsuario.NOMBRES_DOCTOR.toString()tablaUsuario.APELLIDOS_DOCTOR.toString()).as("doctorSeguimiento")  )
         Record result = query
                 .select (tablaUsuario.asterisk()) 
                 .from(tablaUsuario)
                 .where(tablaUsuario.COD_USUARIO.eq(codusuario))
                 .fetchOne();    
-       // return result != null ? tablaUsuario.NOMBRES_DOCTOR.toString()+ " " + tablaUsuario.APELLIDOS_DOCTOR.toString() :null;
-        System.out.println(result.getValue(tablaUsuario.NOMBRES_DOCTOR).toString());
+      //  System.out.println(result.getValue(tablaUsuario.NOMBRES_DOCTOR).toString());
         return result != null ? result.getValue(tablaUsuario.NOMBRES_DOCTOR).toString()+ " " + result.getValue(tablaUsuario.APELLIDOS_DOCTOR).toString():null;
     }
 
