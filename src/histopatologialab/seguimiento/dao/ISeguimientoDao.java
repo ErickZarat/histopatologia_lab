@@ -8,5 +8,6 @@ public interface ISeguimientoDao {
 
     List<Seguimiento> getSeguimientoByExamen(Integer codExamen);
     List<Seguimiento> guardarSeguimiento(List<Seguimiento> seguimiento);
+    String getDoctorSeguimiento(Long codusuario); 
     
     }

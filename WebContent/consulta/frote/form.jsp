@@ -50,7 +50,7 @@
 
             <tr>
                 <td><label class="table-form-label" for="observacionesFrote">Observaciones:</label></td>
-                <td><textArea id="observacionesFrote" name="observacionesFrote" class="form-control" cols="80" rows="5" style="height: 93px; ">${frote.observaciones}</textArea></td>
+                <td><textArea id="observacionesFrote" name="observacionesFrote" class="form-control" cols="80" rows="5" style="height: 82px; ">${frote.observaciones}</textArea></td>
                 <td colspan="2">
                     <ul id="froteImageContainer">
                         <c:forEach items="${examen.imagenes}" var="img" varStatus="loop">

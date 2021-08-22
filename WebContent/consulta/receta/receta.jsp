@@ -3,8 +3,8 @@
         <thead class="table thead-light">
         <tr style="font-weight: bold;">
             <td>Medicamento</td>
-            <td>Presentacion</td>
-            <td>Notas</td>
+            <td>Presentaci&oacute;n</td>
+            <td>Descripci&oacute;n del Tratamiento </td>
             <td></td>
         </tr>
         </thead>
@@ -29,7 +29,7 @@
                         <td><label for="tipoMedicamentoSearch">Tipo medicamento:</label></td>
                         <td>
                             <select  class="form-control" name="tipoMedicamentoSelect" id="tipoMedicamentoSearch">
-                                <option value="0">Selecciona una opcion</option>
+                                <option value="0">Selecciona una opci&oacute;n</option>
                                 <c:forEach items="${tiposMedicamento}" var="tipo">
                                     <option value="${tipo.codigo}">${tipo.nombre}</option>
                                 </c:forEach>
@@ -42,7 +42,7 @@
                         </td>
                         <td colspan="2">
                             <select class="form-control" name="medicamentoSelect" id="medicamentoSelect">
-                                <option value="">Selecciona una opcion</option>
+                                <option value="">Selecciona una opci&oacute;n</option>
                                 <%--                            <c:forEach items="${medicamentos}" var="medicamento">--%>
                                 <%--                                <option value="${medicamento.codigoMedicamento}">--%>
                                 <%--                                        ${medicamento.nombreMedicamento}--%>
@@ -54,11 +54,11 @@
 
                     <tr>
                         <td>
-                            <label class="table-form-label" for="presentacionSelect">Presentacion:</label>
+                            <label class="table-form-label" for="presentacionSelect">Presentaci&oacute;n:</label>
                         </td>
                         <td colspan="2">
                             <select class="form-control" name="presentacionSelect" id="presentacionSelect">
-                                <option value="">Selecciona una opcion</option>
+                                <option value="">Selecciona una opci&oacute;n</option>
                                 <%--                            <c:forEach items="${presentaciones}" var="presentacion">--%>
                                 <%--                                <option value="${presentacion.codPresentacion}">--%>
                                 <%--                                        ${presentacion.tipoPresentacion}--%>

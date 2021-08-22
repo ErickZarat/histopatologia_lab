@@ -17,9 +17,9 @@
             <thead class="table thead-light">
             <tr style="font-weight: bold;">
                 <td></td>
-                <td >Código Diagnóstico</td>
-                <td >Nombre Diagnóstico</td>
-                <td >Estado Diagnóstico</td>                
+                <td >C&oacute;digo<br>Diagn&oacute;stico</td>
+                <td >Nombre Diagn&oacute;stico</td>
+                <td >Estado Diagn&oacute;stico</td>                
                 <td></td>
             </tr>
             </thead>

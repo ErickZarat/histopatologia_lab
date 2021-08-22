@@ -85,10 +85,12 @@ $.fn.dataTable.render.moment = function ( from, to, locale ) {
                 '<label class="text-capitalize">' + element.fechaCreacion + '</label>' ,
                 '<label class="text-capitalize">' + element.observaciones + '</label>' ,
                 '<label class="text-capitalize">' + element.observacionesAdd + '</label>' ,
+				'<label class="text-capitalize">' + element.nombresDoctor + '</label>' ,
                 '<button type="button" class="btn btn-light delete" data-idx="'+idx+'"><i class="fas fa-trash"></i></button>'
             ];
             seguimientosTable.row.add(row).draw(false);
         });
+		getSeguimientosTable.columns.adjust().draw();
     }
 
 
@@ -109,7 +111,8 @@ $.fn.dataTable.render.moment = function ( from, to, locale ) {
 				            var row = [
 				                '<label class="text-capitalize">' + element.fechaCreacion + '</label>' ,
 				                '<label class="text-capitalize">' + element.observaciones + '</label>' ,
-				                '<label class="text-capitalize">' + element.observacionesAdicionales + '</label>' 
+				                '<label class="text-capitalize">' + element.observacionesAdicionales + '</label>' ,
+								'<label class="text-capitalize">' + element.doctorSeguimiento + '</label>' 
 								//, '<button type="button" class="btn btn-light delete" ><i class="fas fa-trash"></i></button>'
 				                //'<button type="button" class="btn btn-light delete" data-idx="'+idx+'"><i class="fas fa-trash"></i></button>'
 				            ];
@@ -161,7 +164,7 @@ $.fn.dataTable.render.moment = function ( from, to, locale ) {
 	            },
 	            success: function (response) {
 	                if(response.success) {
-	                    toastr.success("Se guardó con éxito el seguimiento");
+	                    toastr.success("Se guardo con éxito el seguimiento");
 						getSeguimientosTable();
 	                } else {
 	                    toastr.error("No se pudo guardar el seguimiento");

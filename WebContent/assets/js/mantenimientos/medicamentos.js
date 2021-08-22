@@ -75,6 +75,7 @@ $(document).ready(function() {
 
     $('#tipoMedicamentoSearch').change(getListadoMedicamentos);
 
+
     function getListadoMedicamentos() {
 	
 		if ($('#tipoMedicamentoSearch').val()== 0)
@@ -109,6 +110,9 @@ $(document).ready(function() {
                         ]
                         medicamentosTable.row.add(row).draw(false);
                     });
+
+					medicamentosTable.columns.adjust().draw();
+
                 } else {
                     toastr.error("No se pudo obtener el listado de medicamentos");
                 }
@@ -151,6 +155,7 @@ $(document).ready(function() {
                         ];
                         presentacionMedicamentosTable.row.add(row).draw(false);
                     });
+presentacionMedicamentosTable.columns.adjust().draw();
                 }
                 else {
                     toastr.error("No se pudo obtener el listado de presentaciones");

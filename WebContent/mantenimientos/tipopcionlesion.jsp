@@ -7,7 +7,7 @@
 <div class="container-fluid">
 
     <div>
-        <h1 class="main-tittle">Tipo Opcion Lesion</h1>
+        <h1 class="main-tittle">Tipo Opcion Lesi&oacute;n</h1>
         <div class="search-container">
             <form class="align-middle" action="OpcionLesionServlet.do" method="post">
                 <table>
@@ -15,7 +15,7 @@
                         <td><label for="TipOpcionSearch" class="col-sm-4 col-form-label">Tipo Opcion:</label></td>
                         <td>
                             <select  class="form-control" name="tipoOpcionSelect" id="TipoOpcionSearch">
-                                <option value="0">Selecciona una opcion</option>
+                                <option value="0">Selecciona una opci&oacute;n</option>
                                 <c:forEach items="${tipOpcion}" var="tipo">
                                     <option value="${tipo.codigo}">${tipo.nombre}</option>
                                 </c:forEach>
@@ -26,7 +26,7 @@
             </form>
         </div>
 
-        <h6 class="sub-tittle left-padding-align">Detalle Valores Opcion</h6>
+        <h6 class="sub-tittle left-padding-align">Detalle Valores Opci&oacute;n</h6>
 
         <div class="action-container left-padding-align">
             <!-- Button trigger modal -->
@@ -37,8 +37,8 @@
             <thead class="table thead-light">
             <tr style="font-weight: bold;">
                 <td></td>
-                <td>Codigo</td>
-                <td>Valor Tipo Opcion</td>
+                <td>C&oacute;digo</td>
+                <td>Valor Tipo Opci&oacute;n</td>
                 <td>Estado</td>                
                 <td></td>
             </tr>
@@ -65,7 +65,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="staticBackdropLabel">Agregar Opcion Lesion</h5>
+                <h5 class="modal-title" id="staticBackdropLabel">Agregar Opci&oacute;n Lesi&oacute;n</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -80,7 +80,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td><label for="valorOpcion" class="col-sm-4 col-form-label">Valor Opcion:</label></td>
+                        <td><label for="valorOpcion" class="col-sm-4 col-form-label">Valor Opci&oacute;n:</label></td>
                         <td>
                             <input type="text" class="form-control" id="nombreOpcionLesion" name="nombreOpcionLesion" required>
                         </td>
@@ -101,7 +101,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Modificar Valor Opcion</h5>
+                <h5 class="modal-title">Modificar Valor Opci&oacute;n</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -110,13 +110,13 @@
 				<form role="form" id="ModifOpcionFormModal" name="ModifOpcionFormModal">             
                 <table>
                     <tr>
-                        <td><label for="codigoOpcionLesionMod" class="col-sm-4 col-form-label">Codigo Opcion:</label></td>
+                        <td><label for="codigoOpcionLesionMod" class="col-sm-4 col-form-label">C&oacute;digo Opci&oacute;n:</label></td>
                         <td>
                             <input type="text" class="form-control" id="codigoOpcionLesionMod" name="codigoOpcionLesionMod" disabled>
                         </td>
                     </tr>
                     <tr>
-                        <td><label for="valorOpcionLesionMod" class="col-sm-4 col-form-label">Valor Opcion:</label></td>
+                        <td><label for="valorOpcionLesionMod" class="col-sm-4 col-form-label">Valor Opci&oacute;n:</label></td>
                         <td>
                             <input type="text" class="form-control" id="valorOpcionLesionMod" name="valorOpcionLesionMod">
                         </td>
@@ -138,13 +138,13 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Cambio de Estado Opcion Lesión</h5>
+                <h5 class="modal-title">Cambio de Estado Opci&oacute;n Lesi&oacute;n</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <p>Estas seguro de cambiar el estado a la opción lesión: <span id="codigoOpcionLesionBaja"></span> - <span id="valorOpcionLesionBaja"></span>?</p>
+                <p>Estas seguro de cambiar el estado a la opci&oacute;n lesi&oacute;n?: <span id="codigoOpcionLesionBaja"></span> - <span id="valorOpcionLesionBaja"></span>?</p>
                 <span id="estadoOpcionLesionBaja" hidden=true></span>
 
             </div>

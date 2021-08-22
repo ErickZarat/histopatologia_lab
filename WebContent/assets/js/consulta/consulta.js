@@ -30,6 +30,8 @@ $(document).ready(function() {
                         ]
                         consultasTable.row.add(row).draw(false);
                     });
+
+				consultasTable.columns.adjust().draw();
                 } else {
                     toastr.error("No se pudo obtener el listado de consultas");
                 }

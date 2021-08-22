@@ -18,7 +18,7 @@
             <thead class="table thead-light">
             <tr style="font-weight: bold;">
                 <td></td>
-                <td>Codigo Usuario</td>
+                <td>C&oacute;digo </td>
                 <td>Login Usuario</td>
                 <td>Nombres Usuario</td>
                 <td>Apellidos Usuario</td>

@@ -56,8 +56,19 @@ $(document).ready(function() {
 
 
     var recetasTable = $('#recetasTable').DataTable(window.coreTableConfig);
+
+$('#recetasTable').on( 'column-sizing.dt', function ( e, settings ) {
+    console.log( 'Column width recalculated in table' );
+} );
+
     $('#tipoMedicamentoSearch').change(getListadoMedicamentos);
     $('#medicamentoSelect').change(getListadoPresentaciones);
+
+	//recetasTable.columns.adjust().draw();
+	//$($.fn.dataTable.tables(true)).DataTable().columns.adjust();
+	
+	
+	
 
     function extractReceta() {
         return {
@@ -81,6 +92,11 @@ $(document).ready(function() {
             ];
             recetasTable.row.add(row).draw(false);
         });
+	$('#container').css( 'display', 'block' );
+	recetasTable.columns.adjust().draw();
+	//$('#recetasTable').on( 'column-sizing.dt', function ( e, settings ) {
+    //console.log( 'Column width recalculated in table' );
+	//} );
     }
 
     $(document).on('click', 'button[data-idx]', function (){

@@ -6,8 +6,14 @@ import histopatologialab.core.DB;
 import histopatologialab.core.db.tables.LabExamenSeguimiento;
 import histopatologialab.core.db.tables.records.LabExamenSeguimientoRecord;
 import histopatologialab.seguimiento.dto.Seguimiento;
+import histopatologialab.core.db.tables.LabUsuario;
+import histopatologialab.core.db.tables.records.LabUsuarioRecord;
+
 import org.jooq.DSLContext;
 import org.jooq.Record;
+
+import static org.jooq.impl.DSL.*;
+
 
 import java.time.LocalDate;
 import java.util.List;
@@ -17,6 +23,7 @@ public class SeguimientoDaoImpl  implements ISeguimientoDao {
 	
     private final DSLContext query = DB.getConexion();
     private final LabExamenSeguimiento tabla = LabExamenSeguimiento.LAB_EXAMEN_SEGUIMIENTO;
+    private final LabUsuario tablaUsuario = LabUsuario.LAB_USUARIO;
     
     
     public Seguimiento parseItem(Record record) {
@@ -28,7 +35,8 @@ public class SeguimientoDaoImpl  implements ISeguimientoDao {
     			record.getValue(tabla.OBSERVACIONES_ADICIONAL),
     			record.getValue(tabla.USUARIO_SEGUIMIENTO),
     			record.getValue(tabla.MODIFICADO_POR),
-    			record.getValue(tabla.FECHA_MODIFICACION)    			
+    			record.getValue(tabla.FECHA_MODIFICACION),
+    			getDoctorSeguimiento(record.getValue(tabla.USUARIO_SEGUIMIENTO))
     			);
     }
     
@@ -36,8 +44,9 @@ public class SeguimientoDaoImpl  implements ISeguimientoDao {
     public  List<Seguimiento> getSeguimientoByExamen(Integer codExamen)
     {  
     	 List<Record> result = query
-         .select(tabla.asterisk())
+         .select(tabla.asterisk(), concat(tablaUsuario.NOMBRES_DOCTOR.toString(), " ", tablaUsuario.APELLIDOS_DOCTOR.toString()).as("doctorSeguimiento") )         
          .from(tabla)
+         .innerJoin(tablaUsuario).on(tablaUsuario.COD_USUARIO.eq(tabla.USUARIO_SEGUIMIENTO))
          .where(tabla.COD_EXAMEN.eq(codExamen))
          .orderBy(tabla.FECHA_SEGUIMIENTO)
          .fetch();    	    	
@@ -60,6 +69,20 @@ public class SeguimientoDaoImpl  implements ISeguimientoDao {
              record.store();
          }    
     	return getSeguimientoByExamen(codExamen);
+    }
+    
+    @Override
+    public String getDoctorSeguimiento(Long codusuario)
+    {
+    	//tablaUsuario.NOMBRES_DOCTOR.toString()tablaUsuario.APELLIDOS_DOCTOR.toString()).as("doctorSeguimiento")  )
+        Record result = query
+                .select (tablaUsuario.asterisk()) 
+                .from(tablaUsuario)
+                .where(tablaUsuario.COD_USUARIO.eq(codusuario))
+                .fetchOne();    
+       // return result != null ? tablaUsuario.NOMBRES_DOCTOR.toString()+ " " + tablaUsuario.APELLIDOS_DOCTOR.toString() :null;
+        System.out.println(result.getValue(tablaUsuario.NOMBRES_DOCTOR).toString());
+        return result != null ? result.getValue(tablaUsuario.NOMBRES_DOCTOR).toString()+ " " + result.getValue(tablaUsuario.APELLIDOS_DOCTOR).toString():null;
     }
 
 }

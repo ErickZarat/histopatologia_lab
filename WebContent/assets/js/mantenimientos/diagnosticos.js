@@ -6,6 +6,7 @@ $(document).ready(function() {
 		
         diagnosticosTable.rows().remove().draw(false);  
 		getListadoDiagnosticos();
+		diagnosticosTable.columns.adjust().draw();
 
 
 	jQuery.validator.setDefaults({
@@ -114,6 +115,7 @@ $(document).ready(function() {
                         ]
                         diagnosticosTable.row.add(row).draw(false);
                     });
+				diagnosticosTable.columns.adjust().draw();
                    
                 } else {
                     toastr.error("No se pudo obtener el listado de Diagnósticos");

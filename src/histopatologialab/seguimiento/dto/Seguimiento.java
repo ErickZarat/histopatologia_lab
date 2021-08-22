@@ -11,6 +11,7 @@ public class Seguimiento {
 	private Long creadoPor;
 	private Long modificadoPor;
 	private LocalDate fechaModificacion ;
+	private String doctorSeguimiento;  
 	
 	
 	public Seguimiento(Integer codSeguimiento, Integer codExamen, LocalDate fechaCreacion, String observaciones, String observacionesAdd, Long creadoPor, Long modificadoPor, LocalDate fechaModificacion)  {
@@ -22,6 +23,18 @@ public class Seguimiento {
 		this.creadoPor = creadoPor;
 		this.modificadoPor = modificadoPor ;
 		this.fechaModificacion = fechaModificacion ;
+	}
+	
+	public Seguimiento(Integer codSeguimiento, Integer codExamen, LocalDate fechaCreacion, String observaciones, String observacionesAdd, Long creadoPor, Long modificadoPor, LocalDate fechaModificacion, String DoctorRegistro)  {
+		this.codSeguimiento = codSeguimiento; 
+		this.codExamen = codExamen;
+		this.fechaCreacion = fechaCreacion;
+		this.observaciones = observaciones;
+		this.observacionesAdicionales = observacionesAdd;
+		this.creadoPor = creadoPor;
+		this.modificadoPor = modificadoPor ;
+		this.fechaModificacion = fechaModificacion ;
+		this.doctorSeguimiento = DoctorRegistro;
 	}
 	
 	public Seguimiento () 
@@ -108,5 +121,15 @@ public class Seguimiento {
 	public void setFechaModificacion(LocalDate fechaModificacion) {
 		this.fechaModificacion = fechaModificacion;
 	}
+
+	public String getDoctorSeguimiento() {
+		return doctorSeguimiento;
+	}
+
+	public void setDoctorSeguimiento(String doctorSeguimiento) {
+		this.doctorSeguimiento = doctorSeguimiento;
+	}
+	
+	
 		
 }

@@ -2,9 +2,10 @@
     <table class="table table-striped w-50 left-margin-align" id="seguimientosTable">
         <thead class="table thead-light">
         <tr style="font-weight: bold;">
-            <td style="width: 40px;">Fecha</td>
-            <td style="width: 300px;">Observaciones</td>
-            <td style="width: 200px;">Notas</td>
+            <td >Fecha</td>
+            <td >Observaciones</td>
+            <td >Notas</td>
+            <td >Doctor</td>
         </tr>
         </thead>
         <tbody>

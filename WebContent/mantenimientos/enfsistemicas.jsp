@@ -17,7 +17,7 @@
             <thead class="table thead-light">
             <tr style="font-weight: bold;">
                 <td></td>
-                <td >Código Enfermedad</td>
+                <td >C&oacute;digo </td>
                 <td >Nombre Enfermedad</td>
                 <td >Estado Enfermedad</td>
                 <td></td>

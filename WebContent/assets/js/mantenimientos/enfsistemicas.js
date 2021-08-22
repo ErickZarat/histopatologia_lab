@@ -5,6 +5,7 @@ $(document).ready(function() {
 	
         enfermedadesTable.rows().remove().draw(false);  
 		getListadoEnfermedades();
+		
 
 
 	jQuery.validator.setDefaults({
@@ -112,7 +113,7 @@ $(document).ready(function() {
                         ]
                         enfermedadesTable.row.add(row).draw(false);
                     });
-                   
+                   enfermedadesTable.columns.adjust().draw();
                 } else {
                     toastr.error("No se pudo obtener el listado de Enfermedades");
                 }

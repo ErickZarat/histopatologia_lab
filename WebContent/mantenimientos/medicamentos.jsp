@@ -15,10 +15,10 @@
 
                 <table>
                     <tr>
-                        <td><label for="tipoMedicamentoSearch" class="col-sm-4 col-form-label">Tipo medicamento:</label></td>
+                        <td><label for="tipoMedicamentoSearch" class="col-sm-4 col-form-label">Tipo Medicamento:</label></td>
                         <td>
                             <select  class="form-control" name="tipoMedicamentoSelect" id="tipoMedicamentoSearch">
-                                <option value="0">Selecciona una opcion</option>
+                                <option value="0">Selecciona una opci&oacute;n</option>
                                 <c:forEach items="${tiposMedicamento}" var="tipo">
                                     <option value="${tipo.codigo}">${tipo.nombre}</option>
                                 </c:forEach>
@@ -42,7 +42,7 @@
             <thead class="table thead-light">
             <tr style="font-weight: bold;">
                 <td></td>
-                <td>Codigo Medicamento</td>
+                <td>Codigo <br>Medicamento</td>
                 <td>Nombre Medicamento</td>
                 <td></td>
             </tr>
@@ -74,9 +74,9 @@
             <thead class="table thead-light">
             <tr style="font-weight: bold;">
                 <td></td>
-                <td>Presentación</td>
+                <td>Presentaci&oacute;n</td>
                 <td>Creador Por</td>
-                <td>Fecha Creación</td>
+                <td>Fecha Creaci&oacute;n</td>
                 <td></td>
             </tr>
             </thead>
@@ -91,7 +91,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" >Agregar Presentación</h5>
+                <h5 class="modal-title" >Agregar Presentaci&oacute;n</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -107,7 +107,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td><label for="tipoPresentacion" class="col-sm-4 col-form-label">Tipo presentacion:</label></td>
+                        <td><label for="tipoPresentacion" class="col-sm-4 col-form-label">Tipo presentaci&oacute;n:</label></td>
                         <td>
                             <input type="text" class="form-control" id="tipoPresentacion"  name="tipoPresentacion">
                         </td>
@@ -130,7 +130,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" >Modificar Presentación</h5>
+                <h5 class="modal-title" >Modificar Presentaci&oacute;n</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -145,13 +145,13 @@
                         </td>
                     </tr>
                     <tr>
-                        <td><label for="tipoPresentacion" class="col-sm-4 col-form-label">Tipo presentacion:</label></td>
+                        <td><label for="tipoPresentacion" class="col-sm-4 col-form-label">Tipo presentaci&oacute;n:</label></td>
                         <td>
                             <input type="text" class="form-control" id="tipoPresentacionCurrentMod"  name="tipoPresentacionCurrentMod" disabled>
                         </td>
                     </tr>
                     <tr>
-                        <td><label for="tipoPresentacion" class="col-sm-4 col-form-label">Tipo presentacion:</label></td>
+                        <td><label for="tipoPresentacion" class="col-sm-4 col-form-label">Tipo presentaci&oacute;n:</label></td>
                         <td>
                             <input type="text" class="form-control" id="tipoPresentacionMod"  name="tipoPresentacionMod">
                         </td>
@@ -212,7 +212,7 @@
 				<form role="form" id="ModMedicamentoFormModal" name="ModMedicamentoFormModal">               
                 <table>
                     <tr>
-                        <td><label for="codigoMedicamentoMod" class="col-sm-4 col-form-label">Codigo:</label></td>
+                        <td><label for="codigoMedicamentoMod" class="col-sm-4 col-form-label">C&oacute;digo:</label></td>
                         <td>
                             <input type="text" class="form-control" id="codigoMedicamentoMod"  name="codigoMedicamentoMod" disabled>
                         </td>
@@ -262,13 +262,13 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Dar de Baja Presentacion</h5>
+                <h5 class="modal-title">Dar de Baja Presentaci&oacute;n</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <p>Estas seguro en dar de baja la presentacion: <span id="codigoMedicamentoPresentacionBaja"></span> - <span id="tipoPresentacionBaja"></span>?</p>
+                <p>Estas seguro en dar de baja la presentaci&oacute;n: <span id="codigoMedicamentoPresentacionBaja"></span> - <span id="tipoPresentacionBaja"></span>?</p>
 
             </div>
             <div class="modal-footer">
