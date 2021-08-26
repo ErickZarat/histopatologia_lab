@@ -155,7 +155,7 @@ $(document).ready(function() {
                         ];
                         presentacionMedicamentosTable.row.add(row).draw(false);
                     });
-presentacionMedicamentosTable.columns.adjust().draw();
+					presentacionMedicamentosTable.columns.adjust().draw();
                 }
                 else {
                     toastr.error("No se pudo obtener el listado de presentaciones");

@@ -16,6 +16,7 @@
     <script src="assets/js/messenger/messenger-theme-future.js"></script>
     <script src="assets/js/select2.min.js"></script>
     <script src="assets/js/jquery.validate.js"></script>
+    <script src="assets/js/moment.js"></script>
 </footer>
 
 </body>

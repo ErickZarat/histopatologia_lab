@@ -22,6 +22,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+
 import static histopatologialab.core.ServletHelper.returnJson;
 
 @WebServlet(name = "UploadServlet")
@@ -41,16 +42,28 @@ public class UploadServlet extends HttpServlet {
                 for (Object item: upload.parseRequest(request)) {
                     FileItem file = (FileItem) item;
                     if (!file.isFormField()) {
-                        try {
-                        	String ext = FilenameUtils.getExtension(file.getName());  // agregado 
-                    		String nameWithoutExt = FilenameUtils.getBaseName(file.getName());    // agregado 
-                    		String itemName = nameWithoutExt+ "-" + LocalDate.now().atStartOfDay().toEpochSecond(ZoneOffset.UTC)+"." + ext;    // agregado
-                    		// String itemName = file.getName() + "-" + LocalDate.now().atStartOfDay().toEpochSecond(ZoneOffset.UTC);                        	 
-                    		//File fileToSave = new File("/Users/erickzarat/code/me/astrid/histopatologia_lab/WebContent/assets/img/uploads/"+itemName);
-                    		File fileToSave = new File("/opt/tomcat/latest/webapps/histopatologia_lab/assets/img/uploads/"+itemName);
-                    		file.write(fileToSave);
-                    		
-                    		addedImages.add("assets/img/uploads/"+itemName);
+                        try {         
+                        	long sizeFile = (file.getSize() /(1024*1024)); 
+                        	long maxSizeFile = 4; 
+                        	if (sizeFile < maxSizeFile )  // solo las imagenes con la cantidad permitida 
+                        	{                        	
+	                        	String ext = FilenameUtils.getExtension(file.getName());  // agregado 
+	                    		String nameWithoutExt = FilenameUtils.getBaseName(file.getName());    // agregado 
+	                    		String itemName = nameWithoutExt+ "-" + LocalDate.now().atStartOfDay().toEpochSecond(ZoneOffset.UTC)+"." + ext;    // agregado
+	                    		// String itemName = file.getName() + "-" + LocalDate.now().atStartOfDay().toEpochSecond(ZoneOffset.UTC);                        	 
+	                    		//File fileToSave = new File("/Users/erickzarat/code/me/astrid/histopatologia_lab/WebContent/assets/img/uploads/"+itemName);
+	                    		//File fileToSave = new File("/opt/tomcat/latest/webapps/histopatologia_lab/assets/img/uploads/"+itemName);			// servidor AWS
+	                    		 File fileToSave = new File("C:\\Astrid\\EPS\\histopatologia_lab\\WebContent\\assets\\img\\uploads\\"+itemName);     //maquina local pruebas 
+	                    		file.write(fileToSave);
+	                    		
+	                    		addedImages.add("assets\\img\\uploads\\"+itemName);  //maquina local pruebas  
+	                    		//addedImages.add("assets/img/uploads/"+itemName);   // servidor
+                        	}
+                        	else 
+                        	{
+                        		 System.out.println("es mayor que 4MB");
+                        	}
+                        	
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
@@ -60,11 +73,19 @@ public class UploadServlet extends HttpServlet {
             } catch (FileUploadException e) {
                 e.printStackTrace();
             }
-
-            returnJson(response, new JsonResponse<>(true, addedImages));
+            System.out.println("imagenes");
+            System.out.println(addedImages.isEmpty());
+            if (addedImages.isEmpty())  // si no se puso subir la imagen 
+            {
+            	returnJson(response, new JsonResponse<>(false, null, "Hubo error subiendo las imágenes"));
+            }
+            else 
+            {
+                returnJson(response, new JsonResponse<>(true, addedImages));
+            }
 
         } else {
-            returnJson(response, new JsonResponse<>(false, null, "error subiendo las imagenes"));
+            returnJson(response, new JsonResponse<>(false, null, "error subiendo las imágenes"));
         }
     }
 }

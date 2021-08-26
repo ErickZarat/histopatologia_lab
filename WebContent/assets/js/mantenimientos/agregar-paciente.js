@@ -120,7 +120,7 @@ jQuery.validator.setDefaults({
                     $('#agregarPacienteModal').modal('hide');
                     $("#CreaPacienteFormModal")[0].reset();
                     if (response.success){
-                        toastr.success("Se agrego con exito el paciente");
+                        toastr.success("Se agrego con éxito el paciente");
                         try {
                             selectPaciente(response.data)
                         } catch (e) {

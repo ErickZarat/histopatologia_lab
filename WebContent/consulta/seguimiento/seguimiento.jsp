@@ -41,7 +41,7 @@
             </fieldset>
             <div>
                 <button id="guardarSeguimiento" class="btn btn-light">Guardar</button>
-                <a id="descargarSeguimiento" href="ConsultaServlet.do?accion=DESCARGAR_INFORME&tipo=receta&codExamen=${codExamen}" class="btn btn-light">Descargar</a>
+                <a id="descargarSeguimiento" href="ConsultaServlet.do?accion=DESCARGAR_INFORME&tipo=receta&codExamen=${codExamen}" class="btn btn-light"  style="display:none" >Descargar</a>
             </div>
         </form>
     </div>

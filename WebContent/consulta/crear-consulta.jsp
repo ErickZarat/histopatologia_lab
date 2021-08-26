@@ -218,7 +218,7 @@
                         <td>
                             <label class="table-form-label" for="enfermedadSistemica">Enfermedad Sist&eacute;mica:</label>
                         </td>
-                        <td>
+                        <td >
                             <select multiple class="form-control select2" name="enfermedadSistemica" id="enfermedadSistemica">
                                 <option value="">Selecciona una Opci&oacute;n</option>
                                 <c:forEach items="${enfermedades}" var="enfermedad">

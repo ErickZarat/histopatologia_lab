@@ -62,6 +62,8 @@ function selectPaciente(paciente) {
     $('#lesion-accordion').prop("checked", true)
 }
 
+
+
 function extractExamen(){
     var examen =  {
         // 'codExamen': $('#'), //generated on backend
@@ -101,9 +103,26 @@ function extractExamen(){
         toastr.error("No se seleccionaron todas las características")
         $('#guardarExamen').prop('disabled', false);
         return undefined;
-    }
-
-    return examen;
+		}
+		else { if ( ($('#necesitaBiopsia').prop('checked')==false ) && ($('#necesitaFrote').prop('checked')==false))
+				{ 	toastr.error("No se ha seleccionado la opción de biopsia o Frote");
+	 			$('#guardarExamen').prop('disabled', false);
+				return undefined; } 
+				else {  if ($('#diagnosticoInicial').val() == "") 
+					{ 	toastr.error("No se ha seleccionado un diagnóstico");
+		 				$('#guardarExamen').prop('disabled', false);
+						return undefined;
+					}
+					else 
+					{ if ( window.consultaImages == null )
+						{ toastr.error("No se han seleccionado imágenes ");
+		 					$('#guardarExamen').prop('disabled', false);
+							return undefined;							
+						}						
+					}				
+			}			
+		}	
+    	return examen;			
 }
 
 $('#resetUserForm').click(function(e){

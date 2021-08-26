@@ -3,32 +3,101 @@ $(document).ready(function() {
 
     window.seguimientos = [];
 
-$.fn.dataTable.render.moment = function ( from, to, locale ) {
-    // Argument shifting
-    if ( arguments.length === 1 ) {
-        locale = 'en';
-        to = from;
-        from = 'YYYY-MM-DD';
-    }
-    else if ( arguments.length === 2 ) {
-        locale = 'en';
-    }
- 
-    return function ( d, type, row ) {
-        if (! d) {
-            return type === 'sort' || type === 'type' ? 0 : d;
+
+
+jQuery.extend( jQuery.fn.dataTableExt.oSort, {
+    "date-eu-pre": function ( date ) {
+        date = date.replace(" ", "");
+         
+        if ( ! date ) {
+            return 0;
         }
  
-        var m = window.moment( d, from, locale, true );
+        var year;
+        var eu_date = date.split(/[\.\-\/]/);
  
-        // Order and type get a number value from Moment, everything else
-        // sees the rendered value
-        return m.format( type === 'sort' || type === 'type' ? 'x' : to );
+        /*year (optional)*/
+        if ( eu_date[2] ) {
+            year = eu_date[2];
+        }
+        else {
+            year = 0;
+        }
+ 
+        /*month*/
+        var month = eu_date[1];
+        if ( month.length == 1 ) {
+            month = 0+month;
+        }
+ 
+        /*day*/
+        var day = eu_date[0];
+        if ( day.length == 1 ) {
+            day = 0+day;
+        }
+ 
+        return (year + month + day) * 1;
+    },
+ 
+    "date-eu-asc": function ( a, b ) {
+        return ((a < b) ? -1 : ((a > b) ? 1 : 0));
+    },
+ 
+    "date-eu-desc": function ( a, b ) {
+        return ((a < b) ? 1 : ((a > b) ? -1 : 0));
+    }
+} );
+
+$.fn.dataTable.moment = function ( format, locale ) {
+    var types = $.fn.dataTable.ext.type;
+
+    // Add type detection
+    types.detect.unshift( function ( d ) {
+        return moment( d, format, locale, true ).isValid() ?
+            'moment-'+format :
+            null;
+    } );
+
+    // Add sorting method - use an integer for the sorting
+    types.order[ 'moment-'+format+'-pre' ] = function ( d ) {
+        return moment( d, format, locale, true ).unix();
     };
 };
 
 
-    var seguimientosTable = $('#seguimientosTable').DataTable(window.coreTableConfig);
+
+
+   var seguimientosTable = $('#seguimientosTable').DataTable({
+	paging: true,
+    // pagingType: 'simple',
+    info: false,
+ 	autoWidth : true,
+    // bFilter: false,
+    bLengthChange: false,
+    iDisplayLength: 5,
+    oLanguage: {
+        oPaginate: {
+            sPrevious: "Anterior", // This is the link to the previous page
+            sNext: "Siguiente", // This is the link to the next page
+        }
+    },
+        columnDefs: [{
+	//render: $.fn.dataTable.render.moment('YYYY-MM-DD', 'DD/MM/YYYY'),
+	//"render": function(data) { return moment(data).format('DD/MM/YYYY');},
+	 // render: $.fn.dataTable.render.moment('YYYY-MM-DD', 'DD/MM/YYYY','en'),
+      targets: 0
+        }]
+    });
+
+
+        $.fn.dataTable.moment('DD/MM/YYYY');
+      //  $.fn.dataTable.moment('L');
+
+
+/*        responsive: true,
+        fixedHeader: true,*/
+   // var seguimientosTable = $('#seguimientosTable').DataTable(window.coreTableConfig);
+
 
 	seguimientosTable.rows().remove().draw(false);  
 	getSeguimientosTable();
@@ -48,7 +117,7 @@ $.fn.dataTable.render.moment = function ( from, to, locale ) {
 
 	var validar_formulario = $("#seguimientos-form").validate({
  	rules :{
-                observacionesSeguimiento : { required : true, formatoSoloTexto: true,  minlength : 3 },			
+                observacionesSeguimiento : { required : true,  minlength : 3 },			
             },
             messages : {
                 observacionesSeguimiento : {
@@ -107,7 +176,7 @@ $.fn.dataTable.render.moment = function ( from, to, locale ) {
 				 if(response.success) {
                     response.data.forEach(function (element) {
 						 //var txtfecha = Convert.ToDateTime(row["element.fechaCreacion"]).ToString("dd/MM/yyyy");
-							// var txtFecha= new Date(element.fechaCreacion).toString().format('DD/MM/YYYY');
+							 var txtFecha= element.fechaCreacion.toString();
 				            var row = [
 				                '<label class="text">' + element.fechaCreacion + '</label>' ,
 				                '<label class="text">' + element.observaciones + '</label>' ,
