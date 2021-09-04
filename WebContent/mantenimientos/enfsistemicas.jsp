@@ -7,7 +7,7 @@
 <div class="container-fluid">
 
     <div>
-        <h1 class="main-tittle">Enfermedades Sistemicas</h1>
+        <h1 class="main-tittle">Enfermedades Sist&eacute;micas</h1>
         <div class="action-container left-padding-align">
             <!-- Button trigger modal -->
             <button type="button" class="btn btn-light" data-toggle="modal" data-target="#agregarEnfermedadModal" id="agregarEnfermedadModalBtn" >Agregar <i class="fas fa-plus"></i></button>

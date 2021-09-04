@@ -5,6 +5,7 @@
 		id="WebApp_ID" 
 		version="4.0">
     <display-name>Laboratorio de Histopatologia</display-name>
+      <absolute-ordering/>
     <jsp-config>
         <taglib>
             <taglib-uri>http://java.sun.com/jsp/jstl/core</taglib-uri>

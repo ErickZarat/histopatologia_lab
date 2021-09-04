@@ -48,7 +48,7 @@ jQuery.extend( jQuery.fn.dataTableExt.oSort, {
     }
 } );
 
-$.fn.dataTable.moment = function ( format, locale ) {
+/*$.fn.dataTable.moment = function ( format, locale ) {
     var types = $.fn.dataTable.ext.type;
 
     // Add type detection
@@ -63,7 +63,7 @@ $.fn.dataTable.moment = function ( format, locale ) {
         return moment( d, format, locale, true ).unix();
     };
 };
-
+*/
 
 
 
@@ -90,8 +90,7 @@ $.fn.dataTable.moment = function ( format, locale ) {
     });
 
 
-        $.fn.dataTable.moment('DD/MM/YYYY');
-      //  $.fn.dataTable.moment('L');
+  //      $.fn.dataTable.moment('DD/MM/YYYY');
 
 
 /*        responsive: true,

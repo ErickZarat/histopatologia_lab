@@ -13,13 +13,13 @@
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdownMantenimientos">
                 <a class="dropdown-item" href="MedicamentosServlet.do">Medicamentos</a>
-                <a class="dropdown-item" href="EnfSistemicaServlet.do">Enfermedades Sistemicas</a>
-                <a class="dropdown-item" href="OpcionLesionServlet.do">Tipos de Opcion Lesion</a>
+                <a class="dropdown-item" href="EnfSistemicaServlet.do">Enfermedades Sist&eacute;micas</a>
+                <a class="dropdown-item" href="OpcionLesionServlet.do">Tipos de Opcion Lesi&oacute;n</a>
                 <c:if test="${roleHandler.isAdmin()}">
                 	<a class="dropdown-item" href="UsuarioServlet.do">Usuarios</a>
                 </c:if>
                 <a class="dropdown-item" href="PacienteServlet.do">Pacientes</a>
-                <a class="dropdown-item" href="DiagnosticoServlet.do">Diagnósticos</a>
+                <a class="dropdown-item" href="DiagnosticoServlet.do">Diagn&oacute;sticos</a>
             </div>
         </li>
 
@@ -29,14 +29,14 @@
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdownConsultas">
                 <a class="dropdown-item" href="ConsultaServlet.do?accion=CREAR">Ingreso de Consulta</a>
-                <a class="dropdown-item" href="ConsultaServlet.do">Busqueda de Consultas</a>
+                <a class="dropdown-item" href="ConsultaServlet.do">B&uacute;squeda de Consultas</a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="ReporteServlet.do">Reportes</a>
             </div>
         </li>
 
     </ul>
-    <a class="navbar-brand" href="#">Sistema Laboratorio Histopatología</a>
+    <a class="navbar-brand" href="#">Sistema Laboratorio Histopatolog&iacute;a</a>
 
     <ul class="navbar-nav">
 
