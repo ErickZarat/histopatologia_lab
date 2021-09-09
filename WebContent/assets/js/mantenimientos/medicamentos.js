@@ -76,6 +76,18 @@ $(document).ready(function() {
     $('#tipoMedicamentoSearch').change(getListadoMedicamentos);
 
 
+/*  muestra el valor del estado */
+	function devuelveEstado(valorestado)
+	{  valor = ""; 
+		if (valorestado == 'H') 
+	    { valor = 'Alta' ; 
+		} else {
+			valor = 'Baja';
+		}
+		return valor;
+	}
+
+
     function getListadoMedicamentos() {
 	
 		if ($('#tipoMedicamentoSearch').val()== 0)
@@ -93,19 +105,21 @@ $(document).ready(function() {
             method: 'get',
             data: {
                 accion: 'LISTAR_JSON',
-                tipoMedicamento: tipoMedicamento
+                tipoMedicamento: tipoMedicamento,
+				tipolista: "A" 
             },
             success: function (response) {
                 if(response.success) {
                     response.data.forEach(function (element) {
-                        var data = ' data-codigo-medicamento="' + element.codigoMedicamento + '" data-nombre-medicamento="' + element.nombreMedicamento + '" ';
+                        var data = ' data-codigo-medicamento="' + element.codigoMedicamento + '" data-nombre-medicamento="' + element.nombreMedicamento + '" data-estado-medicamento="' + devuelveEstado(element.estado) + '" ';
                         var row = [
                             '<input type="radio" name="medicamento" data-nombre-medicamento="'+element.nombreMedicamento+'" id="medicamento-' + element.codigoMedicamento + '" value="' + element.codigoMedicamento + '"/>',
                             '<label for="medicamento-' + element.codigoMedicamento + '">' + element.codigoMedicamento + '</label>',
                             '<label for="medicamento-' + element.codigoMedicamento + '" class="text-capitalize">' + element.nombreMedicamento + '</label>',
+ 							'<label for="medicamento-' + element.codigoMedicamento + '" class="text-capitalize">' + devuelveEstado(element.estado)+ '</label>',
                             '<div class="btn-group" >'
                             + '<button type="button" class="btn btn-light" data-modificar-medicamento="true" ' + data + ' data-toggle="modal" data-target="#modificarMedicamentoModal"><i class="fas fa-edit"></i></button>'
-                            + '<button type="button" class="btn btn-light" data-baja-medicamento="true" ' + data + ' data-toggle="modal" data-target="#darBajaMedicamentoModal" id="darBajaPresentacionModalBtn"><i class="fas fa-times"></i></button>'
+                            + '<button type="button" class="btn btn-light" data-baja-medicamento="true" ' + data + ' data-toggle="modal" data-target="#darBajaMedicamentoModal" id="darBajaPresentacionModalBtn"><i class="fas fa-toggle-on"></i></button>'
                             + '</div>'
                         ]
                         medicamentosTable.row.add(row).draw(false);
@@ -338,6 +352,7 @@ $(document).ready(function() {
     function setMedicamentoDataDarBaja() {
         $('#codigoMedicamentoBaja').text($(this).data('codigo-medicamento'))
         $('#nombreMedicamentoBaja').text($(this).data('nombre-medicamento'))
+		$('#estadoNuevoMedicamento').text($(this).data('estado-medicamento'))
     }
 
     function setMedicamentoDataModificar(){
@@ -405,22 +420,26 @@ $(document).ready(function() {
 
     $('#btnDarBajaMedicamento').click(function(){
         var codigoMedicamento = $('#codigoMedicamentoBaja').text();
+		var estadoNuevoMedicamento = $('#estadoNuevoMedicamento').text().trim();
 
         $.ajax({
             url: 'MedicamentosServlet.do',
             method: 'post',
             data: {
-                accion: 'DAR_BAJA',
-                codigoMedicamento: codigoMedicamento
+                //accion: 'DAR_BAJA',
+				accion: 'CAMBIO_ESTADO',
+                codMedicamento: codigoMedicamento,
+				estadoNuevoMedicamento: estadoNuevoMedicamento                
             },
             success: function(response) {
                 $('#darBajaMedicamentoModal').modal('hide');
                 $('#codigoMedicamentoBaja').text("")
+				$('#estadoNuevoMedicamento').text("");
                 if (response.success){
-                    toastr.success("Se dio de baja el medicamento");
+                    toastr.success("Se cambió el estado del medicamento con éxito");
                     getListadoMedicamentos();
                 } else {
-                    toastr.error("Error al dar baja medicamento");
+                    toastr.error("Error al cambiar el estado del medicamento");
                 }
             }
         });

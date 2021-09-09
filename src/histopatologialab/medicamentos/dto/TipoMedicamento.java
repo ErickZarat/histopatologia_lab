@@ -1,11 +1,13 @@
 package histopatologialab.medicamentos.dto;
 
 public enum TipoMedicamento {
-    ANTIBIOTICOS(1, "Antibioticos"),
-    ANALGESICOS(2, "AnalgÃ©sicos"),
-    ANTIINFECCIOSOS(3, "Antiinfecciosos"),
-    ANTIINFLAMATORIOS(4, "Antiinflamatorios")
-    ;
+    ANTIBIOTICO(1, "Antibiótico"),
+    ANALGESICO(2, "Analgésico"),
+    ANTIINFECCIOSO(3, "Antiinfeccioso"),
+    ANTIINFLAMATORIO(4, "Antiinflamatorio"),
+    ANESTESICO(5,"Anestésico"),
+    ANTIALERGICO(6,"Antialérgico"),
+    ANTIPIRETICO(7,"Antipirético");
 
     private final int codigo;
     private final String nombre;

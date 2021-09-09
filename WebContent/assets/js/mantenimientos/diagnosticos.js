@@ -246,7 +246,7 @@ $(document).ready(function() {
             success: function(response) {
                 $('#darBajaDiagnosticoModal').modal('hide');
                 $('#codigoDiagnosticoBaja').text("")
-				$('#estadoDiagnosticoBaja').text("");
+				$('#estadoNuevoDiagnostico').text("");
                 if (response.success){
                     toastr.success("Se cambió el estado del diagnóstico con éxito");
                     getListadoDiagnosticos();

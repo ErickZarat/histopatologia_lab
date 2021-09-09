@@ -36,6 +36,7 @@ public class MedicamentosDaoImpl implements IMedicamentosDao {
         List<Record> results = query
                 .select(tabla.asterisk())
                 .from(tabla)
+                .orderBy(tabla.COD_MEDICAMENTO)
                 .fetch();
         return results.stream().map(this::parseItem).collect(Collectors.toList());
     }
@@ -46,11 +47,22 @@ public class MedicamentosDaoImpl implements IMedicamentosDao {
                 .from(tabla)
                 .where(tabla.ESTADO_MEDICAMENTO.notEqualIgnoreCase(Estado.DESHABILITADO.getSlug())
                         .and(tabla.TIPO_MEDICAMENTO.eq(tipoMedicamento)))
-                .orderBy(tabla.COD_MEDICAMENTO.desc())
+                .orderBy(tabla.COD_MEDICAMENTO.asc())
                 .fetch();
         return results.stream().map(this::parseItem).collect(Collectors.toList());
     }
 
+    
+    @Override
+    public List<Medicamento> getMedicamentosByTipoAllState(int tipoMedicamento) {
+        List<Record> results = query
+                .select(tabla.asterisk())
+                .from(tabla)
+                .where(tabla.TIPO_MEDICAMENTO.eq(tipoMedicamento))
+                .orderBy(tabla.COD_MEDICAMENTO.asc())
+                .fetch();
+        return results.stream().map(this::parseItem).collect(Collectors.toList());
+    }
     @Override
     public Medicamento getMedicamento(int codMedicamento) {
         Record result = query
@@ -95,4 +107,29 @@ public class MedicamentosDaoImpl implements IMedicamentosDao {
         Medicamento medicamentoModificado = modificarMedicamento(medicamento);
         return medicamentoModificado != null;
     }
+    
+    @Override
+    public Boolean cambioEstadoMedicamento(int codMedicamento, String estadoNuevo, String usuario)
+    {	Medicamento medicamento = getMedicamento(codMedicamento);
+    	medicamento.setModificadoPor(usuario);
+    	medicamento.setFechaModificacion(LocalDate.now());
+        String valEstado = new String("Alta");
+//        System.out.println("estado validar");
+//        System.out.println(valEstado);
+//        System.out.println("nuevo estado");
+//        System.out.println(estadoNuevo); 
+          
+        if (estadoNuevo.equals(valEstado)) {
+        	medicamento.setEstado(Estado.DESHABILITADO.getSlug());
+        	} 
+        else {
+        	medicamento.setEstado(Estado.HABILITADO.getSlug());
+        	}
+        medicamento.setFechaModificacion(LocalDate.now());
+		
+        Medicamento medicamentoModificado = modificarMedicamento(medicamento);
+        return medicamentoModificado != null;   	
+    }
+    
+    
 }

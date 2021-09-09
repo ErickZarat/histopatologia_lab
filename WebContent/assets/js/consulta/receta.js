@@ -113,7 +113,8 @@ $('#recetasTable').on( 'column-sizing.dt', function ( e, settings ) {
             method: 'get',
             data: {
                 accion: 'LISTAR_JSON',
-                tipoMedicamento: tipoMedicamento
+                tipoMedicamento: tipoMedicamento,
+				tipolista: "H"   // los medicamentos de alta
             },
             success: function (response) {
                 $('#medicamentoSelect').append("<option>Selecciona una opcion</option>");

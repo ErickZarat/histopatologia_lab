@@ -115,17 +115,15 @@ public class DiagnosticoDaoImpl implements IDiagnosticoDao {
 	{   Diagnostico diagnostico =   getDiagnostico(codigoDiagnostico);
         diagnostico.setModificadoPor(usuario);
         String valEstado = new String("Alta");
-        System.out.println("estado validar");
-        System.out.println(valEstado);
-        System.out.println("nuevo estado");
-        System.out.println(estadoNuevo); 
+        //System.out.println("estado validar");
+        //System.out.println(valEstado);
+        //System.out.println("nuevo estado");
+        //System.out.println(estadoNuevo); 
           
         if (estadoNuevo.equals(valEstado)) {
-            System.out.println("va a deshabilitar");
         	diagnostico.setEstado(Estado.DESHABILITADO.getSlug());
         	} 
         else {
-            System.out.println("va a habilitar ");
         	diagnostico.setEstado(Estado.HABILITADO.getSlug());
         	}
         diagnostico.setFechaModificacion(LocalDate.now());

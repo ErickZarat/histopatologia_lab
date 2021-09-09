@@ -42,8 +42,9 @@
             <thead class="table thead-light">
             <tr style="font-weight: bold;">
                 <td></td>
-                <td>Codigo <br>Medicamento</td>
+                <td>C&oacute;digo <br>Medicamento</td>
                 <td>Nombre Medicamento</td>
+                <td>Estado Medicamento</td>
                 <td></td>
             </tr>
             </thead>
@@ -240,18 +241,19 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Dar de Baja Medicamento</h5>
+                <h5 class="modal-title">Cambio de Estado Medicamento</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <p>Estas seguro en dar de baja el medicamento: <span id="codigoMedicamentoBaja"></span> - <span id="nombreMedicamentoBaja"></span>?</p>
+                <p>Estas seguro de cambiar el estado del medicamento: <span id="codigoMedicamentoBaja"></span> - <span id="nombreMedicamentoBaja"></span>?</p>
+                <span id="estadoNuevoMedicamento" hidden=true></span>
 
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                <button type="button" class="btn btn-primary" id="btnDarBajaMedicamento">Dar Baja</button>
+                <button type="button" class="btn btn-primary" id="btnDarBajaMedicamento">Cambiar Estado</button>
             </div>
         </div>
     </div>

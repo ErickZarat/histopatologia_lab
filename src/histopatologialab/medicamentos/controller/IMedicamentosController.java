@@ -11,6 +11,8 @@ public interface IMedicamentosController {
     JsonResponse<Medicamento> modificarMedicamento(int codigo, String nombre, String usuario);
     JsonResponse<Boolean> darBajaMedicamento(int codigo, String usuario);
     JsonResponse<List<Medicamento>> getMedicamentos(Integer tipoMedicamento);
+    JsonResponse<List<Medicamento>> getMedicamentosAllState(Integer tipoMedicamento);
+    JsonResponse<Boolean> cambiaEstadoMedicamento(int codMedicamento, String estadoNuevo, String usuario);
 
     JsonResponse<List<PresentacionMedicamento>> getPresentaciones(int codigo);
     JsonResponse<PresentacionMedicamento> getPresentacion(int codigo, String tipoMedicamento);

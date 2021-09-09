@@ -40,7 +40,9 @@ public class MedicamentosServlet extends HttpServlet {
         } else if (action == RequestAction.DAR_BAJA) {
 //            checkRole(roleHandler.isNormal(), request, response);
             darBajaMedicamento(request, response);
-        }
+        }  else if (action == RequestAction.CAMBIO_ESTADO) {
+	        cambioEstadoMedicamento(request, response);
+	    }
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -58,8 +60,14 @@ public class MedicamentosServlet extends HttpServlet {
 
     private void getJsonMedicamentos(HttpServletRequest request, HttpServletResponse response) throws IOException {
         int tipoMedicamento = Integer.parseInt(request.getParameter("tipoMedicamento"));
-        JsonResponse<List<Medicamento>> medicamentoList = controller.getMedicamentos(tipoMedicamento);
-        returnJson(response, medicamentoList);
+        String  tipolista =  new String(request.getParameter("tipolista"));
+        if (tipolista.equals("H")) {
+            JsonResponse<List<Medicamento>> medicamentoList = controller.getMedicamentos(tipoMedicamento);
+            returnJson(response, medicamentoList);
+        }else {
+            JsonResponse<List<Medicamento>> medicamentoList = controller.getMedicamentosAllState(tipoMedicamento);
+            returnJson(response, medicamentoList);
+        }
     }
 
     private void getDefaultPage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -93,4 +101,18 @@ public class MedicamentosServlet extends HttpServlet {
         JsonResponse<Boolean> success = controller.darBajaMedicamento(codigo, usuario);
         returnJson(response, success);
     }
+    
+    private void cambioEstadoMedicamento(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        int codMedicamento=  Integer.parseInt(request.getParameter("codMedicamento")) ;
+        String usuario = getUsuarioFromSession(request);
+        
+        
+        String estadoNuevo = new String(request.getParameter("estadoNuevoMedicamento"));
+        System.out.println(estadoNuevo);
+        JsonResponse<Boolean> success = controller.cambiaEstadoMedicamento(codMedicamento, estadoNuevo,usuario);
+        returnJson(response, success);
+    }
+	
+    
+    
 }

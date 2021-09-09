@@ -56,6 +56,12 @@ public class MedicamentosControllerImpl implements IMedicamentosController {
         List<Medicamento> medicamentos = medicamentosDao.getMedicamentosByTipo(tipoMedicamento);
         return new JsonResponse<List<Medicamento>>(medicamentos != null, medicamentos);
     }
+    
+    @Override
+    public JsonResponse<List<Medicamento>> getMedicamentosAllState(Integer tipoMedicamento) {
+        List<Medicamento> medicamentos = medicamentosDao.getMedicamentosByTipoAllState(tipoMedicamento);
+        return new JsonResponse<List<Medicamento>>(medicamentos != null, medicamentos);
+    }
 
     @Override
     public JsonResponse<List<PresentacionMedicamento>> getPresentaciones(int codigo) {
@@ -106,4 +112,11 @@ public class MedicamentosControllerImpl implements IMedicamentosController {
         	return new JsonResponse<>(false, null, e.getMessage());
         }
     }
+    
+    @Override
+    public JsonResponse<Boolean> cambiaEstadoMedicamento(int codMedicamento, String estadoNuevo, String usuario) {
+        Boolean success = medicamentosDao.cambioEstadoMedicamento(codMedicamento, estadoNuevo, usuario);
+        return new JsonResponse<Boolean>(success, success);
+    }
+    
 }
