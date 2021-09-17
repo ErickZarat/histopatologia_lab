@@ -52,6 +52,7 @@
             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                 <a class="dropdown-item" href="#">Dashboard</a>
                 <c:if test="roleHandler.isAdmin()">
+                 	<a class="dropdown-item" href="ManualServlet.do">Manuales</a>
                     <a class="dropdown-item"href="MenuServlet.do?accion=CAMBIO">Cambiar Contraseña</a>
                 </c:if>
                 <div class="dropdown-divider"></div>

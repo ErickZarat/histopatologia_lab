@@ -58,9 +58,8 @@ private final String ROLE_KEY = "user_role";
 
     public void cerrarSesion(HttpSession session) {
         try {
-        	System.out.println("Cerrando sesion"); 
-            if (session == null) return;
-            session.invalidate();
+        	if (session == null) return;
+            	session.invalidate();
 
         } catch (IllegalStateException exception){
             Logger.warn("session already invalidated");

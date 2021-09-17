@@ -52,12 +52,13 @@ public class UploadServlet extends HttpServlet {
 	                    		String itemName = nameWithoutExt+ "-" + LocalDate.now().atStartOfDay().toEpochSecond(ZoneOffset.UTC)+"." + ext;    // agregado
 	                    		// String itemName = file.getName() + "-" + LocalDate.now().atStartOfDay().toEpochSecond(ZoneOffset.UTC);                        	 
 	                    		//File fileToSave = new File("/Users/erickzarat/code/me/astrid/histopatologia_lab/WebContent/assets/img/uploads/"+itemName);
-	                    		//File fileToSave = new File("/opt/tomcat/latest/webapps/histopatologia_lab/assets/img/uploads/"+itemName);			// servidor AWS
-	                    		 File fileToSave = new File("C:\\Astrid\\EPS\\histopatologia_lab\\WebContent\\assets\\img\\uploads\\"+itemName);     //maquina local pruebas 
+	                    		File fileToSave = new File("/opt/tomcat/latest/webapps/histopatologia_lab/assets/img/uploads/"+itemName);			// servidor AWS
+	                    		// File fileToSave = new File("/opt/images/lab/"+itemName);															// servidor AWS
+	                    		 //File fileToSave = new File("C:\\Astrid\\EPS\\histopatologia_lab\\WebContent\\assets\\img\\uploads\\"+itemName);     //maquina local pruebas 
 	                    		file.write(fileToSave);
 	                    		
-	                    		addedImages.add("assets\\img\\uploads\\"+itemName);  //maquina local pruebas  
-	                    		//addedImages.add("assets/img/uploads/"+itemName);   // servidor
+	                    		//addedImages.add("assets\\img\\uploads\\"+itemName);  //maquina local pruebas  
+	                    		addedImages.add("assets/img/uploads/"+itemName);   // servidor
                         	}
                         	else 
                         	{

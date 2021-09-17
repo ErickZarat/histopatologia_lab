@@ -16,8 +16,11 @@ window.coreTableConfig = {
  	autoWidth : true,
     // bFilter: false,
     bLengthChange: false,
-    iDisplayLength: 10,
+    iDisplayLength: 15,
     oLanguage: {
+		sEmptyTable: "No hay filas para mostrar",
+		sSearch : "Buscar",
+		sInfoEmpty: "",
         oPaginate: {
             sPrevious: "Anterior", // This is the link to the previous page
             sNext: "Siguiente", // This is the link to the next page

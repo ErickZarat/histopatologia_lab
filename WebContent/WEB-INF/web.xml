@@ -160,4 +160,13 @@
         <url-pattern>/SeguimientoServlet.do</url-pattern>
     </servlet-mapping>    
 
+   <servlet>
+        <servlet-name>ManualServlet</servlet-name>
+        <servlet-class>histopatologialab.manuales.ManualServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ManualServlet</servlet-name>
+        <url-pattern>/ManualServlet.do</url-pattern>
+    </servlet-mapping>   
+
 </web-app>

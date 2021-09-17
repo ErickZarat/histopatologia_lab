@@ -15,9 +15,15 @@ public class DB {
     private final String username = "postgres";
     private final String password = "docker";
     
-//	private final String jdbcUrl = "jdbc:postgresql://database-lab.ct8k21fpxreo.us-east-2.rds.amazonaws.com:5432/postgres";
+//	private final String jdbcUrl = "jdbc:postgresql://database-lab.ct8k21fpxreo.us-east-2.rds.amazonaws.com:5432/postgres";  	//conexion Aws AStrid
+//	private final String password = "Admin123";       																			// conexion Aws Astrid
 //	private final String username = "postgres";
-//	private final String password = "Admin123";
+
+    
+//	private final String jdbcUrl = "jdbc:postgresql://database-labo.ctlmyqa4ybrf.us-east-2.rds.amazonaws.com:5432/postgres";  	// Conexion AWS Odonto
+//	private final String username = "postgres";
+//	private final String password = "Laboratorio2021";																			// conexion AWs Odonto
+//	
 
     
     private final int minimumIdle = 1;

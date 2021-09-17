@@ -52,6 +52,7 @@ public class UsuarioControllerImpl implements IUsuarioController{
    		 usuario.setEmailUsuario(emailDoctor);
    		 usuario.setModificadoPor(usuarioMod);
    		 usuario.setTipoUsuario(tipoUsuario);
+   		 usuario.setNumColegiado(colegiadoDoctor);
    		 usuario.setFechaModificacion(LocalDate.now());
    		 usuario = usuariosDao.modificarUsuario(usuario);
    		 return new JsonResponse<>(usuario != null, usuario);
