@@ -60,7 +60,7 @@
                     <form id="upload-img-form-frote" action="UploadServlet.do" method="post" enctype="multipart/form-data">
                         <input type="file" id="file-frote" name="file1" multiple />
                         <br>
-                        <input class="btn btn-light" type="submit" id="upload-button-fote" value="Subir imagenes" />
+                        <input class="btn btn-light" type="submit" id="upload-button-frote" value="Subir imagenes" />
                     </form>
                 </td>
             </tr>

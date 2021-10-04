@@ -243,3 +243,38 @@ $('a#descargarInformeBiopsia').click(function(e) {
     var height = width * window.innerHeight / window.innerWidth ;
     window.open(this.href , 'newwindow', 'width=' + width + ', height=' + height + ', top=' + ((window.innerHeight - height) / 2) + ', left=' + ((window.innerWidth - width) / 2));
 });
+
+
+$('#upload-button-biopsia').click(function(e){
+	e.preventDefault();
+	uploadBiopsiaImage()
+})
+
+function uploadBiopsiaImage(){
+	var data = new FormData();
+	$.each($('#file')[0].files, function(i, file) {
+		data.append('file-'+i, file);
+	});
+
+	$.ajax({
+		url: 'UploadServlet.do',
+		data: data,
+		cache: false,
+		contentType: false,
+		processData: false,
+		method: 'POST',
+		success: function(response){
+			if(response.success) {
+				if (!window.biopsiaImages) window.biopsiaImages = [];
+				window.biopsiaImages = window.biopsiaImages.concat(response.data);
+				toastr.success("Se subieron " + response.data.length + " imagen(es)");
+				response.data.forEach(function(el, idx){
+					$('#biopsiaImageContainer').append('<li><a href="'+el+'">image-'+idx+'</a></li>')
+				})
+
+			} else {
+				toastr.error("Error " + response.error);
+			}
+		}
+	});
+}
