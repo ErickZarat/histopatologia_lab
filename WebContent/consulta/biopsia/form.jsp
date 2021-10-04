@@ -70,7 +70,7 @@
                 <td><label class="table-form-label" for="observacionesBiopsia">Observaciones:</label></td>
                 <td><textArea id="observacionesBiopsia" name="observacionesBiopsia" class="form-control" cols="56" rows="5">${biopsia.observaciones}</textArea></td>
                 <td colspan="2">
-                    <ul id="froteImageContainer">
+                    <ul id="biopsiaImageContainer">
                         <c:forEach items="${examen.imagenes}" var="img" varStatus="loop">
                             <%--                                        <li><a href="${img}" target="_blank">image-${loop.index}</a></li>--%>
                         </c:forEach>
@@ -78,7 +78,7 @@
                     <form id="upload-img-form-biopsia" action="UploadServlet.do" method="post" enctype="multipart/form-data">
                         <input type="file" id="file-biopsia" name="file1" multiple />
                         <br>
-                        <input class="btn btn-light" type="submit" id="upload-button-fote" value="Subir imagenes" />
+                        <input class="btn btn-light" type="submit" id="upload-button-biopsia" value="Subir imagenes" />
                     </form>
                 </td>
             </tr>

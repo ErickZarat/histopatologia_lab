@@ -139,3 +139,38 @@ $('a#descargarInformeFrote').click(function(e) {
     var height = width * window.innerHeight / window.innerWidth ;
     window.open(this.href , 'newwindow', 'width=' + width + ', height=' + height + ', top=' + ((window.innerHeight - height) / 2) + ', left=' + ((window.innerWidth - width) / 2));
 });
+
+
+$('#upload-button-frote').click(function(e){
+    e.preventDefault();
+    uploadFroteImage()
+})
+
+function uploadFroteImage(){
+    var data = new FormData();
+    $.each($('#file')[0].files, function(i, file) {
+        data.append('file-'+i, file);
+    });
+
+    $.ajax({
+        url: 'UploadServlet.do',
+        data: data,
+        cache: false,
+        contentType: false,
+        processData: false,
+        method: 'POST',
+        success: function(response){
+            if(response.success) {
+                if (!window.froteImages) window.froteImages = [];
+                window.froteImages = window.froteImages.concat(response.data);
+                toastr.success("Se subieron " + response.data.length + " imagen(es)");
+                response.data.forEach(function(el, idx){
+                    $('#froteImageContainer').append('<li><a href="'+el+'">image-'+idx+'</a></li>')
+                })
+
+            } else {
+                toastr.error("Error " + response.error);
+            }
+        }
+    });
+}
