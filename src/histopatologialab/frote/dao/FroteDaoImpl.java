@@ -73,7 +73,18 @@ public class FroteDaoImpl implements IFroteDao {
                 .from(tabla)
                 .where(tabla.COD_FROTE.eq(codFrote))
                 .fetchOne();
-        return result != null ? parseItem(result): null;
+        
+        //return result != null ? parseItem(result): null;
+        
+        Frote frote =result != null ? parseItem(result): null;
+        if (frote != null) 
+        {   Logger.info("buscando imagenes by cod");
+        System.out.println("BUSCAR IMAGENES POR CODIGO");
+        frote.setImagenes(getImages( frote.getCodFrote()));
+        }
+        
+        return frote;
+        
     }
 
     @Override
@@ -82,7 +93,18 @@ public class FroteDaoImpl implements IFroteDao {
                 .from(tabla)
                 .where(tabla.NUM_FROTE.eq(numFrote))
                 .fetchOne();
-        return result != null ? parseItem(result): null;
+        
+        //return result != null ? parseItem(result): null;
+        
+        Frote frote =result != null ? parseItem(result): null;
+        if (frote != null) 
+        {   Logger.info("buscando imagenes by cod");
+        System.out.println("BUSCAR IMAGENES POR CODIGO");
+        frote.setImagenes(getImages( frote.getCodFrote()));
+        }
+        
+        return frote;
+                
     }
 
     @Override
@@ -127,7 +149,7 @@ public class FroteDaoImpl implements IFroteDao {
     }
 
     @Override
-    public Frote modificarFrote(Frote frote, String usuario) {
+    public Frote modificarFrote(Frote frote, String usuario,Boolean saveImage) {
         LabExamenFroteRecord record = query.newRecord(tabla);
         record.setCodFrote(frote.getCodFrote());
 
@@ -138,6 +160,9 @@ public class FroteDaoImpl implements IFroteDao {
         record.setFechaModificacion(LocalDate.now());
         record.setMuestraEstudio(frote.getMuestraEstudio());
         record.setObservaciones(frote.getObservaciones());
+        
+        if (saveImage)
+        	 { guardarImagenes(frote); }
 
         record.update();
         return getByCod(record.getCodFrote());

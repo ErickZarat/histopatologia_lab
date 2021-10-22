@@ -15,6 +15,6 @@ public interface IBiopsiaController {
 
     JsonResponse<Biopsia> guardarBiopsia(Biopsia biopsia);
 
-    JsonResponse<Biopsia> modificarBiopsia(Biopsia biopsia, String usuario);
+    JsonResponse<Biopsia> modificarBiopsia(Biopsia biopsia, String usuario, Boolean saveImage);
 
 }

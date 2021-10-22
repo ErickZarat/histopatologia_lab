@@ -59,7 +59,7 @@ public class FroteServlet extends HttpServlet {
             String usuario = getUsuarioFromSession(request);
             Frote frote = froteController.getFrote(informe.getCodFrote()).getData();
             frote.setEstadoFrote(EstadoExamen.INFORME_FROTE.getSlug());
-            froteController.modificarFrote(frote, usuario);
+            froteController.modificarFrote(frote, usuario, false);
         } catch (Exception e) {
             Logger.info("error cambiando estado");
         }
@@ -132,7 +132,7 @@ public class FroteServlet extends HttpServlet {
             Logger.error("cannot cast user id");
         }
 
-        JsonResponse<Frote> guardado =  controller.modificarFrote(frote, modificadoPor);
+        JsonResponse<Frote> guardado =  controller.modificarFrote(frote, modificadoPor, true);
         returnJson(response, guardado);
     }
 

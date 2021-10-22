@@ -60,7 +60,7 @@ public class BiopsiaServlet extends HttpServlet {
             String usuario = getUsuarioFromSession(request);
             Biopsia biopsia = biopsiaController.getBiopsia(informe.getCodBiopsia()).getData();
             biopsia.setEstadoBiopsia(EstadoExamen.INFORME_BIOPSIA.getSlug());
-            biopsiaController.modificarBiopsia(biopsia, usuario);
+            biopsiaController.modificarBiopsia(biopsia, usuario,false);
         } catch (Exception e) {
             Logger.info("error cambiando estado");
         }
@@ -132,7 +132,7 @@ public class BiopsiaServlet extends HttpServlet {
             Logger.error("cannot cast user id");
         }
 
-        JsonResponse<Biopsia> guardado =  controller.modificarBiopsia(biopsia, modificadoPor);
+        JsonResponse<Biopsia> guardado =  controller.modificarBiopsia(biopsia, modificadoPor,true);
         returnJson(response, guardado);
     }
 

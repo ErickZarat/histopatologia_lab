@@ -54,6 +54,7 @@ private final String ROLE_KEY = "user_role";
         session.setAttribute(ROLE_KEY, role.getSlug());
         session.setAttribute("usuario", usuario);
         session.setAttribute("codigousuario", codigoUsuario);
+        session.setAttribute("idUsuario", codigoUsuario);
         session.setAttribute("role", role);
         session.setAttribute("sesionIniciada", true);
     }

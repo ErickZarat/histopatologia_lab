@@ -9,5 +9,5 @@ public interface IBiopsiaDao {
     Biopsia getByNumBiopsia(String numBiopsia);
     List<Biopsia> getByExamen(int codExamen);
     Biopsia guardarBiopsia(Biopsia biopsia);
-    Biopsia modificarBiopsia(Biopsia biopsia, String usuario);
+    Biopsia modificarBiopsia(Biopsia biopsia, String usuario, Boolean saveImage);
 }

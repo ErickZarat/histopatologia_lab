@@ -469,199 +469,143 @@ public class LabReporteBiopsiaVwRecord extends TableRecordImpl<LabReporteBiopsia
     }
 
     /**
-     * Setter for <code>public.lab_reporte_biopsia_vw.procedimiento</code>.
-     */
-    public void setProcedimiento(Integer value) {
-        set(32, value);
-    }
-
-    /**
-     * Getter for <code>public.lab_reporte_biopsia_vw.procedimiento</code>.
-     */
-    public Integer getProcedimiento() {
-        return (Integer) get(32);
-    }
-
-    /**
      * Setter for <code>public.lab_reporte_biopsia_vw.procedimiento_biopsia</code>.
      */
     public void setProcedimientoBiopsia(String value) {
-        set(33, value);
+        set(32, value);
     }
 
     /**
      * Getter for <code>public.lab_reporte_biopsia_vw.procedimiento_biopsia</code>.
      */
     public String getProcedimientoBiopsia() {
-        return (String) get(33);
-    }
-
-    /**
-     * Setter for <code>public.lab_reporte_biopsia_vw.tipo_cirugia</code>.
-     */
-    public void setTipoCirugia(Integer value) {
-        set(34, value);
-    }
-
-    /**
-     * Getter for <code>public.lab_reporte_biopsia_vw.tipo_cirugia</code>.
-     */
-    public Integer getTipoCirugia() {
-        return (Integer) get(34);
+        return (String) get(32);
     }
 
     /**
      * Setter for <code>public.lab_reporte_biopsia_vw.tipocirugia_biopsia</code>.
      */
     public void setTipocirugiaBiopsia(String value) {
-        set(35, value);
+        set(33, value);
     }
 
     /**
      * Getter for <code>public.lab_reporte_biopsia_vw.tipocirugia_biopsia</code>.
      */
     public String getTipocirugiaBiopsia() {
-        return (String) get(35);
-    }
-
-    /**
-     * Setter for <code>public.lab_reporte_biopsia_vw.instrumento</code>.
-     */
-    public void setInstrumento(Integer value) {
-        set(36, value);
-    }
-
-    /**
-     * Getter for <code>public.lab_reporte_biopsia_vw.instrumento</code>.
-     */
-    public Integer getInstrumento() {
-        return (Integer) get(36);
+        return (String) get(33);
     }
 
     /**
      * Setter for <code>public.lab_reporte_biopsia_vw.instrumento_biopsia</code>.
      */
     public void setInstrumentoBiopsia(String value) {
-        set(37, value);
+        set(34, value);
     }
 
     /**
      * Getter for <code>public.lab_reporte_biopsia_vw.instrumento_biopsia</code>.
      */
     public String getInstrumentoBiopsia() {
-        return (String) get(37);
-    }
-
-    /**
-     * Setter for <code>public.lab_reporte_biopsia_vw.usuario_biopsia</code>.
-     */
-    public void setUsuarioBiopsia(Integer value) {
-        set(38, value);
-    }
-
-    /**
-     * Getter for <code>public.lab_reporte_biopsia_vw.usuario_biopsia</code>.
-     */
-    public Integer getUsuarioBiopsia() {
-        return (Integer) get(38);
+        return (String) get(34);
     }
 
     /**
      * Setter for <code>public.lab_reporte_biopsia_vw.usuario_realiza_biopsia</code>.
      */
     public void setUsuarioRealizaBiopsia(String value) {
-        set(39, value);
+        set(35, value);
     }
 
     /**
      * Getter for <code>public.lab_reporte_biopsia_vw.usuario_realiza_biopsia</code>.
      */
     public String getUsuarioRealizaBiopsia() {
-        return (String) get(39);
+        return (String) get(35);
     }
 
     /**
      * Setter for <code>public.lab_reporte_biopsia_vw.estado_biopsia</code>.
      */
     public void setEstadoBiopsia(String value) {
-        set(40, value);
+        set(36, value);
     }
 
     /**
      * Getter for <code>public.lab_reporte_biopsia_vw.estado_biopsia</code>.
      */
     public String getEstadoBiopsia() {
-        return (String) get(40);
+        return (String) get(36);
     }
 
     /**
      * Setter for <code>public.lab_reporte_biopsia_vw.datos_recibo</code>.
      */
     public void setDatosRecibo(String value) {
-        set(41, value);
+        set(37, value);
     }
 
     /**
      * Getter for <code>public.lab_reporte_biopsia_vw.datos_recibo</code>.
      */
     public String getDatosRecibo() {
-        return (String) get(41);
+        return (String) get(37);
     }
 
     /**
      * Setter for <code>public.lab_reporte_biopsia_vw.valor_recibo</code>.
      */
     public void setValorRecibo(BigDecimal value) {
-        set(42, value);
+        set(38, value);
     }
 
     /**
      * Getter for <code>public.lab_reporte_biopsia_vw.valor_recibo</code>.
      */
     public BigDecimal getValorRecibo() {
-        return (BigDecimal) get(42);
+        return (BigDecimal) get(38);
     }
 
     /**
      * Setter for <code>public.lab_reporte_biopsia_vw.fecha_informe_biopsia</code>.
      */
     public void setFechaInformeBiopsia(String value) {
-        set(43, value);
+        set(39, value);
     }
 
     /**
      * Getter for <code>public.lab_reporte_biopsia_vw.fecha_informe_biopsia</code>.
      */
     public String getFechaInformeBiopsia() {
-        return (String) get(43);
+        return (String) get(39);
     }
 
     /**
      * Setter for <code>public.lab_reporte_biopsia_vw.diagnostico_biopsia</code>.
      */
     public void setDiagnosticoBiopsia(String value) {
-        set(44, value);
+        set(40, value);
     }
 
     /**
      * Getter for <code>public.lab_reporte_biopsia_vw.diagnostico_biopsia</code>.
      */
     public String getDiagnosticoBiopsia() {
-        return (String) get(44);
+        return (String) get(40);
     }
 
     /**
      * Setter for <code>public.lab_reporte_biopsia_vw.usuario_informe_biopsia</code>.
      */
     public void setUsuarioInformeBiopsia(String value) {
-        set(45, value);
+        set(41, value);
     }
 
     /**
      * Getter for <code>public.lab_reporte_biopsia_vw.usuario_informe_biopsia</code>.
      */
     public String getUsuarioInformeBiopsia() {
-        return (String) get(45);
+        return (String) get(41);
     }
 
     // -------------------------------------------------------------------------
@@ -678,7 +622,7 @@ public class LabReporteBiopsiaVwRecord extends TableRecordImpl<LabReporteBiopsia
     /**
      * Create a detached, initialised LabReporteBiopsiaVwRecord
      */
-    public LabReporteBiopsiaVwRecord(Integer codExamen, String numExamen, LocalDate fechaExamen, String fecExamen, String nombrePaciente, String tipoIdentificacion, String identificacion, String ocupacion, String numeroFicha, String enfermedades, String diagnosticosDiferenciales, String estadoExamen, String doctorExamen, String colorLesion, String naturalezaLesion, String sintomaLesion, String formaLesion, String superficieLesion, String consistenciaLesion, String intraoseoLesion, String piezaLesion, String tamanoLesion, Integer diasLesion, Integer mesesLesion, Integer aniosLesion, String doctorRemision, String dependenciaDoctorRemision, String reqBiopsia, String numeroBiopsia, LocalDate fecBiopsia, String fechaBiopsia, String muestraBiopsia, Integer procedimiento, String procedimientoBiopsia, Integer tipoCirugia, String tipocirugiaBiopsia, Integer instrumento, String instrumentoBiopsia, Integer usuarioBiopsia, String usuarioRealizaBiopsia, String estadoBiopsia, String datosRecibo, BigDecimal valorRecibo, String fechaInformeBiopsia, String diagnosticoBiopsia, String usuarioInformeBiopsia) {
+    public LabReporteBiopsiaVwRecord(Integer codExamen, String numExamen, LocalDate fechaExamen, String fecExamen, String nombrePaciente, String tipoIdentificacion, String identificacion, String ocupacion, String numeroFicha, String enfermedades, String diagnosticosDiferenciales, String estadoExamen, String doctorExamen, String colorLesion, String naturalezaLesion, String sintomaLesion, String formaLesion, String superficieLesion, String consistenciaLesion, String intraoseoLesion, String piezaLesion, String tamanoLesion, Integer diasLesion, Integer mesesLesion, Integer aniosLesion, String doctorRemision, String dependenciaDoctorRemision, String reqBiopsia, String numeroBiopsia, LocalDate fecBiopsia, String fechaBiopsia, String muestraBiopsia, String procedimientoBiopsia, String tipocirugiaBiopsia, String instrumentoBiopsia, String usuarioRealizaBiopsia, String estadoBiopsia, String datosRecibo, BigDecimal valorRecibo, String fechaInformeBiopsia, String diagnosticoBiopsia, String usuarioInformeBiopsia) {
         super(LabReporteBiopsiaVw.LAB_REPORTE_BIOPSIA_VW);
 
         setCodExamen(codExamen);
@@ -713,13 +657,9 @@ public class LabReporteBiopsiaVwRecord extends TableRecordImpl<LabReporteBiopsia
         setFecBiopsia(fecBiopsia);
         setFechaBiopsia(fechaBiopsia);
         setMuestraBiopsia(muestraBiopsia);
-        setProcedimiento(procedimiento);
         setProcedimientoBiopsia(procedimientoBiopsia);
-        setTipoCirugia(tipoCirugia);
         setTipocirugiaBiopsia(tipocirugiaBiopsia);
-        setInstrumento(instrumento);
         setInstrumentoBiopsia(instrumentoBiopsia);
-        setUsuarioBiopsia(usuarioBiopsia);
         setUsuarioRealizaBiopsia(usuarioRealizaBiopsia);
         setEstadoBiopsia(estadoBiopsia);
         setDatosRecibo(datosRecibo);

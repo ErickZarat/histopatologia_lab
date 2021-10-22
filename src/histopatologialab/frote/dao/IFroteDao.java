@@ -9,5 +9,5 @@ public interface IFroteDao {
     Frote getByNumFrote(String numFrote);
     List<Frote> getByExamen(int codExamen);
     Frote guardarFrote(Frote frote);
-    Frote modificarFrote(Frote frote, String usuario);
+    Frote modificarFrote(Frote frote, String usuario,Boolean saveImage);
 }

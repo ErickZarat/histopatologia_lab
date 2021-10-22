@@ -38,8 +38,8 @@ public class FroteControllerImpl implements IFroteController{
     }
 
     @Override
-    public JsonResponse<Frote> modificarFrote(Frote frote, String usuario) {
-        Frote saved = froteDao.modificarFrote(frote, usuario);
+    public JsonResponse<Frote> modificarFrote(Frote frote, String usuario, Boolean saveImage) {
+        Frote saved = froteDao.modificarFrote(frote, usuario ,saveImage);
         return new JsonResponse<>(saved != null, saved);
     }
 }

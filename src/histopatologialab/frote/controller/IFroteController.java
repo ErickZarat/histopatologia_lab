@@ -15,6 +15,6 @@ public interface IFroteController {
 
     JsonResponse<Frote> guardarFrote(Frote frote);
 
-    JsonResponse<Frote> modificarFrote(Frote frote, String usuario);
+    JsonResponse<Frote> modificarFrote(Frote frote, String usuario, Boolean saveImage);
 
 }

@@ -468,353 +468,269 @@ public class LabReporteExamenVwRecord extends TableRecordImpl<LabReporteExamenVw
     }
 
     /**
-     * Setter for <code>public.lab_reporte_examen_vw.procedimiento</code>.
-     */
-    public void setProcedimiento(Integer value) {
-        set(32, value);
-    }
-
-    /**
-     * Getter for <code>public.lab_reporte_examen_vw.procedimiento</code>.
-     */
-    public Integer getProcedimiento() {
-        return (Integer) get(32);
-    }
-
-    /**
      * Setter for <code>public.lab_reporte_examen_vw.procedimiento_biopsia</code>.
      */
     public void setProcedimientoBiopsia(String value) {
-        set(33, value);
+        set(32, value);
     }
 
     /**
      * Getter for <code>public.lab_reporte_examen_vw.procedimiento_biopsia</code>.
      */
     public String getProcedimientoBiopsia() {
-        return (String) get(33);
-    }
-
-    /**
-     * Setter for <code>public.lab_reporte_examen_vw.tipo_cirugia</code>.
-     */
-    public void setTipoCirugia(Integer value) {
-        set(34, value);
-    }
-
-    /**
-     * Getter for <code>public.lab_reporte_examen_vw.tipo_cirugia</code>.
-     */
-    public Integer getTipoCirugia() {
-        return (Integer) get(34);
+        return (String) get(32);
     }
 
     /**
      * Setter for <code>public.lab_reporte_examen_vw.tipocirugia_biopsia</code>.
      */
     public void setTipocirugiaBiopsia(String value) {
-        set(35, value);
+        set(33, value);
     }
 
     /**
      * Getter for <code>public.lab_reporte_examen_vw.tipocirugia_biopsia</code>.
      */
     public String getTipocirugiaBiopsia() {
-        return (String) get(35);
-    }
-
-    /**
-     * Setter for <code>public.lab_reporte_examen_vw.instrumento</code>.
-     */
-    public void setInstrumento(Integer value) {
-        set(36, value);
-    }
-
-    /**
-     * Getter for <code>public.lab_reporte_examen_vw.instrumento</code>.
-     */
-    public Integer getInstrumento() {
-        return (Integer) get(36);
+        return (String) get(33);
     }
 
     /**
      * Setter for <code>public.lab_reporte_examen_vw.instrumento_biopsia</code>.
      */
     public void setInstrumentoBiopsia(String value) {
-        set(37, value);
+        set(34, value);
     }
 
     /**
      * Getter for <code>public.lab_reporte_examen_vw.instrumento_biopsia</code>.
      */
     public String getInstrumentoBiopsia() {
-        return (String) get(37);
-    }
-
-    /**
-     * Setter for <code>public.lab_reporte_examen_vw.usuario_biopsia</code>.
-     */
-    public void setUsuarioBiopsia(Integer value) {
-        set(38, value);
-    }
-
-    /**
-     * Getter for <code>public.lab_reporte_examen_vw.usuario_biopsia</code>.
-     */
-    public Integer getUsuarioBiopsia() {
-        return (Integer) get(38);
+        return (String) get(34);
     }
 
     /**
      * Setter for <code>public.lab_reporte_examen_vw.usuario_realiza_biopsia</code>.
      */
     public void setUsuarioRealizaBiopsia(String value) {
-        set(39, value);
+        set(35, value);
     }
 
     /**
      * Getter for <code>public.lab_reporte_examen_vw.usuario_realiza_biopsia</code>.
      */
     public String getUsuarioRealizaBiopsia() {
-        return (String) get(39);
+        return (String) get(35);
     }
 
     /**
      * Setter for <code>public.lab_reporte_examen_vw.estado_biopsia</code>.
      */
     public void setEstadoBiopsia(String value) {
-        set(40, value);
+        set(36, value);
     }
 
     /**
      * Getter for <code>public.lab_reporte_examen_vw.estado_biopsia</code>.
      */
     public String getEstadoBiopsia() {
-        return (String) get(40);
+        return (String) get(36);
     }
 
     /**
      * Setter for <code>public.lab_reporte_examen_vw.fecha_informe_biopsia</code>.
      */
     public void setFechaInformeBiopsia(String value) {
-        set(41, value);
+        set(37, value);
     }
 
     /**
      * Getter for <code>public.lab_reporte_examen_vw.fecha_informe_biopsia</code>.
      */
     public String getFechaInformeBiopsia() {
-        return (String) get(41);
+        return (String) get(37);
     }
 
     /**
      * Setter for <code>public.lab_reporte_examen_vw.diagnostico_biopsia</code>.
      */
     public void setDiagnosticoBiopsia(String value) {
-        set(42, value);
+        set(38, value);
     }
 
     /**
      * Getter for <code>public.lab_reporte_examen_vw.diagnostico_biopsia</code>.
      */
     public String getDiagnosticoBiopsia() {
-        return (String) get(42);
+        return (String) get(38);
     }
 
     /**
      * Setter for <code>public.lab_reporte_examen_vw.usuario_informe_biopsia</code>.
      */
     public void setUsuarioInformeBiopsia(String value) {
-        set(43, value);
+        set(39, value);
     }
 
     /**
      * Getter for <code>public.lab_reporte_examen_vw.usuario_informe_biopsia</code>.
      */
     public String getUsuarioInformeBiopsia() {
-        return (String) get(43);
+        return (String) get(39);
     }
 
     /**
      * Setter for <code>public.lab_reporte_examen_vw.req_frote</code>.
      */
     public void setReqFrote(String value) {
-        set(44, value);
+        set(40, value);
     }
 
     /**
      * Getter for <code>public.lab_reporte_examen_vw.req_frote</code>.
      */
     public String getReqFrote() {
-        return (String) get(44);
+        return (String) get(40);
     }
 
     /**
      * Setter for <code>public.lab_reporte_examen_vw.num_frote</code>.
      */
     public void setNumFrote(String value) {
-        set(45, value);
+        set(41, value);
     }
 
     /**
      * Getter for <code>public.lab_reporte_examen_vw.num_frote</code>.
      */
     public String getNumFrote() {
-        return (String) get(45);
+        return (String) get(41);
     }
 
     /**
      * Setter for <code>public.lab_reporte_examen_vw.num_muestra_frote</code>.
      */
     public void setNumMuestraFrote(String value) {
-        set(46, value);
+        set(42, value);
     }
 
     /**
      * Getter for <code>public.lab_reporte_examen_vw.num_muestra_frote</code>.
      */
     public String getNumMuestraFrote() {
-        return (String) get(46);
+        return (String) get(42);
     }
 
     /**
      * Setter for <code>public.lab_reporte_examen_vw.fec_frote</code>.
      */
     public void setFecFrote(LocalDate value) {
-        set(47, value);
+        set(43, value);
     }
 
     /**
      * Getter for <code>public.lab_reporte_examen_vw.fec_frote</code>.
      */
     public LocalDate getFecFrote() {
-        return (LocalDate) get(47);
+        return (LocalDate) get(43);
     }
 
     /**
      * Setter for <code>public.lab_reporte_examen_vw.fecha_frote</code>.
      */
     public void setFechaFrote(String value) {
-        set(48, value);
+        set(44, value);
     }
 
     /**
      * Getter for <code>public.lab_reporte_examen_vw.fecha_frote</code>.
      */
     public String getFechaFrote() {
-        return (String) get(48);
-    }
-
-    /**
-     * Setter for <code>public.lab_reporte_examen_vw.cod_tincion</code>.
-     */
-    public void setCodTincion(Integer value) {
-        set(49, value);
-    }
-
-    /**
-     * Getter for <code>public.lab_reporte_examen_vw.cod_tincion</code>.
-     */
-    public Integer getCodTincion() {
-        return (Integer) get(49);
+        return (String) get(44);
     }
 
     /**
      * Setter for <code>public.lab_reporte_examen_vw.tincion</code>.
      */
     public void setTincion(String value) {
-        set(50, value);
+        set(45, value);
     }
 
     /**
      * Getter for <code>public.lab_reporte_examen_vw.tincion</code>.
      */
     public String getTincion() {
-        return (String) get(50);
-    }
-
-    /**
-     * Setter for <code>public.lab_reporte_examen_vw.usuario_frote</code>.
-     */
-    public void setUsuarioFrote(Integer value) {
-        set(51, value);
-    }
-
-    /**
-     * Getter for <code>public.lab_reporte_examen_vw.usuario_frote</code>.
-     */
-    public Integer getUsuarioFrote() {
-        return (Integer) get(51);
+        return (String) get(45);
     }
 
     /**
      * Setter for <code>public.lab_reporte_examen_vw.usuario_realiza_frote</code>.
      */
     public void setUsuarioRealizaFrote(String value) {
-        set(52, value);
+        set(46, value);
     }
 
     /**
      * Getter for <code>public.lab_reporte_examen_vw.usuario_realiza_frote</code>.
      */
     public String getUsuarioRealizaFrote() {
-        return (String) get(52);
+        return (String) get(46);
     }
 
     /**
      * Setter for <code>public.lab_reporte_examen_vw.estado_frote</code>.
      */
     public void setEstadoFrote(String value) {
-        set(53, value);
+        set(47, value);
     }
 
     /**
      * Getter for <code>public.lab_reporte_examen_vw.estado_frote</code>.
      */
     public String getEstadoFrote() {
-        return (String) get(53);
+        return (String) get(47);
     }
 
     /**
      * Setter for <code>public.lab_reporte_examen_vw.fecha_informe_frote</code>.
      */
     public void setFechaInformeFrote(String value) {
-        set(54, value);
+        set(48, value);
     }
 
     /**
      * Getter for <code>public.lab_reporte_examen_vw.fecha_informe_frote</code>.
      */
     public String getFechaInformeFrote() {
-        return (String) get(54);
+        return (String) get(48);
     }
 
     /**
      * Setter for <code>public.lab_reporte_examen_vw.diagnostico_informe_frote</code>.
      */
     public void setDiagnosticoInformeFrote(String value) {
-        set(55, value);
+        set(49, value);
     }
 
     /**
      * Getter for <code>public.lab_reporte_examen_vw.diagnostico_informe_frote</code>.
      */
     public String getDiagnosticoInformeFrote() {
-        return (String) get(55);
+        return (String) get(49);
     }
 
     /**
      * Setter for <code>public.lab_reporte_examen_vw.usuario_informe_frote</code>.
      */
     public void setUsuarioInformeFrote(String value) {
-        set(56, value);
+        set(50, value);
     }
 
     /**
      * Getter for <code>public.lab_reporte_examen_vw.usuario_informe_frote</code>.
      */
     public String getUsuarioInformeFrote() {
-        return (String) get(56);
+        return (String) get(50);
     }
 
     // -------------------------------------------------------------------------
@@ -831,7 +747,7 @@ public class LabReporteExamenVwRecord extends TableRecordImpl<LabReporteExamenVw
     /**
      * Create a detached, initialised LabReporteExamenVwRecord
      */
-    public LabReporteExamenVwRecord(Integer codExamen, String numExamen, LocalDate fechaExamen, String fecExamen, String nombrePaciente, String tipoIdentificacion, String identificacion, String ocupacion, String numeroFicha, String enfermedades, String diagnosticosDiferenciales, String estadoExamen, String doctorExamen, String colorLesion, String naturalezaLesion, String sintomaLesion, String formaLesion, String superficieLesion, String consistenciaLesion, String intraoseoLesion, String piezaLesion, String tamanoLesion, Integer diasLesion, Integer mesesLesion, Integer aniosLesion, String doctorRemision, String dependenciaDoctorRemision, String reqBiopsia, String numeroBiopsia, LocalDate fecBiopsia, String fechaBiopsia, String muestraBiopsia, Integer procedimiento, String procedimientoBiopsia, Integer tipoCirugia, String tipocirugiaBiopsia, Integer instrumento, String instrumentoBiopsia, Integer usuarioBiopsia, String usuarioRealizaBiopsia, String estadoBiopsia, String fechaInformeBiopsia, String diagnosticoBiopsia, String usuarioInformeBiopsia, String reqFrote, String numFrote, String numMuestraFrote, LocalDate fecFrote, String fechaFrote, Integer codTincion, String tincion, Integer usuarioFrote, String usuarioRealizaFrote, String estadoFrote, String fechaInformeFrote, String diagnosticoInformeFrote, String usuarioInformeFrote) {
+    public LabReporteExamenVwRecord(Integer codExamen, String numExamen, LocalDate fechaExamen, String fecExamen, String nombrePaciente, String tipoIdentificacion, String identificacion, String ocupacion, String numeroFicha, String enfermedades, String diagnosticosDiferenciales, String estadoExamen, String doctorExamen, String colorLesion, String naturalezaLesion, String sintomaLesion, String formaLesion, String superficieLesion, String consistenciaLesion, String intraoseoLesion, String piezaLesion, String tamanoLesion, Integer diasLesion, Integer mesesLesion, Integer aniosLesion, String doctorRemision, String dependenciaDoctorRemision, String reqBiopsia, String numeroBiopsia, LocalDate fecBiopsia, String fechaBiopsia, String muestraBiopsia, String procedimientoBiopsia, String tipocirugiaBiopsia, String instrumentoBiopsia, String usuarioRealizaBiopsia, String estadoBiopsia, String fechaInformeBiopsia, String diagnosticoBiopsia, String usuarioInformeBiopsia, String reqFrote, String numFrote, String numMuestraFrote, LocalDate fecFrote, String fechaFrote, String tincion, String usuarioRealizaFrote, String estadoFrote, String fechaInformeFrote, String diagnosticoInformeFrote, String usuarioInformeFrote) {
         super(LabReporteExamenVw.LAB_REPORTE_EXAMEN_VW);
 
         setCodExamen(codExamen);
@@ -866,13 +782,9 @@ public class LabReporteExamenVwRecord extends TableRecordImpl<LabReporteExamenVw
         setFecBiopsia(fecBiopsia);
         setFechaBiopsia(fechaBiopsia);
         setMuestraBiopsia(muestraBiopsia);
-        setProcedimiento(procedimiento);
         setProcedimientoBiopsia(procedimientoBiopsia);
-        setTipoCirugia(tipoCirugia);
         setTipocirugiaBiopsia(tipocirugiaBiopsia);
-        setInstrumento(instrumento);
         setInstrumentoBiopsia(instrumentoBiopsia);
-        setUsuarioBiopsia(usuarioBiopsia);
         setUsuarioRealizaBiopsia(usuarioRealizaBiopsia);
         setEstadoBiopsia(estadoBiopsia);
         setFechaInformeBiopsia(fechaInformeBiopsia);
@@ -883,9 +795,7 @@ public class LabReporteExamenVwRecord extends TableRecordImpl<LabReporteExamenVw
         setNumMuestraFrote(numMuestraFrote);
         setFecFrote(fecFrote);
         setFechaFrote(fechaFrote);
-        setCodTincion(codTincion);
         setTincion(tincion);
-        setUsuarioFrote(usuarioFrote);
         setUsuarioRealizaFrote(usuarioRealizaFrote);
         setEstadoFrote(estadoFrote);
         setFechaInformeFrote(fechaInformeFrote);

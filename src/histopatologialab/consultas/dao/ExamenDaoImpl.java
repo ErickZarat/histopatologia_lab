@@ -103,7 +103,7 @@ public class ExamenDaoImpl implements IExamenDao {
         return query.select(tablaDiagnostico.COD_DIAGNOSTICO).from(tablaDiagnostico).where(tablaDiagnostico.COD_EXAMEN.eq(codExamen)).fetch(tablaDiagnostico.COD_DIAGNOSTICO, Integer.class);
     }
     private List<String> getImages(int codExamen) {
-        return query.select(tablaImg.RUTA_IMAGEN).from(tablaImg).where(tablaImg.COD_EXAMEN.eq(codExamen)).fetch(tablaImg.RUTA_IMAGEN, String.class);
+    	return query.select(tablaImg.RUTA_IMAGEN).from(tablaImg).where(tablaImg.COD_EXAMEN.eq(codExamen)).fetch(tablaImg.RUTA_IMAGEN, String.class);
     }
 
     @Override
@@ -173,7 +173,6 @@ public class ExamenDaoImpl implements IExamenDao {
         guardarEnfermedades(examen);
         guardarDiagnostico(examen, true);
         guardarImagenes(examen);
-
         return getExamen(record.getCodExamen());
     }
 

@@ -140,13 +140,15 @@ $('#validarReciboBiopsia').click(function(e){
 
 function extractDatosBiopsia(){
     var datosBiopsia = {
+		'codExamen': window.examen,	
         'codBiopsia': window.biopsia,
         'procedimiento': $('#tipoProcedimientoSelect').val(),
         'tipoCirugia': $('#tipoCirugiaSelect').val(),
         'instrumento': $('#instrumentoSelect').val(),
         'muestraEstudio': $('#muestraEstudio').val(),
         'observaciones': $('#observacionesBiopsia').val(),
-        'imgs': []
+		'imagenes': window.biopsiaImages
+        //'imgs': []
     }
     return datosBiopsia;
 }
@@ -319,7 +321,7 @@ $('#upload-button-biopsia').click(function(e){
 
 function uploadBiopsiaImage(){
 	var data = new FormData();
-	$.each($('#file')[0].files, function(i, file) {
+	$.each($('#file-biopsia')[0].files, function(i, file) {
 		data.append('file-'+i, file);
 	});
 

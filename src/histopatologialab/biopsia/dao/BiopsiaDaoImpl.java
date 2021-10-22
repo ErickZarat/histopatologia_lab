@@ -65,6 +65,8 @@ public class BiopsiaDaoImpl implements IBiopsiaDao {
             record.setNombreImagen(parts[parts.length - 1]);
             record.setNumImagen(biopsia.getImagenes().indexOf(img));
             record.setRutaImagen(img);
+            
+            Logger.info("insert images");
 
             query.insertInto(tablaImg).set(record).execute();
         }
@@ -129,7 +131,7 @@ public class BiopsiaDaoImpl implements IBiopsiaDao {
     }
 
     @Override
-    public Biopsia modificarBiopsia(Biopsia biopsia, String usuario) {
+    public Biopsia modificarBiopsia(Biopsia biopsia, String usuario, Boolean saveImage) {
         LabExamenBiopsiaRecord record = query.newRecord(tabla);
         record.setCodBiopsia(biopsia.getCodBiopsia());
 //        record.setCodExamen(biopsia.getCodExamen());
@@ -147,7 +149,10 @@ public class BiopsiaDaoImpl implements IBiopsiaDao {
         record.setProcedimiento(biopsia.getProcedimiento());
         record.setTipoCirugia(biopsia.getTipoCirugia());
 
-
+        if (saveImage) {
+        	guardarImagenes(biopsia);
+        }
+        
         record.update();
         return getByCod(record.getCodBiopsia());
     }

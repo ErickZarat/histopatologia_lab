@@ -31,6 +31,7 @@
 
     <fieldset id="biopsia-datos" disabled="disabled">
         <table>
+        <tr>
             <td><label class="table-form-label" for="tipoProcedimientoSelect">Procedimiento:   </label></td>
             <td>
                 <select  class="form-control" name="tipoProcedimientoSelect" id="tipoProcedimientoSelect">
@@ -58,6 +59,7 @@
                     </c:forEach>
                 </select>
             </td>
+            </tr>
         </table>
 
         <table>

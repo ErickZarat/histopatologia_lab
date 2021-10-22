@@ -132,11 +132,13 @@ window.informeFrote = $('#codInformeFrote').val();
 
 function extractDatosFrote(){
     var datosFrote = {
+	 	'codExamen': window.examen,
         'codFrote': window.frote,
         'codTincion': $('#tincionSelect').val(),
         'muestraEstudio': $('#muestraEstudio').val(),
         'observaciones': $('#observacionesFrote').val(),
-        'imgs': []
+		'imagenes': window.froteImages
+        //'imgs': []
     }
     return datosFrote;
 }
@@ -312,7 +314,7 @@ $('#upload-button-frote').click(function(e){
 
 function uploadFroteImage(){
     var data = new FormData();
-    $.each($('#file')[0].files, function(i, file) {
+    $.each($('#file-frote')[0].files, function(i, file) {
         data.append('file-'+i, file);
     });
 

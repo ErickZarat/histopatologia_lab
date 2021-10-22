@@ -40,8 +40,8 @@ public class BiopsiaControllerImpl implements IBiopsiaController {
     }
 
     @Override
-    public JsonResponse<Biopsia> modificarBiopsia(Biopsia biopsia, String usuario) {
-        Biopsia saved = biopsiaDao.modificarBiopsia(biopsia, usuario);
+    public JsonResponse<Biopsia> modificarBiopsia(Biopsia biopsia, String usuario, Boolean saveImage ) {
+        Biopsia saved = biopsiaDao.modificarBiopsia(biopsia, usuario, saveImage);
         return new JsonResponse<>(saved != null, saved);
     }
 }

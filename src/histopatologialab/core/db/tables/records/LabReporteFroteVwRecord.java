@@ -469,143 +469,115 @@ public class LabReporteFroteVwRecord extends TableRecordImpl<LabReporteFroteVwRe
     }
 
     /**
-     * Setter for <code>public.lab_reporte_frote_vw.cod_tincion</code>.
-     */
-    public void setCodTincion(Integer value) {
-        set(32, value);
-    }
-
-    /**
-     * Getter for <code>public.lab_reporte_frote_vw.cod_tincion</code>.
-     */
-    public Integer getCodTincion() {
-        return (Integer) get(32);
-    }
-
-    /**
      * Setter for <code>public.lab_reporte_frote_vw.tincion</code>.
      */
     public void setTincion(String value) {
-        set(33, value);
+        set(32, value);
     }
 
     /**
      * Getter for <code>public.lab_reporte_frote_vw.tincion</code>.
      */
     public String getTincion() {
-        return (String) get(33);
+        return (String) get(32);
     }
 
     /**
      * Setter for <code>public.lab_reporte_frote_vw.datos_recibo</code>.
      */
     public void setDatosRecibo(String value) {
-        set(34, value);
+        set(33, value);
     }
 
     /**
      * Getter for <code>public.lab_reporte_frote_vw.datos_recibo</code>.
      */
     public String getDatosRecibo() {
-        return (String) get(34);
+        return (String) get(33);
     }
 
     /**
      * Setter for <code>public.lab_reporte_frote_vw.valor_recibo</code>.
      */
     public void setValorRecibo(BigDecimal value) {
-        set(35, value);
+        set(34, value);
     }
 
     /**
      * Getter for <code>public.lab_reporte_frote_vw.valor_recibo</code>.
      */
     public BigDecimal getValorRecibo() {
-        return (BigDecimal) get(35);
-    }
-
-    /**
-     * Setter for <code>public.lab_reporte_frote_vw.usuario_frote</code>.
-     */
-    public void setUsuarioFrote(Integer value) {
-        set(36, value);
-    }
-
-    /**
-     * Getter for <code>public.lab_reporte_frote_vw.usuario_frote</code>.
-     */
-    public Integer getUsuarioFrote() {
-        return (Integer) get(36);
+        return (BigDecimal) get(34);
     }
 
     /**
      * Setter for <code>public.lab_reporte_frote_vw.usuario_realiza_frote</code>.
      */
     public void setUsuarioRealizaFrote(String value) {
-        set(37, value);
+        set(35, value);
     }
 
     /**
      * Getter for <code>public.lab_reporte_frote_vw.usuario_realiza_frote</code>.
      */
     public String getUsuarioRealizaFrote() {
-        return (String) get(37);
+        return (String) get(35);
     }
 
     /**
      * Setter for <code>public.lab_reporte_frote_vw.estado_frote</code>.
      */
     public void setEstadoFrote(String value) {
-        set(38, value);
+        set(36, value);
     }
 
     /**
      * Getter for <code>public.lab_reporte_frote_vw.estado_frote</code>.
      */
     public String getEstadoFrote() {
-        return (String) get(38);
+        return (String) get(36);
     }
 
     /**
      * Setter for <code>public.lab_reporte_frote_vw.fecha_informe_frote</code>.
      */
     public void setFechaInformeFrote(String value) {
-        set(39, value);
+        set(37, value);
     }
 
     /**
      * Getter for <code>public.lab_reporte_frote_vw.fecha_informe_frote</code>.
      */
     public String getFechaInformeFrote() {
-        return (String) get(39);
+        return (String) get(37);
     }
 
     /**
      * Setter for <code>public.lab_reporte_frote_vw.diagnostico_informe_frote</code>.
      */
     public void setDiagnosticoInformeFrote(String value) {
-        set(40, value);
+        set(38, value);
     }
 
     /**
      * Getter for <code>public.lab_reporte_frote_vw.diagnostico_informe_frote</code>.
      */
     public String getDiagnosticoInformeFrote() {
-        return (String) get(40);
+        return (String) get(38);
     }
 
     /**
      * Setter for <code>public.lab_reporte_frote_vw.usuario_informe_frote</code>.
      */
     public void setUsuarioInformeFrote(String value) {
-        set(41, value);
+        set(39, value);
     }
 
     /**
      * Getter for <code>public.lab_reporte_frote_vw.usuario_informe_frote</code>.
      */
     public String getUsuarioInformeFrote() {
-        return (String) get(41);
+        return (String) get(39);
     }
 
     // -------------------------------------------------------------------------
@@ -622,7 +594,7 @@ public class LabReporteFroteVwRecord extends TableRecordImpl<LabReporteFroteVwRe
     /**
      * Create a detached, initialised LabReporteFroteVwRecord
      */
-    public LabReporteFroteVwRecord(Integer codExamen, String numExamen, LocalDate fechaExamen, String fecExamen, String nombrePaciente, String tipoIdentificacion, String identificacion, String ocupacion, String numeroFicha, String enfermedades, String diagnosticosDiferenciales, String estadoExamen, String doctorExamen, String colorLesion, String naturalezaLesion, String sintomaLesion, String formaLesion, String superficieLesion, String consistenciaLesion, String intraoseoLesion, String piezaLesion, String tamanoLesion, Integer diasLesion, Integer mesesLesion, Integer aniosLesion, String doctorRemision, String dependenciaDoctorRemision, String reqFrote, String numFrote, String numMuestraFrote, LocalDate fecFrote, String fechaFrote, Integer codTincion, String tincion, String datosRecibo, BigDecimal valorRecibo, Integer usuarioFrote, String usuarioRealizaFrote, String estadoFrote, String fechaInformeFrote, String diagnosticoInformeFrote, String usuarioInformeFrote) {
+    public LabReporteFroteVwRecord(Integer codExamen, String numExamen, LocalDate fechaExamen, String fecExamen, String nombrePaciente, String tipoIdentificacion, String identificacion, String ocupacion, String numeroFicha, String enfermedades, String diagnosticosDiferenciales, String estadoExamen, String doctorExamen, String colorLesion, String naturalezaLesion, String sintomaLesion, String formaLesion, String superficieLesion, String consistenciaLesion, String intraoseoLesion, String piezaLesion, String tamanoLesion, Integer diasLesion, Integer mesesLesion, Integer aniosLesion, String doctorRemision, String dependenciaDoctorRemision, String reqFrote, String numFrote, String numMuestraFrote, LocalDate fecFrote, String fechaFrote, String tincion, String datosRecibo, BigDecimal valorRecibo, String usuarioRealizaFrote, String estadoFrote, String fechaInformeFrote, String diagnosticoInformeFrote, String usuarioInformeFrote) {
         super(LabReporteFroteVw.LAB_REPORTE_FROTE_VW);
 
         setCodExamen(codExamen);
@@ -657,11 +629,9 @@ public class LabReporteFroteVwRecord extends TableRecordImpl<LabReporteFroteVwRe
         setNumMuestraFrote(numMuestraFrote);
         setFecFrote(fecFrote);
         setFechaFrote(fechaFrote);
-        setCodTincion(codTincion);
         setTincion(tincion);
         setDatosRecibo(datosRecibo);
         setValorRecibo(valorRecibo);
-        setUsuarioFrote(usuarioFrote);
         setUsuarioRealizaFrote(usuarioRealizaFrote);
         setEstadoFrote(estadoFrote);
         setFechaInformeFrote(fechaInformeFrote);
