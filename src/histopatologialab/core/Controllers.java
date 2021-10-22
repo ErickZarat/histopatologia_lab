@@ -12,6 +12,7 @@ import histopatologialab.frote.controller.FroteControllerImpl;
 import histopatologialab.frote.controller.IFroteController;
 import histopatologialab.informe.controller.IInformeController;
 import histopatologialab.informe.controller.InformeControllerImpl;
+import histopatologialab.login.LoginController;
 import histopatologialab.medicamentos.controller.IMedicamentosController;
 import histopatologialab.medicamentos.controller.MedicamentosControllerImpl;
 import histopatologialab.pacientes.controller.IPacienteController;
@@ -44,5 +45,6 @@ public class Controllers {
     public static IInformeController informeController = new InformeControllerImpl(informeDao);
     public static IRecetaController recetaController = new RecetaControllerImpl(recetaDao);
     public static ISeguimientoController seguimientoController = new SeguimientoControllerImpl(seguimientoDao);
+    public static LoginController loginController = new LoginController();
 
 }

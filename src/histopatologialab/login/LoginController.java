@@ -19,7 +19,7 @@ public class LoginController {
 
 private final String ROLE_KEY = "user_role";
 
-    public Boolean iniciarSession(String usuario, String password) {
+    public Boolean iniciarSession(String usuario, String password, HttpSession session) {
 //    	return iniciarFallback(usuario, session);
 
     	IUsuarioController controller = usuarioController;
@@ -50,9 +50,11 @@ private final String ROLE_KEY = "user_role";
 
     }
 
-    public void crearSesion(HttpSession session, String usuario, Role role) {
+    public void crearSesion(HttpSession session, String usuario, int codigoUsuario, Role role) {
         session.setAttribute(ROLE_KEY, role.getSlug());
         session.setAttribute("usuario", usuario);
+        session.setAttribute("codigousuario", codigoUsuario);
+        session.setAttribute("role", role);
         session.setAttribute("sesionIniciada", true);
     }
 
