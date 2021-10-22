@@ -71,8 +71,8 @@
                 <td><textArea id="observacionesBiopsia" name="observacionesBiopsia" class="form-control" cols="56" rows="5" style="height: 93px; ">${biopsia.observaciones}</textArea></td>
                 <td colspan="2">
                     <ul id="biopsiaImageContainer">
-                        <c:forEach items="${examen.imagenes}" var="img" varStatus="loop">
-                            <%--                                        <li><a href="${img}" target="_blank">image-${loop.index}</a></li>--%>
+                        <c:forEach items="${biopsia.imagenes}" var="img" varStatus="loop">
+                                <li><a href="${img}" target="_blank">image-${loop.index}</a></li>
                         </c:forEach>
                     </ul>
                     <form id="upload-img-form-biopsia" action="UploadServlet.do" method="post" enctype="multipart/form-data">

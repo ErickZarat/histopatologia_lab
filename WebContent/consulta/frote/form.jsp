@@ -53,8 +53,8 @@
                 <td><textArea id="observacionesFrote" name="observacionesFrote" class="form-control" cols="80" rows="5" style="height: 82px; ">${frote.observaciones}</textArea></td>
                 <td colspan="2">
                     <ul id="froteImageContainer">
-                        <c:forEach items="${examen.imagenes}" var="img" varStatus="loop">
-                            <%--                                        <li><a href="${img}" target="_blank">image-${loop.index}</a></li>--%>
+                        <c:forEach items="${frote.imagenes}" var="img" varStatus="loop">
+                            <li><a href="${img}" target="_blank">image-${loop.index}</a></li>
                         </c:forEach>
                     </ul>
                     <form id="upload-img-form-frote" action="UploadServlet.do" method="post" enctype="multipart/form-data">
