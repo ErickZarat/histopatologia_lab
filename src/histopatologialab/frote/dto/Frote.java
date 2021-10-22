@@ -2,6 +2,7 @@ package histopatologialab.frote.dto;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.List;
 
 import static histopatologialab.core.DateUtils.formatDate;
 
@@ -21,6 +22,8 @@ public class Frote {
     String muestraEstudio;
     String fechaFormateada;
     String observaciones;
+
+    List<String> imagenes;
 
 
     public Frote() {
@@ -42,6 +45,14 @@ public class Frote {
         this.muestraEstudio = muestraEstudio;
         this.fechaFormateada = formatDate(this.fecha);
         this.observaciones = observaciones;
+    }
+
+    public List<String> getImagenes() {
+        return imagenes;
+    }
+
+    public void setImagenes(List<String> imagenes) {
+        this.imagenes = imagenes;
     }
 
     public LocalDate getFecha() {

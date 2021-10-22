@@ -1,11 +1,15 @@
 package histopatologialab.biopsia.dao;
 
 import histopatologialab.biopsia.dto.Biopsia;
+import histopatologialab.consultas.dto.Examen;
 import histopatologialab.core.DB;
 import histopatologialab.core.db.tables.LabExamenBiopsia;
+import histopatologialab.core.db.tables.LabExamenImagen;
 import histopatologialab.core.db.tables.records.LabExamenBiopsiaRecord;
+import histopatologialab.core.db.tables.records.LabExamenImagenRecord;
 import org.jooq.DSLContext;
 import org.jooq.Record;
+import org.tinylog.Logger;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -15,10 +19,11 @@ public class BiopsiaDaoImpl implements IBiopsiaDao {
 
     private final DSLContext query = DB.getConexion();
     private final LabExamenBiopsia tabla = LabExamenBiopsia.LAB_EXAMEN_BIOPSIA;
+    private final LabExamenImagen tablaImg = LabExamenImagen.LAB_EXAMEN_IMAGEN;
 
 
     public Biopsia parseItem(Record record) {
-        return new Biopsia(
+        Biopsia biopsia = new Biopsia(
                 record.getValue(tabla.COD_BIOPSIA),
                 record.getValue(tabla.COD_EXAMEN),
                 record.getValue(tabla.NUM_BIOPSIA),
@@ -36,6 +41,33 @@ public class BiopsiaDaoImpl implements IBiopsiaDao {
                 record.getValue(tabla.TIPO_CIRUGIA),
                 record.getValue(tabla.PROCEDIMIENTO)
         );
+        if (biopsia != null) {
+            biopsia.setImagenes(this.getImages(biopsia.getCodBiopsia()));
+        }
+
+        return biopsia;
+    }
+
+    private List<String> getImages(int codBiopsia) {
+        return query.select(tablaImg.RUTA_IMAGEN).from(tablaImg).where(tablaImg.COD_BIOPSIA.eq(codBiopsia)).fetch(tablaImg.RUTA_IMAGEN, String.class);
+    }
+
+    private void guardarImagenes(Biopsia biopsia) {
+        if (biopsia.getImagenes() == null){
+            Logger.info("ignore null images");
+            return;
+        }
+        for (String img: biopsia.getImagenes()){
+            LabExamenImagenRecord record = query.newRecord(tablaImg);
+            record.setCodBiopsia(biopsia.getCodBiopsia());
+            record.setFechaCreacion(LocalDate.now());
+            String[] parts = img.split("/");
+            record.setNombreImagen(parts[parts.length - 1]);
+            record.setNumImagen(biopsia.getImagenes().indexOf(img));
+            record.setRutaImagen(img);
+
+            query.insertInto(tablaImg).set(record).execute();
+        }
     }
 
     @Override
@@ -90,6 +122,9 @@ public class BiopsiaDaoImpl implements IBiopsiaDao {
         record.setFecha(LocalDate.now());
 
         record.store();
+
+        guardarImagenes(biopsia);
+
         return getByCod(record.getCodBiopsia());
     }
 

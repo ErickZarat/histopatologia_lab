@@ -1,11 +1,15 @@
 package histopatologialab.frote.dao;
 
+import histopatologialab.biopsia.dto.Biopsia;
 import histopatologialab.core.DB;
 import histopatologialab.core.db.tables.LabExamenFrote;
+import histopatologialab.core.db.tables.LabExamenImagen;
 import histopatologialab.core.db.tables.records.LabExamenFroteRecord;
+import histopatologialab.core.db.tables.records.LabExamenImagenRecord;
 import histopatologialab.frote.dto.Frote;
 import org.jooq.DSLContext;
 import org.jooq.Record;
+import org.tinylog.Logger;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -15,10 +19,11 @@ public class FroteDaoImpl implements IFroteDao {
 
     private final DSLContext query = DB.getConexion();
     private final LabExamenFrote tabla = LabExamenFrote.LAB_EXAMEN_FROTE;
+    private final LabExamenImagen tablaImg = LabExamenImagen.LAB_EXAMEN_IMAGEN;
 
 
     public Frote parseItem(Record record) {
-        return new Frote(
+        Frote frote = new Frote(
                 record.getValue(tabla.COD_FROTE),
                 record.getValue(tabla.COD_EXAMEN),
                 record.getValue(tabla.NUM_FROTE),
@@ -34,6 +39,32 @@ public class FroteDaoImpl implements IFroteDao {
                 record.getValue(tabla.MUESTRA_ESTUDIO),
                 record.getValue(tabla.OBSERVACIONES)
         );
+        if (frote != null){
+            frote.setImagenes(this.getImages(frote.getCodFrote()));
+        }
+        return frote;
+    }
+
+    private List<String> getImages(int codFrote) {
+        return query.select(tablaImg.RUTA_IMAGEN).from(tablaImg).where(tablaImg.COD_FROTE.eq(codFrote)).fetch(tablaImg.RUTA_IMAGEN, String.class);
+    }
+
+    private void guardarImagenes(Frote frote) {
+        if (frote.getImagenes() == null){
+            Logger.info("ignore null images");
+            return;
+        }
+        for (String img: frote.getImagenes()){
+            LabExamenImagenRecord record = query.newRecord(tablaImg);
+            record.setCodFrote(frote.getCodFrote());
+            record.setFechaCreacion(LocalDate.now());
+            String[] parts = img.split("/");
+            record.setNombreImagen(parts[parts.length - 1]);
+            record.setNumImagen(frote.getImagenes().indexOf(img));
+            record.setRutaImagen(img);
+
+            query.insertInto(tablaImg).set(record).execute();
+        }
     }
 
     @Override
@@ -89,6 +120,9 @@ public class FroteDaoImpl implements IFroteDao {
         record.setFechaModificacion(LocalDate.now());
 
         record.store();
+
+        guardarImagenes(frote);
+
         return getByCod(record.getCodFrote());
     }
 
