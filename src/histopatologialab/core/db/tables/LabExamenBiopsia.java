@@ -15,7 +15,6 @@ import java.util.List;
 
 import org.jooq.Field;
 import org.jooq.ForeignKey;
-import org.jooq.Identity;
 import org.jooq.Name;
 import org.jooq.Record;
 import org.jooq.Row17;
@@ -53,7 +52,7 @@ public class LabExamenBiopsia extends TableImpl<LabExamenBiopsiaRecord> {
     /**
      * The column <code>public.lab_examen_biopsia.cod_biopsia</code>.
      */
-    public final TableField<LabExamenBiopsiaRecord, Integer> COD_BIOPSIA = createField(DSL.name("cod_biopsia"), SQLDataType.INTEGER.nullable(false).identity(true), this, "");
+    public final TableField<LabExamenBiopsiaRecord, Integer> COD_BIOPSIA = createField(DSL.name("cod_biopsia"), SQLDataType.INTEGER.nullable(false).defaultValue(DSL.field("nextval('lab_examen_biopsia_cod_biopsia_seq2'::regclass)", SQLDataType.INTEGER)), this, "");
 
     /**
      * The column <code>public.lab_examen_biopsia.cod_examen</code>.
@@ -171,11 +170,6 @@ public class LabExamenBiopsia extends TableImpl<LabExamenBiopsiaRecord> {
     @Override
     public Schema getSchema() {
         return Public.PUBLIC;
-    }
-
-    @Override
-    public Identity<LabExamenBiopsiaRecord, Integer> getIdentity() {
-        return (Identity<LabExamenBiopsiaRecord, Integer>) super.getIdentity();
     }
 
     @Override
