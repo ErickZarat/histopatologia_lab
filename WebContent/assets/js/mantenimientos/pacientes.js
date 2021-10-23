@@ -178,6 +178,7 @@ $(document).ready(function(e) {
                             '<div class="btn-group" >'
                             + '<button type="button" class="btn btn-light" data-modificar-paciente="true" ' + data + ' data-toggle="modal"  id="modifPacienteBtn" data-target="#modificarPacienteModal" data-toggle="tooltip" data-placement="right" title="Modificar Datos Paciente"><i class="fas fa-edit"></i></button>'
                         //    + '<button type="button" class="btn btn-light" data-baja-paciente="true" ' + data + ' data-toggle="modal" data-target="#darBajaPacienteModal" id="darBajaPacienteModalBtn"><i class="far fa-calendar"></i></button>'
+							+ '<a class="btn btn-light" href="ConsultaServlet.do?accion=LIST_CONSULTAS&codPaciente=' + element.codigoPaciente + '"><i class="fas fa-eye"></i></a>'
                             + '</div>'
                         ]
                         pacientesTable.row.add(row).draw(false);

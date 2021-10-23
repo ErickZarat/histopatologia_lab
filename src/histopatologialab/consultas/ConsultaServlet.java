@@ -63,6 +63,10 @@ public class ConsultaServlet extends HttpServlet {
             handleGetConsultas(request, response);
         } else if (action == RequestAction.DESCARGAR_INFORME){
             handleDescargarInforme(request, response);
+        } else if (action == RequestAction.LIST_CONSULTAS){
+        	handlePageConsultasPaciente(request, response);  
+        } else if (action == RequestAction.CONSULTA_PACIENTE){
+        	handleConsultasPaciente(request, response);        	
         } else {
             getDefaultPage(request, response);
         }
@@ -242,5 +246,19 @@ public class ConsultaServlet extends HttpServlet {
         RequestDispatcher despachador = request.getRequestDispatcher("consulta/consulta.jsp");
         despachador.forward(request, response);
     }
-
+    
+    
+    private void handlePageConsultasPaciente(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    	Long codigoPaciente = Long. parseLong(request.getParameter("codPaciente")) ;
+        request.setAttribute("codPaciente", codigoPaciente);
+        RequestDispatcher despachador = request.getRequestDispatcher("consulta/consulta-paciente.jsp");
+        despachador.forward(request, response);
+    }
+    
+    private void handleConsultasPaciente(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    	Long codigoPaciente = Long.parseLong(request.getParameter("codPaciente")) ;
+    	returnJson(response, controller.getExamenesByPaciente(codigoPaciente));    	
+    }
+    
+    
 }

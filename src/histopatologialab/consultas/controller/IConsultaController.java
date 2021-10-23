@@ -16,5 +16,7 @@ public interface IConsultaController {
     JsonResponse<List<Examen>> getExamenes();
 
     JsonResponse<Examen> guardarExamen(Examen examen);
+    
+    JsonResponse<List<Examen>> getExamenesByPaciente(Long codPaciente);
 
 }

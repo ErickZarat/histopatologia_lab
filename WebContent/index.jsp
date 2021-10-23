@@ -27,6 +27,8 @@
   </div>
 
 
+<img src="assets/img/logo.png" class="fondo-logo" >
+
 <%@include file="partials/footer.jsp"%>
 
 

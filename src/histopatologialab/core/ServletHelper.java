@@ -51,10 +51,17 @@ public class ServletHelper {
 
     public static void checkSession(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         request.setAttribute("roleHandler", RoleHandler.getInstance(request.getSession()));
+        Logger.info("despues de setear el rolehandler");
         if (!isValidSession(request)) {
+        	Logger.info("pudo validar la sesion y no es valida");
             response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-            RequestDispatcher despachador = request.getRequestDispatcher("index.jsp");
-            despachador.forward(request, response);
+           // RequestDispatcher despachador = request.getRequestDispatcher("index.jsp");
+            //despachador.forward(request, response);          
+            
+           // request.getRequestDispatcher("index.jsp").include( request, response);
+            
+            request.getRequestDispatcher("index.jsp").forward(request, response);
+            return;
         }
     }
 

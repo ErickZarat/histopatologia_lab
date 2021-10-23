@@ -64,4 +64,13 @@ public class ConsultaControllerImpl implements IConsultaController {
         Examen examen1 = examenDao.guardarExamen(examen);
         return new JsonResponse<Examen>(examen1 != null, examen1);
     }
+    
+    @Override
+    public JsonResponse<List<Examen>> getExamenesByPaciente(Long codPaciente) {   
+    	List<Examen> examenes = examenDao.getExamenesByPaciente(codPaciente);
+    	return new JsonResponse<>(examenes != null, examenes);
+    }
+    
+    
+    
 }
