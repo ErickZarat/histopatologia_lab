@@ -25,7 +25,7 @@ $(document).ready(function() {
                             '<label class="text-capitalize">' + element.paciente.nombrePaciente + ' ' + element.paciente.apellidosPaciente + '</label>',
 
                             '<div class="btn-group" >'
-                            + '<a class="btn btn-light" href="ConsultaServlet.do?accion=VER&codExamen=' + element.codExamen + '"><i class="fas fa-eye"></i></a>'
+                            + '<a class="btn btn-light" data-toggle="tooltip" data-placement="right" title="Abrir Consulta" href="ConsultaServlet.do?accion=VER&codExamen=' + element.codExamen + '"><i class="fas fa-eye"></i></a>'
                             + '</div>'
                         ]
                         consultasTable.row.add(row).draw(false);

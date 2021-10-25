@@ -118,8 +118,8 @@ $(document).ready(function() {
                             '<label for="medicamento-' + element.codigoMedicamento + '" class="text-capitalize">' + element.nombreMedicamento + '</label>',
  							'<label for="medicamento-' + element.codigoMedicamento + '" class="text-capitalize">' + devuelveEstado(element.estado)+ '</label>',
                             '<div class="btn-group" >'
-                            + '<button type="button" class="btn btn-light" data-modificar-medicamento="true" ' + data + ' data-toggle="modal" data-target="#modificarMedicamentoModal"><i class="fas fa-edit"></i></button>'
-                            + '<button type="button" class="btn btn-light" data-baja-medicamento="true" ' + data + ' data-toggle="modal" data-target="#darBajaMedicamentoModal" id="darBajaPresentacionModalBtn"><i class="fas fa-toggle-on"></i></button>'
+                            + '<button type="button" class="btn btn-light" data-modificar-medicamento="true" ' + data + ' data-toggle="modal" data-target="#modificarMedicamentoModal" data-toggle="tooltip" data-placement="right" title="Modificar Medicamento"><i class="fas fa-edit"></i></button>'
+                            + '<button type="button" class="btn btn-light" data-baja-medicamento="true" ' + data + ' data-toggle="modal" data-target="#darBajaMedicamentoModal" id="darBajaPresentacionModalBtn" data-toggle="tooltip" data-placement="right" title="Cambio de Estado"><i class="fas fa-toggle-on"></i></button>'
                             + '</div>'
                         ]
                         medicamentosTable.row.add(row).draw(false);
@@ -163,7 +163,7 @@ $(document).ready(function() {
                             '<label class="text-uppercase">' + element.creadoPor + '</label>',
                             '<label>' + element.fechaCreacion + '</label>',
                             '<div class="btn-group" >'
-                            + '<button type="button" class="btn btn-light" data-modificar-presentacion="true" ' + data + ' data-toggle="modal" data-target="#modificarPresentacionModal" id="modificarPresentacionModalBtn"><i class="fas fa-edit"></i></button>'
+                            + '<button type="button" class="btn btn-light" data-modificar-presentacion="true" ' + data + ' data-toggle="modal" data-target="#modificarPresentacionModal" id="modificarPresentacionModalBtn" data-toggle="tooltip" data-placement="right" title="Modificar Presentación"><i class="fas fa-edit"></i></button>'
                             + '<button type="button" class="btn btn-light" data-baja-presentacion="true" ' + data + ' data-toggle="modal" data-target="#darBajaPresentacionModal" id="darBajaPresentacionModalBtn"><i class="fas fa-times"></i></button>'
                             + '</div>'
                         ];

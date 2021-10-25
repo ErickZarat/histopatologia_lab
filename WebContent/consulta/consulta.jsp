@@ -9,7 +9,7 @@
     <div>
         <h1 class="main-tittle">Consultas</h1>
 
-        <div class="search-container">
+        <div class="search-container" hidden =1>
             <form class="align-middle" action="ConsultaServlet.do" method="post">
 
                 <table>
