@@ -1,6 +1,29 @@
 $(document).ready(function() {
 
-    var consultasTable = $('#consultasTable').DataTable(window.coreTableConfig);
+   // var consultasTable = $('#consultasTable').DataTable(window.coreTableConfig);
+
+	var consultasTable = $('#consultasTable').DataTable({
+	paging: true,
+	    info: false,
+	 	autoWidth : true,
+		aaSorting: [],
+	    bLengthChange: false,
+	    iDisplayLength: 15,
+	    oLanguage: {
+			sEmptyTable: "No hay filas para mostrar",
+			sSearch : "Buscar",
+			sInfoEmpty: "",
+	        oPaginate: {
+	            sPrevious: "Anterior", // This is the link to the previous page
+	            sNext: "Siguiente", // This is the link to the next page
+	        }
+	    },
+		columnDefs: [ {
+		targets: 1,
+		render: $.fn.dataTable.render.moment( 'DD/MM/YYYY' )
+		} ]
+	})
+
 
     function getListadoConsultas() {
 
@@ -16,10 +39,10 @@ $(document).ready(function() {
                 if(response.success) {
                     response.data.forEach(function (element) {
                         var data = ' data-codigo-consulta="' + element.codExamen +'"';
-                        console.log(element)
                         var row = [
                             '<label>' + element.numExamen + '</label>',
-                            '<label>' + element.fechaFormateada + '</label>',
+                          //  '<label>' + element.fechaFormateada + '</label>',
+							'<label>' + element.fechaExamen + '</label>',
                             '<label class="text-capitalize">' + element.estado + '</label>',
                             '<label class="text-capitalize">' + element.doctor.nombresDoctor + ' ' + element.doctor.apellidosDoctor + '</label>',
                             '<label class="text-capitalize">' + element.paciente.nombrePaciente + ' ' + element.paciente.apellidosPaciente + '</label>',

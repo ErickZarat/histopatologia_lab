@@ -15,6 +15,12 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
+import javax.servlet.http.HttpSession; 
+
+import org.tinylog.Logger; 
+ 
+
+
 import static histopatologialab.core.Controllers.usuarioController;
 import static histopatologialab.core.ServletHelper.*;
 
@@ -71,7 +77,9 @@ public class UsuarioServlet extends HttpServlet {
 	    	CambioPswUsuario(request, response);
 	    }   else if (action == RequestAction.CAMBIO_ESTADO) { 
 	    	CambioEstadoUsuario(request, response);
-	    }   
+	    }   else if (action == RequestAction.SALIR) {  
+	    	confirmSalir(request, response); 
+	    }        
         
     }
 
@@ -160,5 +168,22 @@ public class UsuarioServlet extends HttpServlet {
     }
     
     
-
+    private void confirmSalir(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException { 
+   	 
+        HttpSession session = request.getSession(true);  
+         
+        try { 
+        	if (session == null) return; 
+            	session.invalidate(); 
+ 
+        } catch (IllegalStateException exception){ 
+            Logger.warn("session already invalidated"); 
+        } 
+         
+        RequestDispatcher despachador = request.getRequestDispatcher("index.jsp"); 
+        despachador.forward(request, response);   	 
+    } 
+    
+    
+    
 }

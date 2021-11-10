@@ -67,11 +67,11 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-			 <form id="CerrarSesionFormModal"  class="align-middle" method=get action='LoginServlet.do?=SALIR' >          
+			  <form id="CerrarSesionFormModal"  class="align-middle"  >            
 	            <div class="modal-body"> ¿Deseas cerrar tu sesión actual? </div>
 	            <div class="modal-footer">
 	                <button type="button" class="btn btn-secondary" id="btnCancelCerrarSesion" data-dismiss="modal">Cancelar</button>
-	                <button type="submit" form="CerrarSesionFormModal" value="Submit" >Cerrar Sesion</button>
+	                <button type="submit" class="btn btn-primary" form="CerrarSesionFormModal" value="Submit" id ="btnCerrarSesion">Cerrar Sesion</button>
 	            </div>
 			</form>	            
         </div>

@@ -110,7 +110,8 @@ $.fn.dataTable.render.moment = function ( from, to, locale ) {
 			return type === 'sort' || type === 'type' ? 0 : d;
 		}
 
-		var m = window.moment( d, from, locale, true );
+		var m = window.moment( d.substr(7,10), from, locale, true );
+		
 
 		// Order and type get a number value from Moment, everything else
 		// sees the rendered value

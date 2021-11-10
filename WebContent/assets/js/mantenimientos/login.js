@@ -41,9 +41,9 @@ $(document).ready(function() {
 
 	var validar_formularioMod = $("#CambioPswFormModal").validate({
  	rules :{
- 			passwordAnterior : { required : true, loginFormato :true,  minlength : 6, maxlength : 50 },							
-            nuevoPassword : { required : true, loginFormato :true,  minlength : 6, maxlength : 50 },
-			confirNuevoPassword : { required : true, loginFormato :true, equalTo: '#nuevoPassword', minlength : 6, maxlength : 50 },               
+			passwordAnterior : { required : true, loginFormato :true,  minlength : 4, maxlength : 50 },							
+            nuevoPassword : { required : true, loginFormato :true,  minlength : 4, maxlength : 50 },
+			confirNuevoPassword : { required : true, loginFormato :true, equalTo: '#nuevoPassword', minlength : 4, maxlength : 50 },		               
             },
             messages : {
                 nuevoPassword : {
@@ -129,28 +129,24 @@ $(document).ready(function() {
 
 
 
-
-
-
-/* $('#btnCerrarSesion').click(function(e){
+	$('#btnCerrarSesion').click(function(e){
 		//$('#logoutUsuarioModal').modal('hide');
          var loginUser = $('#loginUsuario').val();	
 		        $.ajax({
 	            url: 'UsuarioServlet.do',
 	            method: 'post',
 	            data: {
-	                accion: 'CONFIRM_SALIR',
+	                //accion: 'CONFIRM_SALIR',
+					accion: 'SALIR',
 	                loginUser: loginUser
 	            },
 	            success: function(response) {
 	                if (response.success){
 
-						$("#CambioPswFormModal")[0].reset();									
-	                    toastr.success("Se cambio con éxito la contraseña");
 	                } else {
 	                    toastr.error(response.error);
 	                }
 	            }
 	        });
-    });*/
+    });
 });

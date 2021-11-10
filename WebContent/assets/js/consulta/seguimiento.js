@@ -4,111 +4,28 @@ $(document).ready(function() {
     window.seguimientos = [];
 
 
-
-jQuery.extend( jQuery.fn.dataTableExt.oSort, {
-    "date-eu-pre": function ( date ) {
-        date = date.replace(" ", "");
-         
-        if ( ! date ) {
-            return 0;
-        }
- 
-        var year;
-        var eu_date = date.split(/[\.\-\/]/);
- 
-        /*year (optional)*/
-        if ( eu_date[2] ) {
-            year = eu_date[2];
-        }
-        else {
-            year = 0;
-        }
- 
-        /*month*/
-        var month = eu_date[1];
-        if ( month.length == 1 ) {
-            month = 0+month;
-        }
- 
-        /*day*/
-        var day = eu_date[0];
-        if ( day.length == 1 ) {
-            day = 0+day;
-        }
- 
-        return (year + month + day) * 1;
-    },
- 
-    "date-eu-asc": function ( a, b ) {
-        return ((a < b) ? -1 : ((a > b) ? 1 : 0));
-    },
- 
-    "date-eu-desc": function ( a, b ) {
-        return ((a < b) ? 1 : ((a > b) ? -1 : 0));
-    }
-} );
-
-/*$.fn.dataTable.moment = function ( format, locale ) {
-    var types = $.fn.dataTable.ext.type;
-
-    // Add type detection
-    types.detect.unshift( function ( d ) {
-        return moment( d, format, locale, true ).isValid() ?
-            'moment-'+format :
-            null;
-    } );
-
-    // Add sorting method - use an integer for the sorting
-    types.order[ 'moment-'+format+'-pre' ] = function ( d ) {
-        return moment( d, format, locale, true ).unix();
-    };
-};
-*/
-
-
-jQuery.extend(jQuery.fn.dataTableExt.oSort, {
-    "extract-date-pre": function(value) {
-        var date = $(value, 'span')[0].innerHTML;
-        date = date.split('/');
-        return Date.parse(date[1] + '/' + date[0] + '/' + date[2])
-    },
-    "extract-date-asc": function(a, b) {
-        return ((a < b) ? -1 : ((a > b) ? 1 : 0));
-    },
-    "extract-date-desc": function(a, b) {
-        return ((a < b) ? 1 : ((a > b) ? -1 : 0));
-    }
-});
-
    var seguimientosTable = $('#seguimientosTable').DataTable({
-	paging: true,
-    // pagingType: 'simple',
+paging: true,
     info: false,
  	autoWidth : true,
-    // bFilter: false,
+	aaSorting: [],
     bLengthChange: false,
     iDisplayLength: 5,
     oLanguage: {
+		sEmptyTable: "No hay filas para mostrar",
+		sSearch : "Buscar",
+		sInfoEmpty: "",
         oPaginate: {
             sPrevious: "Anterior", // This is the link to the previous page
             sNext: "Siguiente", // This is the link to the next page
         }
     },
-        columnDefs: [{
-	type: 'extract-date',
-	//render: $.fn.dataTable.render.moment('YYYY-MM-DD', 'DD/MM/YYYY'),
-	//"render": function(data) { return moment(data).format('DD/MM/YYYY');},
-	 // render: $.fn.dataTable.render.moment('YYYY-MM-DD', 'DD/MM/YYYY','en'),
-      targets: 0
-        }]
-    });
+	columnDefs: [ {
+	targets: 0,
+	render: $.fn.dataTable.render.moment( 'DD/MM/YYYY' )
+	} ]
+})
 
-
-  //      $.fn.dataTable.moment('DD/MM/YYYY');
-
-
-/*        responsive: true,
-        fixedHeader: true,*/
    // var seguimientosTable = $('#seguimientosTable').DataTable(window.coreTableConfig);
 
 
@@ -164,7 +81,7 @@ jQuery.extend(jQuery.fn.dataTableExt.oSort, {
         seguimientosTable.rows().remove().draw(false);
         window.seguimientos.forEach(function(element, idx){
             var row = [
-                '<label class="text-capitalize">' + element.fechaCreacion + '</label>' ,
+                '<label>' + element.fechaCreacion + '</label>' ,
                 '<label class="text-capitalize">' + element.observaciones + '</label>' ,
                 '<label class="text-capitalize">' + element.observacionesAdd + '</label>' ,
 				'<label class="text-capitalize">' + element.nombresDoctor + '</label>' ,
@@ -189,9 +106,8 @@ jQuery.extend(jQuery.fn.dataTableExt.oSort, {
 				 if(response.success) {
                     response.data.forEach(function (element) {
 						 //var txtfecha = Convert.ToDateTime(row["element.fechaCreacion"]).ToString("dd/MM/yyyy");
-							 var txtFecha= element.fechaCreacion.toString();
 				            var row = [
-				                '<label class="text">' + element.fechaCreacion + '</label>' ,
+				                '<label>' + element.fechaCreacion + '</label>' ,
 				                '<label class="text">' + element.observaciones + '</label>' ,
 				                '<label class="text">' + element.observacionesAdicionales + '</label>' ,
 								'<label class="text">' + element.doctorSeguimiento + '</label>' 

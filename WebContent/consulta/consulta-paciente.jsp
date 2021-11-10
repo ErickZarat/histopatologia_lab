@@ -62,6 +62,7 @@
 </div>
 
 
+
 <%@include file="../partials/footer.jsp"%>
 <script src="assets/js/consulta/consulta-paciente.js"></script>
 

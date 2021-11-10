@@ -14,6 +14,7 @@ window.coreTableConfig = {
     // pagingType: 'simple',
     info: false,
  	autoWidth : true,
+	aaSorting: [],
     // bFilter: false,
     bLengthChange: false,
     iDisplayLength: 15,
