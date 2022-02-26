@@ -13,7 +13,7 @@ import javax.sql.DataSource;
 public class DB {
     private final String jdbcUrl = "jdbc:postgresql://localhost:5432/postgres";
     private final String username = "postgres";
-    private final String password = "docker";
+    private final String password = "postgres";
     
 //	private final String jdbcUrl = "jdbc:postgresql://database-lab.ct8k21fpxreo.us-east-2.rds.amazonaws.com:5432/postgres";  	//conexion Aws AStrid
 //	private final String password = "Admin123";       																			// conexion Aws Astrid

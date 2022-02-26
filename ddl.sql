@@ -1,3 +1,5 @@
+create sequence lab_diagnostico_seq as bigint increment 1 start 1;
+
 create table lab_diagnostico
 (
     cod_diagnostico    bigint default nextval('lab_diagnostico_seq'::regclass) not null
@@ -13,6 +15,8 @@ create table lab_diagnostico
 
 alter table lab_diagnostico
     owner to postgres;
+
+create sequence lab_enfermedad_sistemica_seq as integer increment 1 start 1;
 
 create table lab_enfermedad_sistemica
 (
@@ -30,6 +34,8 @@ create table lab_enfermedad_sistemica
 alter table lab_enfermedad_sistemica
     owner to postgres;
 
+create sequence lab_medicamento_seq as integer increment 1 start 1;
+
 create table lab_medicamento
 (
     cod_medicamento    integer default nextval('lab_medicamento_seq'::regclass) not null
@@ -46,6 +52,8 @@ create table lab_medicamento
 
 alter table lab_medicamento
     owner to postgres;
+
+create sequence lab_paciente_seq as bigint increment 1 start 1;
 
 create table lab_paciente
 (
@@ -73,6 +81,9 @@ create table lab_paciente
 alter table lab_paciente
     owner to postgres;
 
+create sequence lab_tincion_seq as integer increment 1 start 1;
+
+
 create table lab_tincion
 (
     cod_tincion        integer default nextval('lab_tincion_seq'::regclass) not null
@@ -88,6 +99,8 @@ create table lab_tincion
 
 alter table lab_tincion
     owner to postgres;
+
+create sequence lab_tipo_opcion_lesion_seq as integer increment 1 start 1;
 
 create table lab_tipo_opcion_lesion
 (
@@ -105,6 +118,8 @@ create table lab_tipo_opcion_lesion
 
 alter table lab_tipo_opcion_lesion
     owner to postgres;
+
+create sequence lab_usuario_seq as bigint increment 1 start 1;
 
 create table lab_usuario
 (

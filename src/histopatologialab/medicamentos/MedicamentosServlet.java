@@ -28,7 +28,7 @@ public class MedicamentosServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         checkSession(request, response);
 
-        roleHandler = RoleHandler.getInstance(request.getSession());
+        roleHandler = RoleHandler.getInstance(request.getSession(false));
         checkRole(roleHandler.isNormal(), request, response);
 
         RequestAction action = getRequestAction(request);
@@ -47,7 +47,7 @@ public class MedicamentosServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         checkSession(request, response);
-        roleHandler = RoleHandler.getInstance(request.getSession());
+        roleHandler = RoleHandler.getInstance(request.getSession(false));
 //        checkRole(roleHandler.isNormal(), request, response);
 
         RequestAction action = getRequestAction(request);

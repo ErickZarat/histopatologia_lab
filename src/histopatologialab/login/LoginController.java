@@ -6,6 +6,7 @@ import histopatologialab.usuario.controller.IUsuarioController;
 import histopatologialab.usuario.dto.Usuario;
 import org.tinylog.Logger;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import static histopatologialab.core.Controllers.usuarioController;
@@ -19,7 +20,7 @@ public class LoginController {
 
 private final String ROLE_KEY = "user_role";
 
-    public Boolean iniciarSession(String usuario, String password, HttpSession session) {
+    public Boolean iniciarSession(String usuario, String password, HttpServletRequest request) {
 //    	return iniciarFallback(usuario, session);
 
     	IUsuarioController controller = usuarioController;
@@ -33,16 +34,16 @@ private final String ROLE_KEY = "user_role";
 
 			    	Role role = Role.findBySlug(usuarioBD.getTipoUsuario());
 			    	int codigoUsuario = usuarioBD.getCodUsuario().intValue();
-			        crearSesion(session, usuario, codigoUsuario, role);
+			        crearSesion(request, usuario, codigoUsuario, role);
 		    		return true;
 	            } else {
 	                System.out.println("El password ingresado no es correcto");
 		    		return false;
 	            }
 	    	}
-	    	else
-	    	{ System.out.println("Usuario no Existe");
-	    	  return false;	
+	    	else {
+				System.out.println("Usuario no Existe");
+	    	  	return false;
 	    	}	    			
 		} catch (Exception e) {
 			return false;
@@ -50,22 +51,14 @@ private final String ROLE_KEY = "user_role";
 
     }
 
-    public void crearSesion(HttpSession session, String usuario, int codigoUsuario, Role role) {
+    public void crearSesion(HttpServletRequest request, String usuario, int codigoUsuario, Role role) {
+		System.out.println("obteniendo session nueva");
+		HttpSession session = request.getSession();
         session.setAttribute(ROLE_KEY, role.getSlug());
         session.setAttribute("usuario", usuario);
         session.setAttribute("codigousuario", codigoUsuario);
         session.setAttribute("idUsuario", codigoUsuario);
         session.setAttribute("role", role);
         session.setAttribute("sesionIniciada", true);
-    }
-
-    public void cerrarSesion(HttpSession session) {
-        try {
-        	if (session == null) return;
-            	session.invalidate();
-
-        } catch (IllegalStateException exception){
-            Logger.warn("session already invalidated");
-        }
     }
 }

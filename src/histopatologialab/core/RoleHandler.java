@@ -20,6 +20,10 @@ public class RoleHandler {
         return roleHandler;
     }
 
+    public static void invalidte(){
+        roleHandler = null;
+    }
+
     private Role getRole() {
         String roleSlug = (String) this.session.getAttribute(ROLE_KEY);
         return Role.findBySlug(roleSlug);

@@ -1,5 +1,6 @@
 package histopatologialab.login;
 
+import histopatologialab.core.Controllers;
 import histopatologialab.core.RequestAction;
 
 import javax.servlet.RequestDispatcher;
@@ -17,7 +18,7 @@ import static histopatologialab.core.ServletHelper.*;
 @WebServlet(name = "LoginServlet")
 public class LoginServlet extends HttpServlet {
 
-    LoginController loginController = new LoginController();
+    LoginController loginController = Controllers.loginController;
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         RequestDispatcher despachador = null;
@@ -25,7 +26,7 @@ public class LoginServlet extends HttpServlet {
         String usuario = request.getParameter("usuario");
         String password = request.getParameter("password");
 
-        boolean seInicioSesion = loginController.iniciarSession(usuario, password, request.getSession(true));
+        boolean seInicioSesion = loginController.iniciarSession(usuario, password, request);
         if (seInicioSesion) {
             checkSession(request, response);
             request.setAttribute("username", usuario);
@@ -46,18 +47,17 @@ public class LoginServlet extends HttpServlet {
     	String accion = request.getParameter("parametro");
     	
     	System.out.println(accion);
-        
-    	RequestDispatcher despachador;
+
         if (action == RequestAction.SALIR) {
         	System.out.println("opcion de salir de login servlet");
-            loginController.cerrarSesion(request.getSession(true));
-            despachador = request.getRequestDispatcher("index.jsp");
+            logout(request, response);
+            response.sendRedirect("/");
         } else if (isValidSession(request)) {
-            despachador = request.getRequestDispatcher("principal.jsp");
+            request.getRequestDispatcher("principal.jsp").forward(request, response);
         } else {
-            despachador = request.getRequestDispatcher("index.jsp");
+            response.sendRedirect("/");
         }
-        despachador.forward(request, response);
+
     }
 
 }

@@ -20,7 +20,7 @@ public class ServletHelper {
     public static ObjectMapper jackson;
 
     public static String getUsuarioFromSession(HttpServletRequest request) {
-        HttpSession session = request.getSession();
+        HttpSession session = request.getSession(false);
         if (session == null) return null;
 
         Object usuario = session.getAttribute("usuario");
@@ -33,7 +33,7 @@ public class ServletHelper {
     }
 
     public static Long getIdUsuarioFromSession(HttpServletRequest request) {
-        HttpSession session = request.getSession();
+        HttpSession session = request.getSession(false);
         if (session == null) return 0L;
 
         Object usuario = session.getAttribute("idUsuario");
@@ -50,18 +50,24 @@ public class ServletHelper {
     }
 
     public static void checkSession(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        request.setAttribute("roleHandler", RoleHandler.getInstance(request.getSession()));
-        Logger.info("despues de setear el rolehandler");
+        request.setAttribute("roleHandler", RoleHandler.getInstance(request.getSession(false)));
+
         if (!isValidSession(request)) {
-        	Logger.info("pudo validar la sesion y no es valida");
             response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-           // RequestDispatcher despachador = request.getRequestDispatcher("index.jsp");
-            //despachador.forward(request, response);          
-            
-           // request.getRequestDispatcher("index.jsp").include( request, response);
-            
-            request.getRequestDispatcher("index.jsp").forward(request, response);
-            return;
+            response.sendRedirect("/");
+        }
+    }
+
+    public static void logout(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        HttpSession session = request.getSession(false);
+
+        try {
+            if (session == null) return;
+            RoleHandler.invalidte();
+            session.invalidate();
+            RoleHandler.getInstance(request.getSession());
+        } catch (IllegalStateException exception){
+            Logger.warn("session already invalidated");
         }
     }
 

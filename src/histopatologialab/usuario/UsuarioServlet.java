@@ -168,20 +168,8 @@ public class UsuarioServlet extends HttpServlet {
     }
     
     
-    private void confirmSalir(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException { 
-   	 
-        HttpSession session = request.getSession(true);  
-         
-        try { 
-        	if (session == null) return; 
-            	session.invalidate(); 
- 
-        } catch (IllegalStateException exception){ 
-            Logger.warn("session already invalidated"); 
-        } 
-         
-        RequestDispatcher despachador = request.getRequestDispatcher("index.jsp"); 
-        despachador.forward(request, response);   	 
+    private void confirmSalir(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        logout(request, response);
     } 
     
     

@@ -1,5 +1,6 @@
 package histopatologialab.usuario.controller;
 
+import histopatologialab.core.Controllers;
 import histopatologialab.core.Estado;
 import histopatologialab.core.JsonResponse;
 import histopatologialab.password.PasswordUtils;
@@ -157,3 +158,9 @@ public class UsuarioControllerImpl implements IUsuarioController{
 	}
 	
 }
+
+//class Main {
+//	public static void main(String[] args) {
+//		Controllers.usuarioController.crearUsuario("admin","admin", "admin", "admin", "doc@admin.com", "0000", "ADM", "" );
+//	}
+//}
