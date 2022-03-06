@@ -46,9 +46,6 @@ public class MenuServlet extends HttpServlet {
               
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//doGet(request, response);
@@ -62,7 +59,7 @@ public class MenuServlet extends HttpServlet {
 
 	private void getCerrarSesion(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setAttribute("opcion", "SALIR");
-        RequestDispatcher despachador = request.getRequestDispatcher("mantenimientos/cambiopsw.jsp?opcion=SALIR");
+        RequestDispatcher despachador = request.getRequestDispatcher("index.jsp?opcion=SALIR");
         despachador.forward(request, response);
 	}
 
