@@ -50,7 +50,7 @@ public class ServletHelper {
     }
 
     public static void checkSession(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        request.setAttribute("roleHandler", RoleHandler.getInstance(request.getSession(false)));
+        request.setAttribute("roleHandler", new RoleHandler(request.getSession(false)));
 
         if (!isValidSession(request)) {
             response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
@@ -65,7 +65,7 @@ public class ServletHelper {
             if (session == null) return;
             RoleHandler.invalidte();
             session.invalidate();
-            RoleHandler.getInstance(request.getSession());
+            new RoleHandler(request.getSession());
         } catch (IllegalStateException exception){
             Logger.warn("session already invalidated");
         }

@@ -1,7 +1,5 @@
 package histopatologialab.core;
 
-import org.tinylog.Logger;
-
 import javax.servlet.http.HttpSession;
 
 public class RoleHandler {
@@ -9,15 +7,8 @@ public class RoleHandler {
     private HttpSession session;
     private final String ROLE_KEY = "user_role";
 
-    private RoleHandler(HttpSession session) {
+    public RoleHandler(HttpSession session) {
         this.session = session;
-    }
-
-    public static RoleHandler getInstance(HttpSession session){
-        if (roleHandler == null){
-            roleHandler = new RoleHandler(session);
-        }
-        return roleHandler;
     }
 
     public static void invalidte(){
