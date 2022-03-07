@@ -6,7 +6,6 @@ import histopatologialab.core.RoleHandler;
 import histopatologialab.medicamentos.controller.IMedicamentosController;
 import histopatologialab.medicamentos.dto.Medicamento;
 import histopatologialab.medicamentos.dto.TipoMedicamento;
-import org.tinylog.Logger;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -26,7 +25,7 @@ public class MedicamentosServlet extends HttpServlet {
     RoleHandler roleHandler;
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        checkSession(request, response);
+        if (!isValidSession(request, response)) return;
 
         roleHandler = new RoleHandler(request.getSession(false));
         checkRole(roleHandler.isNormal(), request, response);
@@ -46,7 +45,8 @@ public class MedicamentosServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        checkSession(request, response);
+        if (!isValidSession(request, response)) return;
+
         roleHandler = new RoleHandler(request.getSession(false));
 //        checkRole(roleHandler.isNormal(), request, response);
 

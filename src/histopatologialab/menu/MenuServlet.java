@@ -10,8 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-import static histopatologialab.core.ServletHelper.checkSession;
-import static histopatologialab.core.ServletHelper.getRequestAction;
+import static histopatologialab.core.ServletHelper.*;
 
 /**
  * Servlet implementation class MenuServlet
@@ -59,6 +58,7 @@ public class MenuServlet extends HttpServlet {
 
 	private void getCerrarSesion(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setAttribute("opcion", "SALIR");
+		logout(request, response);
         RequestDispatcher despachador = request.getRequestDispatcher("index.jsp?opcion=SALIR");
         despachador.forward(request, response);
 	}

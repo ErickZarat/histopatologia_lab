@@ -45,17 +45,20 @@ public class ServletHelper {
         return Long.valueOf(usuario.toString());
     }
 
-    public static boolean isValidSession(HttpServletRequest request) {
+    public static boolean isValidUser(HttpServletRequest request) {
         return getUsuarioFromSession(request) != null;
     }
 
-    public static void checkSession(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+    public static boolean isValidSession(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         request.setAttribute("roleHandler", new RoleHandler(request.getSession(false)));
 
-        if (!isValidSession(request)) {
+        if (!isValidUser(request)) {
+            request.setAttribute("message", "Sesion expirada");
             response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-            response.sendRedirect("/");
+            response.sendRedirect(request.getContextPath());
+            return false;
         }
+        return true;
     }
 
     public static void logout(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
