@@ -1,7 +1,6 @@
 package histopatologialab.frote;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import histopatologialab.biopsia.dto.Biopsia;
 import histopatologialab.consultas.dto.EstadoExamen;
 import histopatologialab.core.JsonResponse;
 import histopatologialab.core.RequestAction;
@@ -16,7 +15,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.time.LocalDate;
 
 import static histopatologialab.core.Controllers.*;
 import static histopatologialab.core.ServletHelper.*;
@@ -27,7 +25,7 @@ public class FroteServlet extends HttpServlet {
     private final ObjectMapper jackson = getJackson();
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        checkSession(request, response);
+        if (!isValidSession(request, response)) return;
 
         RequestAction action = getRequestAction(request);
 
@@ -69,7 +67,7 @@ public class FroteServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        checkSession(request, response);
+        if (!isValidSession(request, response)) return;
 
         RequestAction action = getRequestAction(request);
 

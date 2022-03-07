@@ -40,7 +40,7 @@ public class OpcionLesionServlet extends HttpServlet {
 	 */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		// TODO Auto-generated method stub
-        checkSession(request, response);
+        if (!isValidSession(request, response)) return;
 
         RequestAction action = getRequestAction(request);
 		System.out.println(action);
@@ -62,7 +62,7 @@ public class OpcionLesionServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        checkSession(request, response);
+        if (!isValidSession(request, response)) return;
 
         RequestAction action = getRequestAction(request);
         if (action == RequestAction.LISTAR_JSON) {

@@ -40,7 +40,7 @@ public class PacienteServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        checkSession(request, response);
+        if (!isValidSession(request, response)) return;
         RequestAction action = getRequestAction(request);
 
         if (action == RequestAction.CREAR) {
@@ -58,7 +58,7 @@ public class PacienteServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        checkSession(request, response);
+        if (!isValidSession(request, response)) return;
         RequestAction action = getRequestAction(request);
 
         if (action == RequestAction.LISTAR_JSON) {

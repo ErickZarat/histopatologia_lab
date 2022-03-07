@@ -9,7 +9,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import java.io.IOException;
 
@@ -28,7 +27,7 @@ public class LoginServlet extends HttpServlet {
 
         boolean seInicioSesion = loginController.iniciarSession(usuario, password, request);
         if (seInicioSesion) {
-            checkSession(request, response);
+            if (!isValidSession(request, response)) return;
             request.setAttribute("username", usuario);
             despachador = request.getRequestDispatcher("principal.jsp");
         } else {
@@ -40,7 +39,7 @@ public class LoginServlet extends HttpServlet {
     
     
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        checkSession(request, response);
+        if (!isValidSession(request, response)) return;
         
         RequestAction action = getRequestAction(request);
     	System.out.println(action);
@@ -52,7 +51,7 @@ public class LoginServlet extends HttpServlet {
         	System.out.println("opcion de salir de login servlet");
             logout(request, response);
             response.sendRedirect("/");
-        } else if (isValidSession(request)) {
+        } else if (isValidUser(request)) {
             request.getRequestDispatcher("principal.jsp").forward(request, response);
         } else {
             response.sendRedirect("/");

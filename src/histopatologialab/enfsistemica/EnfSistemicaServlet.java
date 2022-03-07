@@ -22,7 +22,7 @@ public class EnfSistemicaServlet extends HttpServlet {
 	
 	
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        checkSession(request, response);
+        if (!isValidSession(request, response)) return;
         System.out.println("Hola Servlet post..");
         RequestAction action = getRequestAction(request);
 
@@ -39,7 +39,7 @@ public class EnfSistemicaServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        checkSession(request, response);
+        if (!isValidSession(request, response)) return;
         System.out.println("Hola Servlet get enfermedad..");
         RequestAction action = getRequestAction(request);
 

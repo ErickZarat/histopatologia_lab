@@ -19,7 +19,7 @@ public class TincionServlet extends HttpServlet {
     ITincionController controller = tincionController;
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        checkSession(request, response);
+        if (!isValidSession(request, response)) return;
         RequestAction action = getRequestAction(request);
 
         if (action == RequestAction.LISTAR_JSON) {

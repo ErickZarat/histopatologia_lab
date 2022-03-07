@@ -41,7 +41,7 @@ public class ConsultaServlet extends HttpServlet {
     private final IInformeController informeController = Controllers.informeController;
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        checkSession(request, response);
+        if (!isValidSession(request, response)) return;
 
         RequestAction action = getRequestAction(request);
 
@@ -53,7 +53,7 @@ public class ConsultaServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        checkSession(request, response);
+        if (!isValidSession(request, response)) return;
 
         RequestAction action = getRequestAction(request);
 

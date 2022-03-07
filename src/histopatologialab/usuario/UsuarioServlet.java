@@ -15,11 +15,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-import javax.servlet.http.HttpSession; 
-
-import org.tinylog.Logger; 
- 
-
 
 import static histopatologialab.core.Controllers.usuarioController;
 import static histopatologialab.core.ServletHelper.*;
@@ -44,7 +39,7 @@ public class UsuarioServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        checkSession(request, response);
+        if (!isValidSession(request, response)) return;
         System.out.println("Hola Servlet get..");
         RequestAction action = getRequestAction(request);
 
@@ -59,7 +54,7 @@ public class UsuarioServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        checkSession(request, response);
+        if (!isValidSession(request, response)) return;
         System.out.println("Hola Servlet post..");
         RequestAction action = getRequestAction(request);
 

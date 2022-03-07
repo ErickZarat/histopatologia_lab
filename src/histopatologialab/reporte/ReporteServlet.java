@@ -14,7 +14,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 import static histopatologialab.core.Daos.reporteDao;
-import static histopatologialab.core.ServletHelper.checkSession;
+import static histopatologialab.core.ServletHelper.isValidSession;
 import static histopatologialab.core.ServletHelper.getRequestAction;
 
 @WebServlet(name = "ReporteServlet")
@@ -26,7 +26,7 @@ public class ReporteServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        checkSession(request, response);
+        if (!isValidSession(request, response)) return;
 
         RequestAction action = getRequestAction(request);
         String tipo = request.getParameter("tipo");

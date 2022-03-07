@@ -1,7 +1,6 @@
 package histopatologialab.manuales;
 
-import static histopatologialab.core.ServletHelper.checkSession;
-import static histopatologialab.core.ServletHelper.getRequestAction;
+import static histopatologialab.core.ServletHelper.isValidSession;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -10,10 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import histopatologialab.core.RequestAction;
-
 import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletException;
 
 /**
  * Servlet implementation class ManualServlet
@@ -38,7 +34,7 @@ public class ManualServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
-		checkSession(request, response);
+		if (!isValidSession(request, response)) return;
         System.out.println("Hola Servlet manuales..");
       //  RequestAction action = getRequestAction(request);        
         getDefaultPage(request, response);			

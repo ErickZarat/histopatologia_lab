@@ -41,7 +41,7 @@ public class DiagnosticoServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 
-	    checkSession(request, response);
+	    if (!isValidSession(request, response)) return;
         System.out.println("Hola Servlet post..");
         RequestAction action = getRequestAction(request);
         System.out.println(action);
@@ -67,7 +67,7 @@ public class DiagnosticoServlet extends HttpServlet {
 	 */
 	
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        checkSession(request, response);
+        if (!isValidSession(request, response)) return;
         System.out.println("Hola Servlet get diagnostico..");
         RequestAction action = getRequestAction(request);
         System.out.println(action);

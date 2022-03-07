@@ -25,7 +25,7 @@ public class RecetaServlet extends HttpServlet {
     private ObjectMapper jackson = getJackson();
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        checkSession(request, response);
+        if (!isValidSession(request, response)) return;
 
         RequestAction action = getRequestAction(request);
 
@@ -35,7 +35,7 @@ public class RecetaServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        checkSession(request, response);
+        if (!isValidSession(request, response)) return;
 
         RequestAction action = getRequestAction(request);
 
